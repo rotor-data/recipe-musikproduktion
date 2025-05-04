@@ -1,0 +1,168 @@
+// --- typography.scss ---
+@use "sass:map";
+@use "variables" as *;
+@use "bulma-config" as *;
+//@use "mixins";
+@use "bulma/sass/utilities/mixins" as mixins;
+
+
+em {
+  color: $warning;
+  font-style: normal;
+}
+
+
+h1 {
+  hyphens: auto;
+  hyphenate-limit-chars: 5 5 5;
+}
+
+h2 {
+  font-family: $headline;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+h3 {
+  font-family: $headline2;
+}
+
+h4,
+h5,
+h6 {
+  font-family: $bodytext;
+}
+
+button h1,
+button h2,
+button h3,
+button h4,
+button h5,
+button h6 {
+  display: unset;
+}
+
+.common-text,
+.common-text p {
+  margin-bottom: 1rem;
+}
+
+.common-text h1,
+.common-text h2,
+.common-text h3,
+.common-text h4,
+.common-text h5,
+.common-text h6 {
+  margin-bottom: 0.5rem !important;
+  font-weight: 900 !important;
+  color: black;
+}
+
+.common-text h2,
+.common-text h3 {
+  font-size: 1.2rem;
+}
+
+.common-text em {
+  color: black;
+}
+
+.common-text li {
+  list-style: disc;
+  list-style-position: outside;
+  font-family: $bodytext;
+  margin-bottom: 0.5rem;
+}
+
+.common-text ul {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.hero-text ul {
+  border: 0.5px solid;
+  padding: 2rem;
+  margin-left: 0;
+}
+
+.is-hyphenated {
+  hyphens: auto;
+}
+
+.has-tight-height {
+  line-height: 1;
+}
+
+.has-tighter-height {
+  line-height: 0.9;
+}
+
+.has-tight-spacing {
+  letter-spacing: -1px;
+}
+.has-wide-spacing {
+  letter-spacing: 1.2px;
+}
+.is-ultralarge {
+  font-size: 4.5rem;
+}
+
+.is-extralarge {
+  font-size: 3.6rem;
+}
+
+.is-supersmall {
+  font-size: 0.7rem;
+}
+
+.is-size-7 {
+  font-size: 0.75rem;
+}
+
+.title {
+  line-height: 110%;
+ // text-transform: uppercase;
+ // letter-spacing: 1.1px;  
+}
+
+.subtitle {
+  font-family: $title-family;
+  font-weight: 600;
+  font-size: 1.2rem;
+
+}
+
+.preheadline {
+  font-family: $title-family;
+}
+
+@include mixins.mobile {
+  .hero .title {
+    font-size: 2.5rem;
+  }
+  .preheadline {
+    font-size: 0.8rem;
+  }
+
+}
+
+.input, input {
+  color: $black!important;
+}
+
+.form-container {
+  color: white;
+  input,
+  textarea,
+  select,
+  .input,
+  .textarea {
+    color: black!important;
+    background-color: white;
+  }
+  h2,h3,h4,h5 {
+    color: $white;
+  }
+}
+
+

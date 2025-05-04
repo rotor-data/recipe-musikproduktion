@@ -1,0 +1,49 @@
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/initial-variables" as iv;
+
+//define has-background-gradient-{success} etc
+@each $name, $color in dv.$colors {
+  $h: cv.getVar($name, "", "-h");
+  $s: cv.getVar($name, "", "-s");
+  $l: cv.getVar($name, "", "-l");
+
+  .#{iv.$class-prefix}#{iv.$helpers-has-prefix}background-gradient-#{$name} {
+    background-image: radial-gradient(circle at 20% center, hsl(#{$h}, #{$s}, calc(#{$l} - 10%)), hsl(#{$h}, #{$s}, #{$l}));
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+
+@mixin button-skew-effect($size: 10px, $duration: 0.5s, $before-color: #efb9d7, $after-color: #e070be)
+  position: relative
+  transition: all $duration
+  &::before,
+  &::after
+    content: ""
+    position: absolute
+    transition: all $duration
+  &::before
+    top: -$size
+    left: $size/2
+    height: $size
+    width: 100%
+    transform: skewX(-45deg)
+    background-color: $before-color
+  &::after
+    right: -$size
+    bottom: $size/2
+    width: $size
+    height: 100%
+    transform: skewY(-45deg)
+    background-color: $after-color
+  &:active
+    margin-left: 8px
+    margin-top: -6px
+    &::before
+      top: -($size/2)
+      left: $size/4
+    &::after
+      right: -($size/2)
+      bottom: $size/4

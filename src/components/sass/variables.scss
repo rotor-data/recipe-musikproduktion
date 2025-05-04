@@ -1,0 +1,35 @@
+// _variables.scss
+@use "sass:map";
+$headline: "aktiv-grotesk", sans-serif;
+$headline2: "aktiv-grotesk", sans-serif;
+$bodytext: "trade-gothic-next-condensed", sans-serif;
+$family-accent: "bicyclette", sans-serif;
+
+$colors: (
+  nocto-cream: #ccc0a5,
+  nocto-black: #000000,
+  nocto-purple: #5c429a,
+  nocto-blue: #6092b3,
+  nocto-orange: #c16a33,
+  nocto-brick: #a83e29,
+  nocto-deep-green: #30493e
+);
+
+
+$body-margin: 30px;
+$shadow: -0.25em 0.25em 0em 0em map.get($colors, rotor-dark-pink);
+
+// Easily accessed colors
+$primary: map.get($colors, nocto-purple);
+$body-color: map.get($colors, nocto-black);
+$link: map.get($colors, nocto-orange);
+$info: map.get($colors, nocto-blue);
+$success: map.get($colors, nocto-deep-green);
+$warning: map.get($colors, nocto-orange);
+$danger: map.get($colors, nocto-brick);
+$dark: map.get($colors, nocto-black);
+$text: map.get($colors, nocto-black);
+$background: map.get($colors, nocto-cream);
+$white: map.get($colors, nocto-cream);
+$black: map.get($colors, nocto-black);
+

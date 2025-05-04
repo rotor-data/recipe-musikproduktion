@@ -1,0 +1,175 @@
+---
+templateKey: index-page
+meta: 
+  description: "Välkommen till Rotor Digitalbyrå. Se hur ett säljsystem för digital marknadsföring kan skapa leads, boka möten, och öka din försäljning."
+  ogimage: "../img/dough-rain-rotor-paraply.png"
+title: Rotor Digitalbyrå Stockholm
+hero:
+  headline: Börja räkna i miljoner kronor och inte i klick
+  headlineimg: /img/headline start.png
+  subtext: "Långa säljcykler? Komplexa produkter? Du kan också skaffa en digital marknadsföring som skapar leads, bokar möten, och ökar försäljningen."
+  subtext2: '(Och sluta jaga räckvidd, klick, trafik eller andra KPI:er som inte gör någon skillnad för ditt bankkonto)' 
+  image: "../img/dough-rain-rotor-paraply.png"
+  imagealt: Digital marknadsföring i racingpaket
+  cta: 
+    text: Exakt vad en lead, ett kundmöte och en försäljning kostar dig? Varför dina annonser på Google och sociala medier inte fungerar? Hur du bygger upp ett säljflöde som är helt automatiserat?
+    buttonText: Lär mig hur
+    buttonLink: /lp/kostnadsfri-guide
+    headline: Har du inte koll på...
+challenge:
+  headline: Så gör du för att inte öka din försäljning
+  text: Du har en fantastisk produkt. En lysande affärsidé. Världens bästa tjänst. <br><br>
+        Så sitter du där. <em>En fiskare framför en sjö full med fisk. Men utan metspö, utan drag och utan agn. En jättestor påse att lägga fisk i som gapar tomt.</em>
+        Du funderar på var din nästa kund ska komma ifrån...?
+        Förslagen på vad du ska göra kommer in. Många.<br><br>
+        Starta blogg! Annonsera på google! Kör facebook! Tiktok? Starta podd! Snapchat?<br><br>
+        Allt låter ju otroligt bra men det är på samma gång <em>ungefär som att köra hjärnan på 90 grader centrifug.</em>
+        I vilken ände ska du börja?<br><br>
+        Med varma, bultande tinningar testar du en sak. Eller kanske flera samtidigt.
+        Och resultatet blir (drumroll)....nästan inga nya kunder!<br><br>
+        <em>Du är här för att du tror att det finns mer att hämta. </em>
+  image: "/img/super crunchy box fri.png"
+  imagealt: flingpaket med tjänster från digitalbyrå
+        
+servicesHeadline: 'Våra tjänster'
+services:
+- service:
+    name: "Annonsering"
+    tooltip: |
+      ### **Annonsering**
+
+      #### - Meta
+      #### - LinkedIn
+      #### - Sökmotorer (Google, Bing)
+- service:
+    name: "SEO"
+    tooltip: |
+      ### **SEO**
+
+      #### - Analys
+      #### - Teknisk optimering
+      #### - On-page-optimering
+- service:
+    name: "Content creation"
+    tooltip: |
+      ### **Content creation**
+
+      #### - Copywriting
+      #### - Video
+      #### - Animation
+      #### - Original till trycksaker
+- service:
+    name: "Marketing automation"
+    tooltip: |
+      ### **Marketing automation**
+
+      #### - Innehållsskapande
+      #### - Automation
+- service:
+    name: "Webbutveckling"
+    tooltip: |
+      ### **Webbutveckling**
+
+      #### - Design
+      #### - Frontend development
+- service:
+    name: "CRM"
+    tooltip: |
+      ### **CRM**
+
+      #### - Strukturering & automation
+      #### - Spårning & rapportering
+
+
+solution:
+  headline1: Ökad försäljning, hitåt!
+  text1: ...Och det finns ett annat sätt.<br><br>
+        Om ett år kommer du att undra varför du inte tagit den här smartare approachen från första början.
+        Tidigare fick du gissa, för du visste helt enkelt inte vad som funkade. Råden kom från höger och vänster. Det var ju helt sjukt, vad höll du på med?<br><br>
+        <em>Istället har du nu fått en tydligt utstakad, nyasfalterad väg som doftar sådär varmt tjärigt, med vägskyltar i oblekta färger.</em><br><br>
+        Rotors säljsystem kombinerar insikter om försäljning, marknadsföring, bolagsbyggande, psykologi och tekniska lösningar.<br><br>
+        Utifrån denna skapar vi strategier, säljande annonser, e-post-marknadsföring, copy, videos och hela säljflöden. <br><br>
+        Det som fungerar tar vi med oss. Det som inte fungerar tar vi också med oss.<br><br>
+        Säljsystemet är i ständig utveckling för att leverera maximalt resultat för dig.<br><br>
+  image1: "/img/creme bottle frilagd.png"
+  imagealt1: "kräm för digital marknadsföring"
+  image2: "/img/quickfix.png"     
+  imagealt2: "quickfix för snabb digital marknadsföring"
+  headline2: 'Ute efter en quickfix? Sorry.'
+  text2: Vi säljer ingen quickfix. <br><br>
+        Det finns inga tyvärr. Det hade varit kul. Men nej.<br><br>
+        Ibland går det fort. Ibland tar det lite längre tid. 
+        Men det går. <em>Det blir en pengamaskin som ger mer pengar för varje krona du stoppar i den.</em> <br><br>
+        För så ska det vara – våra kunder tjänar pengar på att betala oss. <br><br>
+
+        Magin (det är vetenskap, damnit!)  i allt detta sitter inte i ett speciellt verktyg. <br><br>
+        De har många namn, verktygen. Google Ads, SEO, CRO, Facebookannonsering, Marketing Automation. <br><br>
+        <em>Alldeles för många säljer <i>ett</i> verktyg som ska göra underverk för dig.</em>  (Här kommer de där råden från alla håll och kanter...)<br><br>
+        För oss vore det som att starta en köksbutik och bara sälja stekpannor.<br><br>
+        Grymt för att få till en krispig yta på entrecoten eller att göra halloumin sådär fint gyllene.<br><br>
+        <em>Men har du försökt hacka lök med en stekpanna? (Ouch!)</em><br><br>
+        Troligen är det en vass kniv du behöver. <br><br>
+
+        Så, du vill nog hellre ha ett säljssystem som hjälper dig att hitta rätt bland alla verktyg. För att du inte ska slösa bort tid och pengar på fel sak.<br><br>
+        <em>Hos oss får du inga hitte-på-lösningar utan saker som funkar på riktigt.</em> <br><br>
+        Du får en stolt byrå som bryr sig lika mycket om dig som om sitt eget bolag.
+  image3: "/img/remote fri.png"  
+  imagealt3: "fjärrkontroll med digitalbyrå tjänster"
+
+who:
+  headline1: "Passar vi varandra?"
+  subtext1: "Saker som vi och du tror på:"
+  text1: 
+          - Försäljningssiffror är no.1
+          - Digital marknadsföring
+          - Det är ok att garva ihop, även åt dåliga skämt.
+          - Siffror i en dashboard som går uppåt är lika spännande som en actionfilm
+          - Siffror i ett dashboard som går neråt ska fanimej få sig en omgång
+          - Det går upp och det går ner och sen går det upp igen
+          - Vad DU kan få ut är mycket viktigare än vad JAG vill erbjuda
+          - Det går alltid att lära sig mer
+          - Marknadsföring + försäljning = sant
+          - B2B är B2C, med fler än en beslutsfattare
+          - Vi tror på det vi gör tillsammans - win and lose together
+          - Rom byggdes inte på en dag
+          - Att vara snäll är en styrka
+  image1: "/img/match soap.png"
+  imagealt1: "digitalbyrå tvål som passar ditt företag"
+
+  headline2: "Våra kunder börjar ofta våra samarbeten med att säga:"
+  text2:
+          - 'Vi tycker att det är svårt att veta var man ska börja – är det annonsering på Google, Facebook eller vi kanske borde testa LinkedIn?'
+          - 'Vi ser ingen ökad försäljning trots att vi kört digital annonsering ett tag nu. Det kanske inte funkar för oss eller vad tror ni?'
+          - 'Vi har testat flera olika sorters byråer men det är nästan ingen som egentligen pratat om vad som gör att vi tjänar pengar.'
+          - 'Vi säljer bara när vi kör annonskampanjer och ingenting däremellan.'
+          - 'Så fort vi drar upp mediebudgeten blir varje ny kund för dyr.'
+          - 'Vi ser mossiga ut i jämförelse med våra konkurrenter.'
+          - 'Vi har en ny produkt som vi vill promota – kan ni hjälpa oss?'
+          - 'Vi behöver hjälp med en sajt/ landningssida/ film/ grafisk profil/ digital strategi'   
+
+
+model:
+  headline: En modell för en säljande digital marknadsföring
+  subtext: Trestegsmodellen får dig att gå från någon som spanar in konkurrenterna
+    till att bli den konkurrenterna jagar efter.
+  image: /img/home-jumbotron.jpg
+  ctatext: Klicka här
+customers:
+  customer1: Freebo
+  headline1: '"ROI:n långt över 1000%"'
+  text1: '"Rotor och deras fokus på sälj ger resultat. Vår försäljning från digital annonsering ökar stadigt varje månad – vi pratar mångmiljonbelopp. Under året 2022 har vi ökat försäljningen från digitala kanaler varje månad. ROI:n på vårt samarbete är högt över förväntan –  den är långt över 1000%.<br><br>Bevisligen stämmer det som de sa: Rotors marknadsföring genererar mycket mer pengar än vad den kostar. Rotor har också hjälpt oss att implementera ett nytt CRM och vi har aldrig haft så bra koll som idag. Jag vet exakt vad varje lead, mötesbokning och försäljning kostar. Jag kan också spåra kunden exakt, från digital annonsering, SEO, fysiska säljaktiviteter till faktisk försäljning. <br><br>Vi håller på att utveckla och fördjupa vårt samarbete med Rotor för att accelerera vår försäljning ytterligare."'
+  name1: Piia Ringstad, marknadschef
+  bossimage1: /img/piia ringstad freebo.png
+  image1: "../img/1000 procent ROI.png"
+  customer2: Swedish Stirling
+  headline2: '"Utväxlingen är enorm!"'
+  text2: '"Den data och intelligence jag får av Rotor har gjort att vi helt ändrat våra kommunikationsinsatser. Från att ha varit en mer traditionell köpare av print och banners hos finansiella tidningar lägger vi nu majoriteten av vårt fokus på egna kampanjer i sociala medier.<br><br>Utväxlingen är enorm. Vi når rätt målgrupper, många fler och mycket billigare.<br><br>Rotor har hjälpt oss öka intresset kring bolaget, pinpointat rätt målgrupper och fått dem att agera. Målet med samarbetet var primärt att öka kännedomen och ägarspridningen. Vi otroligt nöjda med samarbetet och senaste året har vi ökat antal aktieägare med 70%.”'
+  name2: Sven Ljungberg, marknadschef
+  bossimage2: /img/sven ljungberg swedish stirling.png
+  image2: "../img/70procent.png"
+  
+cta:
+  headline: Testrubrik
+  text: Testtexk
+  buttonText: klickiklick
+---

@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "variables" as *;
+@use "bulma-config" as bulma;
+@use "bulma/sass" with (
+  $primary: $primary,
+  $body-color: $body-color,
+  $link: $link,
+  $info: $info,
+  $success: $success,
+  $warning: $warning,
+  $white: $white,
+  $danger: $danger,
+  $dark: $dark,
+  $text: $text,
+  $background: $background,
+  $family-primary: bulma.$family-primary,
+  $body-background-color: bulma.$body-background-color,
+  $body-size: bulma.$body-size,
+  $title-family: bulma.$title-family,
+  $family-secondary: bulma.$family-secondary,
+  $navbar-background-color: bulma.$navbar-background-color,
+  $card-background-color: bulma.$card-background-color,
+  $card-radius: bulma.$card-radius,
+  $hero-body-padding-medium: bulma.$hero-body-padding-medium,
+  $label-color:bulma.$label-color,
+  $button-border-color: $link,
+  $border: $link,
+);
+@use "mixins" as mymixins;
+@use "bulma/sass/utilities/mixins" as mixins;
+@use "typography";

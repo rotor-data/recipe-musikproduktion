@@ -1,0 +1,25 @@
+[build]
+  publish = "public"
+  command = "npm run build"
+[build.environment]
+  NODE_VERSION = "18.17.1"
+  YARN_VERSION = "1.22.4"
+  YARN_FLAGS = "--no-ignore-optional"
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 503
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Retry-After = "3600"

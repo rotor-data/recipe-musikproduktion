@@ -1,0 +1,18 @@
+// _bulma-config.scss
+@use "variables" as *;
+
+$family-primary: $bodytext;
+$family-secondary: $headline2;
+$title-family: $headline;
+
+$navbar-background-color: transparent;
+$card-background-color: $warning;
+$card-radius: 0.25rem;
+$body-background-color: $background;
+$body-size: 20px;
+$hero-body-padding-medium: 3rem 4.5rem;
+$label-color:$white;
+$button-family: $bodytext;
+$button-weight:300;
+$button-border-color: $link;
+$border:$link;
