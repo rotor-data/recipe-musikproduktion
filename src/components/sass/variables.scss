@@ -7,6 +7,7 @@ $rec-cyan: #287768;
 $rec-yellow: #FDCD00;
 $rec-aqua: #37B5A0;
 $rec-gray: #707070;
+$rec-red: #9B3A01;
 
 $colors: (
   rec-black: $rec-black,
@@ -15,13 +16,14 @@ $colors: (
   rec-cyan: $rec-cyan,
   rec-yellow: $rec-yellow,
   rec-aqua: $rec-aqua,
-  rec-gray: $rec-gray
+  rec-gray: $rec-gray,
+  rec-red: $rec-red
 );
 
-$headline: "aktiv-grotesk", sans-serif;
-$headline2: "aktiv-grotesk", sans-serif;
-$bodytext: "trade-gothic-next-condensed", sans-serif;
-$family-accent: "bicyclette", sans-serif;
+$headline: "stratos", sans-serif;
+$headline2: "stratos", sans-serif;
+$bodytext: "stratos-lights", sans-serif;
+$family-accent: "stratos-lights", sans-serif;
 
 
 
@@ -30,12 +32,12 @@ $body-margin: 30px;
 $shadow: -0.25em 0.25em 0em 0em map.get($colors, rotor-dark-pink);
 
 // Easily accessed colors
-$primary: $rec-gold;
+$primary: $rec-cyan;
 $body-color: $rec-black;
-$link: $rec-cyan;
+$link: $rec-gold;
 $info: $rec-aqua;
 $success: $rec-yellow;
-$warning: $rec-gold;
+$warning: $rec-red;
 $danger: $rec-cyan;
 $dark: $rec-black;
 $text: $rec-black;

@@ -41,8 +41,8 @@ const CtaModal = ({ buttonText = "Skicka förfrågan", headline = "Kontakta oss"
 
   return (
     <>
-     <div className='rotor-button-container'>
-         <button className="rotor-button" onClick={() => setShow(true)}>
+     <div className=''>
+         <button className="recipe-button button is-medium is-danger" onClick={() => setShow(true)}>
            {buttonText}
          </button>
      </div>

@@ -9,7 +9,15 @@ const MasonryGallery = ({ photos }) => {
       <div className="card-image has-background-light is-relative">
         <PreviewCompatibleImage imageInfo={{ image: data.src, alt: data.title || '' }} />
         {data.title && (
-          <div className="has-text-white has-background-black-ter p-2 is-size-7 has-text-centered is-overlay is-clipped is-hidden-touch">
+          <div
+            className="has-text-rec-gold p-2 is-size-7 is-clipped is-hidden-touch"
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              borderTopRightRadius: '4px'
+            }}
+          >
             {data.title}
           </div>
         )}

@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-import { getImage } from "gatsby-plugin-image"
 import Layout from "../components/Layout"
 import HeroSection from "../components/HeroSection"
 import FeatureList from "../components/FeatureList"
@@ -11,49 +10,38 @@ import TwoColumnText from "../components/TwoColumnText"
 import Solutions from "../components/Solutions"
 import CaseStudy from "../components/CaseStudy"
 import SeoHead from "../components/SeoHead"
-import Hero from "../components/Hero"
-import PreSave from "../components/PreSave" 
-import Featured from "../components/Featured"
+import Testimonial from "../components/Testimonial"
+import SwooshBlock from "../components/SwooshBlock"
+
 
 // eslint-disable-next-line
 export const IndexPageTemplate = ({ content }) => {
-  const hero = content.hero;
-  const heroImage = getImage(hero.image)
-
+  const hero = content.hero
+  const textImage = content.textImage
 
   return (
     <>
-
-    <Hero image={heroImage} title={content.hero.title} />
-{/*     <TextImage
-        title={content.textImage.title}
-        text={content.textImage.text}
-        image={content.textImage.image}
-        reverse={false}
-      /> */}
-   <div className="has-background-info-10">
-     <Featured 
-     title={content.preSave.title}
-     subtitle={content.preSave.subtitle} 
-     text={content.preSave.text} 
-     link={content.preSave.link} 
-     image={content.preSave.image}
-     buttonText={content.preSave.buttonText}
-     preTitle={content.preSave.preTitle}
-     />
-     
-   </div>
-{/*       <HeroSection
+    <div className="has-background-white">
+      <HeroSection
         title={hero.title}
         h1title={hero.h1title}
         description={hero.description}
         ctaText={hero.cta}
         image={hero.image}
-      /> */}
- {/*      <Solutions solutions={content.solutions} />
-      <FeatureList features={content.features} />
-      <CallToAction title="Redo att ta nästa steg?" ctaText="Boka en strategi-session" />
+      />
 
+<Solutions solutions={content.solutions} /> 
+ <Testimonial testimonial={content.testimonial}/>
+ <SwooshBlock title={textImage.title} text={textImage.text} buttonText={textImage.buttonText} buttonLink={textImage.buttonLink}/>
+
+    {/*        <FeatureList features={content.features} />
+      <CallToAction title="Redo att ta nästa steg?" ctaText="Boka en strategi-session" />
+      <TextImage
+        title={content.textImage.title}
+        text={content.textImage.text}
+        image={content.textImage.image}
+        reverse={false}
+      />
       <TwoColumnText
         title={content.twoColumn.title}
         columns={content.twoColumn.columns}
@@ -64,6 +52,7 @@ export const IndexPageTemplate = ({ content }) => {
         url={content.callToAction.url}
       />
       <CaseStudy caseData={content.caseStudy} /> */}
+      </div>
     </>
   )
 }
@@ -122,31 +111,28 @@ export const query = graphql`
             image {
               childImageSharp {
                 gatsbyImageData(
-                  quality: 100
+                  quality: 90
                   layout: CONSTRAINED
-                  transformOptions: { cropFocus: CENTER, fit: CONTAIN }
+                  transformOptions: { cropFocus: CENTER, fit: CONTAIN, duotone: { shadow: "#707070", highlight: "#C29C38", opacity: 80 } }
                 )
               }
             }
           }
-          preSave {
-            title
-            subtitle
-            preTitle
-            buttonText
-            text
-            link
+          testimonial {
+            name
+            company
+            quote
             image {
               childImageSharp {
                 gatsbyImageData(
-                  quality: 100
+                  quality: 90
                   layout: CONSTRAINED
-                  width: 700
+                  height: 300
                   transformOptions: { cropFocus: CENTER, fit: CONTAIN }
                 )
-              }
+              }            
             }
-          }
+          }  
           features {
             title
             description
@@ -154,6 +140,8 @@ export const query = graphql`
           textImage {
             title
             text
+            buttonText
+            buttonLink
             image {
               childImageSharp {
                 gatsbyImageData(
@@ -178,6 +166,7 @@ export const query = graphql`
               items {
                 title
                 description
+                url
               }
             }
             image {
@@ -185,8 +174,13 @@ export const query = graphql`
                 gatsbyImageData(
                   quality: 90
                   layout: CONSTRAINED
-                  height: 300
-                  transformOptions: { cropFocus: CENTER, fit: CONTAIN }
+                  width: 450
+                  height: 500
+                  transformOptions: {
+                    cropFocus: CENTER
+                    fit: COVER
+                  }
+                  formats: [AUTO, WEBP, AVIF]
                 )
               }
             }

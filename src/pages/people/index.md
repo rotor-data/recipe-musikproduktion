@@ -8,7 +8,7 @@ gallery:
   - src: /img/people/Dusty.jpg
     title: ""
   - src: /img/people/IMG_0145-2.jpeg
-    title: ""
+    title: "Daniel och Amy"
   - src: /img/people/IMG_0251.jpg
     title: ""
   - src: /img/people/IMG_0364-2.JPG

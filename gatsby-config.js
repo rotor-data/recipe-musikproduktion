@@ -167,8 +167,8 @@ module.exports = {
         preconnect: ["https://use.typekit.net"],
         web: [
           {
-            name: ["aktiv-grotesk", "bicyclette", "trade-gothic-next-condensed"],
-            file: "https://use.typekit.net/ysj2pce.css",
+            name: ["stratos", "stratos-lights"],
+            file: "https://use.typekit.net/jni5cuh.css",
           }
         ],
       }

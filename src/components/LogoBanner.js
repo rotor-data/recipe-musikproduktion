@@ -7,18 +7,19 @@ const LogoBanner = () => {
   const data = useStaticQuery(graphql`
     {
       allFile(
-        filter: {extension: {regex: "/(jpg)|(png)|(jpeg)/"}, relativeDirectory: {eq: "logo-gallery"}}
+        filter: {extension: {regex: "/(jpg)|(png)|(jpeg)|(webp)|(avif)/"}, relativeDirectory: {eq: "logo-gallery"}}
       ) {
         edges {
           node {
             base
             childImageSharp {
               gatsbyImageData(
-                placeholder: BLURRED
+                placeholder: NONE
                 formats: [AUTO, WEBP, AVIF]
                 layout: CONSTRAINED
                 transformOptions: { fit: CONTAIN }
-                height: 80
+                height: 40
+              
               )
             }
             name
@@ -34,7 +35,7 @@ const LogoBanner = () => {
   return (
 
 
-      <div className="logo-banner__wrapper has-background-primary">
+      <div className="logo-banner__wrapper py-3" style={{backgroundColor:'rgba(255,255,255,0.5)'}}>
       <div className="logo-banner__scroll">
         {[...logos, ...logos, ...logos].map(({ node }, index) => {
           const image = getImage(node.childImageSharp);
@@ -44,7 +45,9 @@ const LogoBanner = () => {
                 image={image}
                 alt={node.name}
                 className="logo-banner__image"
-                imgStyle={{ objectFit: 'contain' }}
+                style={{width:'100%', height:'80px', maxWidth:'100px', maxHeight:'80px'}}
+                imgStyle={{ objectFit:'contain', maxHeight:'80px' }}
+        
               />
             </div>
           );

@@ -359,7 +359,7 @@
         'process.env.GATSBY_TELEMETRY_DISABLED': '"1"',
         'process.env.GATSBY_PRECOMPILE_DEVELOP_FUNCTIONS': '"true"',
         'process.env.GATSBY_REPORTER_ISVERBOSE': '"0"',
-        'process.env.GATSBY_NODE_GLOBALS': '"{\\"buildId\\":\\"7ba775bf-3956-41ae-bd8a-4d50f3c80f72\\",\\"root\\":\\"/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion\\"}"',
+        'process.env.GATSBY_NODE_GLOBALS': '"{\\"buildId\\":\\"84700322-45e8-422c-864d-8d59afc97bb6\\",\\"root\\":\\"/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion\\"}"',
         'process.env.GATSBY_SLICES': '"true"',
         'process.env.GATSBY_QUERY_ON_DEMAND_LOADING_INDICATOR': '"true"',
         __BASE_PATH__: '""',

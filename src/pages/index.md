@@ -1,82 +1,81 @@
 ---
 templateKey: "index-page"
-title: "Noctoscope - indie electronic from Stockholm"
+title: "Recipe Musikproduktion – Professionellt ljud i varje detalj"
 visible: true
 
 indexPage:
   meta:
-    title: "Noctoscope - indie electronic from Stockholm"
-    description: ""
+    title: "Musikstudio Stockholm – Musikproduktion, Podcast Studio & Mastering | Recipe"
+    description: "Recipe Musikproduktion är en professionell musikstudio i Stockholm. Vi erbjuder musikproduktion, podcastinspelning, mixning, mastering och ljuddesign för företag, artister och kreatörer."
 
   hero: 
-    title: |
-      ``NEW SINGLE OUT```
-      ## Caustic Disco
-  
-    h1title: Digitalbyrå Stockholm / Digital Kommunikationsbyrå IR
+    title: Professionellt ljud *från idé till färdig produktion*
+    h1title: Musikstudio Stockholm / Musikproduktion / Podcast Studio / Mixning / Mastering / Ljudproduktion
     description: |
-      Vi gör kommunikation som märks – oavsett om målet är fler investerare eller fler affärer. För noterade bolag innebär det fler retailinvesterare, högre engagemang och ökat förtroende. För B2B-företag handlar det om bättre leads, fler möten och kortare säljcykler.
-
-      Just nu bygger vi om vår webbplats. Klicka på knappen nedan eller ring oss på [0768-47 21 47](tel:0768472147).
-
+      Välkommen till Recipe Musikproduktion, en modern ljudstudio på Södermalm. Vi skapar ljud som känns – för företag, kreatörer och artister. Poddar, voiceovers, musik, jinglar, mix och mastering.
       
+      Besök oss på Nytorget eller kontakta oss för en kostnadsfri konsultation.
     cta: "Kontakta oss"
-    image: /img/masked-girl-noctoscope-clean.jpg
+    image: /img/mikrofon.jpg
 
   features:
-    - title: "✅ Fler kvalificerade leads för B2B"
-      description: "Koppla marknadsföring direkt till affärsmål."
-    - title: "✅ Marknad & sälj i samspel"
-      description: "Skapa en pipeline som fungerar i praktiken."
-    - title: "✅ IR-kommunikation som engagerar retailinvesterare"
-      description: "Nå rätt publik med rätt budskap."
+    - title: "🎙️ Poddproduktion & Voiceovers"
+      description: "Inspelning, klippning, mixning och ljuddesign för företagspoddar, e-learning och reklam."
+    - title: "🎼 Musikproduktion"
+      description: "Vi skapar musik för artister, film, reklam och andra medier – från idé till färdig produktion."
+    - title: "🎚️ Mixning & Mastering"
+      description: "Proffsig slutbearbetning som lyfter helhetsintrycket, oavsett projekt."
 
-  preSave:
-    title: "New Single: Caustic Disco"
-    preTitle: "Releasing May 16"
-    subtitle: "Pre-save on all major platforms"
-    text: |
-      Noctoscope’s new single is a shimmering collision of raw emotion and electrifying synths — and you can be the first to hear it.
-      Pre-save "Caustic Disco" now to have it land automatically in your library the moment it drops.
-    buttonText: "Pre-save Now"
-    link: "https://distrokid.com/hyperfollow/noctoscope/caustic-disco"
-    image: "/img/caustic-disco-cover-1-1.jpg"
+  testimonial:
+    quote: "Recipe hjälpte oss få ut exakt det sound vi letade efter – proffsigt, snabbt och kreativt."
+    name: "Anonym kund"
+    company: "Kreatör i Stockholm"
+    image: /img/gustav-eksvard-snackasnyggt.jpg
 
-  
   textImage:
-    title: "Caustic Disco - new single May 16"
-    text: "Marknadsföring och IR-kommunikation blir som mest kraftfulla när de är strategiska, datadrivna och anpassade efter rätt målgrupp."
+    title: "Om Recipe Musikproduktion"
+    text: "Studion drivs av passion för ljud. Vi har hjälpt företag, artister och kreatörer att skapa ljud som känns – på riktigt."
     image: /img/plastic sign me in man.png
+    buttonText: Våra tjänster
+    buttonLink: /tjanster
 
   twoColumn:
-    title: "📊 IR-kommunikation som retailinvesterare vill ta del av"
+    title: "🎧 Vad vi producerar"
     columns:
-      - heading: "📢 Kommunicera tydligare"
-        text: "Gör siffror och strategier lättbegripliga."
-      - heading: "📈 Bygga digital synlighet"
-        text: "SEO, sociala medier och content som når rätt investerare."
+      - heading: "🎙️ Poddar & Voiceovers"
+        text: "Perfekt för företag och kreatörer som vill nå ut med en professionell ljudbild."
+      - heading: "🎼 Musik & Ljuddesign"
+        text: "Musikproduktion, jinglar, ljudbranding och specialproduktioner för media och reklam."
 
   solutions:
-    image: /img/plastic sign me in man.png
+    image: /img/jocke.jpg
     blocks:
-      - category: "B2B-bolag"
+      - category: "Poddproduktion & Voiceovers"
         items:
-          - title: ""
-            description: "SEO, annonsering och leadgenerering. Stärk affären och attrahera rätt leads."
-      - category: "IR-avdelningar"
+          title: ""
+          description: "Inspelning, klippning, mixning och ljuddesign för företagspoddar, e-learning och reklam."
+          url: /solutions/poddproduktion-voiceovers
+      - category: "Musikproduktion"
         items:
-          - title: ""
-            description: "Digital storytelling. Strategisk kommunikation som engagerar retailinvesterare."
+          title: ""
+          description: "Vi skapar musik för artister, film, reklam och andra medier – från idé till färdig produktion."
+          url: /solutions/musikproduktion
+      - category: "Mixning & Mastering"
+        items:
+          title: ""
+          description: "Proffsig slutbearbetning som lyfter helhetsintrycket, oavsett projekt."
+          url: /solutions/mixning-mastering
+
   caseStudy:
-    title: "📢 Case: Så hjälpte vi en börsnoterad kund att lyfta sin IR-kommunikation"
+    title: "🎧 Lyssna på vårt arbete"
     results:
-      - "✅ 40 % ökning av investerarengagemang"
-      - "✅ 300 % fler besökare på deras IR-webbplats"
-      - "✅ Bättre relationer med retailinvesterare"
-    ctaText: "📊 Läs hela caset"
+      - "🎧 Poddproduktion – exempel"
+      - "🎧 Voiceover – exempel"
+      - "🎧 Mixning & mastering – exempel"
+    ctaText: "🎧 Kontakta oss för fler exempel"
 
   callToAction:
-    title: köp
-    text: köp mer
-    url: ""
+    title: "Redo att skapa något fantastiskt?"
+    text: "📩 Boka en kostnadsfri konsultation eller mejla oss på info@recipe.se"
+    url: https://www.notion.so/Recipe-18f3d875ee7580c19788fcd48c38db63?pvs=21
 ---
