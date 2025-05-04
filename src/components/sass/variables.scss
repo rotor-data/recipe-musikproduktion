@@ -1,35 +1,44 @@
-// _variables.scss
 @use "sass:map";
+
+$rec-black: #000;
+$rec-white: #fff;
+$rec-gold: #C29C38;
+$rec-cyan: #287768;
+$rec-yellow: #FDCD00;
+$rec-aqua: #37B5A0;
+$rec-gray: #707070;
+
+$colors: (
+  rec-black: $rec-black,
+  rec-white: $rec-white,
+  rec-gold: $rec-gold,
+  rec-cyan: $rec-cyan,
+  rec-yellow: $rec-yellow,
+  rec-aqua: $rec-aqua,
+  rec-gray: $rec-gray
+);
+
 $headline: "aktiv-grotesk", sans-serif;
 $headline2: "aktiv-grotesk", sans-serif;
 $bodytext: "trade-gothic-next-condensed", sans-serif;
 $family-accent: "bicyclette", sans-serif;
 
-$colors: (
-  nocto-cream: #ccc0a5,
-  nocto-black: #000000,
-  nocto-purple: #5c429a,
-  nocto-blue: #6092b3,
-  nocto-orange: #c16a33,
-  nocto-brick: #a83e29,
-  nocto-deep-green: #30493e
-);
+
 
 
 $body-margin: 30px;
 $shadow: -0.25em 0.25em 0em 0em map.get($colors, rotor-dark-pink);
 
 // Easily accessed colors
-$primary: map.get($colors, nocto-purple);
-$body-color: map.get($colors, nocto-black);
-$link: map.get($colors, nocto-orange);
-$info: map.get($colors, nocto-blue);
-$success: map.get($colors, nocto-deep-green);
-$warning: map.get($colors, nocto-orange);
-$danger: map.get($colors, nocto-brick);
-$dark: map.get($colors, nocto-black);
-$text: map.get($colors, nocto-black);
-$background: map.get($colors, nocto-cream);
-$white: map.get($colors, nocto-cream);
-$black: map.get($colors, nocto-black);
-
+$primary: $rec-gold;
+$body-color: $rec-black;
+$link: $rec-cyan;
+$info: $rec-aqua;
+$success: $rec-yellow;
+$warning: $rec-gold;
+$danger: $rec-cyan;
+$dark: $rec-black;
+$text: $rec-black;
+$background: $rec-white;
+$white: $rec-white;
+$black: $rec-black;

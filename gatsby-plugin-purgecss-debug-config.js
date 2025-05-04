@@ -1,13 +1,13 @@
 {
   name: 'develop',
-  context: '/Users/danielpettersson/Local sites.nosync/noctoscope',
+  context: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion',
   entry: {
     commons: [
-      '/Users/danielpettersson/Local sites.nosync/noctoscope/.cache/app'
+      '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/.cache/app'
     ]
   },
   output: {
-    path: '/Users/danielpettersson/Local sites.nosync/noctoscope',
+    path: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion',
     filename: '[name].js',
     pathinfo: true,
     publicPath: '/',
@@ -36,7 +36,7 @@
         type: 'json',
         use: [
           {
-            loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/yaml-loader/index.js',
+            loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/yaml-loader/index.js',
             options: { asJSON: true }
           }
         ]
@@ -44,11 +44,11 @@
       {
         use: [
           {
-            loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/url-loader/dist/cjs.js',
+            loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/url-loader/dist/cjs.js',
             options: {
               limit: 10000,
               name: 'static/[name]-[hash].[ext]',
-              fallback: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/file-loader/dist/cjs.js'
+              fallback: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/file-loader/dist/cjs.js'
             }
           }
         ],
@@ -57,11 +57,11 @@
       {
         use: [
           {
-            loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/url-loader/dist/cjs.js',
+            loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/url-loader/dist/cjs.js',
             options: {
               limit: 10000,
               name: 'static/[name]-[hash].[ext]',
-              fallback: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/file-loader/dist/cjs.js'
+              fallback: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/file-loader/dist/cjs.js'
             }
           }
         ],
@@ -70,11 +70,11 @@
       {
         use: [
           {
-            loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/url-loader/dist/cjs.js',
+            loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/url-loader/dist/cjs.js',
             options: {
               limit: 10000,
               name: 'static/[name]-[hash].[ext]',
-              fallback: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/file-loader/dist/cjs.js'
+              fallback: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/file-loader/dist/cjs.js'
             }
           }
         ],
@@ -83,7 +83,7 @@
       {
         use: [
           {
-            loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/file-loader/dist/cjs.js',
+            loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/file-loader/dist/cjs.js',
             options: { name: 'static/[name]-[hash].[ext]' }
           }
         ],
@@ -94,11 +94,11 @@
           {
             use: [
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: { modules: { namedExport: true } }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/css-loader/dist/cjs.js',
                 options: {
                   url: [Function: url],
                   sourceMap: true,
@@ -112,7 +112,7 @@
                 }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-purgecss/loader.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-purgecss/loader.js',
                 options: {
                   printSummary: true,
                   printAll: false,
@@ -121,7 +121,7 @@
                   purgeCSSOptions: {
                     rejected: true,
                     content: [
-                      '/Users/danielpettersson/Local sites.nosync/noctoscope/src/**/!(*.d).{ts,js,jsx,tsx}'
+                      '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/src/**/!(*.d).{ts,js,jsx,tsx}'
                     ],
                     css: [],
                     safelist: { standard: [ 'html', 'body' ] }
@@ -133,7 +133,7 @@
                 }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/postcss-loader/dist/cjs.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/postcss-loader/dist/cjs.js',
                 options: {
                   execute: false,
                   sourceMap: true,
@@ -146,11 +146,11 @@
           {
             use: [
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: { modules: undefined }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/css-loader/dist/cjs.js',
                 options: {
                   url: [Function: url],
                   sourceMap: true,
@@ -158,7 +158,7 @@
                 }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-purgecss/loader.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-purgecss/loader.js',
                 options: {
                   printSummary: true,
                   printAll: false,
@@ -167,7 +167,7 @@
                   purgeCSSOptions: {
                     rejected: true,
                     content: [
-                      '/Users/danielpettersson/Local sites.nosync/noctoscope/src/**/!(*.d).{ts,js,jsx,tsx}'
+                      '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/src/**/!(*.d).{ts,js,jsx,tsx}'
                     ],
                     css: [],
                     safelist: { standard: [ 'html', 'body' ] }
@@ -179,7 +179,7 @@
                 }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/postcss-loader/dist/cjs.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/postcss-loader/dist/cjs.js',
                 options: {
                   execute: false,
                   sourceMap: true,
@@ -197,11 +197,11 @@
             test: /\.module\.s(a|c)ss$/,
             use: [
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: { modules: { namedExport: true } }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/css-loader/dist/cjs.js',
                 options: {
                   url: [Function: url],
                   sourceMap: true,
@@ -215,7 +215,7 @@
                 }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-purgecss/loader.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-purgecss/loader.js',
                 options: {
                   printSummary: true,
                   printAll: false,
@@ -224,7 +224,7 @@
                   purgeCSSOptions: {
                     rejected: true,
                     content: [
-                      '/Users/danielpettersson/Local sites.nosync/noctoscope/src/**/!(*.d).{ts,js,jsx,tsx}'
+                      '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/src/**/!(*.d).{ts,js,jsx,tsx}'
                     ],
                     css: [],
                     safelist: { standard: [ 'html', 'body' ] }
@@ -236,7 +236,7 @@
                 }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/postcss-loader/dist/cjs.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/postcss-loader/dist/cjs.js',
                 options: {
                   execute: false,
                   sourceMap: true,
@@ -244,7 +244,7 @@
                 }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/sass-loader/dist/cjs.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/sass-loader/dist/cjs.js',
                 options: {
                   sourceMap: undefined,
                   sassOptions: {
@@ -271,11 +271,11 @@
             test: /\.s(a|c)ss$/,
             use: [
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/mini-css-extract-plugin/dist/loader.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/mini-css-extract-plugin/dist/loader.js',
                 options: { modules: undefined }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/css-loader/dist/cjs.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/css-loader/dist/cjs.js',
                 options: {
                   url: [Function: url],
                   sourceMap: true,
@@ -283,7 +283,7 @@
                 }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-purgecss/loader.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-purgecss/loader.js',
                 options: {
                   printSummary: true,
                   printAll: false,
@@ -292,7 +292,7 @@
                   purgeCSSOptions: {
                     rejected: true,
                     content: [
-                      '/Users/danielpettersson/Local sites.nosync/noctoscope/src/**/!(*.d).{ts,js,jsx,tsx}'
+                      '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/src/**/!(*.d).{ts,js,jsx,tsx}'
                     ],
                     css: [],
                     safelist: { standard: [ 'html', 'body' ] }
@@ -304,7 +304,7 @@
                 }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/postcss-loader/dist/cjs.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/postcss-loader/dist/cjs.js',
                 options: {
                   execute: false,
                   sourceMap: true,
@@ -312,7 +312,7 @@
                 }
               },
               {
-                loader: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/sass-loader/dist/cjs.js',
+                loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/sass-loader/dist/cjs.js',
                 options: {
                   sourceMap: undefined,
                   sassOptions: {
@@ -350,7 +350,7 @@
         'process.env.MAILCHIMP_API_KEY': '"203b77c1189c9601b5c7ead7b93badbd-us4"',
         'process.env.MAILCHIMP_LIST_ID': '"6991276398"',
         'process.env.NODE_ENV': '"development"',
-        'process.env.PUBLIC_DIR': '"/Users/danielpettersson/Local sites.nosync/noctoscope/public"',
+        'process.env.PUBLIC_DIR': '"/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/public"',
         'process.env.BUILD_STAGE': '"develop"',
         'process.env.CYPRESS_SUPPORT': undefined,
         'process.env.GATSBY_QUERY_ON_DEMAND': '"true"',
@@ -359,7 +359,7 @@
         'process.env.GATSBY_TELEMETRY_DISABLED': '"1"',
         'process.env.GATSBY_PRECOMPILE_DEVELOP_FUNCTIONS': '"true"',
         'process.env.GATSBY_REPORTER_ISVERBOSE': '"0"',
-        'process.env.GATSBY_NODE_GLOBALS': '"{\\"buildId\\":\\"7154dad6-7b71-48b9-9fb7-51868e7281f9\\",\\"root\\":\\"/Users/danielpettersson/Local sites.nosync/noctoscope\\"}"',
+        'process.env.GATSBY_NODE_GLOBALS': '"{\\"buildId\\":\\"7ba775bf-3956-41ae-bd8a-4d50f3c80f72\\",\\"root\\":\\"/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion\\"}"',
         'process.env.GATSBY_SLICES': '"true"',
         'process.env.GATSBY_QUERY_ON_DEMAND_LOADING_INDICATOR': '"true"',
         __BASE_PATH__: '""',
@@ -378,8 +378,8 @@
       options: {
         overlay: {
           sockIntegration: 'whm',
-          module: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/utils/fast-refresh-module',
-          entry: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ErrorOverlayEntry.js'
+          module: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/utils/fast-refresh-module',
+          entry: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ErrorOverlayEntry.js'
         },
         exclude: /node_modules/ { test: [Function (anonymous)] },
         include: /\.([cm]js|[jt]sx?|flow)$/i
@@ -429,9 +429,9 @@
           '.cache/_this_is_virtual_fs_path_'
         ],
         useEslintrc: false,
-        resolvePluginsRelativeTo: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/utils',
+        resolvePluginsRelativeTo: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/utils',
         rulePaths: [
-          '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/utils/eslint-rules'
+          '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/utils/eslint-rules'
         ],
         baseConfig: {
           globals: {
@@ -441,17 +441,17 @@
             __BASE_PATH__: true
           },
           extends: [
-            '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/eslint-config-react-app/index.js',
-            '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/utils/eslint/required.js'
+            '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/eslint-config-react-app/index.js',
+            '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/utils/eslint/required.js'
           ],
-          parser: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/@babel/eslint-parser/lib/index.cjs',
+          parser: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/@babel/eslint-parser/lib/index.cjs',
           parserOptions: {
             ecmaVersion: 2020,
             sourceType: 'module',
             ecmaFeatures: { jsx: true },
             babelOptions: {
               presets: [
-                '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/babel-preset-gatsby/index.js'
+                '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/babel-preset-gatsby/index.js'
               ]
             },
             requireConfigFile: false
@@ -547,8 +547,8 @@
   mode: 'development',
   resolveLoader: {
     modules: [
-      '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules',
-      '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/loaders',
+      '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules',
+      '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/loaders',
       'node_modules'
     ]
   },
@@ -560,252 +560,256 @@
       '.tsx'
     ],
     alias: {
-      'gatsby$': '/Users/danielpettersson/Local sites.nosync/noctoscope/.cache/gatsby-browser-entry.js',
-      '@babel/runtime': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/@babel/runtime',
-      '@reach/router': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/@gatsbyjs/reach-router',
-      'react-lifecycles-compat': '/Users/danielpettersson/Local sites.nosync/noctoscope/.cache/react-lifecycles-compat.js',
-      'react-server-dom-webpack': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/react-server-dom-webpack',
-      '@pmmmwh/react-refresh-webpack-plugin': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/@pmmmwh/react-refresh-webpack-plugin',
-      'socket.io-client': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/socket.io-client',
-      'webpack-hot-middleware': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/@gatsbyjs/webpack-hot-middleware',
-      '$virtual': '/Users/danielpettersson/Local sites.nosync/noctoscope/.cache/_this_is_virtual_fs_path_/$virtual',
-      'gatsby-core-utils/create-content-digest': '/Users/danielpettersson/Local sites.nosync/noctoscope/.cache/create-content-digest-browser-shim',
-      react: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/react',
-      'react-dom': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/react-dom',
-      'object.assign': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/object-assign.js',
-      'object-assign$': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/object-assign.js',
-      '@babel/runtime/helpers/extends.js$': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/object-assign.js',
-      'unfetch$': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/fetch.js',
-      'unfetch/polyfill$': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/no-op.js',
-      'isomorphic-unfetch$': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/fetch.js',
-      'isomorphic-fetch$': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/fetch.js',
-      'whatwg-fetch$': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/whatwg-fetch.js',
-      'url-polyfill$': '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/no-op.js'
+      'gatsby$': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/.cache/gatsby-browser-entry.js',
+      '@babel/runtime': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/@babel/runtime',
+      '@reach/router': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/@gatsbyjs/reach-router',
+      'react-lifecycles-compat': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/.cache/react-lifecycles-compat.js',
+      'react-server-dom-webpack': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/react-server-dom-webpack',
+      '@pmmmwh/react-refresh-webpack-plugin': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/@pmmmwh/react-refresh-webpack-plugin',
+      'socket.io-client': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/socket.io-client',
+      'webpack-hot-middleware': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/@gatsbyjs/webpack-hot-middleware',
+      '$virtual': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/.cache/_this_is_virtual_fs_path_/$virtual',
+      'gatsby-core-utils/create-content-digest': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/.cache/create-content-digest-browser-shim',
+      react: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/react',
+      'react-dom': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/react-dom',
+      'object.assign': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/object-assign.js',
+      'object-assign$': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/object-assign.js',
+      '@babel/runtime/helpers/extends.js$': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/object-assign.js',
+      'unfetch$': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/fetch.js',
+      'unfetch/polyfill$': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/no-op.js',
+      'isomorphic-unfetch$': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/fetch.js',
+      'isomorphic-fetch$': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/fetch.js',
+      'whatwg-fetch$': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/whatwg-fetch.js',
+      'url-polyfill$': '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/polyfills/no-op.js'
     },
     plugins: [
       CoreJSResolver {
-        _coreJSNodeModulesPath: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules'
+        _coreJSNodeModulesPath: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules'
       },
       CacheFolderResolver {
         isEnabled: false,
-        requestsFolder: '/Users/danielpettersson/Local sites.nosync/noctoscope/.cache'
+        requestsFolder: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/.cache'
       },
       GatsbyThemeComponentShadowingResolverPlugin {
         themes: [
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/dev-404-page',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/dev-404-page',
             themeName: 'dev-404-page'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/load-babel-config',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/load-babel-config',
             themeName: 'load-babel-config'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/internal-data-bridge',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/internal-data-bridge',
             themeName: 'internal-data-bridge'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/prod-404-500',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/prod-404-500',
             themeName: 'prod-404-500'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/webpack-theme-component-shadowing',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/webpack-theme-component-shadowing',
             themeName: 'webpack-theme-component-shadowing'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/bundle-optimisations',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/bundle-optimisations',
             themeName: 'bundle-optimisations'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/functions',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/functions',
             themeName: 'functions'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-react-helmet',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-react-helmet',
             themeName: 'gatsby-plugin-react-helmet'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-sass',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-sass',
             themeName: 'gatsby-plugin-sass'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-gdpr-cookies',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-gdpr-cookies',
             themeName: 'gatsby-plugin-gdpr-cookies'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-sitemap',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-sitemap',
             themeName: 'gatsby-plugin-sitemap'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-source-filesystem',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-source-filesystem',
             themeName: 'gatsby-source-filesystem'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-source-filesystem',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-source-filesystem',
             themeName: 'gatsby-source-filesystem'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-source-filesystem',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-source-filesystem',
             themeName: 'gatsby-source-filesystem'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-source-filesystem',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-source-filesystem',
             themeName: 'gatsby-source-filesystem'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-source-filesystem',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-source-filesystem',
             themeName: 'gatsby-source-filesystem'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-image',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-source-filesystem',
+            themeName: 'gatsby-source-filesystem'
+          },
+          {
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-image',
             themeName: 'gatsby-plugin-image'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-sharp',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-sharp',
             themeName: 'gatsby-plugin-sharp'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-transformer-sharp',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-transformer-sharp',
             themeName: 'gatsby-transformer-sharp'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-transformer-remark',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-transformer-remark',
             themeName: 'gatsby-transformer-remark'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-remark-relative-images',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-remark-relative-images',
             themeName: 'gatsby-remark-relative-images'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-remark-images',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-remark-images',
             themeName: 'gatsby-remark-images'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-remark-copy-linked-files',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-remark-copy-linked-files',
             themeName: 'gatsby-remark-copy-linked-files'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-decap-cms',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-decap-cms',
             themeName: 'gatsby-plugin-decap-cms'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-omni-font-loader',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-omni-font-loader',
             themeName: 'gatsby-omni-font-loader'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-purgecss',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-purgecss',
             themeName: 'gatsby-plugin-purgecss'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-react-svg',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-react-svg',
             themeName: 'gatsby-plugin-react-svg'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-netlify',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-netlify',
             themeName: 'gatsby-plugin-netlify'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-typescript',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-typescript',
             themeName: 'gatsby-plugin-typescript'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion',
             themeName: 'default-site-plugin'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-page-creator',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-page-creator',
             themeName: 'gatsby-plugin-page-creator'
           },
           {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/partytown',
+            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/partytown',
             themeName: 'partytown'
           }
         ],
-        projectRoot: '/Users/danielpettersson/Local sites.nosync/noctoscope',
+        projectRoot: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion',
         extensions: [
           '.mjs',  '.js',
           '.jsx',  '.wasm',
@@ -894,19 +898,19 @@
   cache: {
     type: 'filesystem',
     name: 'develop',
-    cacheLocation: '/Users/danielpettersson/Local sites.nosync/noctoscope/.cache/webpack/stage-develop',
+    cacheLocation: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/.cache/webpack/stage-develop',
     buildDependencies: {
       config: [
-        '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/utils/webpack.config.js',
-        '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/webpack-theme-component-shadowing/gatsby-node.js',
-        '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/gatsby-node.js',
-        '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-sass/gatsby-node.js',
-        '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-image/gatsby-node.js',
-        '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-decap-cms/gatsby-node.js',
-        '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-purgecss/gatsby-node.js',
-        '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-react-svg/gatsby-node.js',
-        '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-netlify/gatsby-node.js',
-        '/Users/danielpettersson/Local sites.nosync/noctoscope/node_modules/gatsby-plugin-typescript/gatsby-node.js'
+        '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/utils/webpack.config.js',
+        '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/webpack-theme-component-shadowing/gatsby-node.js',
+        '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/internal-plugins/bundle-optimisations/gatsby-node.js',
+        '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-sass/gatsby-node.js',
+        '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-image/gatsby-node.js',
+        '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-decap-cms/gatsby-node.js',
+        '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-purgecss/gatsby-node.js',
+        '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-react-svg/gatsby-node.js',
+        '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-netlify/gatsby-node.js',
+        '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-typescript/gatsby-node.js'
       ]
     }
   }
