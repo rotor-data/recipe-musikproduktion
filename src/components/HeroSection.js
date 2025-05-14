@@ -9,56 +9,58 @@ const HeroSection = ({ h1title, title, description, ctaText, image }) => {
   const heroImage = getImage(image)
 
   return (
-    <section className="hero hero-image-grid">
-      <div style={{ display: "grid", position: "relative" }}>
-        {/* Bakgrundsbild via GatsbyImage */}
+    <section className="section p-0">
+      <div style={{ display: "grid", minHeight: "80vh" }}>
+        {/* Faux background image */}
         {heroImage && (
           <GatsbyImage
             image={heroImage}
             alt=""
-            style={{ gridArea: "1/1" }}
-            layout="fullWidth"
-            aspectRatio={3 / 1}
+            style={{
+              gridArea: "1/1",
+              height: "100%",
+              width: "100%"
+            }}
+            imgStyle={{ objectFit: "cover" }}
+            loading="eager"
             formats={["auto", "webp", "avif"]}
           />
         )}
 
-        {/* Overlay med innehåll */}
+        {/* Foreground content */}
         <div
           style={{
             gridArea: "1/1",
             position: "relative",
-            display: "grid",
-            placeItems: "center",
-            padding: "4rem 1rem",
-            background: "rgba(0,0,0,0.5)", // mörk overlay
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(0, 0, 0, 0.4)",
+            padding: "4rem 1.5rem",
+            color: "white",
+            maxWidth:"100vw"
           }}
         >
-          <div className="container has-text-centered has-text-white">
-            <h1 className="pre-headline is-family-accent has-text-white mb-3">
-              {h1title}
-            </h1>
-            <p className="title is-extralarge has-text-white">
-              <MarkdownRenderer markdown={title} inline={true} />
-            </p>
-            <p className="subtitle has-text-white mt-3">
-              <MarkdownRenderer markdown={description} />
-            </p>
-            <div className="mt-6 mb-3">
-              <CtaModal buttonText={ctaText} headline="Vill du prata med oss?" />
+          <div className="container" style={{ maxWidth:"1200px", width: "100%" }}>
+            <div className="columns is-centered">
+              <div className="column is-12 has-text-centered-mobile has-text-left-desktop">
+                <h1 className="is-size-6-desktop is-size-7-touch has-text-white mb-3 is-uppercase">{h1title}</h1>
+                <p className="title is-size-1-desktop is-size-2-tablet is-size-3-mobile has-text-white mb-4">
+                  <MarkdownRenderer markdown={title} inline={true} />
+                </p>
+                {description && (
+                  <p className="mt-4 is-size-6 has-text-white">
+                    <MarkdownRenderer markdown={description} />
+                  </p>
+                )}
+                <div className="mt-5 mb-5">
+                  <CtaModal buttonText={ctaText} headline="Vill du prata med oss?" />
+                </div>
+                <LogoBanner />
+              </div>
             </div>
-       
-          </div>
-          <div className="container">
-            <LogoBanner />
           </div>
         </div>
-       
-      </div>
-
-      {/* Eventuella element efter bilden */}
-      <div className="mt-5">
-     
       </div>
     </section>
   )
@@ -67,9 +69,9 @@ const HeroSection = ({ h1title, title, description, ctaText, image }) => {
 HeroSection.propTypes = {
   h1title: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   ctaText: PropTypes.string.isRequired,
-  image: PropTypes.object.isRequired,
+  image: PropTypes.object.isRequired
 }
 
 export default HeroSection

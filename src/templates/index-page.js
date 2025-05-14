@@ -22,6 +22,7 @@ export const IndexPageTemplate = ({ content }) => {
   return (
     <>
     <div className="has-background-white">
+      
       <HeroSection
         title={hero.title}
         h1title={hero.h1title}
@@ -113,7 +114,7 @@ export const query = graphql`
                 gatsbyImageData(
                   quality: 90
                   layout: CONSTRAINED
-                  transformOptions: { cropFocus: CENTER, fit: CONTAIN, duotone: { shadow: "#707070", highlight: "#C29C38", opacity: 80 } }
+                  transformOptions: { cropFocus: CENTER, duotone: { shadow: "#707070", highlight: "#C29C38", opacity: 80 } }
                 )
               }
             }

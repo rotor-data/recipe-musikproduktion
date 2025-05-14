@@ -1,5 +1,17 @@
 // _bulma-config.scss
 @use "variables" as *;
+@use "tokens" as *;
+
+
+$sizes: (
+  1: var(--font-size-1),
+  2: var(--font-size-2),
+  3: var(--font-size-3),
+  4: var(--font-size-4),
+  5: var(--font-size-5),
+  6: var(--font-size-6),
+  7: var(--font-size-7)
+);
 
 $family-primary: $bodytext;
 $family-secondary: $headline2;
@@ -16,3 +28,4 @@ $button-family: $bodytext;
 $button-weight:300;
 $button-border-color: $link;
 $border:$link;
+

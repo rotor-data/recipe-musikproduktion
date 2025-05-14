@@ -18,7 +18,22 @@
       background-size: cover;
     }
   }
+
+  @mixin generate-is-size-7-variants($font-size: 0.85rem) {
+    // Base class
+    .is-size-7 {
+      font-size: $font-size;
+    }
   
+    // Responsive variants
+    @each $breakpoint in mobile, touch, tablet, desktop, widescreen, fullhd {
+      @include breakpoint($breakpoint) {
+        .is-size-7-#{$breakpoint} {
+          font-size: $font-size;
+        }
+      }
+    }
+  }
 
 @mixin mobile {
     @media (max-width: 768px) {

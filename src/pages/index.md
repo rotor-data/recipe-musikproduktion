@@ -10,7 +10,7 @@ indexPage:
 
   hero: 
     title: Professionellt ljud *från idé till färdig produktion*
-    h1title: Musikstudio Stockholm / Musikproduktion / Podcast Studio / Mixning / Mastering / Ljudproduktion
+    h1title: Musikstudio Stockholm • Musikproduktion • Podcast Studio • Mixning • Mastering • Ljudproduktion
     description: |
       Välkommen till Recipe Musikproduktion, en modern ljudstudio på Södermalm. Vi skapar ljud som känns – för företag, kreatörer och artister. Poddar, voiceovers, musik, jinglar, mix och mastering.
       
@@ -30,7 +30,7 @@ indexPage:
     quote: "Recipe hjälpte oss få ut exakt det sound vi letade efter – proffsigt, snabbt och kreativt."
     name: "Anonym kund"
     company: "Kreatör i Stockholm"
-    image: /img/gustav-eksvard-snackasnyggt.jpg
+    image: /img/kleerup.jpg
 
   textImage:
     title: "Om Recipe Musikproduktion"

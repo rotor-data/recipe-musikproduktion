@@ -1,32 +1,23 @@
-import React from "react";
-import PropTypes from "prop-types";
-import PreviewCompatibleImage from "./PreviewCompatibleImage";
+import React from "react"
+import PropTypes from "prop-types"
+import PreviewCompatibleImage from "./PreviewCompatibleImage"
+import FiveStars from "../img/FiveStars.svg"
 
 const Testimonial = ({ testimonial }) => {
-  const { quote, name, company, image } = testimonial;
-
-  console.log("Testimonial props:", testimonial);
+  const { quote, name, company, image } = testimonial
 
   return (
-    <section className="section has-background-white">
+    <section className="section has-background-white testimonial">
       <div className="container">
         <div
-          className="box has-background-success"
-          style={{ borderRadius: "1.5rem" }}
+          className="box has-background-link-dark"
+          style={{ borderRadius: "0.5rem" }}
         >
           <div className="columns is-vcentered is-variable is-5 is-multiline is-mobile is-justify-content-center">
 
-            {/* Column 1: Star */}
-            <div className="column is-narrow has-text-left">
-              <img
-                src="/img/rotor-pink-star.svg"
-                alt="Star Icon"
-                style={{ width: "80px" }}
-              />
-            </div>
-
-            {/* Column 2: Quote + Name */}
-            <div className="column is-two-thirds-tablet is-12-mobile">
+            {/* Column 1: Quote + Stars + Name */}
+            <div className="column is-9-tablet is-12-mobile has-text-centered">
+              <FiveStars className="has-text-link" style={{ width: "110px", marginBottom: "1rem" }} />
               <p className="is-italic has-text-white is-size-5 mb-4">
                 “{quote}”
               </p>
@@ -35,7 +26,7 @@ const Testimonial = ({ testimonial }) => {
               </p>
             </div>
 
-            {/* Column 3: Circular Image */}
+            {/* Column 2: Circular Image */}
             <div className="column is-narrow has-text-right">
               <figure className="image is-128x128 is-inline-block">
                 <PreviewCompatibleImage
@@ -57,8 +48,8 @@ const Testimonial = ({ testimonial }) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 Testimonial.propTypes = {
   testimonial: PropTypes.shape({
@@ -67,6 +58,6 @@ Testimonial.propTypes = {
     company: PropTypes.string.isRequired,
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
   }).isRequired,
-};
+}
 
-export default Testimonial;
+export default Testimonial

@@ -1,0 +1,53 @@
+@use "bulma/sass/utilities/mixins" as *;
+
+// CSS variable-based size map
+$font-sizes: (
+  "1": var(--font-size-1),
+  "2": var(--font-size-2),
+  "3": var(--font-size-3),
+  "4": var(--font-size-4),
+  "5": var(--font-size-5),
+  "6": var(--font-size-6),
+  "7": var(--font-size-7)
+);
+
+// Base sizes
+@each $size, $value in $font-sizes {
+  .is-size-#{$size} {
+    font-size: #{$value} !important;
+  }
+}
+
+// Responsive variants
+@each $size, $value in $font-sizes {
+  @include mobile {
+    .is-size-#{$size}-mobile {
+      font-size: #{$value} !important;
+    }
+  }
+  @include tablet {
+    .is-size-#{$size}-tablet {
+      font-size: #{$value} !important;
+    }
+  }
+  @include touch {
+    .is-size-#{$size}-touch {
+      font-size: #{$value} !important;
+    }
+  }
+  @include desktop {
+    .is-size-#{$size}-desktop {
+      font-size: #{$value} !important;
+    }
+  }
+  @include widescreen {
+    .is-size-#{$size}-widescreen {
+      font-size: #{$value} !important;
+    }
+  }
+  @include fullhd {
+    .is-size-#{$size}-fullhd {
+      font-size: #{$value} !important;
+    }
+  }
+}
