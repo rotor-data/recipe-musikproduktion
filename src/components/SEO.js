@@ -27,7 +27,7 @@ const SEO = ({ title, description, slug = "/", og = {} }) => {
   if (slug[0]!=='/') 
   {slug="/"+slug}
 
-  const ogimage = og.image || "img/rotor-og-image.jpg"
+  const ogimage = og.image || "img/recipe-og-image.png"
   const ogtype = og.type || "website"
   const oglocale= og.locale || "sv_SE"
 
