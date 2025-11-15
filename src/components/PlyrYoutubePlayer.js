@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react"
-import Plyr from "plyr"
 import "plyr/dist/plyr.css"
 
 const PlyrYouTubePlayer = ({ videoId }) => {
@@ -7,20 +6,36 @@ const PlyrYouTubePlayer = ({ videoId }) => {
   const [ended, setEnded] = useState(false)
 
   useEffect(() => {
-    const player = new Plyr(playerRef.current, {
-      youtube: {
-        noCookie: true,
-        rel: 0,
-        modestbranding: 1,
-      },
-    })
+    if (typeof window === "undefined") {
+      return undefined
+    }
 
-    player.on("ended", () => {
-      setEnded(true)
+    let player
+    let mounted = true
+
+    import("plyr").then(({ default: Plyr }) => {
+      if (!mounted || !playerRef.current) {
+        return
+      }
+
+      player = new Plyr(playerRef.current, {
+        youtube: {
+          noCookie: true,
+          rel: 0,
+          modestbranding: 1,
+        },
+      })
+
+      player.on("ended", () => {
+        setEnded(true)
+      })
     })
 
     return () => {
-      player.destroy()
+      mounted = false
+      if (player) {
+        player.destroy()
+      }
     }
   }, [videoId])
 
