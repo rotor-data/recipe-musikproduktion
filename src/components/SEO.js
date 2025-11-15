@@ -6,9 +6,8 @@ import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { withPrefix } from "gatsby";
 
-const SEO = ({ title, description, slug, og={} }) => {
+const SEO = ({ title, description, slug = "/", og = {} }) => {
 
-console.log(title)
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -31,7 +30,6 @@ console.log(title)
   const ogimage = og.image || "img/rotor-og-image.jpg"
   const ogtype = og.type || "website"
   const oglocale= og.locale || "sv_SE"
-  const faviconGoogle = "img/favicon-96x96.ico"
 
   const jsonld = 
   {
@@ -69,7 +67,35 @@ console.log(title)
         name='description'
         content={description || data.site.siteMetadata.description}
       />
-      <link rel="shortcut icon" href={faviconGoogle}></link>
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href={withPrefix("/img/favicons/favicon-rec-apple-touch-icon.png")}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href={withPrefix("/img/favicons/favicon-rec-32x32.png")}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href={withPrefix("/img/favicons/favicon-rec-16x16.png")}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="192x192"
+        href={withPrefix("/img/favicons/favicon-rec-android-chrome-192x192.png")}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="512x512"
+        href={withPrefix("/img/favicons/favicon-rec-android-chrome-512x512.png")}
+      />
       <link rel='canonical' href={`${data.site.siteMetadata.siteUrl}${slug}`} />
       <meta property="title" content={title} />
       <meta property="og:title" content={title} />
