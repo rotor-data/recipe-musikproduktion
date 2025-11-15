@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { motion, AnimatePresence } from "framer-motion"
+import Logo from "../img/recipe-logo.svg"
 
 const normalizeHref = href => {
   if (typeof href !== "string") {
@@ -79,7 +80,9 @@ const Navbar = () => {
   return (
     <nav className={`nav-bar ${visible ? "" : "nav-bar--hidden"}`}>
       <div className="nav-bar__inner">
-        <div className="nav-bar__logo">Recipe</div>
+        <a className="nav-bar__logo" href="/" aria-label="Recipe home">
+          <Logo />
+        </a>
         <div className="nav-bar__menu">
           {normalizedMenu.map(item => (
             <a
