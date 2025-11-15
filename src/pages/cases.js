@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react"
-import VideoGallery from "../components/VideoGallery"
+import React, { useEffect, useMemo, useState } from "react"
+import Layout from "../components/Layout"
+import FlowGrid from "../components/FlowGrid"
 
-const YouTubeGalleryPage = () => {
+const CasesPage = () => {
   const [videos, setVideos] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -12,48 +13,69 @@ const YouTubeGalleryPage = () => {
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {
           setVideos(data)
-          console.log(data)
         } else {
           setError(true)
         }
       })
-      .catch(err => {
-        console.error("Fetch error:", err)
+      .catch(() => {
         setError(true)
       })
-      .finally(() => setLoading(false))
+      .finally(() => {
+        setLoading(false)
+      })
   }, [])
 
-  if (loading) {
-    return (
-      <section className="section">
-        <div className="container has-text-centered">
-          <p className="is-size-5">Loading videos...</p>
-        </div>
-      </section>
-    )
-  }
+  const youtubeChannelId =
+    process.env.GATSBY_YOUTUBE_CHANNEL_ID || process.env.YOUTUBE_CHANNEL_ID
+  const youtubeChannelUrl = youtubeChannelId
+    ? `https://www.youtube.com/channel/${youtubeChannelId}`
+    : "https://www.youtube.com"
 
-  if (error) {
-    return (
-      <section className="section">
-        <div className="container has-text-centered">
-          <p className="is-size-5 has-text-danger">
-            Unable to load videos. Try again later.
-          </p>
-        </div>
-      </section>
-    )
-  }
+  const flowBlocks = useMemo(() => {
+    if (!videos.length) {
+      return []
+    }
+
+    return [
+      {
+        highlight: {
+          pretitle: "Cases",
+          title: "*Från studion till YouTube*",
+          body:
+            "Peek into our most recent sessions, collaborations, and behind-the-scenes sound design documented on our YouTube channel.",
+          ctaText: "Öppna YouTube",
+          ctaLink: youtubeChannelUrl,
+          megaHeadline: "CASE STORIES",
+        },
+        cards: videos.map(video => ({
+          title: video.title,
+          description: video.description,
+          image: video.thumbnail,
+          link: `https://www.youtube.com/watch?v=${video.id}`,
+          linkLabel: "Spela upp",
+        })),
+        highlightPosition: "right",
+      },
+    ]
+  }, [videos, youtubeChannelUrl])
 
   return (
-    <section className="section">
-      <div className="container">
-        <h1 className="title has-text-centered">Video Gallery</h1>
-        <VideoGallery videos={videos} />
-      </div>
-    </section>
+    <Layout>
+      <section className="section">
+        <div className="container">
+          {loading && (
+            <p className="has-text-grey">Hämtar case-videos…</p>
+          )}
+          {error && (
+            <p className="has-text-danger">
+              Det gick inte att hämta videorna just nu. Försök igen om en stund.
+            </p>
+          )}
+        </div>
+      </section>
+      <FlowGrid flowBlocks={flowBlocks} />
+    </Layout>
   )
 }
 
-export default YouTubeGalleryPage
+export default CasesPage

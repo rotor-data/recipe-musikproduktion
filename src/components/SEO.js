@@ -6,9 +6,8 @@ import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { withPrefix } from "gatsby";
 
-const SEO = ({ title, description, slug, og={} }) => {
+const SEO = ({ title, description, slug = "/", og = {} }) => {
 
-console.log(title)
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -28,33 +27,30 @@ console.log(title)
   if (slug[0]!=='/') 
   {slug="/"+slug}
 
-  const ogimage = og.image || "img/rotor-og-image.jpg"
+  const ogimage = og.image || "img/recipe-og-image.png"
   const ogtype = og.type || "website"
   const oglocale= og.locale || "sv_SE"
-  const faviconGoogle = "img/favicon-96x96.ico"
 
-  const jsonld = 
-  {
+  const company = data.site.siteMetadata.company
+  const jsonld = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Rotor",
-    "image": "",
-    "@id": "",
-    "url": "https://rrrotor.com",
-    "telephone": "+46768472147",
+    "@type": "Organization",
+    "name": company,
+    "url": data.site.siteMetadata.siteUrl,
+    "logo": `${data.site.siteMetadata.siteUrl}${withPrefix("/img/recipe-logo.svg")}`,
+    "description": data.site.siteMetadata.description,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "St Eriksgatan 72",
+      "streetAddress": "Nytorget 4",
       "addressLocality": "Stockholm",
-      "postalCode": "11320",
+      "postalCode": "116 40",
       "addressCountry": "SE"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 59.33863820000001,
-      "longitude": 18.0362399
-    } ,
-    "sameAs": "https://www.linkedin.com/company/rotor-media-group" 
+      "latitude": 59.32301,
+      "longitude": 18.07102
+    },
   }
 
 
@@ -69,7 +65,35 @@ console.log(title)
         name='description'
         content={description || data.site.siteMetadata.description}
       />
-      <link rel="shortcut icon" href={faviconGoogle}></link>
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href={withPrefix("/img/favicons/favicon-rec-apple-touch-icon.png")}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href={withPrefix("/img/favicons/favicon-rec-32x32.png")}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href={withPrefix("/img/favicons/favicon-rec-16x16.png")}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="192x192"
+        href={withPrefix("/img/favicons/favicon-rec-android-chrome-192x192.png")}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="512x512"
+        href={withPrefix("/img/favicons/favicon-rec-android-chrome-512x512.png")}
+      />
       <link rel='canonical' href={`${data.site.siteMetadata.siteUrl}${slug}`} />
       <meta property="title" content={title} />
       <meta property="og:title" content={title} />

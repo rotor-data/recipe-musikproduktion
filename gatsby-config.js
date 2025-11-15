@@ -63,13 +63,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        excludes: ['/kontakta oss/tack', 
-        `/dev-404-page`,
-        `/404`,`/404.html`,
-        `/verktyg-digital-marknadsforing`,
-        `/landing-spec/**`, 
-        `/lp/**`],
-        
+        excludes: ["/dev-404-page", "/404", "/404.html"],
       },
     },
     {
@@ -85,13 +79,6 @@ module.exports = {
       options: {
         path: `${__dirname}/src/pages`,
         name: "pages",
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        path: `${__dirname}/src/rotor-tools`,
-        name: "tools",
       },
     },
     {

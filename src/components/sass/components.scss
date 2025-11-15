@@ -39,9 +39,15 @@
   }
 
   .nav-bar__logo {
-    font-size: 1rem;
-    letter-spacing: 0.35rem;
-    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    color: $rec-gold;
+
+    svg {
+      width: 140px;
+      height: auto;
+      display: block;
+    }
   }
 
   .nav-bar__menu {

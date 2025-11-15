@@ -29,7 +29,7 @@ pageCopy:
           När ljud ska kännas mänskligt och professionellt på samma gång börjar vi med att lyssna.
           Recipe är både en tekniskt vass produktionsplats och ett kreativt rum där idéer får plats att växa – helt nära Nytorgets puls.
         ctaText: "Se case"
-        ctaLink: "/case"
+        ctaLink: "/cases"
       showGallery: false
       cards:
         - tagline: "Featured"
@@ -37,7 +37,7 @@ pageCopy:
           description: |
             Recipe producerar musik och ljud för film, poddar och scen. Nyligen lanserade vi ett case som visar hur vi kombinerar rytm och känsla.
           image: /img/jocke.jpg
-          link: "/case"
+          link: "/cases"
           linkLabel: "Se case"
         - tagline: "Studio Stories"
           title: "Musik, poddar & ljuddesign"
@@ -62,22 +62,22 @@ pageCopy:
         ctaLink: "/people"
       showGallery: true
       galleryItems:
-      - image: "/img/jocke.jpg"
-        title: "Studio Sessions"
-        subtitle: "Live recording"
-        link: "/case"
-      - image: ""
-        bigText: "01"
-        title: "Field work"
-        subtitle: "Sound design"
-        link: ""
-      - image: "/img/mikrofon.jpg"
-        title: "The Hunter"
-        subtitle: "Creative mixing"
-      - image: "/img/placeholder photo.png"
-        title: "The Convert"
-        subtitle: "Mastering"
-        link: "/people"
+        - image: "/img/jocke.jpg"
+          title: "Studio Sessions"
+          subtitle: "Live recording"
+          link: "/cases"
+        - image: ""
+          bigText: "01"
+          title: "Field work"
+          subtitle: "Sound design"
+          link: ""
+        - image: "/img/mikrofon.jpg"
+          title: "The Hunter"
+          subtitle: "Creative mixing"
+        - image: "/img/placeholder photo.png"
+          title: "The Convert"
+          subtitle: "Mastering"
+          link: "/people"
       cards:
         - tagline: "Voice & podcast"
           title: "Poddproduktion & voiceovers"
@@ -100,7 +100,7 @@ pageCopy:
         body: |
           Allt börjar med ett samtal om mål, känsla och referenser. Därefter följer en gemensam process där ni får vara med så mycket ni vill – men kvaliteten kompromissar vi aldrig med.
         ctaText: "Boka samtal"
-        ctaLink: "/kontakt"
+        ctaLink: "/#contact"
       cards:
         - tagline: "Rådgivning"
           title: "Planering & referenser"
