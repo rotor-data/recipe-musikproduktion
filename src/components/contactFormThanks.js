@@ -126,7 +126,7 @@ const ContactForm = ({ formData, handleChange, showFields, headline, id }) => {
                   <span className="is-size-7 ml-3">
                     Jag godkänner att ni använder mina uppgifter i enlighet med{" "}
                     <a target="_blank" rel="noopener noreferrer" href="/personuppgiftsbehandling/">
-                      Rotors personuppgiftspolicy.
+                     Recipes personuppgiftspolicy.
                     </a>
                   </span>
                 </label>
