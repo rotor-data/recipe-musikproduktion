@@ -1,6 +1,15 @@
 const React = require("react")
 
-exports.onRenderBody = ({ setHtmlAttributes, setHeadComponents }) => {
-  setHtmlAttributes({ lang: "sv" })
+if (typeof global.ResizeObserver === "undefined") {
+  class ResizeObserverMock {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  }
 
+  global.ResizeObserver = ResizeObserverMock
+}
+
+exports.onRenderBody = ({ setHtmlAttributes }) => {
+  setHtmlAttributes({ lang: "sv" })
 }

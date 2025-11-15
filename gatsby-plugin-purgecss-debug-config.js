@@ -1,18 +1,14 @@
 {
-  name: 'develop',
+  name: 'build-javascript',
   context: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion',
   entry: {
-    commons: [
-      '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/.cache/app'
-    ]
+    app: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/.cache/production-app'
   },
   output: {
-    path: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion',
-    filename: '[name].js',
-    pathinfo: true,
-    publicPath: '/',
-    devtoolModuleFilenameTemplate: [Function: devtoolModuleFilenameTemplate],
-    crossOriginLoading: 'anonymous'
+    filename: '[name]-[contenthash].js',
+    chunkFilename: '[name]-[contenthash].js',
+    path: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/public',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -101,7 +97,7 @@
                 loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/css-loader/dist/cjs.js',
                 options: {
                   url: [Function: url],
-                  sourceMap: true,
+                  sourceMap: false,
                   modules: {
                     auto: undefined,
                     namedExport: true,
@@ -136,7 +132,7 @@
                 loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/postcss-loader/dist/cjs.js',
                 options: {
                   execute: false,
-                  sourceMap: true,
+                  sourceMap: false,
                   postcssOptions: [Function: postcssOptions]
                 }
               }
@@ -153,7 +149,7 @@
                 loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/css-loader/dist/cjs.js',
                 options: {
                   url: [Function: url],
-                  sourceMap: true,
+                  sourceMap: false,
                   modules: false
                 }
               },
@@ -182,7 +178,7 @@
                 loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/postcss-loader/dist/cjs.js',
                 options: {
                   execute: false,
-                  sourceMap: true,
+                  sourceMap: false,
                   postcssOptions: [Function: postcssOptions]
                 }
               }
@@ -204,7 +200,7 @@
                 loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/css-loader/dist/cjs.js',
                 options: {
                   url: [Function: url],
-                  sourceMap: true,
+                  sourceMap: false,
                   modules: {
                     auto: undefined,
                     namedExport: true,
@@ -239,7 +235,7 @@
                 loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/postcss-loader/dist/cjs.js',
                 options: {
                   execute: false,
-                  sourceMap: true,
+                  sourceMap: false,
                   postcssOptions: [Function: postcssOptions]
                 }
               },
@@ -278,7 +274,7 @@
                 loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/css-loader/dist/cjs.js',
                 options: {
                   url: [Function: url],
-                  sourceMap: true,
+                  sourceMap: false,
                   modules: false
                 }
               },
@@ -307,7 +303,7 @@
                 loader: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/postcss-loader/dist/cjs.js',
                 options: {
                   execute: false,
-                  sourceMap: true,
+                  sourceMap: false,
                   postcssOptions: [Function: postcssOptions]
                 }
               },
@@ -347,21 +343,13 @@
     DefinePlugin {
       definitions: {
         'process.env': '({})',
-        'process.env.MAILCHIMP_API_KEY': '"203b77c1189c9601b5c7ead7b93badbd-us4"',
-        'process.env.MAILCHIMP_LIST_ID': '"6991276398"',
-        'process.env.YOUTUBE_API_KEY': '"AIzaSyB3Kpmo0lu6VuTVx5OvvEyCIRiR3awdPJA"',
-        'process.env.YOUTUBE_CHANNEL_ID': '"UCJOUnXWZ8wNk504yv2BkN4A"',
-        'process.env.NODE_ENV': '"development"',
+        'process.env.NODE_ENV': '"production"',
         'process.env.PUBLIC_DIR': '"/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/public"',
-        'process.env.BUILD_STAGE': '"develop"',
+        'process.env.BUILD_STAGE': '"build-javascript"',
         'process.env.CYPRESS_SUPPORT': undefined,
-        'process.env.GATSBY_QUERY_ON_DEMAND': '"true"',
-        'process.env.GATSBY_SOCKET_IO_DEFAULT_TRANSPORT': '"websocket"',
-        'process.env.GATSBY_LOGGER': '"yurnalist"',
-        'process.env.GATSBY_TELEMETRY_DISABLED': '"1"',
-        'process.env.GATSBY_PRECOMPILE_DEVELOP_FUNCTIONS': '"true"',
+        'process.env.GATSBY_QUERY_ON_DEMAND': 'false',
+        'process.env.GATSBY_LOGGER': '"ink"',
         'process.env.GATSBY_REPORTER_ISVERBOSE': '"0"',
-        'process.env.GATSBY_NODE_GLOBALS': '"{\\"buildId\\":\\"d68ff85b-6897-4cdd-a9cc-d413c0afb1cf\\",\\"root\\":\\"/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion\\"}"',
         'process.env.GATSBY_SLICES': '"true"',
         'process.env.GATSBY_QUERY_ON_DEMAND_LOADING_INDICATOR': '"true"',
         __BASE_PATH__: '""',
@@ -376,24 +364,24 @@
     BabelConfigItemsCacheInvalidatorPlugin {
       name: 'BabelConfigItemsCacheInvalidatorPlugin'
     },
-    ReactRefreshPlugin {
+    MiniCssExtractPlugin {
+      _sortedModulesCache: WeakMap { <items unknown> },
       options: {
-        overlay: {
-          sockIntegration: 'whm',
-          module: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/utils/fast-refresh-module',
-          entry: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ErrorOverlayEntry.js'
-        },
-        exclude: /node_modules/ { test: [Function (anonymous)] },
-        include: /\.([cm]js|[jt]sx?|flow)$/i
+        filename: '[name].[contenthash].css',
+        ignoreOrder: false,
+        experimentalUseImportModule: false,
+        chunkFilename: '[name].[contenthash].css'
+      },
+      runtimeOptions: {
+        insert: undefined,
+        linkType: 'text/css',
+        attributes: undefined
       }
     },
-    ForceCssHMRForEdgeCases {
-      hackCounter: 0,
-      previouslySeenCss: Set(0) {},
-      name: 'ForceCssHMRForEdgeCases'
+    GatsbyWebpackStatsExtractor {
+      plugin: { name: 'GatsbyWebpackStatsExtractor' },
+      publicPath: ''
     },
-    HotModuleReplacementPlugin { options: {} },
-    NoEmitOnErrorsPlugin {},
     StaticQueryMapper {
       store: {
         dispatch: [Function (anonymous)],
@@ -404,149 +392,11 @@
       },
       name: 'StaticQueryMapper'
     },
-    MiniCssExtractPlugin {
-      _sortedModulesCache: WeakMap { <items unknown> },
-      options: {
-        filename: '[name].css',
-        ignoreOrder: false,
-        experimentalUseImportModule: false,
-        chunkFilename: '[id].css'
-      },
-      runtimeOptions: {
-        insert: undefined,
-        linkType: 'text/css',
-        attributes: undefined
-      }
-    },
-    ESLintWebpackPlugin {
-      key: 'ESLintWebpackPlugin_1',
-      options: {
-        extensions: [ 'js', 'jsx' ],
-        emitError: true,
-        emitWarning: true,
-        failOnError: true,
-        exclude: [
-          '/node_modules/',
-          '/bower_components/',
-          '.cache/_this_is_virtual_fs_path_'
-        ],
-        useEslintrc: false,
-        resolvePluginsRelativeTo: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/utils',
-        rulePaths: [
-          '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/utils/eslint-rules'
-        ],
-        baseConfig: {
-          globals: {
-            graphql: true,
-            __PATH_PREFIX__: true,
-            __TRAILING_SLASH__: true,
-            __BASE_PATH__: true
-          },
-          extends: [
-            '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/eslint-config-react-app/index.js',
-            '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/utils/eslint/required.js'
-          ],
-          parser: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/@babel/eslint-parser/lib/index.cjs',
-          parserOptions: {
-            ecmaVersion: 2020,
-            sourceType: 'module',
-            ecmaFeatures: { jsx: true },
-            babelOptions: {
-              presets: [
-                '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/babel-preset-gatsby/index.js'
-              ]
-            },
-            requireConfigFile: false
-          },
-          plugins: [],
-          rules: {
-            'react/jsx-uses-react': 'error',
-            'react/react-in-jsx-scope': 'error',
-            'import/no-webpack-loader-syntax': [ 0 ],
-            'react/jsx-pascal-case': [ 'warn', { allowNamespace: true } ],
-            'jsx-a11y/alt-text': 'warn',
-            'jsx-a11y/anchor-has-content': 'warn',
-            'jsx-a11y/anchor-is-valid': 'warn',
-            'jsx-a11y/aria-activedescendant-has-tabindex': 'warn',
-            'jsx-a11y/aria-props': 'warn',
-            'jsx-a11y/aria-proptypes': 'warn',
-            'jsx-a11y/aria-role': 'warn',
-            'jsx-a11y/aria-unsupported-elements': 'warn',
-            'jsx-a11y/autocomplete-valid': [ 'warn', { inputComponents: [] } ],
-            'jsx-a11y/click-events-have-key-events': 'warn',
-            'jsx-a11y/control-has-associated-label': [
-              'warn',
-              {
-                ignoreElements: [
-                  'audio',    'canvas',
-                  'embed',    'input',
-                  'textarea', 'tr',
-                  'video'
-                ],
-                ignoreRoles: [
-                  'grid',       'listbox',
-                  'menu',       'menubar',
-                  'radiogroup', 'row',
-                  'tablist',    'toolbar',
-                  'tree',       'treegrid'
-                ],
-                includeRoles: [ 'alert', 'dialog' ]
-              }
-            ],
-            'jsx-a11y/heading-has-content': 'warn',
-            'jsx-a11y/html-has-lang': 'warn',
-            'jsx-a11y/iframe-has-title': 'warn',
-            'jsx-a11y/img-redundant-alt': 'warn',
-            'jsx-a11y/interactive-supports-focus': [
-              'warn',
-              {
-                tabbable: [
-                  'button',
-                  'checkbox',
-                  'link',
-                  'progressbar',
-                  'searchbox',
-                  'slider',
-                  'spinbutton',
-                  'switch',
-                  'textbox'
-                ]
-              }
-            ],
-            'jsx-a11y/label-has-associated-control': 'warn',
-            'jsx-a11y/lang': 'warn',
-            'jsx-a11y/media-has-caption': 'warn',
-            'jsx-a11y/mouse-events-have-key-events': 'warn',
-            'jsx-a11y/no-access-key': 'warn',
-            'jsx-a11y/no-autofocus': 'warn',
-            'jsx-a11y/no-distracting-elements': 'warn',
-            'jsx-a11y/no-interactive-element-to-noninteractive-role': 'warn',
-            'jsx-a11y/no-noninteractive-element-interactions': [
-              'warn',
-              {
-                body: [ 'onError', 'onLoad' ],
-                iframe: [ 'onError', 'onLoad' ],
-                img: [ 'onError', 'onLoad' ]
-              }
-            ],
-            'jsx-a11y/no-noninteractive-element-to-interactive-role': 'warn',
-            'jsx-a11y/no-noninteractive-tabindex': 'warn',
-            'jsx-a11y/no-redundant-roles': 'warn',
-            'jsx-a11y/no-static-element-interactions': 'warn',
-            'jsx-a11y/role-has-required-aria-props': 'warn',
-            'jsx-a11y/role-supports-aria-props': 'warn',
-            'jsx-a11y/scope': 'warn',
-            'jsx-a11y/tabindex-no-positive': 'warn'
-          }
-        }
-      },
-      run: [Function: bound run] AsyncFunction
-    },
     DefinePlugin { definitions: { GATSBY___IMAGE: true } }
   ],
-  devtool: 'eval-cheap-module-source-map',
+  devtool: 'source-map',
   performance: { hints: false },
-  mode: 'development',
+  mode: 'production',
   resolveLoader: {
     modules: [
       '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules',
@@ -874,6 +724,8 @@
   },
   target: [ 'web', 'es5' ],
   optimization: {
+    runtimeChunk: { name: 'webpack-runtime' },
+    mangleExports: true,
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
@@ -882,25 +734,130 @@
         framework: {
           chunks: 'all',
           name: 'framework',
-          test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types)[\\/]/,
+          test: [Function: test],
           priority: 40,
           enforce: true
         },
+        lib: {
+          test: [Function: test],
+          name: [Function: name],
+          priority: 30,
+          minChunks: 1,
+          reuseExistingChunk: true
+        },
+        commons: { name: 'commons', minChunks: 8, priority: 20 },
+        shared: {
+          test: [Function: test],
+          name: [Function: name],
+          priority: 10,
+          minChunks: 2,
+          reuseExistingChunk: true
+        },
         styles: {
           test: [Function: test],
-          name: 'commons',
+          name: 'styles',
           priority: 40,
           enforce: true
+        },
+        'netlify-identity-widget': {
+          test: /[\\/]node_modules[\\/](netlify-identity-widget)[\\/]/,
+          name: 'netlify-identity-widget',
+          chunks: 'all',
+          enforce: true
+        }
+      },
+      maxAsyncRequests: Infinity,
+      maxInitialRequests: 25,
+      minSize: 20000
+    },
+    minimizer: [
+      TerserPlugin {
+        options: {
+          test: /\.[cm]?js(\?.*)?$/i,
+          extractComments: true,
+          parallel: 9,
+          include: undefined,
+          exclude: /\.min\.js/,
+          minimizer: {
+            implementation: [AsyncFunction: terserMinify] {
+              getMinimizerVersion: [Function (anonymous)],
+              supportsWorkerThreads: [Function (anonymous)]
+            },
+            options: {
+              ie8: false,
+              mangle: { safari10: true },
+              parse: { ecma: 5 },
+              compress: { ecma: 5 },
+              output: { ecma: 5 }
+            }
+          }
+        }
+      },
+      CssMinimizerPlugin {
+        options: {
+          test: /\.css(\?.*)?$/i,
+          warningsFilter: [Function: warningsFilter],
+          parallel: 9,
+          include: undefined,
+          exclude: undefined,
+          minify: [AsyncFunction: cssnanoMinify],
+          minimizerOptions: {
+            preset: [
+              'default',
+              {
+                svgo: {
+                  full: true,
+                  plugins: [
+                    'cleanupAttrs',
+                    'cleanupEnableBackground',
+                    'cleanupIDs',
+                    'cleanupListOfValues',
+                    'cleanupNumericValues',
+                    'collapseGroups',
+                    'convertColors',
+                    'convertPathData',
+                    'convertStyleToAttrs',
+                    'convertTransform',
+                    'inlineStyles',
+                    'mergePaths',
+                    'minifyStyles',
+                    'moveElemsAttrsToGroup',
+                    'moveGroupAttrsToElems',
+                    'prefixIds',
+                    'removeComments',
+                    'removeDesc',
+                    'removeDoctype',
+                    'removeEditorsNSData',
+                    'removeEmptyAttrs',
+                    'removeEmptyContainers',
+                    'removeEmptyText',
+                    'removeHiddenElems',
+                    'removeMetadata',
+                    'removeNonInheritableGroupAttrs',
+                    'removeRasterImages',
+                    'removeScriptElement',
+                    'removeStyleElement',
+                    'removeTitle',
+                    'removeUnknownsAndDefaults',
+                    'removeUnusedNS',
+                    'removeUselessDefs',
+                    'removeUselessStrokeAndFill',
+                    'removeXMLProcInst',
+                    'reusePaths',
+                    'sortAttrs'
+                  ]
+                }
+              }
+            ]
+          }
         }
       }
-    },
-    minimize: false
+    ]
   },
-  externals: { 'socket.io-client': 'io' },
   cache: {
     type: 'filesystem',
-    name: 'develop',
-    cacheLocation: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/.cache/webpack/stage-develop',
+    name: 'build-javascript',
+    cacheLocation: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/.cache/webpack/stage-build-javascript',
     buildDependencies: {
       config: [
         '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby/dist/utils/webpack.config.js',
