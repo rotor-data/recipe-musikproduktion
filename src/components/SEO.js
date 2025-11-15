@@ -31,28 +31,26 @@ const SEO = ({ title, description, slug = "/", og = {} }) => {
   const ogtype = og.type || "website"
   const oglocale= og.locale || "sv_SE"
 
-  const jsonld = 
-  {
+  const company = data.site.siteMetadata.company
+  const jsonld = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Rotor",
-    "image": "",
-    "@id": "",
-    "url": "https://rrrotor.com",
-    "telephone": "+46768472147",
+    "@type": "Organization",
+    "name": company,
+    "url": data.site.siteMetadata.siteUrl,
+    "logo": `${data.site.siteMetadata.siteUrl}${withPrefix("/img/recipe-logo.svg")}`,
+    "description": data.site.siteMetadata.description,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "St Eriksgatan 72",
+      "streetAddress": "Nytorget 4",
       "addressLocality": "Stockholm",
-      "postalCode": "11320",
+      "postalCode": "116 40",
       "addressCountry": "SE"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 59.33863820000001,
-      "longitude": 18.0362399
-    } ,
-    "sameAs": "https://www.linkedin.com/company/rotor-media-group" 
+      "latitude": 59.32301,
+      "longitude": 18.07102
+    },
   }
 
 
