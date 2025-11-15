@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import Layout from '../components/Layout'
 import ImageFlowGrid from '../components/ImageFlowGrid'
 
 // Template component (presentational only)
@@ -68,11 +67,7 @@ const PeopleGalleryPage = ({ data }) => {
     }))
   }, [galleryBlocks])
 
-  return (
-    <Layout>
-      <PeopleGalleryPageTemplate flowBlocks={flowBlocks} />
-    </Layout>
-  )
+  return <PeopleGalleryPageTemplate flowBlocks={flowBlocks} />
 }
 
 PeopleGalleryPage.propTypes = {

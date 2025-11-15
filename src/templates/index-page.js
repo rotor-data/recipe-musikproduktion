@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-import Layout from "../components/Layout"
 import HeroSection from "../components/HeroSection"
 import SeoHead from "../components/SeoHead"
 import FlowGrid from "../components/FlowGrid"
@@ -39,11 +38,7 @@ IndexPageTemplate.propTypes = {
 const IndexPage = ({ data }) => {
   const content = data.markdownRemark.frontmatter
 
-  return (
-    <Layout>
-      <IndexPageTemplate content={content} />
-    </Layout>
-  )
+  return <IndexPageTemplate content={content} />
 }
 
 export default IndexPage
