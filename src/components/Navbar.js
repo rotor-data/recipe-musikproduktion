@@ -2,6 +2,22 @@ import React, { useEffect, useRef, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { motion, AnimatePresence } from "framer-motion"
 
+const normalizeHref = href => {
+  if (typeof href !== "string") {
+    return href
+  }
+
+  if (href.startsWith("/#")) {
+    return href
+  }
+
+  if (href.startsWith("#")) {
+    return `/${href}`
+  }
+
+  return href
+}
+
 const Navbar = () => {
   const data = useStaticQuery(graphql`
     query NavMenuQuery {
@@ -25,6 +41,10 @@ const Navbar = () => {
     { label: "Kontakt", href: "#contact" },
   ]
   const menu = data?.navigation?.frontmatter?.menu ?? fallbackMenu
+  const normalizedMenu = menu.map(item => ({
+    ...item,
+    href: normalizeHref(item.href),
+  }))
 
   const [menuOpen, setMenuOpen] = useState(false)
   const [visible, setVisible] = useState(true)
@@ -61,9 +81,9 @@ const Navbar = () => {
       <div className="nav-bar__inner">
         <div className="nav-bar__logo">Recipe</div>
         <div className="nav-bar__menu">
-          {menu.map(item => (
+          {normalizedMenu.map(item => (
             <a
-              key={item.href}
+              key={`${item.href}-${item.label}`}
               href={item.href}
               className="nav-bar__link has-text-white"
             >
@@ -99,9 +119,9 @@ const Navbar = () => {
             >
               ×
             </button>
-            {menu.map(item => (
+            {normalizedMenu.map(item => (
               <a
-                key={item.href}
+                key={`${item.href}-${item.label}`}
                 href={item.href}
                 className="nav-bar__overlay-link has-text-white"
                 onClick={() => setMenuOpen(false)}
