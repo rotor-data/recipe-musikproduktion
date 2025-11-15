@@ -2,9 +2,8 @@ import React from "react";
 import { useLocation } from "@reach/router" // this helps tracking the location
 import { initializeAndTrack } from 'gatsby-plugin-gdpr-cookies'
 import { useState } from "react";
-import CookieConsent, { Cookies, getCookieConsentValue } from "react-cookie-consent";
+import CookieConsent, { Cookies } from "react-cookie-consent";
 import SimpleModal from "./SimpleModal";
-import { Link } from "gatsby";
 
 const CookieNotice = () => {
 
@@ -54,11 +53,6 @@ const CookieNotice = () => {
     };
 
     const [bannerVisible, setBannerVisible] = useState("byCookieValue");
-
-    // Disable cookie banner on /landing/* routes
-    if (location.pathname.startsWith("/landing/")) {
-        return null;
-    }
 
     return (
         <div>
@@ -131,7 +125,7 @@ const CookieNotice = () => {
                 buttonWrapperClasses="cookie-button-wrapper"
                 contentClasses="cookie-content"
             >
-                <p className="is-family-secondary has-text-weight-bold mb-4">We use <Link className="has-text-success" style={{textDecoration:'underline'}} to="/policy">cookies</Link> to improve your experience</p>
+                <p className="is-family-secondary has-text-weight-bold mb-4">We use cookies to improve your experience</p>
                 <button className="cookie-customize is-size-6" onClick={() => handleClick()}>Customize cookies</button>
             </CookieConsent>
         </div>

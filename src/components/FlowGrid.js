@@ -167,7 +167,7 @@ const GridBlock = ({ highlight, cards, highlightPosition = "right" }) => {
         )}
         {ctaText && (
           <div className="highlight-panel__cta">
-            <a href={ctaLink || "/kontakt"} className="has-text-link">
+            <a href={ctaLink || "/#contact"} className="has-text-link">
               {ctaText} <span>→</span>
             </a>
           </div>

@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 
@@ -17,7 +16,6 @@ exports.createPages = ({ actions, graphql }) => {
               slug
             }
             frontmatter {
-              tags
               templateKey
             }
           }
@@ -33,40 +31,17 @@ exports.createPages = ({ actions, graphql }) => {
     const posts = result.data.allMarkdownRemark.edges
 
     posts.forEach((edge) => {
-      if (edge.node.frontmatter.templateKey !== 'tools') {
-        const id = edge.node.id
-        createPage({
-          path: edge.node.fields.slug,
-          tags: edge.node.frontmatter.tags,
-          component: path.resolve(`src/templates/${String(edge.node.frontmatter.templateKey)}.js`),
-          context: {
-            id,
-          },
-        })
-      }
+      const id = edge.node.id
+      createPage({
+        path: edge.node.fields.slug,
+        component: path.resolve(
+          `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
+        ),
+        context: {
+          id,
+        },
+      })
     })
-
-    posts.forEach((edge) => {
-      if (edge.node.frontmatter.templateKey === 'tools') {
-        const id = edge.node.id
-        createPage({
-          path: edge.node.fields.slug,
-          tags: edge.node.frontmatter.tags,
-          component: path.resolve(`src/templates/tools.js`),
-          context: {
-            id,
-          },
-        })
-      }
-    })
-
-    let tags = []
-    posts.forEach((edge) => {
-      if (_.get(edge, `node.frontmatter.tags`)) {
-        tags = tags.concat(edge.node.frontmatter.tags)
-      }
-    })
-    tags = _.uniq(tags)
   })
 }
 

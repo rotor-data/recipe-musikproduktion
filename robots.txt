@@ -1,3 +1,2 @@
 User-agent: *
-Disallow: /landing-spec/
 Sitemap: https://rrrotor.com/sitemap/sitemap-0.xml

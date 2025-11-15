@@ -70,8 +70,6 @@ export const query = graphql`
           description
           cta {
             buttonText
-            text
-            headline
           }
           image {
             childImageSharp {
