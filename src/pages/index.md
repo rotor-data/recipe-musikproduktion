@@ -55,7 +55,7 @@ pageCopy:
     - highlight:
         pretitle: "Vem vi hjälper"
         title: "Artister & producenter"
-        megaHeadline: "Vem vi hjälper"
+        megaHeadline: "Who"
         body: |
           Vi arbetar med artister på alla nivåer – från blivande röster till etablerade namn. Vi hjälper till att forma låtar, utveckla sound och leverera färdiga mixar.
         ctaText: "Vill du boka?"
@@ -96,7 +96,7 @@ pageCopy:
     - highlight:
         pretitle: "Hur vi jobbar"
         title: "*från* samtal *till* slutmix"
-        megaHeadline: "Så jobbar vi"
+        megaHeadline: "Work"
         body: |
           Allt börjar med ett samtal om mål, känsla och referenser. Därefter följer en gemensam process där ni får vara med så mycket ni vill – men kvaliteten kompromissar vi aldrig med.
         ctaText: "Boka samtal"

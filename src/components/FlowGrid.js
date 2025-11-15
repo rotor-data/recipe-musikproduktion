@@ -3,6 +3,16 @@ import PropTypes from "prop-types"
 import MarkdownRenderer from "./MarkdownRenderer"
 import PreviewCompatibleImage from "./PreviewCompatibleImage"
 
+const MEGA_DIVIDER_REPEAT_UNIT = 6
+
+const getMegaDividerSpans = (megaHeadline) => {
+  const dividerText = `${megaHeadline} • `
+  const totalCopies = MEGA_DIVIDER_REPEAT_UNIT * 2
+  return Array.from({ length: totalCopies }).map((_, copyIndex) => (
+    <span key={copyIndex}>{dividerText}</span>
+  ))
+}
+
 const GalleryRow = ({ items }) => (
   <div className="flow-grid__gallery-row">
     {items.map(({ image, title, subtitle, bigText, link }, index) => {
@@ -108,7 +118,7 @@ const GridBlock = ({ highlight, cards, highlightPosition = "right" }) => {
                   <PreviewCompatibleImage
                     imageInfo={{
                       image: card.image,
-                      alt: card.title || "Card image",
+                      alt: card.alt || card.title || "Card image",
                     }}
                   />
                 </div>
@@ -144,7 +154,7 @@ const GridBlock = ({ highlight, cards, highlightPosition = "right" }) => {
   )
 
   const highlightColumn = (
-  <div className="column is-half-desktop flow-grid__highlight-column">
+    <div className="column is-half-desktop flow-grid__highlight-column">
       <div className="box highlight-panel has-text-centered-desktop has-text-left-mobile">
         {pretitle && <p className="highlight-panel__pretitle">{pretitle}</p>}
         {title && (
@@ -190,6 +200,7 @@ GridBlock.propTypes = {
       description: PropTypes.string,
       fullWidth: PropTypes.bool,
       image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+      alt: PropTypes.string,
       link: PropTypes.string,
       linkLabel: PropTypes.string,
     })
@@ -207,37 +218,40 @@ const FlowGrid = ({ flowBlocks }) => {
     return null
   }
 
+  const anchorIds = ["om-oss", "cases", "people"]
+
   return (
     <section className="section py-5 flow-grid-wrapper">
       <div className="container is-fluid">
         <div className="flow-grid">
-          {flowBlocks.map((block, index) => (
-            <div
-              key={`${block.highlight?.title || "block"}-${index}`}
-              className="flow-grid__block"
-            >
-                         {block.highlight?.megaHeadline && (
-                <div className="flow-grid__mega-divider mb-4" aria-hidden="true">
-                  <div className="flow-grid__mega-divider__track">
-                    {Array.from({ length: 4 }).map((_, copyIndex) => (
-                      <span key={copyIndex}>
-                        {`${block.highlight.megaHeadline} • `}
-                      </span>
-                    ))}
+          {flowBlocks.map((block, index) => {
+            const anchorId = anchorIds[index]
+
+            return (
+              <div
+                key={`${block.highlight?.title || "block"}-${index}`}
+                className="flow-grid__block"
+                id={anchorId}
+              >
+                {block.highlight?.megaHeadline && (
+                  <div className="flow-grid__mega-divider mb-4" aria-hidden="true">
+                    <div className="flow-grid__mega-divider__track">
+                      {getMegaDividerSpans(block.highlight.megaHeadline)}
+                    </div>
                   </div>
-                </div>
-              )}
-              {block.showGallery && block.galleryItems?.length > 0 && (
-                <GalleryRow items={block.galleryItems} />
-              )}
-   
-              <GridBlock
-                highlight={block.highlight}
-                cards={block.cards}
-                highlightPosition={block.highlightPosition}
-              />
-            </div>
-          ))}
+                )}
+                {block.showGallery && block.galleryItems?.length > 0 && (
+                  <GalleryRow items={block.galleryItems} />
+                )}
+
+                <GridBlock
+                  highlight={block.highlight}
+                  cards={block.cards}
+                  highlightPosition={block.highlightPosition}
+                />
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>

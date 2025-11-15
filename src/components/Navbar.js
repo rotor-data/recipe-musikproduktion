@@ -1,81 +1,119 @@
-import React from "react";
-import { Link } from "gatsby";
-import logo from "../img/rotor-logo.svg";
-import MenuItems from "./MenuItems";
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
+import React, { useEffect, useRef, useState } from "react"
+import { useStaticQuery, graphql } from "gatsby"
+import { motion, AnimatePresence } from "framer-motion"
 
-const Navbar = class extends React.Component {
-
-  
-  constructor(props) {
-    super(props);
-    this.state = {
-      active: false,
-      navBarActiveClass: "",
-    };
-  }
-
-  toggleHamburger() {
-    // toggle the active boolean in the state
-    this.setState(
-      {
-        active: !this.state.active,
-      },
-      // after state has been updated,
-      () => {
-        // set the class in state for the navbar accordingly
-        this.state.active
-          ? this.setState({
-              navBarActiveClass: "is-active",
-            })
-          : this.setState({
-              navBarActiveClass: "",
-            });
+const Navbar = () => {
+  const data = useStaticQuery(graphql`
+    query NavMenuQuery {
+      navigation: markdownRemark(
+        fileAbsolutePath: { regex: "/navigation\\.md$/i" }
+      ) {
+        frontmatter {
+          menu {
+            label
+            href
+          }
+        }
       }
-    );
+    }
+  `)
+
+  const fallbackMenu = [
+    { label: "Om oss", href: "#om-oss" },
+    { label: "Cases", href: "#cases" },
+    { label: "People", href: "#people" },
+    { label: "Kontakt", href: "#contact" },
+  ]
+  const menu = data?.navigation?.frontmatter?.menu ?? fallbackMenu
+
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [visible, setVisible] = useState(true)
+  const prevScrollY = useRef(0)
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return undefined
+    }
+    const handleScroll = () => {
+      const currentY = window.scrollY
+      if (currentY < 50) {
+        setVisible(true)
+      } else if (currentY > prevScrollY.current) {
+        setVisible(false)
+      } else if (currentY < prevScrollY.current) {
+        setVisible(true)
+      }
+      prevScrollY.current = currentY
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const overlayVariants = {
+    hidden: { x: "100%" },
+    visible: { x: 0 },
+    exit: { x: "100%" },
   }
 
-  render() {
-    return (
-      <nav
-        className="navbar is-fixed-top is-spaced is-size-5 is-size-5-touch"
-        role="navigation"
-        aria-label="main-navigation"
-      >
-        <div className="container">
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-item" title="Logo">
-              <img src={logo} alt="Rotor logo" style={{ width: "125px" }} />
-            </Link>
-           
-            {/* Hamburger menu */}
-            <div
-              className={`navbar-burger burger ${this.state.navBarActiveClass}`}
-              data-target="navMenu"
-              role="menuitem"
-              tabIndex={0}
-              onKeyPress={() => this.toggleHamburger()}
-              onClick={() => this.toggleHamburger()}
+  return (
+    <nav className={`nav-bar ${visible ? "" : "nav-bar--hidden"}`}>
+      <div className="nav-bar__inner">
+        <div className="nav-bar__logo">Recipe</div>
+        <div className="nav-bar__menu">
+          {menu.map(item => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="nav-bar__link has-text-white"
             >
-              <span />
-              <span />
-              <span />
-            </div>
-          </div>
-          {<div
-            id="navMenu"
-            className={`navbar-menu ${this.state.navBarActiveClass}`}
-          >
-            <MenuItems mobile={`${this.state.navBarActiveClass}`} />
-            
-            <div className="navbar-end has-text-centered">
-              
-            </div>
-          </div>}
+              {item.label}
+            </a>
+          ))}
         </div>
-      </nav>
-    );
-  }
-};
+        <button
+          className="nav-bar__hamburger"
+          aria-label="Toggle navigation"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen(prev => !prev)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </div>
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="nav-bar__overlay"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={overlayVariants}
+            transition={{ type: "tween", duration: 0.35 }}
+          >
+            <button
+              className="nav-bar__overlay-close"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              ×
+            </button>
+            {menu.map(item => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="nav-bar__overlay-link has-text-white"
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  )
+}
 
-export default Navbar;
+export default Navbar

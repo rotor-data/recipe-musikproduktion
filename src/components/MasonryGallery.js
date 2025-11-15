@@ -14,6 +14,8 @@ const MasonryGallery = ({ photos, onCardClick }) => {
     const rotationClass = rotationClasses[index % rotationClasses.length];
     const animateFromLeft = columnIndex % 2 === 0;
 
+    const hasName = Boolean(data.title);
+
     return (
       <motion.div
         className="card"
@@ -58,16 +60,16 @@ const MasonryGallery = ({ photos, onCardClick }) => {
               },
             }}
           />
-          <div className="text-wrapper">
-            <div className="duct-tape-container">
-              <DuctTape className={`duct-tape-background ${rotationClass}`} />
-              {data.title && (
+          {hasName && (
+            <div className="text-wrapper">
+              <div className="duct-tape-container">
+                <DuctTape className={`duct-tape-background ${rotationClass}`} />
                 <div className="text-overlay">
                   {data.title}
                 </div>
-              )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </motion.div>
     );

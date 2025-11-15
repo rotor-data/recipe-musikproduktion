@@ -1,100 +1,77 @@
-import React, { useState, useCallback } from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import MasonryGallery from '../components/MasonryGallery'
-import { GatsbyImage } from "gatsby-plugin-image";
-import DuctTape from "../img/duct-tape.svg";
-import { motion, AnimatePresence } from 'framer-motion'
+import Layout from '../components/Layout'
+import ImageFlowGrid from '../components/ImageFlowGrid'
 
 // Template component (presentational only)
-const PeopleGalleryPageTemplate = ({ title, gallery, onCardClick }) => {
-  return (
-    <div className="has-background-black">
-
-        <h1 className="title is-3 has-text-centered mb-6">{title}</h1>
-        <MasonryGallery photos={gallery} onCardClick={onCardClick} />
-
-    </div>
-  )
-}
+const PeopleGalleryPageTemplate = ({ flowBlocks }) => (
+  <div className="has-background-black">
+    <ImageFlowGrid flowBlocks={flowBlocks} />
+  </div>
+)
 
 PeopleGalleryPageTemplate.propTypes = {
-  title: PropTypes.string,
-  gallery: PropTypes.arrayOf(
+  flowBlocks: PropTypes.arrayOf(
     PropTypes.shape({
-      thumb: PropTypes.object.isRequired,
-      full: PropTypes.object.isRequired,
-      title: PropTypes.string,
+      highlight: PropTypes.shape({
+        title: PropTypes.string,
+        body: PropTypes.string,
+      }),
+      highlightPosition: PropTypes.oneOf(['left', 'right']),
+      highlightImage: PropTypes.shape({
+        image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+        title: PropTypes.string,
+        alt: PropTypes.string,
+      }),
+      cards: PropTypes.arrayOf(
+        PropTypes.shape({
+          image: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+            .isRequired,
+          title: PropTypes.string,
+          alt: PropTypes.string,
+        })
+      ),
     })
   ),
-  onCardClick: PropTypes.func,
 }
 
 // Page container (fetches and processes GraphQL data)
 const PeopleGalleryPage = ({ data }) => {
   const frontmatter = data.markdownRemark.frontmatter
-  const { title, gallery } = frontmatter
+  const { galleryBlocks } = frontmatter
 
-  const [activePhoto, setActivePhoto] = useState(null)
-  const handleCardClick = useCallback(
-    photo => setActivePhoto(photo),
-    []
-  )
+  const flowBlocks = useMemo(() => {
+    if (!galleryBlocks?.length) {
+      return []
+    }
 
-  const processedGallery = gallery
-    .filter(
-      item =>
-        item.thumb?.childImageSharp?.gatsbyImageData &&
-        item.full?.childImageSharp?.gatsbyImageData
-    )
-    .map(item => ({
-      thumb: item.thumb,
-      full: item.full.childImageSharp.gatsbyImageData,
-      title: item.title,
+    return galleryBlocks.map((block, blockIndex) => ({
+      highlight: {
+        title: block.highlight?.title,
+        body: block.highlight?.body,
+      },
+      highlightImage: block.highlight
+        ? {
+            image: block.highlight.src,
+            title: block.highlight.title,
+            alt: block.highlight.alt,
+          }
+        : null,
+      cards:
+        block.cards?.map(card => ({
+          image: card.src,
+          title: card.title,
+          alt: card.alt,
+        })) || [],
+      highlightPosition: blockIndex % 2 === 0 ? 'right' : 'left',
     }))
+  }, [galleryBlocks])
 
   return (
-    <>
-      <PeopleGalleryPageTemplate
-        title={title}
-        gallery={processedGallery}
-        onCardClick={handleCardClick}
-      />
-      <AnimatePresence>
-        {activePhoto && (
-            <motion.div
-              className="gallery-overlay"
-              onClick={() => setActivePhoto(null)}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { duration: 0.3 } }}
-              exit={{ opacity: 0, transition: { duration: 0.2 } }}
-            >
-              <motion.div
-                className="gallery-overlay__inner"
-                onClick={() => setActivePhoto(null)}
-                initial={{ scale: 0.97, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1, transition: { duration: 0.4 } }}
-                exit={{ scale: 0.97, opacity: 0, transition: { duration: 0.25 } }}
-            >
-              <GatsbyImage
-                image={activePhoto.full}
-                alt={activePhoto.title || ""}
-              />
-              <div className="text-wrapper">
-                <div className="duct-tape-container">
-                  <DuctTape className="duct-tape-background" />
-                  {activePhoto.title && (
-                    <div className="text-overlay overlay-title">
-                      {activePhoto.title}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    <Layout>
+      <PeopleGalleryPageTemplate flowBlocks={flowBlocks} />
+    </Layout>
   )
 }
 
@@ -102,12 +79,21 @@ PeopleGalleryPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.shape({
       frontmatter: PropTypes.shape({
-        title: PropTypes.string,
-        gallery: PropTypes.arrayOf(
+        galleryBlocks: PropTypes.arrayOf(
           PropTypes.shape({
-            thumb: PropTypes.object,
-            full: PropTypes.object,
-            title: PropTypes.string,
+            highlight: PropTypes.shape({
+              title: PropTypes.string,
+              body: PropTypes.string,
+              alt: PropTypes.string,
+              src: PropTypes.object,
+            }),
+            cards: PropTypes.arrayOf(
+              PropTypes.shape({
+                title: PropTypes.string,
+                alt: PropTypes.string,
+                src: PropTypes.object,
+              })
+            ),
           })
         ),
       }),
@@ -115,33 +101,41 @@ PeopleGalleryPage.propTypes = {
   }).isRequired,
 }
 
+export { PeopleGalleryPageTemplate }
 export default PeopleGalleryPage
 
 export const pageQuery = graphql`
   query PeopleGalleryPage {
     markdownRemark(frontmatter: { templateKey: { eq: "people-gallery" } }) {
       frontmatter {
-        title
-        gallery {
-          title
-          thumb: src {
-            childImageSharp {
-              gatsbyImageData(
-                width: 300
-                quality: 70
-                placeholder: BLURRED
-                layout: CONSTRAINED
-              )
+        galleryBlocks {
+          highlight {
+            title
+            body
+            alt
+            src {
+              childImageSharp {
+                gatsbyImageData(
+                  width: 600
+                  quality: 80
+                  placeholder: BLURRED
+                  layout: CONSTRAINED
+                )
+              }
             }
           }
-          full: src {
-            childImageSharp {
-              gatsbyImageData(
-                width: 1200
-                quality: 90
-                placeholder: NONE
-                layout: CONSTRAINED
-              )
+          cards {
+            title
+            alt
+            src {
+              childImageSharp {
+                gatsbyImageData(
+                  width: 400
+                  quality: 70
+                  placeholder: BLURRED
+                  layout: CONSTRAINED
+                )
+              }
             }
           }
         }
