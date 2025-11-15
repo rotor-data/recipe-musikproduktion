@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import MasonryGallery from '../components/MasonryGallery'
 import { GatsbyImage } from "gatsby-plugin-image";
 import DuctTape from "../img/duct-tape.svg";
+import { motion, AnimatePresence } from 'framer-motion'
 
 // Template component (presentational only)
 const PeopleGalleryPageTemplate = ({ title, gallery, onCardClick }) => {
@@ -47,10 +48,9 @@ const PeopleGalleryPage = ({ data }) => {
         item.full?.childImageSharp?.gatsbyImageData
     )
     .map(item => ({
-      thumb: item.thumb.childImageSharp.gatsbyImageData,
+      thumb: item.thumb,
       full: item.full.childImageSharp.gatsbyImageData,
       title: item.title,
-      tag: item.tag,
     }))
 
   return (
@@ -60,33 +60,40 @@ const PeopleGalleryPage = ({ data }) => {
         gallery={processedGallery}
         onCardClick={handleCardClick}
       />
-      {activePhoto && (
-        <div className="gallery-overlay" onClick={() => setActivePhoto(null)}>
-          <div className="gallery-overlay__inner">
-            <GatsbyImage
-              image={activePhoto.full}
-              alt={activePhoto.title || ""}
-            />
-            {(activePhoto.tag || activePhoto.title) && (
+      <AnimatePresence>
+        {activePhoto && (
+            <motion.div
+              className="gallery-overlay"
+              onClick={() => setActivePhoto(null)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 0.3 } }}
+              exit={{ opacity: 0, transition: { duration: 0.2 } }}
+            >
+              <motion.div
+                className="gallery-overlay__inner"
+                onClick={() => setActivePhoto(null)}
+                initial={{ scale: 0.97, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1, transition: { duration: 0.4 } }}
+                exit={{ scale: 0.97, opacity: 0, transition: { duration: 0.25 } }}
+            >
+              <GatsbyImage
+                image={activePhoto.full}
+                alt={activePhoto.title || ""}
+              />
               <div className="text-wrapper">
                 <div className="duct-tape-container">
                   <DuctTape className="duct-tape-background" />
-                  {activePhoto.tag && (
-                    <span className="text-overlay text-overlay__tag">
-                      {activePhoto.tag}
-                    </span>
-                  )}
                   {activePhoto.title && (
-                    <span className="text-overlay text-overlay__title">
+                    <div className="text-overlay overlay-title">
                       {activePhoto.title}
-                    </span>
+                    </div>
                   )}
                 </div>
               </div>
-            )}
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }
@@ -117,7 +124,6 @@ export const pageQuery = graphql`
         title
         gallery {
           title
-          tag
           thumb: src {
             childImageSharp {
               gatsbyImageData(

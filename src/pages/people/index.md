@@ -4,7 +4,7 @@ title: People Gallery
 visible: true
 gallery:
   - src: /img/people/14358685_10153920507799033_2879091713172743611_n.jpg
-    title: ""
+    title: "Joakim"
   - src: /img/people/Dusty.jpg
     title: ""
   - src: /img/people/IMG_0145-2.jpeg

@@ -35,7 +35,7 @@ const LogoBanner = () => {
   return (
 
 
-      <div className="logo-banner__wrapper py-3" style={{backgroundColor:'rgba(255,255,255,0.5)'}}>
+      <div className="logo-banner__wrapper py-3" style={{backgroundColor:'rgba(255,255,255,0.2)'}}>
       <div className="logo-banner__scroll">
         {[...logos, ...logos, ...logos].map(({ node }, index) => {
           const image = getImage(node.childImageSharp);

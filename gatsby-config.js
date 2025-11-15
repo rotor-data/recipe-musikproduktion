@@ -4,24 +4,24 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    company: "Noctoscope",
-    title: "Noctoscope — Indie Electronic from Stockholm",
+    company: "Recipe Musikproduktion",
+    title: "Recipe Musikproduktion – Professionellt ljud i varje detalj",
     description:
-      "Noctoscope is an indie electronic music project based in Stockholm, blending emotional intensity with shimmering synths and layered soundscapes.",
-    siteUrl: "https://noctoscope.com", // replace with actual domain or Netlify URL
+      "Recipe Musikproduktion är en professionell musikstudio på Södermalm. Vi erbjuder musikproduktion, podcastinspelning, mixning, mastering och ljuddesign för artister, företag och kreatörer som vill ha ljud som känns.",
+    siteUrl: "https://www.recipemusikproduktion.se/",
     socialLinks: {
-      facebook: "https://facebook.com/noctoscope",
+      facebook: "",
       twitter: "",
-      instagram: "https://instagram.com/noctoscope_stockholm",
+      instagram: "",
       vimeo: "",
-      spotify:"https://open.spotify.com/artist/5t79rZGMekv9nzN04FZ5Ij",
-      bandcamp: "", 
-      apple:"https://music.apple.com/se/artist/noctoscope/1764519920",
-      deezer:"https://www.deezer.com/sv/artist/279163441",
-      linkedin:"",
-      youtube: "", // add your YouTube link when ready
-      tiktok: "https://tiktok.com/@noctoscope" // if you're using it
-    }
+      spotify: "",
+      bandcamp: "",
+      apple: "",
+      deezer: "",
+      linkedin: "",
+      youtube: "",
+      tiktok: "",
+    },
   },
   
   plugins: [
@@ -167,7 +167,7 @@ module.exports = {
         preconnect: ["https://use.typekit.net"],
         web: [
           {
-            name: ["stratos", "stratos-lights"],
+            name: ["stratos", "stratos-lights", "span-compressed"],
             file: "https://use.typekit.net/jni5cuh.css",
           }
         ],

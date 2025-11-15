@@ -1,34 +1,75 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Masonry } from 'masonic';
-import DuctTape from '../assets/svg/duct-tape.svg';
+import { motion } from 'framer-motion';
+import DuctTape from '../img/duct-tape.svg';
 import PreviewCompatibleImage from './PreviewCompatibleImage';
 
-import './MasonryGallery.scss';
+const rotationClasses = ['rotate-minus-5', 'rotate-minus-3', 'rotate-0', 'rotate-3', 'rotate-5'];
+const alternateRotations = [-5, 5];
 
-const getRotationClass = (index) => {
-  const classes = ['rotate-minus-5', 'rotate-minus-3', 'rotate-0', 'rotate-3', 'rotate-5'];
-  return classes[index % classes.length];
-};
-
-const MasonryGallery = ({ photos }) => {
-  const renderCard = ({ data, index }) => {
-    const rotationClass = getRotationClass(index);
+const MasonryGallery = ({ photos, onCardClick }) => {
+  const renderCard = ({ data, index, columnIndex = index }) => {
+    const rotation = alternateRotations[index % alternateRotations.length];
+    const rotationClass = rotationClasses[index % rotationClasses.length];
+    const animateFromLeft = columnIndex % 2 === 0;
 
     return (
-      <div className="card" key={index}>
-        <div className="card-image has-background-light is-relative">
-          <PreviewCompatibleImage imageInfo={{ image: data.src, alt: data.title || '' }} />
-          {data.title && (
-            <div className="text-wrapper">
+      <motion.div
+        className="card"
+        key={index}
+        onClick={() => onCardClick && onCardClick(data)}
+        role={onCardClick ? "button" : undefined}
+        tabIndex={onCardClick ? 0 : undefined}
+        onKeyDown={
+          onCardClick
+            ? event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  onCardClick(data);
+                }
+              }
+            : undefined
+        }
+        initial={{
+          opacity: 0,
+          y: 12,
+          x: animateFromLeft ? -80 : 80,
+          rotate: rotation + (animateFromLeft ? -8 : 8),
+        }}
+        animate={{ opacity: 1, y: 0, x: 0, rotate: rotation }}
+        transition={{ duration: 0.45, delay: index * 0.03 }}
+        whileHover={{ scale: 1.02, y: -2 }}
+        style={{ rotate: rotation }}
+      >
+        <div
+          className="card-image is-relative"
+          style={{ background: 'transparent' }}
+        >
+          <PreviewCompatibleImage
+            imageInfo={{
+              image: data.thumb,
+              alt: data.title || '',
+              imageStyle: {
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center',
+              },
+            }}
+          />
+          <div className="text-wrapper">
+            <div className="duct-tape-container">
               <DuctTape className={`duct-tape-background ${rotationClass}`} />
-              <div className="text-overlay">
-                {data.title}
-              </div>
+              {data.title && (
+                <div className="text-overlay">
+                  {data.title}
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
-      </div>
+      </motion.div>
     );
   };
 
@@ -50,11 +91,12 @@ const MasonryGallery = ({ photos }) => {
 MasonryGallery.propTypes = {
   photos: PropTypes.arrayOf(
     PropTypes.shape({
-      src: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+      thumb: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
       title: PropTypes.string,
       uploadDate: PropTypes.string
     })
-  ).isRequired
+  ).isRequired,
+  onCardClick: PropTypes.func,
 };
 
 export default MasonryGallery;

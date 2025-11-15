@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import WeHelp from "./WeHelp";
 import PreviewCompatibleImage from "./PreviewCompatibleImage";
 
-const Solutions = ({ solutions }) => {
+const Solutions = ({ solutions, wrapInSection = true }) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [highlightIndex, setHighlightIndex] = useState(0);
 
@@ -17,45 +17,49 @@ const Solutions = ({ solutions }) => {
     }
   }, [activeIndex, solutions.blocks.length]);
 
-  return (
-    <section className="section">
-      <div className="container">
-        <div className="columns is-vcentered">
-          {/* Left Column */}
-          <div className="column is-half">
-            <div className="ml-3">
-              <WeHelp />
-            </div>
-            {solutions.blocks.map((solution, index) => (
-              <div
-                key={index}
-                className={`box solution-category is-clickable mb-4 ${
-                  activeIndex === index || (activeIndex === null && highlightIndex === index)
-                    ? "has-background-gradient-pink"
-                    : ""
-                }`}
-                onClick={() => setActiveIndex(index)}
-                onMouseEnter={() => setActiveIndex(index)}
-                onMouseLeave={() => setActiveIndex(null)}
-              >
-                <h2 className="title is-size-3 has-text-link is-family-sencondary has-text-weight-bold">
-                  {solution.category}
-                </h2>
-                <div className="content has-text-black has-text-weight-semibold">
-                  <p>{solution.items.description}</p>
-                </div>
+  const content = (
+    <div className="container">
+      <div className="columns is-vcentered">
+        {/* Left Column */}
+        <div className="column is-half">
+          <div className="ml-3">
+            <WeHelp />
+          </div>
+          {solutions.blocks.map((solution, index) => (
+            <div
+              key={index}
+              className={`box solution-category is-clickable mb-4 ${
+                activeIndex === index || (activeIndex === null && highlightIndex === index)
+                  ? "has-background-gradient-pink"
+                  : ""
+              }`}
+              onClick={() => setActiveIndex(index)}
+              onMouseEnter={() => setActiveIndex(index)}
+              onMouseLeave={() => setActiveIndex(null)}
+            >
+              <h2 className="title is-size-3 has-text-link is-family-sencondary has-text-weight-bold">
+                {solution.category}
+              </h2>
+              <div className="content has-text-white has-text-weight-semibold">
+                <p>{solution.items.description}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
 
-          {/* Right Column */}
-          <div className="column is-half has-text-centered">
-            <PreviewCompatibleImage imageInfo={solutions.image} />
-          </div>
+        {/* Right Column */}
+        <div className="column is-half has-text-centered">
+          <PreviewCompatibleImage imageInfo={solutions.image} />
         </div>
       </div>
-    </section>
+    </div>
   );
+
+  if (wrapInSection) {
+    return <section className="section">{content}</section>
+  }
+
+  return content
 };
 
 Solutions.propTypes = {
@@ -71,6 +75,7 @@ Solutions.propTypes = {
       })
     ).isRequired,
   }).isRequired,
+  wrapInSection: PropTypes.bool,
 };
 
 export default Solutions;

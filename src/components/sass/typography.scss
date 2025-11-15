@@ -7,7 +7,7 @@
 
 
 em {
-  color: $warning;
+  color: $success;
   font-style: normal;
 }
 
@@ -31,6 +31,43 @@ h4,
 h5,
 h6 {
   font-family: $bodytext;
+}
+
+.content p {
+  font-size: 0.9rem;
+  font-weight: 100;
+}
+
+.megatitle {
+  font-size: 5rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  color: #C29C38;
+  font-family: stratos, sans-serif;
+  hyphens: auto;
+  hyphenate-limit-chars: 5 5 3;
+}
+
+.megatitle em {
+  font-size: 3rem;
+  text-transform: none;
+  margin-inline-end: -14px;
+  margin-inline-start: -10px;
+  color: #fff;
+  font-family: span-compressed, serif;
+  font-weight: 300;
+}
+
+@include mixins.mobile{
+  .megatitle {
+    font-size: 3rem;
+  }
+  .megatitle em {
+    font-size: 1.8rem;
+    margin-inline-end: -5px;
+    margin-inline-start: -3px;
+  }
 }
 
 button h1,
@@ -159,5 +196,3 @@ button h6 {
     color: $white;
   }
 }
-
-

@@ -64,6 +64,11 @@
       @content;
     }
   }
+    @mixin touch {
+    @media (max-width: 1023px) {
+      @content;
+    }
+  }
   
   // Button Skew Effect
   @mixin button-skew-effect($skew: 10px, $duration: 0.3s) {

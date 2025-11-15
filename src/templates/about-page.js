@@ -9,6 +9,7 @@ import TeamBox from "../components/TeamBox";
 import SEO from "../components/SEO";
 
 
+
 // eslint-disable-next-line
 export const AboutPageTemplate = ({ title, path, meta, og, content, contentComponent, hero, why, us, team }) => {
 
