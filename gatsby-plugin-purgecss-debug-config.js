@@ -359,7 +359,7 @@
         'process.env.GATSBY_TELEMETRY_DISABLED': '"1"',
         'process.env.GATSBY_PRECOMPILE_DEVELOP_FUNCTIONS': '"true"',
         'process.env.GATSBY_REPORTER_ISVERBOSE': '"0"',
-        'process.env.GATSBY_NODE_GLOBALS': '"{\\"buildId\\":\\"9282a47a-d163-45b0-b357-2e5cc5856d4d\\",\\"root\\":\\"/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion\\"}"',
+        'process.env.GATSBY_NODE_GLOBALS': '"{\\"buildId\\":\\"8191f162-68b6-4c5b-9640-5c83c95007ae\\",\\"root\\":\\"/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion\\"}"',
         'process.env.GATSBY_SLICES': '"true"',
         'process.env.GATSBY_QUERY_ON_DEMAND_LOADING_INDICATOR': '"true"',
         __BASE_PATH__: '""',
@@ -635,10 +635,6 @@
           {
             themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-sitemap',
             themeName: 'gatsby-plugin-sitemap'
-          },
-          {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-source-filesystem',
-            themeName: 'gatsby-source-filesystem'
           },
           {
             themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-source-filesystem',

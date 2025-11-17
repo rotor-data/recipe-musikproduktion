@@ -60,39 +60,40 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
   createTypes(`
-    type MarkdownRemarkFrontmatterFlowBlocksHighlight {
-      pretitle: String
-      title: String
-      body: String
-      ctaText: String
-      ctaLink: String
-      megaHeadline: String
+    type MarkdownRemark implements Node {
+      frontmatter: Frontmatter
     }
 
-    type MarkdownRemarkFrontmatterFlowBlocksCard {
-      tagline: String
-      title: String
-      description: String
-      fullWidth: Boolean
-      link: String
-      linkLabel: String
+    type Frontmatter @infer {
+      hero: Hero
+      pageCopy: PageCopy
+    }
+
+    type Hero @infer {
       image: File @fileByRelativePath
     }
 
-    type MarkdownRemarkFrontmatterFlowBlocksGalleryItem {
+    type PageCopy @infer {
+      flowBlocks: [FlowBlock]!
+    }
+
+    type FlowBlock @infer {
+      highlight: FlowBlockHighlight
+      cards: [FlowBlockCard]
+      galleryItems: [FlowBlockGalleryItem]
+    }
+
+    type FlowBlockHighlight @infer {
       image: File @fileByRelativePath
-      title: String
-      subtitle: String
+    }
+
+    type FlowBlockCard {
+      image: File @fileByRelativePath
+    }
+
+    type FlowBlockGalleryItem {
+      image: File @fileByRelativePath
       bigText: String
-      link: String
-    }
-
-    type MarkdownRemarkFrontmatterFlowBlocks {
-      highlight: MarkdownRemarkFrontmatterFlowBlocksHighlight
-      cards: [MarkdownRemarkFrontmatterFlowBlocksCard]
-      highlightPosition: String
-      showGallery: Boolean
-      galleryItems: [MarkdownRemarkFrontmatterFlowBlocksGalleryItem]
     }
   `)
 }

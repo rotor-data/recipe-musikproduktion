@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { getImage } from "gatsby-plugin-image"
 import MarkdownRenderer from "./MarkdownRenderer"
 import PreviewCompatibleImage from "./PreviewCompatibleImage"
 
@@ -13,22 +14,23 @@ const getMegaDividerSpans = (megaHeadline) => {
   ))
 }
 
-const GalleryRow = ({ items }) => (
+const GalleryRow = ({ items }) => {
+  return (
   <div className="flow-grid__gallery-row">
     {items.map(({ image, title, subtitle, bigText, link }, index) => {
-      const imageUrl =
-        (typeof image === "string" && image) ||
-        image?.publicURL ||
-        image?.childImageSharp?.gatsbyImageData?.images?.fallback?.src ||
-        ""
-      ;
+   
       const CardContent = (
-        <div
-          className="flow-grid__gallery-card"
-          style={{
-            backgroundImage: imageUrl ? `url(${imageUrl})` : "none",
-          }}
-        >
+        <div className="flow-grid__gallery-card flow-grid__gallery-card--image">
+          {image && (
+            <div className="flow-grid__gallery-card-image">
+              <PreviewCompatibleImage
+                imageInfo={{
+                  image: image,
+                  alt: title || subtitle || bigText || "Gallery image",
+                }}
+              />
+            </div>
+          )}
           <div className="flow-grid__gallery-card-body">
             {bigText && (
               <span className="flow-grid__gallery-card-big has-text-weight-bold is-size-2 has-tight-spacing">
@@ -64,7 +66,8 @@ const GalleryRow = ({ items }) => (
       )
     })}
   </div>
-)
+  )
+}
 
 GalleryRow.propTypes = {
   items: PropTypes.arrayOf(
@@ -96,7 +99,7 @@ const GridBlock = ({ highlight, cards, highlightPosition = "right" }) => {
     highlight
 
   const cardsColumn = (
-    <div className="column is-half-desktop">
+    <div className="column is-half-desktop is-full-mobile is-full-touch">
       <div className="flow-grid__cards">
         {cards.map((card, index) => {
           const hasText = Boolean(card.tagline || card.title || card.description)
@@ -161,9 +164,9 @@ const GridBlock = ({ highlight, cards, highlightPosition = "right" }) => {
   )
 
   const highlightColumn = (
-    <div className="column is-half-desktop flow-grid__highlight-column">
+    <div className="column is-half-desktop is-full-mobile is-full-touch flow-grid__highlight-column">
       <div className="box highlight-panel has-text-centered-desktop has-text-left-mobile">
-        {pretitle && <p className="highlight-panel__pretitle">{pretitle}</p>}
+        {pretitle && <p className="highlight-panel__pretitle has-text-black">{pretitle}</p>}
         {title && (
           <h2 className="megatitle highlight-title">
             <MarkdownRenderer markdown={title} inline />
@@ -188,7 +191,12 @@ const GridBlock = ({ highlight, cards, highlightPosition = "right" }) => {
       ? [highlightColumn, cardsColumn]
       : [cardsColumn, highlightColumn]
 
-  return <div className="columns is-variable is-1">{columns}</div>
+  const columnOrder = 
+     highlightPosition === "left"
+       ? "highight-is-left"
+       : "highlight-is-right"
+
+  return <div className={`columns is-mobile is-variable is-1 ${columnOrder}`}>{columns}</div>
 }
 
 GridBlock.propTypes = {
@@ -237,7 +245,7 @@ const FlowGrid = ({ flowBlocks }) => {
             return (
               <div
                 key={`${block.highlight?.title || "block"}-${index}`}
-                className="flow-grid__block"
+                className={`flow-grid__block`}
                 id={anchorId}
               >
                 {block.highlight?.megaHeadline && (

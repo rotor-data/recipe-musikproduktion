@@ -42,12 +42,12 @@ pageCopy:
         - tagline:
           title: 
           description:
-          image: /img/jocke.jpg
+          image: /img/mikrofon.jpg
         - tagline: "People"
           title: "Folk i studion"
           description: |
             Vi jobbar med Kleerup, Frida Öhrn, Seal, Chris Medina, Owe Thörnqvist, Noctoscope och många fler. Kunder som Kvartal, Storytel, ESPN, FOX och Dramaten kommer hit för musik, mixning, mastering och ljudproduktion.
-          image: /img/mikrofon.jpg
+          image: "/img/placeholder photo.png"
           fullWidth: true
           link: "/people"
           linkLabel: "Se bilder"
@@ -62,19 +62,18 @@ pageCopy:
         ctaLink: "/people"
       showGallery: true
       galleryItems:
-        - image: "/img/jocke.jpg"
+        - image: /img/IMG_0444.jpg
           title: "Studio Sessions"
-          subtitle: "Live recording"
+          subtitle: "Se bilder från studion"
           link: "/cases"
-        - image: ""
-          bigText: "01"
-          title: "Field work"
-          subtitle: "Sound design"
-          link: ""
-        - image: "/img/mikrofon.jpg"
+        - image:
+          bigText: "[Verse]" 
+          title: ""
+          subtitle: ""
+        - image: /img/mikrofon.jpg
           title: "The Hunter"
           subtitle: "Creative mixing"
-        - image: "/img/placeholder photo.png"
+        - image: /img/IMG_0931.jpg
           title: "The Convert"
           subtitle: "Mastering"
           link: "/people"
@@ -83,15 +82,16 @@ pageCopy:
           title: "Poddproduktion & voiceovers"
           description: |
             Inspelning, klippning, mixning och ljuddesign för företagspoddar, e-learning och reklam.
-        - tagline: "Mastering"
-          image: /img/mikrofon.jpg
-          title: "Mixning & mastering"
-          description: |
-            Proffsig slutbearbetning som lyfter helhetsintrycket – oavsett om du jobbar med musik, film eller varumärke.
+          image: /img/IMG_0664.jpg
+        - tagline:
+          title:
+          description:
+          image: /img/IMG_0364.JPG
         - tagline: "Partnerskap"
           title: "Kreatörer & produktionsbolag"
           description: |
             Vi ljudlägger film, dokumentärer, reklam och scenproduktioner – ofta med snäva deadlines och höga krav.
+          image: /img/IMG_1244.jpeg
       highlightPosition: "left"
     - highlight:
         pretitle: "Hur vi jobbar"
@@ -106,14 +106,17 @@ pageCopy:
           title: "Planering & referenser"
           description: |
             Vi hjälper dig definiera vad som ska hända i studion och vilka referenser som visar vägen.
+          image: /img/IMG_3168.jpeg
         - tagline: "Inspelning"
           title: "Sessioner som flyter"
           description: |
             En avslappnad studio, plats att slappna av i och teknik som fungerar – allt för att du ska vara i rätt känsla när inspelningen sker.
+          image: /img/IMG_3189.JPG
         - tagline: "Leverans"
           title: "Mix & mastering"
           description: |
             När inspelningen är klar tar vi över, mixar, mastrar och levererar ljud som känns professionellt och personligt.
+          image: /img/IMG_3957-1.jpg
       highlightPosition: "right"
 
 solutions:

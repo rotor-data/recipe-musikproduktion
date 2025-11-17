@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "variables" as *;
+@use "mixins";
 
 .flow-grid {
   display: flex;
@@ -304,6 +305,15 @@
   &:last-child {
     margin-bottom: 0;
   }
+}
+
+@include mixins.touch {
+
+  .flow-grid__block .highlight-is-right {
+    flex-direction: column-reverse;
+}
+
+
 }
 
 .flow-grid__gallery-row {

@@ -36,6 +36,7 @@ IndexPageTemplate.propTypes = {
 
 // 🔹 Containerkomponent
 const IndexPage = ({ data }) => {
+  console.log(data)
   const content = data.markdownRemark.frontmatter
 
   return <IndexPageTemplate content={content} />
@@ -93,7 +94,18 @@ export const query = graphql`
               showGallery
               galleryItems {
                 image {
-                  publicURL
+                  childImageSharp {
+                    gatsbyImageData(
+                      quality: 80
+                      layout: CONSTRAINED
+                      transformOptions: {
+                        cropFocus: CENTER
+                        fit: COVER
+                      }
+                      width: 800
+                      height: 360
+                    )
+                  }
                 }
                 title
                 subtitle
