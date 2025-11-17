@@ -84,7 +84,7 @@ body {
     margin-bottom: -80px;
 
     &.is-active {
-      max-height: 500px; // Expand enough to show links
+      max-height: 100vh; // Expand enough to fill the viewport
       opacity: 1;
       transition: max-height 0.3s ease-out, opacity 0.3s ease-out, margin-bottom 0.5s ease-out;
       margin-bottom:0;
@@ -140,9 +140,20 @@ body {
   }
 
   @include mixins.mobile {
-    // Mobile: override active background for open menu
+    // Mobile: keep the active menu covering the entire viewport
+    .navbar-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 90;
+    }
+
     .navbar-menu.is-active {
       background: linear-gradient(45deg, #192d47, #192d47, transparent) !important;
+      padding-top: 6rem;
+      padding-bottom: 3rem;
     }
   }
 }
@@ -207,7 +218,7 @@ body {
       flex-direction: column;
       align-items: center;
       width: 100%;
-      margin-top: 1rem;
+      margin-top: 0;
       background: transparent;
 
       .navbar-start {
@@ -809,12 +820,12 @@ opacity: 1;
     width: 100%;
     margin-bottom: -80px;
 
-    &.is-active {
-      max-height: 500px; // Expand enough to show links
-      opacity: 1;
-      transition: max-height 0.3s ease-out, opacity 0.3s ease-out, margin-bottom 0.5s ease-out;
-      margin-bottom:0;
-    }
+      &.is-active {
+        max-height: 100vh; // Expand enough to fill the viewport
+        opacity: 1;
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out, margin-bottom 0.5s ease-out;
+        margin-bottom:0;
+      }
   }
 
   .navbar-item,
@@ -866,9 +877,20 @@ opacity: 1;
   }
 
   @include mixins.mobile {
-    // Mobile: override active background for open menu
+    // Mobile: keep the active menu covering the entire viewport
+    .navbar-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 90;
+    }
+
     .navbar-menu.is-active {
       background: linear-gradient(45deg, #192d47, #192d47, transparent) !important;
+      padding-top: 6rem;
+      padding-bottom: 3rem;
     }
   }
 }
@@ -933,7 +955,7 @@ opacity: 1;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      margin-top: 1rem;
+      margin-top: 0;
       background: transparent;
 
       .navbar-start {
