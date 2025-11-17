@@ -19,14 +19,15 @@ PeopleGalleryPageTemplate.propTypes = {
       }),
       highlightPosition: PropTypes.oneOf(['left', 'right']),
       highlightImage: PropTypes.shape({
-        image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+        thumb: PropTypes.object,
+        full: PropTypes.object,
         title: PropTypes.string,
         alt: PropTypes.string,
       }),
       cards: PropTypes.arrayOf(
         PropTypes.shape({
-          image: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
-            .isRequired,
+          thumb: PropTypes.object,
+          full: PropTypes.object,
           title: PropTypes.string,
           alt: PropTypes.string,
         })
@@ -52,14 +53,16 @@ const PeopleGalleryPage = ({ data }) => {
       },
       highlightImage: block.highlight
         ? {
-            image: block.highlight.src,
+            thumb: block.highlight.src?.thumb,
+            full: block.highlight.src?.full,
             title: block.highlight.title,
             alt: block.highlight.alt,
           }
         : null,
       cards:
         block.cards?.map(card => ({
-          image: card.src,
+          thumb: card.src?.thumb,
+          full: card.src?.full,
           title: card.title,
           alt: card.alt,
         })) || [],
@@ -109,9 +112,17 @@ export const pageQuery = graphql`
             body
             alt
             src {
-              childImageSharp {
+              thumb: childImageSharp {
                 gatsbyImageData(
                   width: 600
+                  quality: 80
+                  placeholder: BLURRED
+                  layout: CONSTRAINED
+                )
+              }
+              full: childImageSharp {
+                gatsbyImageData(
+                  height: 800
                   quality: 80
                   placeholder: BLURRED
                   layout: CONSTRAINED
@@ -123,10 +134,18 @@ export const pageQuery = graphql`
             title
             alt
             src {
-              childImageSharp {
+              thumb: childImageSharp {
                 gatsbyImageData(
                   width: 400
                   quality: 70
+                  placeholder: BLURRED
+                  layout: CONSTRAINED
+                )
+              }
+              full: childImageSharp {
+                gatsbyImageData(
+                  height: 800
+                  quality: 80
                   placeholder: BLURRED
                   layout: CONSTRAINED
                 )

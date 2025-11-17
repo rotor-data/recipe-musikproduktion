@@ -39,10 +39,10 @@ pageCopy:
           image: /img/jocke.jpg
           link: "/cases"
           linkLabel: "Se case"
-        - tagline: "Studio Stories"
-          title: "Musik, poddar & ljuddesign"
-          description: |
-            En skön inspelningsdag börjar med tydliga mål, rör sig genom fysiska möten och slutar i mix och mastering som matchar känslan du vill förmedla.
+        - tagline:
+          title: 
+          description:
+          image: /img/jocke.jpg
         - tagline: "People"
           title: "Folk i studion"
           description: |

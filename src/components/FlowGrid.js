@@ -113,16 +113,23 @@ const GridBlock = ({ highlight, cards, highlightPosition = "right" }) => {
 
           return (
             <div key={index} className={cardClassNames}>
-              {card.image && (
-                <div className="flow-grid__card-image">
-                  <PreviewCompatibleImage
-                    imageInfo={{
-                      image: card.image,
-                      alt: card.alt || card.title || "Card image",
-                    }}
-                  />
-                </div>
-              )}
+          {card.image && (
+            <div className="flow-grid__card-image">
+              <PreviewCompatibleImage
+                imageInfo={{
+                  image: card.image,
+                  alt: card.alt || card.title || "Card image",
+                  imageStyle: hasText
+                    ? undefined
+                    : {
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      },
+                }}
+              />
+            </div>
+          )}
 
               {hasText && (
                 <div className="flow-grid__card-content">

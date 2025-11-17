@@ -347,8 +347,6 @@
     DefinePlugin {
       definitions: {
         'process.env': '({})',
-        'process.env.MAILCHIMP_API_KEY': '"203b77c1189c9601b5c7ead7b93badbd-us4"',
-        'process.env.MAILCHIMP_LIST_ID': '"6991276398"',
         'process.env.YOUTUBE_API_KEY': '"AIzaSyB3Kpmo0lu6VuTVx5OvvEyCIRiR3awdPJA"',
         'process.env.YOUTUBE_CHANNEL_ID': '"UCJOUnXWZ8wNk504yv2BkN4A"',
         'process.env.NODE_ENV': '"development"',
@@ -361,7 +359,7 @@
         'process.env.GATSBY_TELEMETRY_DISABLED': '"1"',
         'process.env.GATSBY_PRECOMPILE_DEVELOP_FUNCTIONS': '"true"',
         'process.env.GATSBY_REPORTER_ISVERBOSE': '"0"',
-        'process.env.GATSBY_NODE_GLOBALS': '"{\\"buildId\\":\\"5c3f6b50-8070-4ebf-ab93-ba3171826f69\\",\\"root\\":\\"/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion\\"}"',
+        'process.env.GATSBY_NODE_GLOBALS': '"{\\"buildId\\":\\"9282a47a-d163-45b0-b357-2e5cc5856d4d\\",\\"root\\":\\"/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion\\"}"',
         'process.env.GATSBY_SLICES': '"true"',
         'process.env.GATSBY_QUERY_ON_DEMAND_LOADING_INDICATOR': '"true"',
         __BASE_PATH__: '""',
@@ -637,10 +635,6 @@
           {
             themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-plugin-sitemap',
             themeName: 'gatsby-plugin-sitemap'
-          },
-          {
-            themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-source-filesystem',
-            themeName: 'gatsby-source-filesystem'
           },
           {
             themeDir: '/Users/danielpettersson/Local sites.nosync/recipe-musikproduktion/node_modules/gatsby-source-filesystem',
