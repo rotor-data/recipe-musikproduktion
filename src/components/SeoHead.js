@@ -58,11 +58,11 @@ const SeoHead = ({ title, description, slug, og = {} }) => {
       <link rel="canonical" href={pageUrl} />
 
       {/* Icons */}
-      <link rel="apple-touch-icon" sizes="180x180" href={withPrefix("/img/apple-touch-icon.png")} />
-      <link rel="icon" type="image/png" href={withPrefix("/img/favicon-32x32.png")} sizes="32x32" />
-      <link rel="icon" type="image/png" href={withPrefix("/img/favicon-16x16.png")} sizes="16x16" />
-      <link rel="mask-icon" href={withPrefix("/img/safari-pinned-tab.svg")} color="#ff4400" />
-      <meta name="theme-color" content="#fff" />
+      <link rel="apple-touch-icon" sizes="180x180" href={withPrefix("/img/favicons/favicon-rec-apple-touch-icon.png")} />
+      <link rel="icon" type="image/png" href={withPrefix("/img/favicons/favicon-rec-32x32.png")} sizes="32x32" />
+      <link rel="icon" type="image/png" href={withPrefix("/img/favicons/favicon-rec-16x16.png")} sizes="16x16" />
+      <link rel="shortcut icon" href={withPrefix("/img/favicons/favicon-rec.ico")} />
+      <meta name="theme-color" content="#000" />
 
       {/* OpenGraph */}
       <meta property="og:type" content={ogType} />
