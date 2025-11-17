@@ -313,6 +313,11 @@
     flex-direction: column-reverse;
 }
 
+.flow-grid__block .highlight-is-left {
+   flex-direction: column;
+
+}
+
 
 }
 
@@ -321,6 +326,12 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
   margin-bottom: 1rem;
+}
+
+@include mixins.mobile {
+  .flow-grid__gallery-row {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 }
 
 .flow-grid__gallery-card-wrapper {

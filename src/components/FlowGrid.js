@@ -193,7 +193,7 @@ const GridBlock = ({ highlight, cards, highlightPosition = "right" }) => {
 
   const columnOrder = 
      highlightPosition === "left"
-       ? "highight-is-left"
+       ? "highlight-is-left"
        : "highlight-is-right"
 
   return <div className={`columns is-mobile is-variable is-1 ${columnOrder}`}>{columns}</div>
