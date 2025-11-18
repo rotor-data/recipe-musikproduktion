@@ -1,8 +1,3 @@
-https://rotormediagroup.se https://rrrotor.com 301!
-https://rotormediagroup.se/* https://rrrotor.com/:splat 301!
-https://www.rotormediagroup.se https://rrrotor.com 301!
-https://www.rotormediagroup.se/* https://rrrotor.com/:splat 301!
-
 # Allow only these two pages, under construction variant
 /personuppgiftsbehandling/  /personuppgiftsbehandling/  200
 /                           /                            200
