@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef } from "react"
 import "plyr/dist/plyr.css"
 
 const PlyrYouTubePlayer = ({ videoId }) => {
   const playerRef = useRef(null)
-  const [ended, setEnded] = useState(false)
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -19,15 +18,17 @@ const PlyrYouTubePlayer = ({ videoId }) => {
       }
 
       player = new Plyr(playerRef.current, {
+        controls: ["play", "progress", "current-time", "mute", "volume", "fullscreen"],
         youtube: {
           noCookie: true,
           rel: 0,
           modestbranding: 1,
+          showinfo: 0,
         },
       })
 
       player.on("ended", () => {
-        setEnded(true)
+        player.stop()
       })
     })
 
@@ -40,24 +41,12 @@ const PlyrYouTubePlayer = ({ videoId }) => {
   }, [videoId])
 
   return (
-    <div>
-      {!ended ? (
-        <div
-          ref={playerRef}
-          className="plyr__video-embed"
-          data-plyr-provider="youtube"
-          data-plyr-embed-id={videoId}
-        />
-      ) : (
-        <div className="box has-text-centered">
-          <h2 className="title is-4">Thanks for watching!</h2>
-          <p>Here’s what you can do next:</p>
-          <a href="/contact" className="button is-primary mt-4">
-            Contact Us
-          </a>
-        </div>
-      )}
-    </div>
+    <div
+      ref={playerRef}
+      className="plyr__video-embed"
+      data-plyr-provider="youtube"
+      data-plyr-embed-id={videoId}
+    />
   )
 }
 

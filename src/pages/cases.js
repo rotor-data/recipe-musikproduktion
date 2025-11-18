@@ -1,17 +1,21 @@
 import React, { useEffect, useMemo, useState } from "react"
+import VideoModal from "../components/VideoModal"
 
-const CasesHighlightColumn = ({ videos, layout = "twoTop" }) => {
+const CasesHighlightColumn = ({
+  videos,
+  layout = "twoTop",
+  onVideoClick = () => {},
+}) => {
   if (!videos?.length) {
     return null
   }
 
   const renderVideoCard = (video, styleClass) => (
-    <a
+    <button
       key={video.id}
-      href={`https://www.youtube.com/watch?v=${video.id}`}
-      target="_blank"
-      rel="noreferrer"
+      type="button"
       className={`cases-highlight-video cases-dashed ${styleClass}`}
+      onClick={() => onVideoClick(video)}
     >
       <div className="cases-highlight-video-media">
         {video.thumbnail && (
@@ -31,7 +35,7 @@ const CasesHighlightColumn = ({ videos, layout = "twoTop" }) => {
           </span>
         </div>
       </div>
-    </a>
+    </button>
   )
 
   const highlightVideo = videos.find(video => video.highlight) || videos[0]
@@ -65,7 +69,7 @@ const CasesHighlightColumn = ({ videos, layout = "twoTop" }) => {
   )
 }
 
-const CasesVideoBlocks = ({ videoChunks }) => {
+const CasesVideoBlocks = ({ videoChunks, onVideoClick }) => {
   if (!videoChunks.length) {
     return null
   }
@@ -92,6 +96,7 @@ const CasesVideoBlocks = ({ videoChunks }) => {
                   <CasesHighlightColumn
                     videos={highlightChunk}
                     layout="twoTop"
+                    onVideoClick={onVideoClick}
                     key={`highlight-left-${rowIndex}`}
                   />
                 )
@@ -99,6 +104,7 @@ const CasesVideoBlocks = ({ videoChunks }) => {
                   <CasesHighlightColumn
                     videos={secondaryChunk}
                     layout="twoTop"
+                    onVideoClick={onVideoClick}
                     key={`highlight-left-${rowIndex}`}
                   />
                 )
@@ -109,6 +115,7 @@ const CasesVideoBlocks = ({ videoChunks }) => {
                   <CasesHighlightColumn
                     videos={secondaryChunk}
                     layout="oneTop"
+                    onVideoClick={onVideoClick}
                     key={`highlight-right-${rowIndex}`}
                   />
                 )
@@ -116,6 +123,7 @@ const CasesVideoBlocks = ({ videoChunks }) => {
                   <CasesHighlightColumn
                     videos={highlightChunk}
                     layout="oneTop"
+                    onVideoClick={onVideoClick}
                     key={`highlight-right-${rowIndex}`}
                   />
                 )
@@ -140,6 +148,7 @@ const CasesPage = () => {
   const [videos, setVideos] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [selectedVideo, setSelectedVideo] = useState(null)
 
   useEffect(() => {
     const loadVideos = async () => {
@@ -190,6 +199,9 @@ const CasesPage = () => {
     return pairs
   }, [videos])
 
+  const openVideoInModal = video => setSelectedVideo(video)
+  const closeVideoModal = () => setSelectedVideo(null)
+
   return (
     <>
       <section className="section">
@@ -202,7 +214,8 @@ const CasesPage = () => {
           )}
         </div>
       </section>
-      <CasesVideoBlocks videoChunks={chunkPairs} />
+      <CasesVideoBlocks videoChunks={chunkPairs} onVideoClick={openVideoInModal} />
+      <VideoModal video={selectedVideo} onClose={closeVideoModal} gradientBackground />
     </>
   )
 }
