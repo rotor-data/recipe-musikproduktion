@@ -19,7 +19,12 @@ const transformImage = (image, getAsset) => {
 }
 
 const IndexPagePreview = ({ entry, getAsset }) => {
-  const data = entry.getIn(["data"]).toJS()
+  const entryData =
+    entry.getIn(["data"]) || entry.getIn(["data", "frontmatter"]) || null
+  const data =
+    (entryData && entryData.toJS && entryData.toJS()) ||
+    entryData ||
+    {}
 
   const heroImage = transformImage(data.hero?.image, getAsset)
 
