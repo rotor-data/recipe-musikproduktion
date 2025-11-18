@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import IndexPageTemplate from "../../templates/index-page"
+import { IndexPageTemplate } from "../../templates/index-page"
 
 const transformImage = (image, getAsset) => {
   if (!image) {
@@ -51,6 +51,7 @@ const IndexPagePreview = ({ entry, getAsset }) => {
             buttonText: data.hero?.cta?.buttonText,
           },
           image: heroImage,
+          showLogoBanner: false,
         },
         pageCopy: {
           flowBlocks,

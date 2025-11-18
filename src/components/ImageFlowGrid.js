@@ -2,11 +2,28 @@ import React, { useState } from "react"
 import PropTypes from "prop-types"
 import PreviewCompatibleImage from "./PreviewCompatibleImage"
 
+const resolveImageInfo = imageValue => {
+  if (!imageValue) {
+    return null
+  }
+
+  if (typeof imageValue === "string") {
+    return { image: imageValue }
+  }
+
+  if (imageValue?.gatsbyImageData) {
+    return { childImageSharp: imageValue }
+  }
+
+  return { image: imageValue }
+}
+
 const ImageFlowGrid = ({ flowBlocks }) => {
   const [activeImageInfo, setActiveImageInfo] = useState(null)
 
   const handleImageActivation = imageInfo => event => {
-    if (!imageInfo?.childImageSharp) {
+    const hasImageData = imageInfo?.childImageSharp || imageInfo?.image
+    if (!hasImageData) {
       return
     }
 
@@ -30,25 +47,26 @@ const ImageFlowGrid = ({ flowBlocks }) => {
     <>
       <section className="section py-5 image-flow-grid">
         <div className="container is-fluid">
+
           {flowBlocks.map((block, blockIndex) => {
             const highlightPosition =
               block.highlightPosition === "left" ? "left" : "right"
-            const highlightImageThumb = block.highlightImage?.thumb
-            const highlightImageModalChild =
-              block.highlightImage?.full || highlightImageThumb
+            const highlightImageThumb = resolveImageInfo(block.highlightImage?.thumb)
+            const highlightImageModalInfo = resolveImageInfo(
+              block.highlightImage?.full || block.highlightImage?.thumb
+            )
             const highlightImageAlt =
               block.highlightImage?.alt ||
               block.highlightImage?.title ||
               block.highlight?.title ||
               "Highlight image"
-            const highlightActivationInfo = highlightImageModalChild
+            const highlightActivationInfo = highlightImageModalInfo
               ? {
-                  childImageSharp: highlightImageModalChild,
+                  ...highlightImageModalInfo,
                   alt: highlightImageAlt,
                   title: block.highlight?.title,
                 }
               : null
-
             const highlightColumnElement = (
               <div className="column is-half-desktop">
                 {highlightImageThumb && (
@@ -62,7 +80,7 @@ const ImageFlowGrid = ({ flowBlocks }) => {
                   >
                     <PreviewCompatibleImage
                       imageInfo={{
-                        childImageSharp: highlightImageThumb,
+                        ...highlightImageThumb,
                         alt: highlightImageAlt,
                         imageStyle: {
                           width: "100%",
@@ -94,17 +112,20 @@ const ImageFlowGrid = ({ flowBlocks }) => {
               <div className="column is-half-desktop">
                 <div className="image-flow-grid__cards image-flow-grid__cards--three">
                   {(block.cards || []).map((card, index) => {
-                    const cardThumb = card.thumb
-                    if (!cardThumb) {
+                    const cardThumbInfo = resolveImageInfo(card.thumb)
+                    if (!cardThumbInfo) {
                       return null
                     }
                     const cardAlt = card.alt || card.title || "People image"
-                    const cardModalChild = card.full || cardThumb
-                    const cardActivationInfo = {
-                      childImageSharp: cardModalChild,
-                      alt: cardAlt,
-                      title: card.title,
-                    }
+                    const cardActivationSource = card.full || card.thumb
+                    const cardActivationInfo = resolveImageInfo(cardActivationSource)
+                    const cardActivationPayload = cardActivationInfo
+                      ? {
+                          ...cardActivationInfo,
+                          alt: cardAlt,
+                          title: card.title,
+                        }
+                      : null
 
                     return (
                       <div
@@ -113,12 +134,12 @@ const ImageFlowGrid = ({ flowBlocks }) => {
                         role="button"
                         tabIndex={0}
                         aria-label={`View ${cardAlt}`}
-                        onClick={handleImageActivation(cardActivationInfo)}
-                        onKeyDown={handleImageActivation(cardActivationInfo)}
+                        onClick={handleImageActivation(cardActivationPayload)}
+                        onKeyDown={handleImageActivation(cardActivationPayload)}
                       >
                         <PreviewCompatibleImage
                           imageInfo={{
-                            childImageSharp: cardThumb,
+                            ...cardThumbInfo,
                             alt: cardAlt,
                             imageStyle: {
                               width: "100%",
@@ -162,10 +183,8 @@ const ImageFlowGrid = ({ flowBlocks }) => {
           <div className="image-flow-grid__modal-content">
             <PreviewCompatibleImage
               imageInfo={{
-                childImageSharp:
-                  activeImageInfo.childImageSharp ||
-                  activeImageInfo.full ||
-                  activeImageInfo.thumb,
+                childImageSharp: activeImageInfo.childImageSharp,
+                image: activeImageInfo.image,
                 alt: activeImageInfo.alt,
                 imageStyle: {
                   width: "auto",
@@ -196,15 +215,15 @@ ImageFlowGrid.propTypes = {
         body: PropTypes.string,
       }),
       highlightImage: PropTypes.shape({
-        thumb: PropTypes.object,
-        full: PropTypes.object,
+        thumb: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+        full: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
         title: PropTypes.string,
         alt: PropTypes.string,
       }),
       cards: PropTypes.arrayOf(
         PropTypes.shape({
-          thumb: PropTypes.object,
-          full: PropTypes.object,
+          thumb: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+          full: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
           title: PropTypes.string,
           alt: PropTypes.string,
         })

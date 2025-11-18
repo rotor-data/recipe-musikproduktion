@@ -5,7 +5,7 @@ import HeroSection from "../components/HeroSection"
 import SeoHead from "../components/SeoHead"
 import FlowGrid from "../components/FlowGrid"
 
-const IndexPageTemplate = ({ content }) => {
+export const IndexPageTemplate = ({ content }) => {
   const { hero, pageCopy = {} } = content
   const heroCtaText =
     hero?.cta?.buttonText || hero?.cta?.text || hero?.cta || ""
@@ -18,6 +18,7 @@ const IndexPageTemplate = ({ content }) => {
           description={hero.description}
           ctaText={heroCtaText}
           image={hero.image}
+          showLogoBanner={hero?.showLogoBanner}
         />
       </div>
 

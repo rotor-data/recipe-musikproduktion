@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import MarkdownRenderer from "./MarkdownRenderer"
 import LogoBanner from "./LogoBanner"
 
-const HeroSection = ({ h1title, title, description, ctaText, image }) => {
+const HeroSection = ({ h1title, title, description, ctaText, image, showLogoBanner = true }) => {
   const heroImage = getImage(image)
   const sectionRef = useRef(null)
 
@@ -88,7 +88,7 @@ const HeroSection = ({ h1title, title, description, ctaText, image }) => {
         </motion.div>
 
         {/* LogoBanner */}
-        <LogoBanner />
+        {showLogoBanner && <LogoBanner />}
       </div>
     </section>
   )
@@ -99,7 +99,12 @@ HeroSection.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   ctaText: PropTypes.string.isRequired,
-  image: PropTypes.object.isRequired
+  image: PropTypes.object.isRequired,
+  showLogoBanner: PropTypes.bool,
+}
+
+HeroSection.defaultProps = {
+  showLogoBanner: true,
 }
 
 export default HeroSection
