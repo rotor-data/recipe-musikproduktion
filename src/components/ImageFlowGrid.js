@@ -147,7 +147,7 @@ const ImageFlowGrid = ({ flowBlocks }) => {
             return (
               <div
                 key={`${block.highlight?.title || `block-${blockIndex}`}-${blockIndex}`}
-                className="image-flow-grid__block mb-6"
+                className="image-flow-grid__block mb-2"
               >
                 <div className="columns is-variable is-1 is-vcentered">
                   {columns}

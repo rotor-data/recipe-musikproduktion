@@ -67,7 +67,7 @@ const HeroSection = ({ h1title, title, description, ctaText, image }) => {
           <div className="container" style={{ maxWidth: "1200px", width: "100%" }}>
             <div className="columns is-centered">
               <div className="column is-10 has-text-centered">
-                <h1 className="is-size-6-desktop is-size-7-touch has-text-white mb-3 is-family-accent">
+                <h1 className="is-size-6-desktop is-size-7-touch has-text-white mb-3 is-family-accent is-italic">
                   {h1title}
                 </h1>
                 <p className="megatitle has-text-white mb-4">
