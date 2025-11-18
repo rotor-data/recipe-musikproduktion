@@ -29,6 +29,108 @@ collections:
               widget: "hidden",
               default: "index-page",
             }
+          - {
+              label: "Meta",
+              name: "meta",
+              widget: "object",
+              fields: [
+                { label: "Title", name: "title", widget: "string" },
+                { label: "Description", name: "description", widget: "text" }
+              ]
+            }
+          - {
+              label: "Hero",
+              name: "hero",
+              widget: "object",
+              fields: [
+                { label: "Title (small)", name: "title", widget: "string" },
+                { label: "H1 title", name: "h1title", widget: "string" },
+                { label: "Description", name: "description", widget: "text" },
+                {
+                  label: "CTA",
+                  name: "cta",
+                  widget: "object",
+                  fields: [
+                    { label: "Button text", name: "buttonText", widget: "string" }
+                  ]
+                },
+                {
+                  label: "Image",
+                  name: "image",
+                  widget: "image",
+                  required: false
+                }
+              ]
+            }
+          - {
+              label: "Page copy",
+              name: "pageCopy",
+              widget: "object",
+              fields: [
+                {
+                  label: "Flow blocks",
+                  name: "flowBlocks",
+                  widget: "list",
+                  fields: [
+                    {
+                      label: "Highlight position",
+                      name: "highlightPosition",
+                      widget: "select",
+                      options: ["left", "right"],
+                      default: "right"
+                    },
+                    {
+                      label: "Highlight",
+                      name: "highlight",
+                      widget: "object",
+                      fields: [
+                        { label: "Pretitle", name: "pretitle", widget: "string", required: false },
+                        { label: "Title", name: "title", widget: "string", required: false },
+                        { label: "Body", name: "body", widget: "text", required: false },
+                        { label: "CTA text", name: "ctaText", widget: "string", required: false },
+                        { label: "CTA link", name: "ctaLink", widget: "string", required: false },
+                        { label: "Mega headline", name: "megaHeadline", widget: "string", required: false }
+                      ]
+                    },
+                    { label: "Show gallery", name: "showGallery", widget: "boolean", default: false },
+                    {
+                      label: "Gallery items",
+                      name: "galleryItems",
+                      widget: "list",
+                      fields: [
+                        {
+                          label: "Image",
+                          name: "image",
+                          widget: "image"
+                        },
+                        { label: "Title", name: "title", widget: "string", required: false },
+                        { label: "Subtitle", name: "subtitle", widget: "string", required: false },
+                        { label: "Big text", name: "bigText", widget: "string", required: false },
+                        { label: "Link", name: "link", widget: "string", required: false }
+                      ]
+                    },
+                    {
+                      label: "Cards",
+                      name: "cards",
+                      widget: "list",
+                      fields: [
+                        { label: "Tagline", name: "tagline", widget: "string", required: false },
+                        { label: "Title", name: "title", widget: "string", required: false },
+                        { label: "Description", name: "description", widget: "text", required: false },
+                        { label: "Full width", name: "fullWidth", widget: "boolean", default: false },
+                        { label: "Link", name: "link", widget: "string", required: false },
+                        { label: "Link label", name: "linkLabel", widget: "string", required: false },
+                        {
+                          label: "Image",
+                          name: "image",
+                          widget: "image"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
       - file: "src/pages/people/index.md"
         label: "People Gallery"
         name: "people"
@@ -38,4 +140,40 @@ collections:
               name: "templateKey",
               widget: "hidden",
               default: "people-gallery",
+            }
+          - {
+              label: "Gallery blocks",
+              name: "galleryBlocks",
+              widget: "list",
+              fields: [
+                {
+                  label: "Highlight",
+                  name: "highlight",
+                  widget: "object",
+                  fields: [
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Body", name: "body", widget: "text", required: false },
+                    { label: "Alt text", name: "alt", widget: "string", required: false },
+                    {
+                      label: "Image",
+                      name: "src",
+                      widget: "image"
+                    }
+                  ]
+                },
+                {
+                  label: "Cards",
+                  name: "cards",
+                  widget: "list",
+                  fields: [
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Alt text", name: "alt", widget: "string", required: false },
+                    {
+                      label: "Image",
+                      name: "src",
+                      widget: "image"
+                    }
+                  ]
+                }
+              ]
             }
