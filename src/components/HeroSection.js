@@ -4,7 +4,6 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { motion, useScroll, useTransform } from "framer-motion"
 import MarkdownRenderer from "./MarkdownRenderer"
 import LogoBanner from "./LogoBanner"
-import CtaModal from "./CtaModal"
 
 const HeroSection = ({ h1title, title, description, ctaText, image }) => {
   const heroImage = getImage(image)
@@ -79,7 +78,9 @@ const HeroSection = ({ h1title, title, description, ctaText, image }) => {
                   </p>
                 )}
                 <div className="mt-5 mb-5">
-                  <CtaModal buttonText={ctaText} headline="Vill du prata med oss?" />
+                  <a href="#contact" className="recipe-button button is-medium is-danger">
+                    {ctaText}
+                  </a>
                 </div>
               </div>
             </div>
