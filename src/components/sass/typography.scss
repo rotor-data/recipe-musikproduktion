@@ -17,20 +17,18 @@ h1 {
   hyphenate-limit-chars: 5 5 5;
 }
 
-h2 {
-  font-family: $headline;
-  line-height: 1.2;
-  letter-spacing: -1px;
-}
-
-h3 {
-  font-family: $headline2;
-}
-
+h1,
+h2,
+h3,
 h4,
 h5,
 h6 {
-  font-family: $bodytext;
+  font-family: $headline;
+}
+
+h2 {
+  line-height: 1.2;
+  letter-spacing: -1px;
 }
 
 .content p {
@@ -56,8 +54,8 @@ h6 {
   margin-inline-end: -14px;
   margin-inline-start: -10px;
   color: #fff;
-  font-family: span-compressed, serif;
-  font-weight: 300;
+  font-family: stratos, sans-serif;
+  font-weight: 500;
 }
 
 @include mixins.mobile{
@@ -155,6 +153,7 @@ button h6 {
 
 
 .title {
+ font-family: $headline;
  line-height: 110%;
  // text-transform: uppercase;
  // letter-spacing: 1.1px;  

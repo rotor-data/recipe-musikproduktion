@@ -41,8 +41,8 @@ const ContactForm = ({ formData, handleChange, showFields, headline, id }) => {
     <div className="container form-container has-background-success has-text-left has-text-white">
       {submitted ? (
         <div className="has-text-centered p-6">
-          <h3 className="title is-size-3">Tack för ditt meddelande!</h3>
-          <p className="is-size-5 mt-4">Vi återkommer till dig så snart vi kan.</p>
+          <h3 className="title is-size-3">Thanks for your message.</h3>
+          <p className="is-size-5 mt-4">We will get back to you as soon as possible.</p>
         </div>
       ) : (
         <>
@@ -52,21 +52,21 @@ const ContactForm = ({ formData, handleChange, showFields, headline, id }) => {
             <input type="hidden" name="bot-field" />
 
             <div className="field">
-              <label className="label is-small ml-2">E-post (företag)*</label>
+              <label className="label is-small ml-2">Business email*</label>
               <div className="control">
                 <input className="input" type="email" name="email" value={formData.email} onChange={handleChange} required />
               </div>
             </div>
 
             <div className="field">
-              <label className="label is-small ml-2">Förnamn*</label>
+              <label className="label is-small ml-2">First name*</label>
               <div className="control">
                 <input className="input" type="text" name="FNAME" value={formData.FNAME} onChange={handleChange} required />
               </div>
             </div>
 
             <div className="field">
-              <label className="label is-small ml-2">Efternamn*</label>
+              <label className="label is-small ml-2">Last name*</label>
               <div className="control">
                 <input className="input" type="text" name="LNAME" value={formData.LNAME} onChange={handleChange} required />
               </div>
@@ -74,7 +74,7 @@ const ContactForm = ({ formData, handleChange, showFields, headline, id }) => {
 
             {showFields.COMPANY && (
               <div className="field">
-                <label className="label is-small ml-2">Företag*</label>
+                <label className="label is-small ml-2">Company*</label>
                 <div className="control">
                   <input className="input" type="text" name="COMPANY" value={formData.COMPANY} onChange={handleChange} required />
                 </div>
@@ -83,7 +83,7 @@ const ContactForm = ({ formData, handleChange, showFields, headline, id }) => {
 
             {showFields.PHONE && (
               <div className="field">
-                <label className="label is-small ml-2">Telefonnummer</label>
+                <label className="label is-small ml-2">Phone number</label>
                 <div className="control">
                   <input className="input" type="tel" name="PHONE" value={formData.PHONE} onChange={handleChange} />
                 </div>
@@ -92,13 +92,13 @@ const ContactForm = ({ formData, handleChange, showFields, headline, id }) => {
 
             {showFields.MESSAGE && (
               <div className="field">
-                <label className="label is-small ml-2">Beskriv vad du vill ha hjälp med</label>
+                <label className="label is-small ml-2">Describe how we can help</label>
                 <div className="control">
                   <textarea
                     className="is-family-primary input has-text-black"
                     style={{ width: '100%', height: '200px' }}
                     name="MESSAGE"
-                    placeholder="Skriv ditt meddelande här"
+                    placeholder="Write your message here"
                     value={formData.MESSAGE}
                     onChange={handleChange}
                   ></textarea>
@@ -124,9 +124,9 @@ const ContactForm = ({ formData, handleChange, showFields, headline, id }) => {
                     required
                   />
                   <span className="is-size-7 ml-3">
-                    Jag godkänner att ni använder mina uppgifter i enlighet med{" "}
+                    I agree that you can use my data according to{" "}
                     <a target="_blank" rel="noopener noreferrer" href="/personuppgiftsbehandling/">
-                     Recipes personuppgiftspolicy.
+                     Recipe's privacy policy.
                     </a>
                   </span>
                 </label>
@@ -135,7 +135,7 @@ const ContactForm = ({ formData, handleChange, showFields, headline, id }) => {
 
             <div className="field has-text-centered mt-5">
               <div className="control">
-                <button type="submit" className="button is-link">Skicka</button>
+                <button type="submit" className="button is-link">Send</button>
               </div>
             </div>
           </form>

@@ -4,10 +4,10 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    company: "Recipe Musikproduktion",
-    title: "Recipe Musikproduktion – Professionellt ljud i varje detalj",
+    company: "Recipe Music Production",
+    title: "Recipe Music Production - Professional sound in every detail",
     description:
-      "Recipe Musikproduktion är en professionell musikstudio på Södermalm. Vi erbjuder musikproduktion, podcastinspelning, mixning, mastering och ljuddesign för artister, företag och kreatörer som vill ha ljud som känns.",
+      "Recipe Music Production is a professional music studio in Stockholm. We offer music production, podcast recording, mixing, mastering, and sound design for artists, companies, and creators.",
     siteUrl: "https://www.recipemusikproduktion.se/",
     socialLinks: {
       facebook: "",

@@ -5,7 +5,7 @@ import ContactFormThanks from './contactFormThanks'
 import PropTypes from 'prop-types'
 import RotorCTA from './RotorCTA'
 
-const CtaModal = ({ buttonText = "Skicka förfrågan", headline = "Kontakta oss", showFieldsOverride }) => {
+const CtaModal = ({ buttonText = "Send request", headline = "Contact us", showFieldsOverride }) => {
   const [show, setShow] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -53,7 +53,7 @@ const CtaModal = ({ buttonText = "Skicka förfrågan", headline = "Kontakta oss"
           formData={formData}
           handleChange={handleChange}
           showFields={showFields}
-          headline="Kontakta oss"
+          headline="Contact us"
         />
       </SimpleModal>
     </>

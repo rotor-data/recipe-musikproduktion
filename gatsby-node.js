@@ -89,6 +89,9 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type FlowBlockCard {
       image: File @fileByRelativePath
+      fullWidth: Boolean
+      link: String
+      linkLabel: String
     }
 
     type FlowBlockGalleryItem {

@@ -36,10 +36,10 @@ const Navbar = () => {
   `)
 
   const fallbackMenu = [
-    { label: "Om oss", href: "#om-oss" },
-    { label: "Cases", href: "#cases" },
-    { label: "People", href: "#people" },
-    { label: "Kontakt", href: "#contact" },
+    { label: "Start", href: "/" },
+    { label: "Gallery", href: "/people" },
+    { label: "Work", href: "/work" },
+    { label: "Contact", href: "/contact" },
   ]
   const menu = data?.navigation?.frontmatter?.menu ?? fallbackMenu
   const normalizedMenu = menu.map(item => ({

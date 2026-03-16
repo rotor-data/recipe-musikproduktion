@@ -10,21 +10,21 @@ const ContactForm = ({ formData, handleChange, handleSubmit, showFields, headlin
         <input type="hidden" name="bot-field" />
         {/* Always show email, first name, and last name fields */}
         <div className="field">
-          <label className="label is-small ml-2 has-text-link">E-post (företag)*</label>
+          <label className="label is-small ml-2 has-text-link">Business email*</label>
           <div className="control">
             <input className="input" type="email" name="email" value={formData.email} onChange={handleChange} required />
           </div>
         </div>
 
         <div className="field">
-          <label className="label is-small ml-2 has-text-link">Förnamn*</label>
+          <label className="label is-small ml-2 has-text-link">First name*</label>
           <div className="control">
             <input className="input" type="text" name="FNAME" value={formData.FNAME} onChange={handleChange} required />
           </div>
         </div>
 
         <div className="field">
-          <label className="label is-small ml-2 has-text-link">Efternamn*</label>
+          <label className="label is-small ml-2 has-text-link">Last name*</label>
           <div className="control">
             <input className="input" type="text" name="LNAME" value={formData.LNAME} onChange={handleChange} required />
           </div>
@@ -34,7 +34,7 @@ const ContactForm = ({ formData, handleChange, handleSubmit, showFields, headlin
 
         {showFields.COMPANY && (
           <div className="field">
-            <label className="label is-small ml-2 has-text-link">Företag*</label>
+            <label className="label is-small ml-2 has-text-link">Company*</label>
             <div className="control">
               <input className="input" type="text" name="COMPANY" value={formData.COMPANY} onChange={handleChange} required/>
             </div>
@@ -44,7 +44,7 @@ const ContactForm = ({ formData, handleChange, handleSubmit, showFields, headlin
            {/* Conditional rendering based on showFields */}
            {showFields.PHONE && (
           <div className="field">
-            <label className="label is-small ml-2 has-text-link">Telefonnummer</label>
+            <label className="label is-small ml-2 has-text-link">Phone number</label>
             <div className="control">
               <input className="input" type="tel" name="PHONE" value={formData.PHONE} onChange={handleChange}/>
             </div>
@@ -53,19 +53,19 @@ const ContactForm = ({ formData, handleChange, handleSubmit, showFields, headlin
 
       {showFields.MESSAGE && (
           <div className="field">
-            <label className="label is-small ml-2 has-text-link">Meddelande</label>
+            <label className="label is-small ml-2 has-text-link">Message</label>
             <div className="control">
-              <textarea className='is-family-primary input' style={{width:'100%', height: '200px'}} name="MESSAGE" placeholder="Skriv ditt meddelande här" value={formData.MESSAGE} onChange={handleChange}></textarea>
+              <textarea className='is-family-primary input' style={{width:'100%', height: '200px'}} name="MESSAGE" placeholder="Write your message here" value={formData.MESSAGE} onChange={handleChange}></textarea>
             </div>
           </div>
         )}
 
-          <div class="field">
-            <div class="control">
-              <label class="checkbox">
+          <div className="field">
+            <div className="control">
+              <label className="checkbox">
                 <input type="checkbox" value={formData.CONSENT} onChange={handleChange}/>
                 <span className='is-size-7 ml-3'>
-                Jag godkänner att ni använder mina uppgifter i enlighet med <a target="_blank" rel="noopener noreferrer" href="/personuppgiftsbehandling/">Rotors personuppgiftspolicy.</a>
+                I agree that you can use my data according to <a target="_blank" rel="noopener noreferrer" href="/personuppgiftsbehandling/">Recipe's privacy policy.</a>
                 </span>
               </label>
             </div>
@@ -74,7 +74,7 @@ const ContactForm = ({ formData, handleChange, handleSubmit, showFields, headlin
 
         <div className="field has-text-centered mt-5">
           <div className="control">
-            <button type="submit" className="button is-link">Skicka</button>
+            <button type="submit" className="button is-link">Send</button>
           </div>
         </div>
       </form>

@@ -17,10 +17,10 @@ public_folder: /img
 
 collections:
   - name: "pages"
-    label: "Pages"
+    label: "Website Pages"
     files:
       - file: "src/pages/index.md"
-        label: "Landing Page"
+        label: "Start Page"
         name: "index"
         fields:
           - {
@@ -33,44 +33,49 @@ collections:
               label: "Meta",
               name: "meta",
               widget: "object",
+              hint: "SEO fields used in Google and social shares.",
               fields: [
-                { label: "Title", name: "title", widget: "string" },
-                { label: "Description", name: "description", widget: "text" }
+                { label: "SEO title", name: "title", widget: "string", hint: "Keep this clear and keyword-focused (about 50-60 characters)." },
+                { label: "SEO description", name: "description", widget: "text", hint: "Short summary for search/social (about 140-160 characters)." }
               ]
             }
           - {
               label: "Hero",
               name: "hero",
               widget: "object",
+              hint: "Top section of the start page.",
               fields: [
-                { label: "Title (small)", name: "title", widget: "string" },
-                { label: "H1 title", name: "h1title", widget: "string" },
-                { label: "Description", name: "description", widget: "text" },
+                { label: "Main headline", name: "title", widget: "string", hint: "Large title shown in the hero." },
+                { label: "H1 (SEO line)", name: "h1title", widget: "string", hint: "Small top line used as H1 for SEO." },
+                { label: "Intro text (below hero)", name: "description", widget: "text", hint: "Text block shown directly below the hero." },
                 {
                   label: "CTA",
                   name: "cta",
                   widget: "object",
                   fields: [
-                    { label: "Button text", name: "buttonText", widget: "string" }
+                    { label: "Button text", name: "buttonText", widget: "string", required: false }
                   ]
                 },
                 {
-                  label: "Image",
+                  label: "Hero image",
                   name: "image",
                   widget: "image",
+                  hint: "Best result: wide image, high quality.",
                   required: false
                 }
               ]
             }
           - {
-              label: "Page copy",
+              label: "Page Sections",
               name: "pageCopy",
               widget: "object",
               fields: [
                 {
-                  label: "Flow blocks",
+                  label: "Content blocks",
                   name: "flowBlocks",
                   widget: "list",
+                  summary: "{{fields.highlight.title}} ({{fields.highlightPosition}})",
+                  hint: "Blocks are rendered in order: Services, Work, People.",
                   fields: [
                     {
                       label: "Highlight position",
@@ -83,20 +88,23 @@ collections:
                       label: "Highlight",
                       name: "highlight",
                       widget: "object",
+                      hint: "Main text for this block.",
                       fields: [
-                        { label: "Pretitle", name: "pretitle", widget: "string", required: false },
-                        { label: "Title", name: "title", widget: "string", required: false },
-                        { label: "Body", name: "body", widget: "text", required: false },
-                        { label: "CTA text", name: "ctaText", widget: "string", required: false },
-                        { label: "CTA link", name: "ctaLink", widget: "string", required: false },
+                        { label: "Pretitle", name: "pretitle", widget: "string", required: false, hint: "Small uppercase label above the title." },
+                        { label: "Title", name: "title", widget: "string", required: false, hint: "Main heading for this block." },
+                        { label: "Body", name: "body", widget: "text", required: false, hint: "Optional short paragraph." },
+                        { label: "CTA text", name: "ctaText", widget: "string", required: false, hint: "Optional button/link text." },
+                        { label: "CTA link", name: "ctaLink", widget: "string", required: false, hint: "Use a relative path, e.g. /work." },
                         { label: "Mega headline", name: "megaHeadline", widget: "string", required: false }
                       ]
                     },
-                    { label: "Show gallery", name: "showGallery", widget: "boolean", default: false },
+                    { label: "Show gallery", name: "showGallery", widget: "boolean", default: false, hint: "Use only when this block should include gallery cards." },
                     {
                       label: "Gallery items",
                       name: "galleryItems",
                       widget: "list",
+                      summary: "{{fields.title}}",
+                      hint: "Used for visual teaser cards.",
                       fields: [
                         {
                           label: "Image",
@@ -113,6 +121,8 @@ collections:
                       label: "Cards",
                       name: "cards",
                       widget: "list",
+                      summary: "{{fields.title}}",
+                      hint: "Use for supporting cards in each section.",
                       fields: [
                         { label: "Tagline", name: "tagline", widget: "string", required: false },
                         { label: "Title", name: "title", widget: "string", required: false },
@@ -132,7 +142,7 @@ collections:
               ]
             }
       - file: "src/pages/people/index.md"
-        label: "People Gallery"
+        label: "People Gallery Page"
         name: "people"
         fields:
           - {
@@ -145,15 +155,17 @@ collections:
               label: "Gallery blocks",
               name: "galleryBlocks",
               widget: "list",
+              summary: "{{fields.highlight.title}}",
+              hint: "Each block has one featured image and three gallery cards.",
               fields: [
                 {
-                  label: "Highlight",
+                  label: "Featured image",
                   name: "highlight",
                   widget: "object",
                   fields: [
-                    { label: "Title", name: "title", widget: "string" },
-                    { label: "Body", name: "body", widget: "text", required: false },
-                    { label: "Alt text", name: "alt", widget: "string", required: false },
+                    { label: "Title (name shown in lightbox)", name: "title", widget: "string" },
+                    { label: "Body (optional internal note)", name: "body", widget: "text", required: false },
+                    { label: "Alt text", name: "alt", widget: "string", required: false, hint: "Describe the image for accessibility." },
                     {
                       label: "Highlight image",
                       name: "src",
@@ -162,12 +174,13 @@ collections:
                   ]
                 },
                 {
-                  label: "Cards",
+                  label: "Gallery cards",
                   name: "cards",
                   widget: "list",
+                  summary: "{{fields.title}}",
                   fields: [
-                    { label: "Title", name: "title", widget: "string" },
-                    { label: "Alt text", name: "alt", widget: "string", required: false },
+                    { label: "Title (name shown in lightbox)", name: "title", widget: "string" },
+                    { label: "Alt text", name: "alt", widget: "string", required: false, hint: "Describe the image for accessibility." },
                     {
                       label: "Card image",
                       name: "src",

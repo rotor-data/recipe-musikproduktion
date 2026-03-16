@@ -1,23 +1,17 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { getImage } from "gatsby-plugin-image"
 import MarkdownRenderer from "./MarkdownRenderer"
 import PreviewCompatibleImage from "./PreviewCompatibleImage"
 
-const MEGA_DIVIDER_REPEAT_UNIT = 6
-
-const getMegaDividerSpans = (megaHeadline) => {
-  const dividerText = `${megaHeadline} • `
-  const totalCopies = MEGA_DIVIDER_REPEAT_UNIT * 2
-  return Array.from({ length: totalCopies }).map((_, copyIndex) => (
-    <span key={copyIndex}>{dividerText}</span>
-  ))
-}
-
 const GalleryRow = ({ items }) => {
+  const cleanItems = (items || []).filter(item => item?.image)
+  if (!cleanItems.length) {
+    return null
+  }
+
   return (
   <div className="flow-grid__gallery-row">
-    {items.map(({ image, title, subtitle, bigText, link }, index) => {
+    {cleanItems.map(({ image, title, subtitle, bigText, link }, index) => {
    
       const CardContent = (
         <div className="flow-grid__gallery-card flow-grid__gallery-card--image">
@@ -51,12 +45,14 @@ const GalleryRow = ({ items }) => {
           )}
         </div>
       )
+      const isExternal = Boolean(link && /^https?:\/\//i.test(link))
+
       return link ? (
         <a
           key={`${title || bigText}-${index}`}
           href={link}
-          target="_blank"
-          rel="noreferrer"
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "noreferrer" : undefined}
           className="flow-grid__gallery-card-wrapper flow-grid__gallery-card-link"
         >
           {CardContent}
@@ -91,19 +87,22 @@ GalleryRow.defaultProps = {
 }
 
 const GridBlock = ({ highlight, cards, highlightPosition = "right" }) => {
-  if (!cards?.length || !highlight) {
+  const cleanCards = (cards || []).filter(
+    card => card?.image || card?.title || card?.description || card?.tagline
+  )
+
+  if (!cleanCards.length || !highlight) {
     return null
   }
 
-  const { pretitle, title, titleHighlight, body, ctaText, ctaLink, megaHeadline } =
-    highlight
+  const { pretitle, title, body, ctaText, ctaLink } = highlight
 
   const cardsColumn = (
     <div className="column is-half-desktop is-full-mobile is-full-touch">
       <div className="flow-grid__cards">
-        {cards.map((card, index) => {
+        {cleanCards.map((card, index) => {
           const hasText = Boolean(card.tagline || card.title || card.description)
-          const isFullWidth = card.fullWidth || index === cards.length - 1
+          const isFullWidth = Boolean(card.fullWidth)
           const cardClassNames = [
             "box",
             "mb-0",
@@ -153,7 +152,7 @@ const GridBlock = ({ highlight, cards, highlightPosition = "right" }) => {
 
               {card.link && (
                 <a href={card.link} className="flow-grid__card-link">
-                  {card.linkLabel || "Läs mer"} <span className="ml-2">→</span>
+                  {card.linkLabel || "Read more"} <span className="ml-2">→</span>
                 </a>
               )}
             </div>
@@ -177,7 +176,7 @@ const GridBlock = ({ highlight, cards, highlightPosition = "right" }) => {
         )}
         {ctaText && (
           <div className="highlight-panel__cta">
-            <a href={ctaLink || "/#contact"} className="has-text-link">
+            <a href={ctaLink || "/contact"} className="has-text-link">
               {ctaText} <span>→</span>
             </a>
           </div>
@@ -248,13 +247,6 @@ const FlowGrid = ({ flowBlocks }) => {
                 className={`flow-grid__block`}
                 id={anchorId}
               >
-                {block.highlight?.megaHeadline && (
-                  <div className="flow-grid__mega-divider mb-4" aria-hidden="true">
-                    <div className="flow-grid__mega-divider__track">
-                      {getMegaDividerSpans(block.highlight.megaHeadline)}
-                    </div>
-                  </div>
-                )}
                 {block.showGallery && block.galleryItems?.length > 0 && (
                   <GalleryRow items={block.galleryItems} />
                 )}

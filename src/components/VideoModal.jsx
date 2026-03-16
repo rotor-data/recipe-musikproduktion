@@ -18,7 +18,25 @@ const VideoModal = ({ video, onClose, gradientBackground = false }) => {
           </div>
           <div className="video-modal-details">
             <h3 className="title is-4">{video.title}</h3>
-            {video.description && <p>{video.description}</p>}
+            {(video.channelTitle || video.publishedAt) && (
+              <p className="video-modal-details__meta">
+                {video.channelTitle || "YouTube"}
+                {video.publishedAt && (
+                  <>
+                    {" "}
+                    ·{" "}
+                    {new Date(video.publishedAt).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </>
+                )}
+              </p>
+            )}
+            {video.description && (
+              <p className="video-modal-details__description">{video.description}</p>
+            )}
           </div>
         </div>
       </div>

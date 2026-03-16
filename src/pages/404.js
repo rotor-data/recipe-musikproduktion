@@ -4,8 +4,8 @@ import Layout from "../components/Layout";
 const NotFoundPage = () => (
   <Layout>
     <div>
-      <h1>Sidan du besöker finns inte...</h1>
-      <p>Du får gå tillbaka till huvudsidan och hitta rätt!</p>
+      <h1>This page does not exist.</h1>
+      <p>Please go back to the start page and navigate from there.</p>
     </div>
   </Layout>
 );

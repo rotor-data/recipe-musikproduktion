@@ -1,11 +1,11 @@
 ---
 menu:
-  - label: "Om oss"
-    href: "/#om-oss"
-  - label: "Cases"
-    href: "/cases"
-  - label: "People"
+  - label: "Start"
+    href: "/"
+  - label: "Gallery"
     href: "/people"
-  - label: "Kontakt"
-    href: "/#contact"
+  - label: "Work"
+    href: "/work"
+  - label: "Contact"
+    href: "/contact"
 ---

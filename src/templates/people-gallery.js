@@ -1,76 +1,79 @@
-import React, { useMemo } from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
-import ImageFlowGrid from '../components/ImageFlowGrid'
+import React, { useMemo, useState } from "react"
+import PropTypes from "prop-types"
+import { graphql } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import SeoHead from "../components/SeoHead"
 
-// Template component (presentational only)
-const PeopleGalleryPageTemplate = ({ flowBlocks }) => (
-  <div className="has-background-black">
-    <ImageFlowGrid flowBlocks={flowBlocks} />
-  </div>
-)
-
-PeopleGalleryPageTemplate.propTypes = {
-  flowBlocks: PropTypes.arrayOf(
-    PropTypes.shape({
-      highlight: PropTypes.shape({
-        title: PropTypes.string,
-        body: PropTypes.string,
-      }),
-      highlightPosition: PropTypes.oneOf(['left', 'right']),
-      highlightImage: PropTypes.shape({
-        thumb: PropTypes.object,
-        full: PropTypes.object,
-        title: PropTypes.string,
-        alt: PropTypes.string,
-      }),
-      cards: PropTypes.arrayOf(
-        PropTypes.shape({
-          thumb: PropTypes.object,
-          full: PropTypes.object,
-          title: PropTypes.string,
-          alt: PropTypes.string,
-        })
-      ),
-    })
-  ),
-}
-
-// Page container (fetches and processes GraphQL data)
 const PeopleGalleryPage = ({ data }) => {
-  const frontmatter = data.markdownRemark.frontmatter
-  const { galleryBlocks } = frontmatter
+  const [activeImage, setActiveImage] = useState(null)
+  const galleryBlocks = data.markdownRemark.frontmatter.galleryBlocks || []
 
-  const flowBlocks = useMemo(() => {
-    if (!galleryBlocks?.length) {
-      return []
-    }
-
-    return galleryBlocks.map((block, blockIndex) => ({
-      highlight: {
-        title: block.highlight?.title,
-        body: block.highlight?.body,
-      },
-      highlightImage: block.highlight
-        ? {
-            thumb: block.highlight.src?.thumb,
-            full: block.highlight.src?.full,
+  const images = useMemo(() => {
+    return galleryBlocks.flatMap(block => {
+      const highlightImage = block.highlight?.src
+        ? [{
+            image: block.highlight.src,
+            alt: block.highlight.alt || block.highlight.title || "Gallery image",
             title: block.highlight.title,
-            alt: block.highlight.alt,
-          }
-        : null,
-      cards:
-        block.cards?.map(card => ({
-          thumb: card.src?.thumb,
-          full: card.src?.full,
+          }]
+        : []
+
+      const cardImages = (block.cards || [])
+        .filter(card => card?.src)
+        .map(card => ({
+          image: card.src,
+          alt: card.alt || card.title || "Gallery image",
           title: card.title,
-          alt: card.alt,
-        })) || [],
-      highlightPosition: blockIndex % 2 === 0 ? 'right' : 'left',
-    }))
+        }))
+
+      return [...highlightImage, ...cardImages]
+    })
   }, [galleryBlocks])
 
-  return <PeopleGalleryPageTemplate flowBlocks={flowBlocks} />
+  return (
+    <section className="section content-page-shell content-page-shell--gradient">
+      <div className="container is-fluid">
+        <h1 className="title is-size-1 has-text-white content-page__title">People</h1>
+
+        <div className="people-grid">
+          {images.map((item, index) => {
+            const imageData = getImage(item.image)
+            if (!imageData) {
+              return null
+            }
+
+            return (
+              <button
+                key={`${item.title || "gallery"}-${index}`}
+                type="button"
+                className="people-grid__item"
+                onClick={() => setActiveImage(item)}
+                aria-label={`Open ${item.alt}`}
+              >
+                <GatsbyImage image={imageData} alt={item.alt} />
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      {activeImage && (
+        <div className="image-flow-grid__modal" onClick={() => setActiveImage(null)}>
+          <div className="image-flow-grid__modal-content">
+            <GatsbyImage
+              image={getImage(activeImage.image)}
+              alt={activeImage.alt}
+              style={{ width: "auto", maxWidth: "95vw", maxHeight: "calc(100vh - 4rem)" }}
+              imgStyle={{ objectFit: "contain" }}
+            />
+            {activeImage.title && (
+              <p className="image-flow-grid__modal-title">{activeImage.title}</p>
+            )}
+          </div>
+        </div>
+      )}
+    </section>
+  )
 }
 
 PeopleGalleryPage.propTypes = {
@@ -81,7 +84,6 @@ PeopleGalleryPage.propTypes = {
           PropTypes.shape({
             highlight: PropTypes.shape({
               title: PropTypes.string,
-              body: PropTypes.string,
               alt: PropTypes.string,
               src: PropTypes.object,
             }),
@@ -99,8 +101,15 @@ PeopleGalleryPage.propTypes = {
   }).isRequired,
 }
 
-export { PeopleGalleryPageTemplate }
 export default PeopleGalleryPage
+
+export const Head = () => (
+  <SeoHead
+    title="People | Recipe Music Production"
+    description="Black and white gallery from Recipe Music Production in Stockholm."
+    slug="/people"
+  />
+)
 
 export const pageQuery = graphql`
   query PeopleGalleryPage {
@@ -109,23 +118,16 @@ export const pageQuery = graphql`
         galleryBlocks {
           highlight {
             title
-            body
             alt
             src {
-              thumb: childImageSharp {
+              childImageSharp {
                 gatsbyImageData(
-                  width: 600
-                  quality: 80
+                  width: 560
+                  height: 560
+                  quality: 82
                   placeholder: BLURRED
                   layout: CONSTRAINED
-                )
-              }
-              full: childImageSharp {
-                gatsbyImageData(
-                  height: 800
-                  quality: 80
-                  placeholder: BLURRED
-                  layout: CONSTRAINED
+                  transformOptions: { fit: COVER, cropFocus: CENTER, grayscale: true }
                 )
               }
             }
@@ -134,20 +136,14 @@ export const pageQuery = graphql`
             title
             alt
             src {
-              thumb: childImageSharp {
+              childImageSharp {
                 gatsbyImageData(
-                  width: 400
-                  quality: 70
+                  width: 560
+                  height: 560
+                  quality: 82
                   placeholder: BLURRED
                   layout: CONSTRAINED
-                )
-              }
-              full: childImageSharp {
-                gatsbyImageData(
-                  height: 800
-                  quality: 80
-                  placeholder: BLURRED
-                  layout: CONSTRAINED
+                  transformOptions: { fit: COVER, cropFocus: CENTER, grayscale: true }
                 )
               }
             }

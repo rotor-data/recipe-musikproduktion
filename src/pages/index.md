@@ -1,150 +1,105 @@
 ---
 templateKey: "index-page"
-title: "Recipe Musikproduktion – Professionellt ljud i varje detalj"
+title: "Recipe Music Production - Professional sound in every detail"
 visible: true
 
 meta:
-  title: "Musikstudio Stockholm – Musikproduktion, Podcast Studio & Mastering | Recipe"
-  description: "Recipe Musikproduktion är en professionell sound house på Södermalm. Vi erbjuder musikproduktion, podcastinspelning, mixning, mastering och ljuddesign för artister, företag och kreatörer som vill ha ljud som känns."
+  title: "Music Studio Stockholm - Music Production, Podcast Studio & Mastering | Recipe"
+  description: "Recipe Music Production is a Stockholm studio for music production, podcast recording, mixing, mastering, and sound design."
 
 hero:
-  title: Professionellt ljud *från* idé *till* färdig produktion
-  h1title: "Musikstudio Stockholm • Musikproduktion • Podcast Studio • Mixning • Mastering • Ljudproduktion"
+  title: Professional sound *from* idea *to* finished production
+  h1title: "Music Studio Stockholm • Music Production • Podcast Studio • Mixing • Mastering • Sound Production"
   description: |
-    Vid Nytorget på Södermalm ligger Recipe. En studio för dig som vill att ljudet ska låta professionellt – men kännas personligt.
-    Vi jobbar med musikproduktion, mixning, mastering, podcasts, ljudböcker, voice overs och ljuddesign för film, scen och digitala kanaler.
-    Studion är byggd för att låta bra, men också för att vara en plats där det går att slappna av. En kreativ miljö där tekniken sitter, men där stämningen är minst lika viktig.
+    Recipe is a production studio by Nytorget in Stockholm.
+    We create music and sound that is clear, bold, and emotionally precise.
+    From first sketch to final master, we keep the process focused and the result sharp.
   cta:
-    buttonText: "Kontakta oss"
+    buttonText: "Contact us"
   image: /img/mikrofon.jpg
 
 pageCopy:
   flowBlocks:
     - highlight:
-        pretitle: "Intro"
-        title: | 
-          Recipe – ljud *på* riktigt"
+        pretitle: "Studio"
+        title: "Sound with direction"
         megaHeadline: ""
         body: |
-          När ljud ska kännas mänskligt och professionellt på samma gång börjar vi med att lyssna.
-          Recipe är både en tekniskt vass produktionsplats och ett kreativt rum där idéer får plats att växa – helt nära Nytorgets puls.
-        ctaText: "Se case"
-        ctaLink: "/cases"
+          We produce, record, mix, and master with one clear objective: audio with identity.
+        ctaText: "View work"
+        ctaLink: "/work"
       showGallery: false
       cards:
-        - tagline: "Featured"
-          title: "Out now"
+        - tagline: "Services"
+          title: "Music production • Mix • Master"
           description: |
-            Recipe producerar musik och ljud för film, poddar och scen. Nyligen lanserade vi ett case som visar hur vi kombinerar rytm och känsla.
-          image: /img/jocke.jpg
-          link: "/cases"
-          linkLabel: "Se case"
-        - tagline:
-          title: 
-          description:
-          image: /img/mikrofon.jpg
-        - tagline: "People"
-          title: "Folk i studion"
-          description: |
-            Vi jobbar med Kleerup, Frida Öhrn, Seal, Chris Medina, Owe Thörnqvist, Noctoscope och många fler. Kunder som Kvartal, Storytel, ESPN, FOX och Dramaten kommer hit för musik, mixning, mastering och ljudproduktion.
-          image: "/img/placeholder photo.png"
-          fullWidth: true
-          link: "/people"
-          linkLabel: "Se bilder"
+            End-to-end audio for artists, campaigns, and productions.
+          image: /img/IMG_3189.JPG
       highlightPosition: "right"
+
     - highlight:
-        pretitle: "Vem vi hjälper"
-        title: "Artister & producenter"
-        megaHeadline: "Who"
+        pretitle: "Work"
+        title: "Selected projects"
+        megaHeadline: ""
         body: |
-          Vi arbetar med artister på alla nivåer – från blivande röster till etablerade namn. Vi hjälper till att forma låtar, utveckla sound och leverera färdiga mixar.
-        ctaText: "Vill du boka?"
-        ctaLink: "/people"
+          Commercial campaigns, artist releases, podcast production, and score work.
+        ctaText: "Open work"
+        ctaLink: "/work"
       showGallery: true
       galleryItems:
         - image: /img/IMG_0444.jpg
-          title: "Studio Sessions"
-          subtitle: "Se bilder från studion"
-          link: "/cases"
-        - image:
-          bigText: "[Verse]" 
-          title: ""
-          subtitle: ""
+          title: "Campaign"
+          subtitle: "Original score"
+          link: "/work"
         - image: /img/mikrofon.jpg
-          title: "The Hunter"
-          subtitle: "Creative mixing"
+          title: "Artist"
+          subtitle: "Single production"
+          link: "/work"
         - image: /img/IMG_0931.jpg
-          title: "The Convert"
-          subtitle: "Mastering"
-          link: "/people"
+          title: "Podcast"
+          subtitle: "Full production"
+          link: "/work"
       cards:
-        - tagline: "Voice & podcast"
-          title: "Poddproduktion & voiceovers"
+        - tagline: "Clients"
+          title: "Brands, agencies, artists"
           description: |
-            Inspelning, klippning, mixning och ljuddesign för företagspoddar, e-learning och reklam.
-          image: /img/IMG_0664.jpg
-        - tagline:
-          title:
-          description:
-          image: /img/IMG_0364.JPG
-        - tagline: "Partnerskap"
-          title: "Kreatörer & produktionsbolag"
-          description: |
-            Vi ljudlägger film, dokumentärer, reklam och scenproduktioner – ofta med snäva deadlines och höga krav.
+            We work with teams that need sound to be both distinctive and reliable.
           image: /img/IMG_1244.jpeg
       highlightPosition: "left"
+
     - highlight:
-        pretitle: "Hur vi jobbar"
-        title: "*från* samtal *till* slutmix"
-        megaHeadline: "Work"
+        pretitle: "People"
+        title: "The studio"
+        megaHeadline: ""
         body: |
-          Allt börjar med ett samtal om mål, känsla och referenser. Därefter följer en gemensam process där ni får vara med så mycket ni vill – men kvaliteten kompromissar vi aldrig med.
-        ctaText: "Boka samtal"
-        ctaLink: "/#contact"
+          Efficient sessions, clear communication, and consistent delivery.
+        ctaText: "View gallery"
+        ctaLink: "/people"
+      showGallery: false
       cards:
-        - tagline: "Rådgivning"
-          title: "Planering & referenser"
+        - tagline: "Sessions"
+          title: "Recording and production"
           description: |
-            Vi hjälper dig definiera vad som ska hända i studion och vilka referenser som visar vägen.
+            A focused environment for vocal production, instrumentation, and final detail work.
           image: /img/IMG_3168.jpeg
-        - tagline: "Inspelning"
-          title: "Sessioner som flyter"
-          description: |
-            En avslappnad studio, plats att slappna av i och teknik som fungerar – allt för att du ska vara i rätt känsla när inspelningen sker.
-          image: /img/IMG_3189.JPG
-        - tagline: "Leverans"
-          title: "Mix & mastering"
-          description: |
-            När inspelningen är klar tar vi över, mixar, mastrar och levererar ljud som känns professionellt och personligt.
-          image: /img/IMG_3957-1.jpg
       highlightPosition: "right"
 
 solutions:
   image: /img/jocke.jpg
   blocks:
-    - category: "Artister & producenter"
+    - category: "Artists and producers"
       items:
         title: ""
         description: |
-          Vi jobbar med artister på alla nivåer – från nya röster till etablerade namn.
-          Vissa kommer in med en färdig idé, andra med en skiss eller en känsla.
-          Vi hjälper till att forma, spela in, mixa och mastra tills allt sitter.
-          Vi kan ta ansvar för hela kedjan eller kliva in i ett specifikt steg.
-          För vissa handlar det om att hitta sitt sound – för andra om att ta nästa steg i karriären.
-    - category: "Företag & organisationer"
+          We help artists shape songs, sound, and final releases.
+    - category: "Companies and organizations"
       items:
         title: ""
         description: |
-          Vi hjälper företag, medier och byråer att låta bra – oavsett om det handlar om en podcast, en ljudbok eller en film.
-          Vår styrka ligger i att kombinera precision och tempo. Vi vet att marknads- och kommunikationsteam ofta har ont om tid, och därför gör vi det enkelt att spela in, redigera och leverera.
-          Vi kan driva hela processen – från första idé till färdig mix – eller ta vid där ni behöver oss.
-          Resultatet blir alltid detsamma: ljud som låter professionellt, men fortfarande känns mänskligt.
-    - category: "Kreatörer & produktionsbolag"
+          We provide end-to-end audio for campaigns, podcasts, and branded formats.
+    - category: "Creators and production companies"
       items:
         title: ""
         description: |
-          Vi samarbetar med kreatörer, regissörer och byråer som behöver ett pålitligt ljudnav.
-          Vi ljudlägger film, dokumentärer, reklam och scenproduktioner – ofta med snäva deadlines och höga krav.
-          Hos oss finns både tekniken och erfarenheten som krävs för att leverera snabbt och i rätt format.
-          Men det som verkligen gör skillnad är hur vi jobbar: nära, nyfiket och alltid med känsla för helheten.
+          We act as a trusted sound partner for fast-moving productions.
 ---

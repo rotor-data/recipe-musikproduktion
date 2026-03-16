@@ -2,13 +2,25 @@ exports.handler = async function () {
   const apiKey = process.env.YOUTUBE_API_KEY
   const channelId = process.env.YOUTUBE_CHANNEL_ID
 
-  const searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=50`
+  if (!apiKey || !channelId) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Missing YouTube API config" }),
+    }
+  }
+
+  const searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&type=video&maxResults=50`
 
   try {
     const res = await fetch(searchUrl)
     const data = await res.json()
 
-    console.log("YouTube API Response:", JSON.stringify(data, null, 2))
+    if (!Array.isArray(data.items)) {
+      return {
+        statusCode: 200,
+        body: JSON.stringify([]),
+      }
+    }
 
     const videos = data.items
       ?.filter(item => item.id.kind === "youtube#video")
@@ -24,7 +36,7 @@ exports.handler = async function () {
     if (videoIds?.length) {
       const videosUrl = `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds.join(
         ","
-      )}&part=snippet,contentDetails`
+      )}&part=snippet,contentDetails,statistics`
       const detailRes = await fetch(videosUrl)
       const detailData = await detailRes.json()
       const detailMap = new Map(
@@ -44,10 +56,18 @@ exports.handler = async function () {
           id: video.id,
           title: snippet?.title,
           description: snippet?.description,
-          thumbnail: snippet?.thumbnails?.high?.url,
+          thumbnail:
+            snippet?.thumbnails?.maxres?.url ||
+            snippet?.thumbnails?.standard?.url ||
+            snippet?.thumbnails?.high?.url,
+          thumbnails: snippet?.thumbnails,
           published: snippet?.publishedAt,
+          publishedAt: snippet?.publishedAt,
+          channelTitle: snippet?.channelTitle,
           tags,
           duration: detail?.contentDetails?.duration,
+          viewCount: detail?.statistics?.viewCount,
+          likeCount: detail?.statistics?.likeCount,
           highlightLayout,
           highlight,
         }
@@ -59,7 +79,10 @@ exports.handler = async function () {
         description: video.snippet?.description,
         thumbnail: video.snippet?.thumbnails?.high?.url,
         published: video.snippet?.publishedAt,
+        publishedAt: video.snippet?.publishedAt,
+        channelTitle: video.snippet?.channelTitle,
         tags: video.snippet?.tags || [],
+        thumbnails: video.snippet?.thumbnails,
         highlightLayout: "twoTop",
         highlight: false,
       }))

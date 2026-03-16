@@ -5,25 +5,22 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import MarkdownRenderer from "./MarkdownRenderer"
 import LogoBanner from "./LogoBanner"
 
-const HeroSection = ({ h1title, title, description, ctaText, image, showLogoBanner = true }) => {
+const HeroSection = ({ h1title, title, image, showLogoBanner = true }) => {
   const heroImage = getImage(image)
   const sectionRef = useRef(null)
 
-  // Scroll animation hook
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   })
 
-  // Parallax transforms
   const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 100])
   const contentY = useTransform(scrollYProgress, [0, 1], [0, -50])
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   return (
     <section className="section p-0" ref={sectionRef}>
-      <div style={{ position: "relative", minHeight: "90vh", overflow: "hidden" }}>
-        {/* Background Image with parallax */}
+      <div className="hero-shell">
         {heroImage && (
           <motion.div
             style={{
@@ -33,7 +30,7 @@ const HeroSection = ({ h1title, title, description, ctaText, image, showLogoBann
               left: 0,
               height: "120%",
               width: "100%",
-              zIndex: 0
+              zIndex: 0,
             }}
           >
             <GatsbyImage
@@ -47,47 +44,27 @@ const HeroSection = ({ h1title, title, description, ctaText, image, showLogoBann
           </motion.div>
         )}
 
-        {/* Foreground Content with slight parallax and fade */}
         <motion.div
-          className="has-text-white"
+          className="has-text-white hero-shell__overlay"
           style={{
             y: contentY,
             opacity: contentOpacity,
-            position: "relative",
-            zIndex: 1,
-            background: "rgba(0, 0, 0, 0.4)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            minHeight: "90vh",
-            padding: "4rem 1.5rem"
           }}
         >
-          <div className="container" style={{ maxWidth: "1200px", width: "100%" }}>
+          <div className="container hero-shell__content">
             <div className="columns is-centered">
               <div className="column is-10 has-text-centered">
-                <h1 className="is-size-6-desktop is-size-7-touch has-text-white mb-3 is-family-accent is-italic">
+                <h1 className="hero-shell__eyebrow has-text-white">
                   {h1title}
                 </h1>
-                <p className="megatitle has-text-white mb-4">
-                  <MarkdownRenderer markdown={title}/>
+                <p className="hero-shell__title has-text-white mb-0">
+                  <MarkdownRenderer markdown={title} />
                 </p>
-                {description && (
-                  <p className="mt-4 is-size-6 has-text-white">
-                    <MarkdownRenderer markdown={description} />
-                  </p>
-                )}
-                <div className="mt-5 mb-5">
-                  <a href="#contact" className="recipe-button button is-medium is-danger">
-                    {ctaText}
-                  </a>
-                </div>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* LogoBanner */}
         {showLogoBanner && <LogoBanner />}
       </div>
     </section>
@@ -97,8 +74,6 @@ const HeroSection = ({ h1title, title, description, ctaText, image, showLogoBann
 HeroSection.propTypes = {
   h1title: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  ctaText: PropTypes.string.isRequired,
   image: PropTypes.object.isRequired,
   showLogoBanner: PropTypes.bool,
 }
