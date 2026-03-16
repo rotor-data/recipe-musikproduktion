@@ -190,3 +190,38 @@ collections:
                 }
               ]
             }
+      - file: "src/pages/contact.md"
+        label: "Contact Page"
+        name: "contact"
+        fields:
+          - {
+              label: "Meta",
+              name: "meta",
+              widget: "object",
+              hint: "SEO fields for the contact page.",
+              fields: [
+                { label: "SEO title", name: "title", widget: "string" },
+                { label: "SEO description", name: "description", widget: "text" }
+              ]
+            }
+          - {
+              label: "Contact content",
+              name: "contact",
+              widget: "object",
+              hint: "Main contact panel and map content.",
+              fields: [
+                { label: "Page title", name: "pageTitle", widget: "string", hint: "Main heading on the page." },
+                { label: "Details panel title", name: "detailsTitle", widget: "string", hint: "Heading above address/contact details." },
+                {
+                  label: "Details lines",
+                  name: "lines",
+                  widget: "list",
+                  hint: "Each line appears as one row in the details panel.",
+                  field: { label: "Line", name: "line", widget: "string" }
+                },
+                { label: "Email label", name: "emailLabel", widget: "string", hint: "Example: Email:" },
+                { label: "Email address", name: "email", widget: "string", hint: "Used for mailto link." },
+                { label: "Map panel title", name: "locationTitle", widget: "string", hint: "Example: Location" },
+                { label: "Map embed URL", name: "mapEmbedUrl", widget: "string", hint: "Google Maps embed URL." }
+              ]
+            }

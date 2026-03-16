@@ -4,6 +4,7 @@ import cloudinary from 'netlify-cms-media-library-cloudinary'
 
 import IndexPagePreview from './preview-templates/IndexPagePreview'
 import PeopleGalleryPreview from './preview-templates/PeopleGalleryPreview'
+import ContactPagePreview from "./preview-templates/ContactPagePreview"
 
 const ensureLink = (href, options = {}) => {
   const head = document.head || document.getElementsByTagName("head")[0]
@@ -32,6 +33,7 @@ loadCustomCmsAssets()
 
 CMS.registerPreviewTemplate('index', IndexPagePreview)
 CMS.registerPreviewTemplate('people', PeopleGalleryPreview)
+CMS.registerPreviewTemplate("contact", ContactPagePreview)
 
 function loadCustomCmsAssets() {
   if (typeof window === "undefined") {
