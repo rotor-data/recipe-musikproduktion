@@ -139,22 +139,65 @@ body {
 .rec-nav__actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  justify-self: end;
+  margin-left: auto;
   gap: 0.7rem;
 }
 
 .rec-nav__toggle {
   display: none;
-  flex-direction: column;
-  gap: 4px;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
   background: transparent;
-  border: 0;
+  border: 1px solid var(--rec-line);
+  border-radius: 999px;
   padding: 0;
+  cursor: pointer;
 }
 
 .rec-nav__toggle span {
-  width: 18px;
+  position: absolute;
+  left: 50%;
+  width: 20px;
   height: 2px;
+  border-radius: 999px;
   background: var(--rec-gold);
+  transform: translateX(-50%);
+  transition: transform 0.28s ease, top 0.28s ease, opacity 0.2s ease;
+}
+
+.rec-nav__toggle span:nth-child(1) {
+  top: 14px;
+}
+
+.rec-nav__toggle span:nth-child(2) {
+  top: 21px;
+}
+
+.rec-nav__toggle span:nth-child(3) {
+  top: 28px;
+}
+
+.rec-nav__toggle.is-open span:nth-child(1) {
+  top: 21px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.rec-nav__toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.rec-nav__toggle.is-open span:nth-child(3) {
+  top: 21px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+.rec-nav__backdrop {
+  display: none;
 }
 
 .rec-nav__mobile {
@@ -1209,6 +1252,20 @@ body {
     --rec-nav-h: 68px;
   }
 
+  body.rec-mobile-nav-open {
+    overflow: hidden;
+  }
+
+  .rec-nav__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.65rem;
+  }
+
+  .rec-nav__brand svg {
+    width: 102px;
+    height: 32px;
+  }
+
   .rec-nav__menu,
   .rec-nav__brand-text {
     display: none;
@@ -1218,21 +1275,74 @@ body {
     display: flex;
   }
 
+  .rec-nav__backdrop {
+    display: block;
+    position: fixed;
+    inset: var(--rec-nav-h) 0 0 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.28s ease;
+    z-index: 58;
+  }
+
+  .rec-nav__backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   .rec-nav__mobile {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: var(--rec-nav-h);
+    right: 0;
+    bottom: 0;
+    width: min(420px, 92vw);
+    padding: 1.3rem 1.2rem 2rem;
+    border-left: 1px solid var(--rec-line);
+    background: #000;
+    box-shadow: -24px 0 50px rgba(0, 0, 0, 0.38);
+    transform: translateX(106%);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.34s cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s linear 0.34s;
+    z-index: 59;
+  }
+
+  .rec-nav__mobile.is-open {
+    transform: translateX(0);
+    height: fit-content;
+    visibility: visible;
+    pointer-events: auto;
+    transition: transform 0.34s cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s linear 0s;
+  }
+
+  .rec-nav__mobile-label {
+    margin: 0 0 1.15rem;
+    color: var(--rec-gold);
+    text-transform: uppercase;
+    font-family: "Space Grotesk", "stratos", sans-serif;
+    letter-spacing: 0.12rem;
+    font-size: 0.62rem;
+  }
+
+  .rec-nav__mobile-links {
     display: grid;
-    padding: 0 1rem 1rem;
-    border-top: 1px solid var(--rec-line);
-    background: #121212;
+    gap: 0.45rem;
   }
 
   .rec-nav__mobile-link {
     color: var(--rec-muted);
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 0.12rem;
+    letter-spacing: 0.09rem;
     font-family: "Space Grotesk", "stratos", sans-serif;
-    font-size: 0.64rem;
-    padding: 0.65rem 0;
+    font-size: clamp(1.06rem, 5.2vw, 1.35rem);
+    font-weight: 600;
+    line-height: 1.1;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(235, 193, 90, 0.1);
   }
 
   .rec-nav__mobile-link.is-active {
@@ -1319,5 +1429,31 @@ body {
 
   .rec-contact__actions {
     margin-top: 1.25rem;
+  }
+}
+
+/* Last-word mobile nav override to prevent older menu styles from bleeding in */
+@media (max-width: 820px) {
+  .rec-nav .rec-nav__mobile {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: var(--rec-nav-h) !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: min(420px, 92vw) !important;
+    padding: 1.3rem 1.2rem 2rem !important;
+    border-top: 0 !important;
+    border-left: 1px solid var(--rec-line) !important;
+    background: #000 !important;
+    background-image: none !important;
+    z-index: 59 !important;
+  }
+
+  .rec-nav .rec-nav__mobile.is-open {
+    transform: translateX(0) !important;
+    height: fit-content !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
 }

@@ -49,6 +49,12 @@ const Navbar = () => {
     setPath(window.location.pathname || "/")
   }, [])
 
+  useEffect(() => {
+    if (typeof document === "undefined") return
+    document.body.classList.toggle("rec-mobile-nav-open", open)
+    return () => document.body.classList.remove("rec-mobile-nav-open")
+  }, [open])
+
   const isActive = href => {
     const current = path.endsWith("/") && path !== "/" ? path.slice(0, -1) : path
     const normalized = href.endsWith("/") && href !== "/" ? href.slice(0, -1) : href
@@ -78,7 +84,7 @@ const Navbar = () => {
         <div className="rec-nav__actions">
           <button
             type="button"
-            className="rec-nav__toggle"
+            className={`rec-nav__toggle${open ? " is-open" : ""}`}
             aria-label="Toggle menu"
             aria-expanded={open}
             onClick={() => setOpen(prev => !prev)}
@@ -90,8 +96,15 @@ const Navbar = () => {
         </div>
       </div>
 
-      {open && (
-        <nav className="rec-nav__mobile" aria-label="Mobile">
+      <div
+        className={`rec-nav__backdrop${open ? " is-open" : ""}`}
+        aria-hidden={!open}
+        onClick={() => setOpen(false)}
+      />
+
+      <nav className={`rec-nav__mobile${open ? " is-open" : ""}`} aria-label="Mobile">
+        <p className="rec-nav__mobile-label">Meny</p>
+        <div className="rec-nav__mobile-links">
           {menu.map(item => (
             <a
               key={`mobile-${item.href}-${item.label}`}
@@ -102,8 +115,8 @@ const Navbar = () => {
               {item.label}
             </a>
           ))}
-        </nav>
-      )}
+        </div>
+      </nav>
     </header>
   )
 }
