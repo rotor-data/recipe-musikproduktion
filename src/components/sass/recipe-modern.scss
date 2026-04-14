@@ -919,8 +919,8 @@ body {
   margin-top: 0.55rem;
 }
 
-.rec-people__caption strong {
-  color: inherit;
+.rec-people__caption-title {
+  color: var(--rec-text);
   text-transform: uppercase;
   font-family: "Space Grotesk", "stratos", sans-serif;
   font-size: 0.56rem;

@@ -55,7 +55,7 @@ const PeopleGalleryPage = ({ data }) => {
               >
                 <GatsbyImage image={imageData} alt={item.alt} />
                 <span className="rec-people__caption">
-                  <strong>{item.title || "Studio"}</strong>
+                  <strong className="rec-people__caption-title">{item.title || "Studio"}</strong>
                   {item.subtitle && <em>{item.subtitle}</em>}
                 </span>
               </button>
