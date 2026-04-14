@@ -56,6 +56,7 @@ const SeoHead = ({ title, description, slug, og = {} }) => {
       <link rel="canonical" href={pageUrl} />
 
       {/* Icons */}
+      <link rel="icon" href={withPrefix("/favicon.ico")} sizes="any" />
       <link rel="apple-touch-icon" sizes="180x180" href={withPrefix("/img/favicons/favicon-rec-apple-touch-icon.png")} />
       <link rel="icon" type="image/png" href={withPrefix("/img/favicons/favicon-rec-32x32.png")} sizes="32x32" />
       <link rel="icon" type="image/png" href={withPrefix("/img/favicons/favicon-rec-16x16.png")} sizes="16x16" />

@@ -66,6 +66,11 @@ const SEO = ({ title, description, slug = "/", og = {} }) => {
         content={description || data.site.siteMetadata.description}
       />
       <link
+        rel="icon"
+        href={withPrefix("/favicon.ico")}
+        sizes="any"
+      />
+      <link
         rel="apple-touch-icon"
         sizes="180x180"
         href={withPrefix("/img/favicons/favicon-rec-apple-touch-icon.png")}
