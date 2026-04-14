@@ -67,6 +67,8 @@ exports.createSchemaCustomization = ({ actions }) => {
     type Frontmatter @infer {
       hero: Hero
       pageCopy: PageCopy
+      logoBanner: LogoBanner
+      galleryImages: [GalleryImage]
     }
 
     type Hero @infer {
@@ -75,6 +77,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type PageCopy @infer {
       flowBlocks: [FlowBlock]!
+      bottomCta: BottomCta
     }
 
     type FlowBlock @infer {
@@ -97,6 +100,30 @@ exports.createSchemaCustomization = ({ actions }) => {
     type FlowBlockGalleryItem {
       image: File @fileByRelativePath
       bigText: String
+    }
+
+    type BottomCta {
+      title: String
+      buttonText: String
+      buttonHref: String
+    }
+
+    type LogoBanner {
+      label: String
+      logos: [LogoBannerItem]
+    }
+
+    type LogoBannerItem {
+      image: String
+      alt: String
+      href: String
+    }
+
+    type GalleryImage {
+      title: String
+      subtitle: String
+      alt: String
+      src: File @fileByRelativePath
     }
   `)
 }

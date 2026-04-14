@@ -20,7 +20,7 @@ const LandingPageHead = ({children, backgroundClass}) => {
    </div>
    {children}
 
-  <div className={`${backgroundClass?backgroundClass:`has-background-primary`} has-text-white is-family-secondary is-size-7 has-text-centered py-3`}>©Rotor Digitalbyrå {new Date().getFullYear()}</div>
+  <div className={`${backgroundClass?backgroundClass:`has-background-primary`} has-text-white is-family-secondary is-size-7 has-text-centered py-3`}>©Recipe Music Production {new Date().getFullYear()}</div>
     </>
  )
 

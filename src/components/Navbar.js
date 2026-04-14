@@ -1,30 +1,18 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { motion, AnimatePresence } from "framer-motion"
 import Logo from "../img/recipe-logo.svg"
 
 const normalizeHref = href => {
-  if (typeof href !== "string") {
-    return href
-  }
-
-  if (href.startsWith("/#")) {
-    return href
-  }
-
-  if (href.startsWith("#")) {
-    return `/${href}`
-  }
-
+  if (typeof href !== "string") return "/"
+  if (href.startsWith("/#")) return href
+  if (href.startsWith("#")) return `/${href}`
   return href
 }
 
 const Navbar = () => {
   const data = useStaticQuery(graphql`
     query NavMenuQuery {
-      navigation: markdownRemark(
-        fileAbsolutePath: { regex: "/navigation\\.md$/i" }
-      ) {
+      navigation: markdownRemark(fileAbsolutePath: { regex: "/navigation\\.md$/i" }) {
         frontmatter {
           menu {
             label
@@ -32,110 +20,91 @@ const Navbar = () => {
           }
         }
       }
+      site {
+        siteMetadata {
+          company
+        }
+      }
     }
   `)
 
   const fallbackMenu = [
     { label: "Start", href: "/" },
-    { label: "Gallery", href: "/people" },
     { label: "Work", href: "/work" },
+    { label: "People", href: "/people" },
     { label: "Contact", href: "/contact" },
   ]
-  const menu = data?.navigation?.frontmatter?.menu ?? fallbackMenu
-  const normalizedMenu = menu.map(item => ({
+
+  const menu = (data?.navigation?.frontmatter?.menu || fallbackMenu).map(item => ({
     ...item,
     href: normalizeHref(item.href),
   }))
 
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [visible, setVisible] = useState(true)
-  const prevScrollY = useRef(0)
+  const [open, setOpen] = useState(false)
+  const [path, setPath] = useState("/")
+  const brand = data?.site?.siteMetadata?.company || "Recipe"
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return undefined
-    }
-    const handleScroll = () => {
-      const currentY = window.scrollY
-      if (currentY < 50) {
-        setVisible(true)
-      } else if (currentY > prevScrollY.current) {
-        setVisible(false)
-      } else if (currentY < prevScrollY.current) {
-        setVisible(true)
-      }
-      prevScrollY.current = currentY
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    if (typeof window === "undefined") return
+    setPath(window.location.pathname || "/")
   }, [])
 
-  const overlayVariants = {
-    hidden: { x: "100%" },
-    visible: { x: 0 },
-    exit: { x: "100%" },
+  const isActive = href => {
+    const current = path.endsWith("/") && path !== "/" ? path.slice(0, -1) : path
+    const normalized = href.endsWith("/") && href !== "/" ? href.slice(0, -1) : href
+    return current === normalized
   }
 
   return (
-    <nav className={`nav-bar ${visible ? "" : "nav-bar--hidden"}`}>
-      <div className="nav-bar__inner">
-        <a className="nav-bar__logo" href="/" aria-label="Recipe home">
-          <Logo />
+    <header className="rec-nav">
+      <div className="rec-nav__inner">
+        <a href="/" className="rec-nav__brand" aria-label="Home">
+          <Logo aria-hidden="true" />
+          <span className="rec-nav__brand-text">{brand}</span>
         </a>
-        <div className="nav-bar__menu">
-          {normalizedMenu.map(item => (
+
+        <nav className="rec-nav__menu" aria-label="Main">
+          {menu.map(item => (
             <a
               key={`${item.href}-${item.label}`}
               href={item.href}
-              className="nav-bar__link has-text-white"
+              className={`rec-nav__link${isActive(item.href) ? " is-active" : ""}`}
             >
               {item.label}
             </a>
           ))}
-        </div>
-        <button
-          className="nav-bar__hamburger"
-          aria-label="Toggle navigation"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen(prev => !prev)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-      </div>
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            className="nav-bar__overlay"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={overlayVariants}
-            transition={{ type: "tween", duration: 0.35 }}
+        </nav>
+
+        <div className="rec-nav__actions">
+          <button
+            type="button"
+            className="rec-nav__toggle"
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            onClick={() => setOpen(prev => !prev)}
           >
-            <button
-              className="nav-bar__overlay-close"
-              onClick={() => setMenuOpen(false)}
-              aria-label="Close menu"
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
+      </div>
+
+      {open && (
+        <nav className="rec-nav__mobile" aria-label="Mobile">
+          {menu.map(item => (
+            <a
+              key={`mobile-${item.href}-${item.label}`}
+              href={item.href}
+              className={`rec-nav__mobile-link${isActive(item.href) ? " is-active" : ""}`}
+              onClick={() => setOpen(false)}
             >
-              ×
-            </button>
-            {normalizedMenu.map(item => (
-              <a
-                key={`${item.href}-${item.label}`}
-                href={item.href}
-                className="nav-bar__overlay-link has-text-white"
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      )}
+    </header>
   )
 }
 

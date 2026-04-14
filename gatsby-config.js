@@ -151,11 +151,19 @@ module.exports = {
       options: {
         mode: "async",
         enableListener: true,
-        preconnect: ["https://use.typekit.net"],
+        preconnect: [
+          "https://use.typekit.net",
+          "https://fonts.googleapis.com",
+          "https://fonts.gstatic.com",
+        ],
         web: [
           {
             name: ["stratos", "stratos-lights", "span-compressed"],
             file: "https://use.typekit.net/jni5cuh.css",
+          },
+          {
+            name: ["Space Grotesk", "Inter"],
+            file: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap",
           }
         ],
       }

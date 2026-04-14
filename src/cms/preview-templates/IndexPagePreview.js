@@ -7,11 +7,18 @@ const transformImage = (image, getAsset) => {
     return null
   }
   if (typeof image === "string") {
+    if (!getAsset) return image
+    const asset = getAsset(image)
+    if (!asset) return image
+    if (typeof asset === "string") return asset
+    if (typeof asset?.toString === "function") return asset.toString()
     return image
   }
   if (image.childImageSharp && getAsset) {
     const asset = getAsset(image.childImageSharp?.gatsbyImageData?.images?.fallback?.src)
     if (asset) {
+      if (typeof asset === "string") return asset
+      if (typeof asset?.toString === "function") return asset.toString()
       return asset
     }
   }
@@ -40,8 +47,17 @@ const IndexPagePreview = ({ entry, getAsset }) => {
     })),
   }))
 
+  const logoBanner = {
+    label: data.logoBanner?.label,
+    logos: (data.logoBanner?.logos || []).map(item => ({
+      ...item,
+      image: transformImage(item.image, getAsset),
+    })),
+  }
+
   return (
     <IndexPageTemplate
+      disableYoutubeFetch
       content={{
         hero: {
           title: data.hero?.title,
@@ -49,11 +65,16 @@ const IndexPagePreview = ({ entry, getAsset }) => {
           description: data.hero?.description,
           cta: {
             buttonText: data.hero?.cta?.buttonText,
+            primaryText: data.hero?.cta?.primaryText,
+            primaryHref: data.hero?.cta?.primaryHref,
+            secondaryText: data.hero?.cta?.secondaryText,
+            secondaryHref: data.hero?.cta?.secondaryHref,
           },
           image: heroImage,
-          showLogoBanner: false,
         },
+        logoBanner,
         pageCopy: {
+          bottomCta: data.pageCopy?.bottomCta,
           flowBlocks,
         },
       }}

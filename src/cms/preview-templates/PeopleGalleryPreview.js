@@ -5,43 +5,57 @@ const readImageUrl = (value, getAsset) => {
   if (!value) return ""
   if (typeof value === "string") {
     const asset = getAsset ? getAsset(value) : null
-    return asset || value
+    if (!asset) return value
+    if (typeof asset === "string") return asset
+    if (typeof asset?.toString === "function") return asset.toString()
+    return value
   }
-  return value?.toString?.() || ""
+  if (typeof value?.toString === "function") {
+    return value.toString()
+  }
+  return ""
 }
 
 const PeopleGalleryPreview = ({ entry, getAsset }) => {
-  const blocks = entry.getIn(["data", "galleryBlocks"])?.toJS?.() || []
+  const entryData =
+    entry.getIn(["data"]) || entry.getIn(["data", "frontmatter"]) || null
+  const data =
+    (entryData && entryData.toJS && entryData.toJS()) ||
+    entryData ||
+    {}
 
-  const images = blocks.flatMap(block => {
-    const highlightImage = block?.highlight?.src
-      ? [{
-          src: readImageUrl(block.highlight.src, getAsset),
-          alt: block.highlight?.alt || block.highlight?.title || "Gallery image",
-          title: block.highlight?.title || "",
-        }]
-      : []
-
-    const cardImages = (block?.cards || [])
-      .filter(card => card?.src)
-      .map(card => ({
-        src: readImageUrl(card.src, getAsset),
-        alt: card?.alt || card?.title || "Gallery image",
-        title: card?.title || "",
-      }))
-
-    return [...highlightImage, ...cardImages]
-  })
+  const hero = data.hero || {}
+  const cta = data.cta || {}
+  const seen = new Set()
+  const images = (data.galleryImages || [])
+    .filter(item => item?.src)
+    .filter(item => {
+      const key = typeof item.src === "string" ? item.src : item?.src?.toString?.()
+      if (!key || seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+    .map(item => ({
+      src: readImageUrl(item.src, getAsset),
+      alt: item.alt || item.title || "Gallery image",
+      title: item.title || "",
+      subtitle: item.subtitle || "",
+    }))
 
   return (
     <section
       style={{
-        background: "linear-gradient(62deg, black, #c29c38)",
+        background: "#0e0e0e",
         minHeight: "100vh",
         padding: "2rem 1rem",
       }}
     >
       <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+        {hero.kicker && (
+          <p style={{ color: "#c29c38", textTransform: "uppercase", letterSpacing: "0.2em" }}>
+            {hero.kicker}
+          </p>
+        )}
         <h1
           style={{
             color: "#fff",
@@ -50,11 +64,13 @@ const PeopleGalleryPreview = ({ entry, getAsset }) => {
             marginBottom: "1rem",
           }}
         >
-          People
+          {hero.pageTitle || "People"}
         </h1>
-        <p style={{ color: "rgba(255,255,255,0.75)", marginBottom: "1rem", fontSize: "0.9rem" }}>
-          CMS preview: images are shown in grayscale here to match the live page style.
-        </p>
+        {hero.lead && (
+          <p style={{ color: "rgba(255,255,255,0.75)", marginBottom: "1rem", fontSize: "0.9rem" }}>
+            {hero.lead}
+          </p>
+        )}
         <div
           style={{
             display: "grid",
@@ -87,6 +103,12 @@ const PeopleGalleryPreview = ({ entry, getAsset }) => {
             </div>
           ))}
         </div>
+        {(cta.title || cta.linkText) && (
+          <div style={{ marginTop: "1rem", border: "1px solid rgba(194,156,56,.3)", padding: "1rem", textAlign: "center" }}>
+            {cta.title && <p style={{ color: "#fff", marginBottom: ".4rem" }}>{cta.title}</p>}
+            {cta.linkText && <p style={{ color: "#c29c38", margin: 0 }}>{cta.linkText}</p>}
+          </div>
+        )}
       </div>
     </section>
   )
@@ -100,4 +122,3 @@ PeopleGalleryPreview.propTypes = {
 }
 
 export default PeopleGalleryPreview
-

@@ -31,6 +31,12 @@ CMS.registerMediaLibrary(cloudinary)
 
 loadCustomCmsAssets()
 
+CMS.registerPreviewStyle("https://use.typekit.net/jni5cuh.css")
+CMS.registerPreviewStyle(
+  "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+)
+CMS.registerPreviewStyle("/admin/custom-cms-css.css")
+
 CMS.registerPreviewTemplate('index', IndexPagePreview)
 CMS.registerPreviewTemplate('people', PeopleGalleryPreview)
 CMS.registerPreviewTemplate("contact", ContactPagePreview)
@@ -43,6 +49,9 @@ function loadCustomCmsAssets() {
   ensureLink("https://use.typekit.net/jni5cuh.css", {
     crossOrigin: "anonymous",
   })
+  ensureLink(
+    "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+  )
   ensureLink("/admin/custom-cms-css.css")
 
   if (process.env.NETLIFY_SITE_URL) {

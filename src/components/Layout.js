@@ -1,6 +1,7 @@
 import * as React from "react";
 import Footer from "../components/Footer";
 import "./sass/main.scss";
+import "./sass/recipe-modern.scss";
 import CookieNotice from "./CookieNotice";
 import Navbar from "./Navbar";
 
@@ -8,14 +9,11 @@ import Navbar from "./Navbar";
 const TemplateWrapper = ({ children }) => {
 
   return (
-    <div>
+    <div className="rec-app">
       <Navbar />
-      <div id="cases" />
-      <div id="people" />
       <div className="layout__content">
-        <div className="container.is-max-widescreen">{children}</div>
+        {children}
       </div>
-      <div id="contact" />
       <CookieNotice />
       <Footer />
     </div>

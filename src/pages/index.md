@@ -15,8 +15,16 @@ hero:
     We create music and sound that is clear, bold, and emotionally precise.
     From first sketch to final master, we keep the process focused and the result sharp.
   cta:
+    primaryText: "Contact us"
+    primaryHref: "/contact"
+    secondaryText: "View work"
+    secondaryHref: "/work"
     buttonText: "Contact us"
   image: /img/mikrofon.jpg
+
+logoBanner:
+  label: "Industry partners"
+  logos: []
 
 pageCopy:
   flowBlocks:
@@ -75,6 +83,8 @@ pageCopy:
           Efficient sessions, clear communication, and consistent delivery.
         ctaText: "View gallery"
         ctaLink: "/people"
+        secondaryCtaText: "Start a project"
+        secondaryCtaLink: "/contact"
       showGallery: false
       cards:
         - tagline: "Sessions"
@@ -83,6 +93,10 @@ pageCopy:
             A focused environment for vocal production, instrumentation, and final detail work.
           image: /img/IMG_3168.jpeg
       highlightPosition: "right"
+  bottomCta:
+    title: "Ready to define your sound?"
+    buttonText: "Contact us"
+    buttonHref: "/contact"
 
 solutions:
   image: /img/jocke.jpg

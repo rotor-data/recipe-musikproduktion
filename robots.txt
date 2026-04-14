@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://rrrotor.com/sitemap/sitemap-0.xml
+Sitemap: https://www.recipemusikproduktion.se/sitemap/sitemap-0.xml

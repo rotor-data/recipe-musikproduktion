@@ -53,7 +53,11 @@ collections:
                   name: "cta",
                   widget: "object",
                   fields: [
-                    { label: "Button text", name: "buttonText", widget: "string", required: false }
+                    { label: "Primary button text", name: "primaryText", widget: "string", required: false },
+                    { label: "Primary button link", name: "primaryHref", widget: "string", required: false, hint: "Example: /contact" },
+                    { label: "Secondary button text", name: "secondaryText", widget: "string", required: false },
+                    { label: "Secondary button link", name: "secondaryHref", widget: "string", required: false, hint: "Example: /work" },
+                    { label: "Legacy button text (fallback)", name: "buttonText", widget: "string", required: false }
                   ]
                 },
                 {
@@ -62,6 +66,28 @@ collections:
                   widget: "image",
                   hint: "Best result: wide image, high quality.",
                   required: false
+                }
+              ]
+            }
+          - {
+              label: "Logo banner",
+              name: "logoBanner",
+              widget: "object",
+              required: false,
+              hint: "Partner logos shown below the hero. If empty, built-in logo gallery files are used.",
+              fields: [
+                { label: "Label", name: "label", widget: "string", required: false, hint: "Small uppercase label before the logos." },
+                {
+                  label: "Logos",
+                  name: "logos",
+                  widget: "list",
+                  required: false,
+                  summary: "{{fields.alt}}",
+                  fields: [
+                    { label: "Logo image", name: "image", widget: "image" },
+                    { label: "Alt text", name: "alt", widget: "string", required: false },
+                    { label: "External link", name: "href", widget: "string", required: false, hint: "Optional URL if logo should be clickable." }
+                  ]
                 }
               ]
             }
@@ -95,6 +121,8 @@ collections:
                         { label: "Body", name: "body", widget: "text", required: false, hint: "Optional short paragraph." },
                         { label: "CTA text", name: "ctaText", widget: "string", required: false, hint: "Optional button/link text." },
                         { label: "CTA link", name: "ctaLink", widget: "string", required: false, hint: "Use a relative path, e.g. /work." },
+                        { label: "Secondary CTA text", name: "secondaryCtaText", widget: "string", required: false, hint: "Used on sections that show a second button." },
+                        { label: "Secondary CTA link", name: "secondaryCtaLink", widget: "string", required: false, hint: "Use a relative path, e.g. /contact." },
                         { label: "Mega headline", name: "megaHeadline", widget: "string", required: false }
                       ]
                     },
@@ -138,6 +166,17 @@ collections:
                       ]
                     }
                   ]
+                },
+                {
+                  label: "Bottom CTA",
+                  name: "bottomCta",
+                  widget: "object",
+                  required: false,
+                  fields: [
+                    { label: "Title", name: "title", widget: "string", required: false },
+                    { label: "Button text", name: "buttonText", widget: "string", required: false },
+                    { label: "Button link", name: "buttonHref", widget: "string", required: false, hint: "Example: /contact" }
+                  ]
                 }
               ]
             }
@@ -152,41 +191,48 @@ collections:
               default: "people-gallery",
             }
           - {
-              label: "Gallery blocks",
-              name: "galleryBlocks",
-              widget: "list",
-              summary: "{{fields.highlight.title}}",
-              hint: "Each block has one featured image and three gallery cards.",
+              label: "Meta",
+              name: "meta",
+              widget: "object",
               fields: [
+                { label: "SEO title", name: "title", widget: "string", required: false },
+                { label: "SEO description", name: "description", widget: "text", required: false }
+              ]
+            }
+          - {
+              label: "Hero",
+              name: "hero",
+              widget: "object",
+              fields: [
+                { label: "Kicker", name: "kicker", widget: "string", required: false },
+                { label: "Page title", name: "pageTitle", widget: "string", required: false },
+                { label: "Lead text", name: "lead", widget: "text", required: false }
+              ]
+            }
+          - {
+              label: "CTA",
+              name: "cta",
+              widget: "object",
+              fields: [
+                { label: "Title", name: "title", widget: "string", required: false },
+                { label: "Link text", name: "linkText", widget: "string", required: false },
+                { label: "Link href", name: "linkHref", widget: "string", required: false }
+              ]
+            }
+          - {
+              label: "Gallery images",
+              name: "galleryImages",
+              widget: "list",
+              summary: "{{fields.title}}",
+              hint: "Single image list for the gallery. Upload all images here.",
+              fields: [
+                { label: "Title (shown in lightbox)", name: "title", widget: "string", required: false },
+                { label: "Subtitle", name: "subtitle", widget: "string", required: false },
+                { label: "Alt text", name: "alt", widget: "string", required: false, hint: "Describe the image for accessibility." },
                 {
-                  label: "Featured image",
-                  name: "highlight",
-                  widget: "object",
-                  fields: [
-                    { label: "Title (name shown in lightbox)", name: "title", widget: "string" },
-                    { label: "Body (optional internal note)", name: "body", widget: "text", required: false },
-                    { label: "Alt text", name: "alt", widget: "string", required: false, hint: "Describe the image for accessibility." },
-                    {
-                      label: "Highlight image",
-                      name: "src",
-                      widget: "image"
-                    }
-                  ]
-                },
-                {
-                  label: "Gallery cards",
-                  name: "cards",
-                  widget: "list",
-                  summary: "{{fields.title}}",
-                  fields: [
-                    { label: "Title (name shown in lightbox)", name: "title", widget: "string" },
-                    { label: "Alt text", name: "alt", widget: "string", required: false, hint: "Describe the image for accessibility." },
-                    {
-                      label: "Card image",
-                      name: "src",
-                      widget: "image"
-                    }
-                  ]
+                  label: "Image",
+                  name: "src",
+                  widget: "image"
                 }
               ]
             }
@@ -211,7 +257,12 @@ collections:
               hint: "Main contact panel and map content.",
               fields: [
                 { label: "Page title", name: "pageTitle", widget: "string", hint: "Main heading on the page." },
+                { label: "Panel tag", name: "panelTag", widget: "string", required: false },
                 { label: "Details panel title", name: "detailsTitle", widget: "string", hint: "Heading above address/contact details." },
+                { label: "Operator label", name: "operatorLabel", widget: "string", required: false },
+                { label: "Operator name", name: "operatorName", widget: "string", required: false },
+                { label: "Operator role", name: "operatorRole", widget: "string", required: false },
+                { label: "Address label", name: "addressLabel", widget: "string", required: false },
                 {
                   label: "Details lines",
                   name: "lines",
@@ -219,9 +270,27 @@ collections:
                   hint: "Each line appears as one row in the details panel.",
                   field: { label: "Line", name: "line", widget: "string" }
                 },
-                { label: "Email label", name: "emailLabel", widget: "string", hint: "Example: Email:" },
+                { label: "Email label", name: "emailLabel", widget: "string", hint: "Example: Frequency link" },
                 { label: "Email address", name: "email", widget: "string", hint: "Used for mailto link." },
+                { label: "Email meta text", name: "emailMeta", widget: "string", required: false },
                 { label: "Map panel title", name: "locationTitle", widget: "string", hint: "Example: Location" },
-                { label: "Map embed URL", name: "mapEmbedUrl", widget: "string", hint: "Google Maps embed URL." }
+                { label: "Map badge", name: "locationBadge", widget: "string", required: false },
+                { label: "Map coordinates", name: "mapCoordinates", widget: "string", required: false },
+                { label: "Map sector text", name: "mapSector", widget: "string", required: false },
+                { label: "Map embed URL", name: "mapEmbedUrl", widget: "string", hint: "Google Maps embed URL." },
+                { label: "Status label", name: "statusLabel", widget: "string", required: false },
+                { label: "Status value", name: "statusValue", widget: "string", required: false },
+                {
+                  label: "Action cards",
+                  name: "actions",
+                  widget: "list",
+                  summary: "{{fields.title}}",
+                  required: false,
+                  fields: [
+                    { label: "Label", name: "label", widget: "string", required: false },
+                    { label: "Title", name: "title", widget: "string", required: false },
+                    { label: "Link", name: "href", widget: "string", required: false }
+                  ]
+                }
               ]
             }

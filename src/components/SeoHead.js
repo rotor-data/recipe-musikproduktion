@@ -16,7 +16,7 @@ const SeoHead = ({ title, description, slug, og = {} }) => {
     }
   `)
 
-  const ogimage = og.image || "img/rotor-og-image.jpg"
+  const ogimage = og.image || "img/og-image.jpg"
   const ogtype = og.type || "website"
   const oglocale = og.locale || "sv_SE"
   const faviconGoogle = "img/favicon-96x96.ico"
@@ -26,22 +26,20 @@ const SeoHead = ({ title, description, slug, og = {} }) => {
   const jsonld = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "Rotor",
-    url: "https://rrrotor.com",
-    telephone: "+46768472147",
+    name: "Recipe Music Production",
+    url: data.site.siteMetadata.siteUrl,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "St Eriksgatan 72",
+      streetAddress: "Nytorget 4",
       addressLocality: "Stockholm",
-      postalCode: "11320",
+      postalCode: "11640",
       addressCountry: "SE",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 59.33863820000001,
-      longitude: 18.0362399,
+      latitude: 59.3129,
+      longitude: 18.0838,
     },
-    sameAs: "https://www.linkedin.com/company/rotor-media-group",
   }
     const siteUrl = data.site.siteMetadata.siteUrl
     const fullSlug = slug.startsWith("/") ? slug : `/${slug}`

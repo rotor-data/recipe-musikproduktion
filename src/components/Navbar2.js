@@ -25,7 +25,7 @@ const handleClickBurger = () => {
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item" title="Logo">
-              <img src={logo} alt="Rotor logo" style={{ width: "125px" }} />
+              <img src={logo} alt="Recipe logo" style={{ width: "125px" }} />
             </Link>
            
             {/* Hamburger menu */}
@@ -54,7 +54,7 @@ const handleClickBurger = () => {
                 <Link to="/lp/kostnadsfri-guide" className="has-text-white">
                 Gratis guide</Link>
               </div>
-            {/* <a className="navbar-cta navbar-end has-star-right" target="blank" rel="noreferrer" href="https://rotor.ger-dig.com/gratis-mote">Gratis möte</a> */}
+            {/* <a className="navbar-cta navbar-end has-star-right" target="blank" rel="noreferrer" href="/contact">Gratis möte</a> */}
             </div>
           </div>}
         </div>
