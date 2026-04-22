@@ -139,6 +139,15 @@ collections:
                           name: "image",
                           widget: "image"
                         },
+                        {
+                          label: "Crop position",
+                          name: "cropPosition",
+                          widget: "select",
+                          required: false,
+                          options: ["top", "center", "bottom"],
+                          default: "center",
+                          hint: "Controls vertical crop focus."
+                        },
                         { label: "Title", name: "title", widget: "string", required: false },
                         { label: "Subtitle", name: "subtitle", widget: "string", required: false },
                         { label: "Big text", name: "bigText", widget: "string", required: false },
@@ -162,7 +171,16 @@ collections:
                           label: "Image",
                           name: "image",
                           widget: "image"
-                        }
+                        },
+                        {
+                          label: "Crop position",
+                          name: "cropPosition",
+                          widget: "select",
+                          required: false,
+                          options: ["top", "center", "bottom"],
+                          default: "center",
+                          hint: "Controls vertical crop focus."
+                        },
                       ]
                     }
                   ]
@@ -220,6 +238,36 @@ collections:
               ]
             }
           - {
+              label: "Featured images (1-5)",
+              name: "featuredImages",
+              widget: "list",
+              required: false,
+              min: 5,
+              max: 5,
+              summary: "#{{fields.order}} - {{fields.title}}",
+              hint: "Five fronted images used in people preview/home strip.",
+              fields: [
+                { label: "Order", name: "order", widget: "select", options: [1, 2, 3, 4, 5], default: 1 },
+                { label: "Title", name: "title", widget: "string", required: false },
+                { label: "Subtitle", name: "subtitle", widget: "string", required: false },
+                { label: "Alt text", name: "alt", widget: "string", required: false, hint: "Describe the image for accessibility." },
+                {
+                  label: "Image",
+                  name: "src",
+                  widget: "image"
+                },
+                {
+                  label: "Crop position",
+                  name: "cropPosition",
+                  widget: "select",
+                  required: false,
+                  options: ["top", "center", "bottom"],
+                  default: "center",
+                  hint: "Controls vertical crop focus."
+                }
+              ]
+            }
+          - {
               label: "Gallery images",
               name: "galleryImages",
               widget: "list",
@@ -233,6 +281,89 @@ collections:
                   label: "Image",
                   name: "src",
                   widget: "image"
+                },
+                {
+                  label: "Crop position",
+                  name: "cropPosition",
+                  widget: "select",
+                  required: false,
+                  options: ["top", "center", "bottom"],
+                  default: "center",
+                  hint: "Controls vertical crop focus."
+                },
+              ]
+            }
+      - file: "src/pages/work-content.md"
+        label: "Work Page"
+        name: "work"
+        fields:
+          - {
+              label: "Template Key",
+              name: "templateKey",
+              widget: "hidden",
+              default: "work-page",
+            }
+          - {
+              label: "Visible",
+              name: "visible",
+              widget: "hidden",
+              default: false
+            }
+          - {
+              label: "Meta",
+              name: "meta",
+              widget: "object",
+              fields: [
+                { label: "SEO title", name: "title", widget: "string", required: false },
+                { label: "SEO description", name: "description", widget: "text", required: false }
+              ]
+            }
+          - {
+              label: "Hero",
+              name: "hero",
+              widget: "object",
+              fields: [
+                { label: "Eyebrow", name: "eyebrow", widget: "string", required: false },
+                { label: "Title", name: "title", widget: "string", required: false },
+                { label: "Status label", name: "statusLabel", widget: "string", required: false },
+                { label: "Status value", name: "statusValue", widget: "string", required: false }
+              ]
+            }
+          - {
+              label: "Featured videos (1-5)",
+              name: "featuredVideos",
+              widget: "list",
+              min: 5,
+              max: 5,
+              summary: "#{{fields.order}} - {{fields.title}}",
+              hint: "Use direct YouTube URLs (e.g. youtu.be links).",
+              fields: [
+                { label: "Order", name: "order", widget: "select", options: [1, 2, 3, 4, 5], default: 1 },
+                { label: "Title", name: "title", widget: "string" },
+                { label: "Subtitle", name: "subtitle", widget: "string", required: false },
+                { label: "Category label", name: "category", widget: "string", required: false },
+                { label: "Description", name: "description", widget: "text", required: false },
+                {
+                  label: "YouTube URL",
+                  name: "youtubeUrl",
+                  widget: "string",
+                  hint: "Example: https://youtu.be/S6D9-7q0-b4"
+                },
+                {
+                  label: "Thumbnail image (optional)",
+                  name: "thumbnail",
+                  widget: "image",
+                  required: false,
+                  hint: "Leave empty to auto-use YouTube thumbnail."
+                },
+                {
+                  label: "Crop position",
+                  name: "cropPosition",
+                  widget: "select",
+                  required: false,
+                  options: ["top", "center", "bottom"],
+                  default: "center",
+                  hint: "Controls vertical crop focus."
                 }
               ]
             }

@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { PeopleGalleryTemplate } from "../../templates/people-gallery"
+import { WorkPageTemplate } from "../../pages/work"
 
 const readImageUrl = (value, getAsset) => {
   if (!value) return ""
@@ -17,36 +17,31 @@ const readImageUrl = (value, getAsset) => {
   return ""
 }
 
-const mapImages = (items, getAsset) =>
-  (items || [])
-    .filter(item => item?.src)
-    .map(item => ({
-      ...item,
-      src: readImageUrl(item.src, getAsset),
-    }))
-
-const PeopleGalleryPreview = ({ entry, getAsset }) => {
+const WorkPagePreview = ({ entry, getAsset }) => {
   const entryData =
     entry.getIn(["data"]) || entry.getIn(["data", "frontmatter"]) || null
   const data = (entryData && entryData.toJS && entryData.toJS()) || entryData || {}
 
+  const featuredVideos = (data.featuredVideos || []).map(item => ({
+    ...item,
+    thumbnail: readImageUrl(item.thumbnail, getAsset),
+  }))
+
   return (
-    <PeopleGalleryTemplate
+    <WorkPageTemplate
       content={{
         hero: data.hero || {},
-        cta: data.cta || {},
-        featuredImages: mapImages(data.featuredImages, getAsset),
-        galleryImages: mapImages(data.galleryImages, getAsset),
+        featuredVideos,
       }}
     />
   )
 }
 
-PeopleGalleryPreview.propTypes = {
+WorkPagePreview.propTypes = {
   entry: PropTypes.shape({
     getIn: PropTypes.func,
   }),
   getAsset: PropTypes.func,
 }
 
-export default PeopleGalleryPreview
+export default WorkPagePreview

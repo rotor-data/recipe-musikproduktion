@@ -418,10 +418,27 @@ body {
   margin-bottom: 1.1rem;
 }
 
+.rec-section__head--left {
+  text-align: left;
+  margin-right: auto;
+  max-width: 780px;
+}
+
 .rec-section__head--right {
   text-align: right;
   margin-left: auto;
   max-width: 780px;
+}
+
+.rec-section__head--split {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.rec-section__head--split.rec-section__head--right {
+  flex-direction: row-reverse;
 }
 
 .rec-section__head--solutions {
@@ -482,7 +499,12 @@ body {
   overflow: hidden;
 }
 
-.rec-work-preview-card__media img,
+.rec-work-preview-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .rec-work-preview-card__media .gatsby-image-wrapper {
   width: 100%;
   height: 100%;
@@ -566,8 +588,15 @@ body {
 .rec-section__actions {
   margin-top: 1rem;
   display: flex;
-  justify-content: flex-end;
   gap: 0.6rem;
+}
+
+.rec-section__actions--left {
+  justify-content: flex-start;
+}
+
+.rec-section__actions--right {
+  justify-content: flex-end;
 }
 
 .rec-people-strip {
@@ -580,11 +609,19 @@ body {
 .rec-people-strip__item {
   border: 1px solid var(--rec-line);
   overflow: hidden;
+  aspect-ratio: 1 / 1;
 }
 
+.rec-people-strip__item img,
 .rec-people-strip__item .gatsby-image-wrapper {
   width: 100%;
-  aspect-ratio: 1/1;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.rec-people-strip__item .gatsby-image-wrapper img {
+  object-fit: cover !important;
 }
 
 .rec-solutions-grid {
@@ -796,6 +833,8 @@ body {
   text-align: left;
   color: inherit;
   padding: 0;
+  display: block;
+  text-decoration: none;
 }
 
 .rec-work__card-media {
@@ -808,7 +847,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1);
 }
 
 .rec-work__card-play {
@@ -900,17 +938,47 @@ body {
   gap: 1rem;
 }
 
+.rec-people__grid--featured {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-bottom: 1rem;
+}
+
+.rec-people__featured {
+  margin-bottom: 1.4rem;
+}
+
+.rec-people__featured-label {
+  margin: 0 0 0.7rem;
+  color: var(--rec-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-size: 0.54rem;
+  font-family: "Space Grotesk", "stratos", sans-serif;
+}
+
 .rec-people__item {
   background: transparent;
   border: 0;
   padding: 0;
   text-align: left;
   color: var(--rec-text);
+  cursor: pointer;
 }
 
-.rec-people__item .gatsby-image-wrapper {
-  width: 100%;
+.rec-people__media {
   aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.rec-people__media img,
+.rec-people__media .gatsby-image-wrapper {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rec-people__media .gatsby-image-wrapper img {
+  object-fit: cover !important;
 }
 
 .rec-people__caption {
@@ -1365,9 +1433,15 @@ body {
     letter-spacing: 0.1rem;
   }
 
+  .rec-section__head--split,
+  .rec-section__head--split.rec-section__head--right {
+    display: block;
+  }
+
   .rec-work-preview-grid,
   .rec-solutions-grid,
   .rec-work__videos,
+  .rec-people__grid--featured,
   .rec-people__grid,
   .rec-contact__actions {
     grid-template-columns: 1fr;

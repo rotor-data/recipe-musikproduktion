@@ -68,7 +68,9 @@ exports.createSchemaCustomization = ({ actions }) => {
       hero: Hero
       pageCopy: PageCopy
       logoBanner: LogoBanner
+      featuredImages: [GalleryImage]
       galleryImages: [GalleryImage]
+      featuredVideos: [FeaturedVideo]
     }
 
     type Hero @infer {
@@ -95,11 +97,13 @@ exports.createSchemaCustomization = ({ actions }) => {
       fullWidth: Boolean
       link: String
       linkLabel: String
+      cropPosition: String
     }
 
     type FlowBlockGalleryItem {
       image: File @fileByRelativePath
       bigText: String
+      cropPosition: String
     }
 
     type BottomCta {
@@ -120,10 +124,23 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type GalleryImage {
+      order: Int
       title: String
       subtitle: String
       alt: String
+      cropPosition: String
       src: File @fileByRelativePath
+    }
+
+    type FeaturedVideo {
+      order: Int
+      title: String
+      subtitle: String
+      description: String
+      category: String
+      youtubeUrl: String
+      thumbnail: String
+      cropPosition: String
     }
   `)
 }

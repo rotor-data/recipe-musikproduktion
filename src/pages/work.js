@@ -1,59 +1,34 @@
 import React, { useEffect, useMemo, useState } from "react"
-import VideoModal from "../components/VideoModal"
+import PropTypes from "prop-types"
+import { graphql } from "gatsby"
 import SeoHead from "../components/SeoHead"
-import { fetchYoutubeVideos } from "../lib/youtube"
+import { cropPositionToObjectPosition } from "../lib/imageCrop"
+import { normalizeCmsFeaturedVideos } from "../lib/youtube"
 
-const formatDate = dateValue => {
-  if (!dateValue) return ""
-  return new Date(dateValue).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  })
-}
-
-const WorkPage = () => {
-  const [videos, setVideos] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
-  const [selectedVideo, setSelectedVideo] = useState(null)
+export const WorkPageTemplate = ({ content = {} }) => {
+  const hero = content?.hero || {}
+  const videos = useMemo(
+    () => normalizeCmsFeaturedVideos(content?.featuredVideos || []).slice(0, 5),
+    [content?.featuredVideos]
+  )
   const [activeFilterLabel, setActiveFilterLabel] = useState("All tracks")
 
-  useEffect(() => {
-    const loadVideos = async () => {
-      try {
-        const data = await fetchYoutubeVideos()
-        setVideos(data)
-      } catch (loadError) {
-        console.error("Could not load videos", loadError)
-        setError(true)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    loadVideos()
-  }, [])
-
   const filters = useMemo(() => {
-    const tagSet = new Set()
-    videos.forEach(video => {
-      ;(video.tags || []).forEach(tag => {
-        const value = String(tag || "").trim()
-        if (value) {
-          tagSet.add(value)
-        }
-      })
-    })
+    const categories = Array.from(
+      new Set(videos.map(video => String(video.category || "").trim()).filter(Boolean))
+    )
 
-    const dynamic = Array.from(tagSet)
-      .slice(0, 6)
-      .map(tag => ({ label: tag, query: tag.toLowerCase() }))
-
-    return [{ label: "All tracks", query: "" }, ...dynamic]
+    return [
+      { label: "All tracks", query: "" },
+      ...categories.map(category => ({
+        label: category,
+        query: category.toLowerCase(),
+      })),
+    ]
   }, [videos])
 
-  const activeFilter = filters.find(filter => filter.label === activeFilterLabel) || filters[0]
+  const activeFilter =
+    filters.find(filter => filter.label === activeFilterLabel) || filters[0]
 
   useEffect(() => {
     if (!filters.some(filter => filter.label === activeFilterLabel)) {
@@ -67,12 +42,7 @@ const WorkPage = () => {
       return videos
     }
 
-    return videos.filter(video => {
-      const text = [video.title, video.description, ...(video.tags || [])]
-        .join(" ")
-        .toLowerCase()
-      return text.includes(query)
-    })
+    return videos.filter(video => String(video.category || "").toLowerCase() === query)
   }, [activeFilter, videos])
 
   return (
@@ -80,14 +50,16 @@ const WorkPage = () => {
       <section className="rec-shell rec-work">
         <header className="rec-work__header">
           <div>
-            <p className="rec-work__eyebrow">Archive // Selected works</p>
-            <h1 className="rec-work__title">Sonic Gallery</h1>
+            <p className="rec-work__eyebrow">{hero.eyebrow || "Archive // Featured videos"}</p>
+            <h1 className="rec-work__title">{hero.title || "Sonic Gallery"}</h1>
           </div>
           <div className="rec-work__status">
-            <span className="rec-work__status-label">Engine state</span>
+            <span className="rec-work__status-label">
+              {hero.statusLabel || "Engine state"}
+            </span>
             <span className="rec-work__status-value">
               <span className="rec-work__status-dot" />
-              ACTIVE_OUTPUT
+              {hero.statusValue || "CURATED_LINKS"}
             </span>
           </div>
         </header>
@@ -113,24 +85,10 @@ const WorkPage = () => {
               </div>
             </div>
 
-            <div className="rec-work__panel">
-              <span className="rec-work__panel-title">Signal strength</span>
-              <div className="rec-work__meter" aria-hidden="true">
-                <span style={{ height: "24%" }} />
-                <span style={{ height: "48%" }} />
-                <span style={{ height: "76%" }} />
-                <span style={{ height: "58%" }} />
-                <span style={{ height: "92%" }} />
-                <span style={{ height: "34%" }} />
-                <span style={{ height: "62%" }} />
-                <span style={{ height: "72%" }} />
-              </div>
-            </div>
-
             <div className="rec-work__panel rec-work__panel--mono">
               <span className="rec-work__panel-title">Session info</span>
               <div className="rec-work__session-list">
-                {["REC_PORT: 8080", "BUFFER: 512 SAMPLES", "CLK: INTERNAL", "MASTER_V: -2.4dB"].map((line, index) => (
+                {["SOURCE: CMS_LINKS", "ITEMS: 5 FEATURED", "FORMAT: YOUTUBE_URL", "MODE: MANUAL"].map((line, index) => (
                   <p key={`${line}-${index}`}>{line}</p>
                 ))}
               </div>
@@ -138,69 +96,129 @@ const WorkPage = () => {
           </aside>
 
           <div className="rec-work__videos">
-            {loading && (
-              <p className="rec-work__state">Loading selected work...</p>
-            )}
-
-            {error && (
-              <p className="rec-work__state rec-work__state--error">
-                Could not load videos right now. Please try again.
-              </p>
-            )}
-
-            {!loading && !error && filteredVideos.length === 0 && (
+            {filteredVideos.length === 0 && (
               <article className="rec-work__empty">
                 <h2>No matching videos</h2>
-                <p>Try another filter or check back soon for new releases.</p>
+                <p>Add featured videos in CMS or choose another filter.</p>
               </article>
             )}
 
-            {!loading && !error && filteredVideos.map(video => (
-              <button
-                key={video.id}
-                type="button"
+            {filteredVideos.map(video => (
+              <a
+                key={`${video.videoId || video.youtubeUrl}-${video.order}`}
+                href={video.youtubeUrl}
                 className="rec-work__card"
-                onClick={() => setSelectedVideo(video)}
-                aria-label={`Play ${video.title}`}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Open ${video.title} on YouTube`}
               >
                 <div className="rec-work__card-media">
-                  <img src={video.thumbnail} alt={video.title || "YouTube video"} />
+                  {video.thumbnail && (
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title || "YouTube video"}
+                      style={{ objectPosition: cropPositionToObjectPosition(video.cropPosition) }}
+                    />
+                  )}
                   <span className="rec-work__card-play" aria-hidden="true">
-                    <span>Play</span>
+                    <span>Watch</span>
                   </span>
                 </div>
                 <div className="rec-work__card-meta">
-                  <p className="rec-work__card-tag">
-                    {(video.tags && video.tags[0]) || "Selected work"}
-                  </p>
+                  <p className="rec-work__card-tag">{video.category || "Featured video"}</p>
                   <p className="rec-work__card-title">{video.title}</p>
-                  {video.description && (
-                    <p className="rec-work__card-desc">
-                      {video.description.replace(/\s+/g, " ").trim().slice(0, 140)}
-                      {video.description.length > 140 ? "..." : ""}
-                    </p>
-                  )}
-                  <p className="rec-work__card-date">
-                    {formatDate(video.publishedAt) || "YouTube"}
-                  </p>
+                  {video.description && <p className="rec-work__card-desc">{video.description}</p>}
+                  {video.subtitle && <p className="rec-work__card-date">{video.subtitle}</p>}
                 </div>
-              </button>
+              </a>
             ))}
           </div>
         </div>
       </section>
-
-      <VideoModal video={selectedVideo} onClose={() => setSelectedVideo(null)} />
     </main>
   )
 }
 
+WorkPageTemplate.propTypes = {
+  content: PropTypes.shape({
+    hero: PropTypes.shape({
+      eyebrow: PropTypes.string,
+      title: PropTypes.string,
+      statusLabel: PropTypes.string,
+      statusValue: PropTypes.string,
+    }),
+    featuredVideos: PropTypes.arrayOf(
+      PropTypes.shape({
+        order: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        title: PropTypes.string,
+        subtitle: PropTypes.string,
+        description: PropTypes.string,
+        category: PropTypes.string,
+        youtubeUrl: PropTypes.string,
+        thumbnail: PropTypes.string,
+        cropPosition: PropTypes.string,
+      })
+    ),
+  }),
+}
+
+const WorkPage = ({ data }) => {
+  const content = data?.workPage?.frontmatter || {}
+  return <WorkPageTemplate content={content} />
+}
+
 export default WorkPage
 
-export const Head = () => (
-  <SeoHead
-    title="Work | Recipe Music Production"
-    description="Selected work from Recipe Music Production."
-    slug="/work"
-  />
-)
+export const Head = ({ data }) => {
+  const meta = data?.workPage?.frontmatter?.meta || {}
+
+  return (
+    <SeoHead
+      title={meta.title || "Work | Recipe Music Production"}
+      description={meta.description || "Selected work from Recipe Music Production."}
+      slug="/work"
+    />
+  )
+}
+
+Head.propTypes = {
+  data: PropTypes.shape({
+    workPage: PropTypes.shape({
+      frontmatter: PropTypes.shape({
+        meta: PropTypes.shape({
+          title: PropTypes.string,
+          description: PropTypes.string,
+        }),
+      }),
+    }),
+  }),
+}
+
+export const query = graphql`
+  query WorkPageQuery {
+    workPage: markdownRemark(frontmatter: { templateKey: { eq: "work-page" } }) {
+      frontmatter {
+        meta {
+          title
+          description
+        }
+        hero {
+          eyebrow
+          title
+          statusLabel
+          statusValue
+        }
+        featuredVideos {
+          order
+          title
+          subtitle
+          description
+          category
+          youtubeUrl
+          thumbnail
+          cropPosition
+        }
+      }
+    }
+  }
+`

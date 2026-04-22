@@ -1,43 +1,61 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import { GatsbyImage } from "gatsby-plugin-image";
+import * as React from "react"
+import PropTypes from "prop-types"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const PreviewCompatibleImage = ({ imageInfo }) => {
-  //const imageStyle = { borderRadius: "5px" };
+  const {
+    alt = "",
+    childImageSharp,
+    image,
+    imageStyle = {},
+    imgStyle = {},
+    className,
+  } = imageInfo
 
-  const { alt = "", childImageSharp, image, imageStyle = { borderRadius: "5px" } } = imageInfo;
-
-  if (!!image && !!image.childImageSharp) {
+  if (image && image.childImageSharp) {
     return (
       <GatsbyImage
         image={image.childImageSharp.gatsbyImageData}
         style={imageStyle}
+        imgStyle={imgStyle}
         alt={alt}
+        className={className}
       />
-    );
-  } else if (!!childImageSharp) {
+    )
+  } else if (childImageSharp) {
     return (
       <GatsbyImage
         image={childImageSharp.gatsbyImageData}
         style={imageStyle}
+        imgStyle={imgStyle}
         alt={alt}
+        className={className}
       />
-    );
-    // for Netlify CMS 
+    )
+    // for Netlify CMS
   } else if (image) {
-    return <img style={{imageStyle}} src={image} alt={alt} />;
+    return (
+      <img
+        style={{ ...imageStyle, ...imgStyle }}
+        src={image}
+        alt={alt}
+        className={className}
+      />
+    )
   } else {
     return null
   }
-};
+}
 
 PreviewCompatibleImage.propTypes = {
   imageInfo: PropTypes.shape({
     alt: PropTypes.string,
     childImageSharp: PropTypes.object,
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
-    style: PropTypes.object,
+    imageStyle: PropTypes.object,
+    imgStyle: PropTypes.object,
+    className: PropTypes.string,
   }).isRequired,
-};
+}
 
-export default PreviewCompatibleImage;
+export default PreviewCompatibleImage

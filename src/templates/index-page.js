@@ -1,20 +1,20 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useMemo } from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import SeoHead from "../components/SeoHead"
 import MarkdownRenderer from "../components/MarkdownRenderer"
 import PreviewCompatibleImage from "../components/PreviewCompatibleImage"
-import { fetchYoutubeVideos } from "../lib/youtube"
+import { cropPositionToObjectPosition } from "../lib/imageCrop"
+import { normalizeCmsFeaturedVideos } from "../lib/youtube"
 
 export const IndexPageTemplate = ({
   content,
   peopleTeasers = [],
+  featuredVideos = [],
   fallbackLogos = [],
-  disableYoutubeFetch = false,
 }) => {
   const { hero, pageCopy = {}, solutions = {}, logoBanner = {} } = content
-  const [latestVideos, setLatestVideos] = useState([])
   const blocks = pageCopy.flowBlocks || []
   const studioBlock = blocks[0] || {}
   const workBlock = blocks[1] || {}
@@ -49,46 +49,22 @@ export const IndexPageTemplate = ({
 
   const workItems = (workBlock.galleryItems || [])
     .filter(item => item?.image && (item?.title || item?.subtitle))
-    .slice(0, 3)
+    .slice(0, 5)
 
-  useEffect(() => {
-    if (disableYoutubeFetch) {
-      setLatestVideos([])
-      return undefined
-    }
-
-    let active = true
-
-    const loadLatestVideos = async () => {
-      try {
-        const videos = await fetchYoutubeVideos()
-        if (active) setLatestVideos(videos.slice(0, 3))
-      } catch (error) {
-        console.error("Could not load latest videos", error)
-      }
-    }
-
-    loadLatestVideos()
-
-    return () => {
-      active = false
-    }
-  }, [disableYoutubeFetch])
+  const curatedVideos = useMemo(
+    () => normalizeCmsFeaturedVideos(featuredVideos || []).slice(0, 5),
+    [featuredVideos]
+  )
 
   const featuredWorkItems = useMemo(() => {
-    if (latestVideos.length) {
-      return latestVideos.map(video => ({
-        id: video.id,
+    if (curatedVideos.length) {
+      return curatedVideos.map(video => ({
+        id: video.videoId || video.youtubeUrl,
         title: video.title,
-        subtitle: video.publishedAt
-          ? new Date(video.publishedAt).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })
-          : "",
+        subtitle: video.subtitle,
         thumbnail: video.thumbnail,
-        link: `https://www.youtube.com/watch?v=${video.id}`,
+        cropPosition: video.cropPosition || "center",
+        link: video.youtubeUrl,
         external: true,
       }))
     }
@@ -98,10 +74,28 @@ export const IndexPageTemplate = ({
       title: item.title,
       subtitle: item.subtitle,
       image: item.image,
+      cropPosition: item.cropPosition || "center",
       link: item.link || "/work",
       external: false,
     }))
-  }, [latestVideos, workItems])
+  }, [curatedVideos, workItems])
+
+  const workHeadClass =
+    workBlock.highlightPosition === "right"
+      ? "rec-section__head rec-section__head--split rec-section__head--right"
+      : "rec-section__head rec-section__head--split rec-section__head--left"
+  const studioHeadClass =
+    studioBlock.highlightPosition === "left"
+      ? "rec-section__head rec-section__head--left"
+      : "rec-section__head rec-section__head--right"
+  const peopleHeadClass =
+    peopleBlock.highlightPosition === "left"
+      ? "rec-section__head rec-section__head--left"
+      : "rec-section__head rec-section__head--right"
+  const peopleActionsClass =
+    peopleBlock.highlightPosition === "left"
+      ? "rec-section__actions rec-section__actions--left"
+      : "rec-section__actions rec-section__actions--right"
 
   const heroImage = getImage(hero?.image)
 
@@ -194,7 +188,7 @@ export const IndexPageTemplate = ({
       )}
 
       <section className="rec-section rec-shell">
-        <div className="rec-section__head">
+        <div className={workHeadClass}>
           <h2 className="rec-section__title">
             {workBlock.highlight?.pretitle || "Work"}:
             <br />
@@ -215,12 +209,23 @@ export const IndexPageTemplate = ({
             >
               <div className="rec-work-preview-card__media">
                 {item.thumbnail ? (
-                  <img src={item.thumbnail} alt={item.title || "Project"} />
+                  <img
+                    src={item.thumbnail}
+                    alt={item.title || "Project"}
+                    style={{
+                      objectPosition: cropPositionToObjectPosition(item.cropPosition),
+                    }}
+                  />
                 ) : (
                   <PreviewCompatibleImage
                     imageInfo={{
                       image: item.image,
                       alt: item.title || "Project",
+                      imageStyle: { width: "100%", height: "100%" },
+                      imgStyle: {
+                        objectFit: "cover",
+                        objectPosition: cropPositionToObjectPosition(item.cropPosition),
+                      },
                     }}
                   />
                 )}
@@ -235,7 +240,7 @@ export const IndexPageTemplate = ({
       </section>
 
       <section className="rec-section rec-shell rec-section--studio">
-        <div className="rec-section__head rec-section__head--right">
+        <div className={studioHeadClass}>
           <h2 className="rec-section__title">
             {studioBlock.highlight?.pretitle || "Studio"}:
             <br />
@@ -254,6 +259,11 @@ export const IndexPageTemplate = ({
                     imageInfo={{
                       image: card.image,
                       alt: card.title || "Service",
+                      imageStyle: { width: "100%", height: "100%" },
+                      imgStyle: {
+                        objectFit: "cover",
+                        objectPosition: cropPositionToObjectPosition(card.cropPosition),
+                      },
                     }}
                   />
                 </div>
@@ -269,7 +279,7 @@ export const IndexPageTemplate = ({
       </section>
 
       <section className="rec-section rec-shell rec-section--people">
-        <div className="rec-section__head rec-section__head--right">
+        <div className={peopleHeadClass}>
           <h2 className="rec-section__title">
             {peopleBlock.highlight?.pretitle || "People"}:
             <br />
@@ -278,7 +288,7 @@ export const IndexPageTemplate = ({
           {peopleBlock.highlight?.body && (
             <p className="rec-section__lead">{peopleBlock.highlight.body}</p>
           )}
-          <div className="rec-section__actions">
+          <div className={peopleActionsClass}>
             <a href={peoplePrimaryCtaHref} className="rec-button rec-button--ghost">
               {peoplePrimaryCtaText}
             </a>
@@ -290,8 +300,7 @@ export const IndexPageTemplate = ({
         {peopleTeasers.length > 0 && (
           <div className="rec-people-strip">
             {peopleTeasers.map((item, index) => {
-              const imageData = getImage(item.image)
-              if (!imageData) return null
+              if (!item?.image) return null
 
               return (
                 <a
@@ -300,7 +309,17 @@ export const IndexPageTemplate = ({
                   key={`${item.alt || "people"}-${index}`}
                   aria-label={`Open people gallery: ${item.alt || "image"}`}
                 >
-                  <GatsbyImage image={imageData} alt={item.alt || "People teaser"} />
+                  <PreviewCompatibleImage
+                    imageInfo={{
+                      image: item.image,
+                      alt: item.alt || "People teaser",
+                      imageStyle: { width: "100%", height: "100%" },
+                      imgStyle: {
+                        objectFit: "cover",
+                        objectPosition: cropPositionToObjectPosition(item.cropPosition),
+                      },
+                    }}
+                  />
                 </a>
               )
             })}
@@ -352,10 +371,12 @@ IndexPageTemplate.propTypes = {
   }),
   peopleTeasers: PropTypes.arrayOf(
     PropTypes.shape({
-      image: PropTypes.object,
+      image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
       alt: PropTypes.string,
+      cropPosition: PropTypes.string,
     })
   ),
+  featuredVideos: PropTypes.arrayOf(PropTypes.object),
   fallbackLogos: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -364,12 +385,13 @@ IndexPageTemplate.propTypes = {
       href: PropTypes.string,
     })
   ),
-  disableYoutubeFetch: PropTypes.bool,
 }
 
 const IndexPage = ({ data }) => {
   const content = data.markdownRemark.frontmatter
   const galleryImages = data.peopleGallery?.frontmatter?.galleryImages || []
+  const featuredPeopleImages = data.peopleGallery?.frontmatter?.featuredImages || []
+  const teaserSource = featuredPeopleImages.length ? featuredPeopleImages : galleryImages
   const fallbackLogos = (data.logoGallery?.edges || [])
     .map(({ node }) => ({
       id: node?.name || "",
@@ -380,7 +402,7 @@ const IndexPage = ({ data }) => {
     .filter(item => item.image)
 
   const teaserSeen = new Set()
-  const peopleTeasers = galleryImages
+  const peopleTeasers = teaserSource
     .filter(image => image?.src)
     .filter(image => {
       const key = image?.src?.childImageSharp?.gatsbyImageData?.images?.fallback?.src || image?.src
@@ -388,10 +410,29 @@ const IndexPage = ({ data }) => {
       teaserSeen.add(key)
       return true
     })
-    .map(image => ({ image: image.src, alt: image.alt || image.title }))
-    .slice(0, 6)
+    .map(image => ({
+      image: image.src,
+      alt: image.alt || image.title,
+      cropPosition: image.cropPosition || "center",
+      order: Number(image.order) || 0,
+    }))
+    .sort((a, b) => {
+      const left = a.order || Number.MAX_SAFE_INTEGER
+      const right = b.order || Number.MAX_SAFE_INTEGER
+      return left - right
+    })
+    .slice(0, 5)
 
-  return <IndexPageTemplate content={content} peopleTeasers={peopleTeasers} fallbackLogos={fallbackLogos} />
+  const featuredVideos = data.workPage?.frontmatter?.featuredVideos || []
+
+  return (
+    <IndexPageTemplate
+      content={content}
+      peopleTeasers={peopleTeasers}
+      featuredVideos={featuredVideos}
+      fallbackLogos={fallbackLogos}
+    />
+  )
 }
 
 export default IndexPage
@@ -462,17 +503,13 @@ export const query = graphql`
             }
             showGallery
             galleryItems {
+              cropPosition
               image {
                 childImageSharp {
                   gatsbyImageData(
                     quality: 80
                     layout: CONSTRAINED
-                    transformOptions: {
-                      cropFocus: CENTER
-                      fit: COVER
-                    }
                     width: 800
-                    height: 360
                   )
                 }
               }
@@ -488,17 +525,13 @@ export const query = graphql`
               fullWidth
               link
               linkLabel
+              cropPosition
               image {
                 childImageSharp {
                   gatsbyImageData(
                     quality: 90
                     layout: CONSTRAINED
-                    transformOptions: {
-                      cropFocus: CENTER
-                      fit: COVER
-                    }
                     width: 900
-                    height: 360
                   )
                 }
               }
@@ -530,21 +563,38 @@ export const query = graphql`
     }
     peopleGallery: markdownRemark(frontmatter: { templateKey: { eq: "people-gallery" } }) {
       frontmatter {
+        featuredImages {
+          order
+          title
+          alt
+          cropPosition
+          src {
+            childImageSharp {
+              gatsbyImageData(width: 520 quality: 82 placeholder: BLURRED layout: CONSTRAINED)
+            }
+          }
+        }
         galleryImages {
           title
           alt
+          cropPosition
           src {
             childImageSharp {
-              gatsbyImageData(
-                width: 520
-                height: 520
-                quality: 82
-                placeholder: BLURRED
-                layout: CONSTRAINED
-                transformOptions: { fit: COVER, cropFocus: CENTER, grayscale: true }
-              )
+              gatsbyImageData(width: 520 quality: 82 placeholder: BLURRED layout: CONSTRAINED)
             }
           }
+        }
+      }
+    }
+    workPage: markdownRemark(frontmatter: { templateKey: { eq: "work-page" } }) {
+      frontmatter {
+        featuredVideos {
+          order
+          title
+          subtitle
+          youtubeUrl
+          thumbnail
+          cropPosition
         }
       }
     }

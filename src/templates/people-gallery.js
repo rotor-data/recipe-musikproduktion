@@ -1,33 +1,81 @@
 import React, { useMemo, useState } from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import SeoHead from "../components/SeoHead"
+import PreviewCompatibleImage from "../components/PreviewCompatibleImage"
+import { cropPositionToObjectPosition } from "../lib/imageCrop"
 
-const PeopleGalleryPage = ({ data }) => {
+const imageSourceKey = source => {
+  if (!source) return ""
+  if (typeof source === "string") return source
+  return (
+    source?.childImageSharp?.gatsbyImageData?.images?.fallback?.src ||
+    source?.publicURL ||
+    source?.src ||
+    ""
+  )
+}
+
+const normalizeItems = items =>
+  (items || [])
+    .filter(item => item?.src)
+    .map(item => ({
+      image: item.src,
+      alt: item.alt || item.title || "Gallery image",
+      title: item.title || "",
+      subtitle: item.subtitle || "",
+      cropPosition: item.cropPosition || "center",
+      order: Number(item.order) || 0,
+    }))
+
+export const PeopleGalleryTemplate = ({ content = {} }) => {
   const [activeImage, setActiveImage] = useState(null)
-  const frontmatter = data.markdownRemark.frontmatter
-  const galleryImages = frontmatter.galleryImages || []
-  const hero = frontmatter.hero || {}
-  const cta = frontmatter.cta || {}
+  const hero = content.hero || {}
+  const cta = content.cta || {}
+  const featured = useMemo(
+    () =>
+      normalizeItems(content.featuredImages || [])
+        .sort((a, b) => {
+          const left = a.order || Number.MAX_SAFE_INTEGER
+          const right = b.order || Number.MAX_SAFE_INTEGER
+          return left - right
+        })
+        .slice(0, 5),
+    [content.featuredImages]
+  )
+  const gallery = useMemo(() => normalizeItems(content.galleryImages || []), [content.galleryImages])
 
-  const images = useMemo(() => {
-    const seen = new Set()
-    return galleryImages
-      .filter(item => item?.src)
-      .filter(item => {
-        const key = item?.src?.childImageSharp?.gatsbyImageData?.images?.fallback?.src || item?.src
-        if (!key || seen.has(key)) return false
-        seen.add(key)
-        return true
-      })
-      .map(item => ({
-        image: item.src,
-        alt: item.alt || item.title || "Gallery image",
-        title: item.title,
-        subtitle: item.subtitle || "",
-      }))
-  }, [galleryImages])
+  const featuredKeys = new Set(featured.map(item => imageSourceKey(item.image)).filter(Boolean))
+  const remainingGallery = gallery.filter(item => !featuredKeys.has(imageSourceKey(item.image)))
+  const allGalleryItems = featured.length ? remainingGallery : gallery
+
+  const renderGalleryItem = (item, index, keyPrefix) => (
+    <button
+      key={`${keyPrefix}-${item.title || "gallery"}-${index}`}
+      type="button"
+      className="rec-people__item"
+      onClick={() => setActiveImage(item)}
+      aria-label={`Open ${item.alt}`}
+    >
+      <div className="rec-people__media">
+        <PreviewCompatibleImage
+          imageInfo={{
+            image: item.image,
+            alt: item.alt,
+            imageStyle: { width: "100%", height: "100%" },
+            imgStyle: {
+              objectFit: "cover",
+              objectPosition: cropPositionToObjectPosition(item.cropPosition),
+            },
+          }}
+        />
+      </div>
+      <span className="rec-people__caption">
+        <strong className="rec-people__caption-title">{item.title || "Studio"}</strong>
+        {item.subtitle && <em>{item.subtitle}</em>}
+      </span>
+    </button>
+  )
 
   return (
     <main className="rec-page rec-people-page">
@@ -38,39 +86,23 @@ const PeopleGalleryPage = ({ data }) => {
           {hero.lead && <p className="rec-people__lead">{hero.lead}</p>}
         </header>
 
-        <div className="rec-people__grid">
-          {images.map((item, index) => {
-            const imageData = getImage(item.image)
-            if (!imageData) {
-              return null
-            }
+        {featured.length > 0 && (
+          <section className="rec-people__featured">
+            <p className="rec-people__featured-label">Featured</p>
+            <div className="rec-people__grid rec-people__grid--featured">
+              {featured.map((item, index) => renderGalleryItem(item, index, "featured"))}
+            </div>
+          </section>
+        )}
 
-            return (
-              <button
-                key={`${item.title || "gallery"}-${index}`}
-                type="button"
-                className="rec-people__item"
-                onClick={() => setActiveImage(item)}
-                aria-label={`Open ${item.alt}`}
-              >
-                <GatsbyImage image={imageData} alt={item.alt} />
-                <span className="rec-people__caption">
-                  <strong className="rec-people__caption-title">{item.title || "Studio"}</strong>
-                  {item.subtitle && <em>{item.subtitle}</em>}
-                </span>
-              </button>
-            )
-          })}
+        <div className="rec-people__grid">
+          {allGalleryItems.map((item, index) => renderGalleryItem(item, index, "gallery"))}
         </div>
 
         {(cta.title || cta.linkText) && (
           <div className="rec-people__cta">
             {cta.title && <h2>{cta.title}</h2>}
-            {cta.linkText && (
-              <a href={cta.linkHref || "/contact"}>
-                {cta.linkText}
-              </a>
-            )}
+            {cta.linkText && <a href={cta.linkHref || "/contact"}>{cta.linkText}</a>}
           </div>
         )}
       </section>
@@ -78,15 +110,18 @@ const PeopleGalleryPage = ({ data }) => {
       {activeImage && (
         <div className="image-flow-grid__modal" onClick={() => setActiveImage(null)}>
           <div className="image-flow-grid__modal-content">
-            <GatsbyImage
-              image={getImage(activeImage.image)}
-              alt={activeImage.alt}
-              style={{ width: "auto", maxWidth: "95vw", maxHeight: "calc(100vh - 4rem)" }}
-              imgStyle={{ objectFit: "contain" }}
+            <PreviewCompatibleImage
+              imageInfo={{
+                image: activeImage.image,
+                alt: activeImage.alt,
+                imageStyle: { width: "auto", maxWidth: "95vw", maxHeight: "calc(100vh - 4rem)" },
+                imgStyle: {
+                  objectFit: "contain",
+                  objectPosition: cropPositionToObjectPosition(activeImage.cropPosition),
+                },
+              }}
             />
-            {activeImage.title && (
-              <p className="image-flow-grid__modal-title">{activeImage.title}</p>
-            )}
+            {activeImage.title && <p className="image-flow-grid__modal-title">{activeImage.title}</p>}
           </div>
         </div>
       )}
@@ -94,19 +129,49 @@ const PeopleGalleryPage = ({ data }) => {
   )
 }
 
+PeopleGalleryTemplate.propTypes = {
+  content: PropTypes.shape({
+    hero: PropTypes.shape({
+      kicker: PropTypes.string,
+      pageTitle: PropTypes.string,
+      lead: PropTypes.string,
+    }),
+    cta: PropTypes.shape({
+      title: PropTypes.string,
+      linkText: PropTypes.string,
+      linkHref: PropTypes.string,
+    }),
+    featuredImages: PropTypes.arrayOf(
+      PropTypes.shape({
+        order: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        title: PropTypes.string,
+        subtitle: PropTypes.string,
+        alt: PropTypes.string,
+        cropPosition: PropTypes.string,
+        src: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+      })
+    ),
+    galleryImages: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        subtitle: PropTypes.string,
+        alt: PropTypes.string,
+        cropPosition: PropTypes.string,
+        src: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+      })
+    ),
+  }),
+}
+
+const PeopleGalleryPage = ({ data }) => {
+  const frontmatter = data.markdownRemark.frontmatter
+  return <PeopleGalleryTemplate content={frontmatter} />
+}
+
 PeopleGalleryPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.shape({
-      frontmatter: PropTypes.shape({
-        galleryImages: PropTypes.arrayOf(
-          PropTypes.shape({
-            title: PropTypes.string,
-            subtitle: PropTypes.string,
-            alt: PropTypes.string,
-            src: PropTypes.object,
-          })
-        ),
-      }),
+      frontmatter: PropTypes.object,
     }),
   }).isRequired,
 }
@@ -145,20 +210,26 @@ export const pageQuery = graphql`
           linkText
           linkHref
         }
+        featuredImages {
+          order
+          title
+          subtitle
+          alt
+          cropPosition
+          src {
+            childImageSharp {
+              gatsbyImageData(width: 560 quality: 82 placeholder: BLURRED layout: CONSTRAINED)
+            }
+          }
+        }
         galleryImages {
           title
           subtitle
           alt
+          cropPosition
           src {
             childImageSharp {
-              gatsbyImageData(
-                width: 560
-                height: 560
-                quality: 82
-                placeholder: BLURRED
-                layout: CONSTRAINED
-                transformOptions: { fit: COVER, cropFocus: CENTER, grayscale: true }
-              )
+              gatsbyImageData(width: 560 quality: 82 placeholder: BLURRED layout: CONSTRAINED)
             }
           }
         }

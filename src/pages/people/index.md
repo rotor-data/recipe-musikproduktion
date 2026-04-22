@@ -13,6 +13,37 @@ cta:
   title: Session inquiries
   linkText: Connect with the studio
   linkHref: /contact
+featuredImages:
+  - order: 1
+    title: Recording Nights
+    subtitle: Late sessions on Södermalm
+    alt: Mixing engineer writing notes
+    src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
+    cropPosition: center
+  - order: 2
+    title: Dusty
+    subtitle: ''
+    alt: Dusty playing keys
+    src: /img/Dusty.jpg
+    cropPosition: center
+  - order: 3
+    title: Daniel & Amy
+    subtitle: ''
+    alt: Daniel and Amy sharing headphones
+    src: /img/IMG_0145-2.jpeg
+    cropPosition: center
+  - order: 4
+    title: Energy
+    subtitle: ''
+    alt: Band in the booth
+    src: /img/IMG_0251.jpg
+    cropPosition: center
+  - order: 5
+    title: Creative Stills
+    subtitle: Moments between takes
+    alt: Artist laughing in studio
+    src: /img/IMG_0364-2.JPG
+    cropPosition: center
 galleryImages:
   - title: Recording Nights
     subtitle: Late sessions on Södermalm
