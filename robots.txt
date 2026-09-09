@@ -1,2 +1,0 @@
-User-agent: *
-Sitemap: https://recipemusikproduktion.se/sitemap/sitemap-0.xml

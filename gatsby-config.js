@@ -67,6 +67,14 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        host: "https://recipemusikproduktion.se",
+        sitemap: "https://recipemusikproduktion.se/sitemap-index.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
+    {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: "gatsby-source-filesystem",
       options: {
