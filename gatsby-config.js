@@ -8,7 +8,7 @@ module.exports = {
     title: "Recipe Music Production - Professional sound in every detail",
     description:
       "Recipe Music Production is a professional music studio in Stockholm. We offer music production, podcast recording, mixing, mastering, and sound design for artists, companies, and creators.",
-    siteUrl: "https://www.recipemusikproduktion.se/",
+    siteUrl: "https://recipemusikproduktion.se/",
     socialLinks: {
       facebook: "",
       twitter: "",
