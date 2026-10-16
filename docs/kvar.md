@@ -13,6 +13,14 @@
   Tompa och Matilda, Samuel Gustafsson, Rafael Edholm & Co, Steffe
   Sundström, Jocke och Steffe, Rickard Linda och Jany, Fender Rhodes MK1,
   Pianissimo. Bilderna följde aldrig med i flytten.
+- **`galleryItems` i Work-blocket ritas aldrig.** Fältet finns i CMS:et med
+  hjälptexten "visual teaser cards", men startsidan visar videor i stället.
+  Det ritas bara om YouTube-hämtningen misslyckas. Antingen renderas det
+  någonstans, eller så tas fältet bort ur `static/admin/config.yml`.
+- **Work-sidan använder fortfarande bara CMS-listan** för videor. Startsidan
+  hämtar dynamiskt; `src/pages/work.js` gör det inte, och eftersom listan nu
+  är tom visar den inga videor alls. Sidan är dold (`visible: false`) så det
+  märks inte än.
 - **5 identiska favicon-par** i både `src/img/favicons/` och
   `static/img/favicons/` — samma sha256.
 - **`work-content.md` har `visible: false`** — Work-sidan byggs inte. Avsiktligt?
