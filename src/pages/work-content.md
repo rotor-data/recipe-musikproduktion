@@ -11,19 +11,19 @@ hero:
   statusValue: CURATED_LINKS
 featuredVideos:
   - order: 1
-    title: Featured video 1
-    subtitle: Add subtitle in CMS
-    description: Add a short description in CMS.
+    title: Eurobank
+    subtitle: Athen
+    description: ""
     category: Selected work
     youtubeUrl: https://youtu.be/S6D9-7q0-b4
     thumbnail: ""
     cropPosition: center
   - order: 2
-    title: Featured video 2
+    title: Sverigeautomaten
     subtitle: Add subtitle in CMS
-    description: Add a short description in CMS.
+    description: ""
     category: Selected work
-    youtubeUrl: https://youtu.be/S6D9-7q0-b4
+    youtubeUrl: https://youtu.be/OgLL8gzZCzQ
     thumbnail: ""
     cropPosition: center
   - order: 3
