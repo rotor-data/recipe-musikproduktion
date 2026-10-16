@@ -8,10 +8,10 @@ meta:
 hero:
   kicker: The collective / 2026 archive
   pageTitle: People
-  lead: 'Efficient sessions, clear communication, and consistent delivery. We value the chemistry of creative collaboration.'
+  lead: Folks in the studio..
 cta:
   title: Session inquiries
-  linkText: Connect with the studio
+  linkText: Connect with us
   linkHref: /contact
 featuredImages:
   - title: 'Boden-Jocke'
