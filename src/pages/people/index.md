@@ -15,210 +15,210 @@ cta:
   linkHref: /contact
 featuredImages:
   - order: 1
-    title: Recording Nights
-    subtitle: Late sessions on Södermalm
-    alt: Mixing engineer writing notes
+    title: 'Boden-Jocke'
+    subtitle: ''
+    alt: 'Boden-Jocke'
     src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
     cropPosition: center
   - order: 2
-    title: Dusty
+    title: 'Dusty Monroe'
     subtitle: ''
-    alt: Dusty playing keys
+    alt: 'Dusty Monroe'
     src: /img/Dusty.jpg
     cropPosition: center
   - order: 3
-    title: Daniel & Amy
+    title: 'Daniel P & Amy D'
     subtitle: ''
-    alt: Daniel and Amy sharing headphones
+    alt: 'Daniel P & Amy D'
     src: /img/IMG_0145-2.jpeg
     cropPosition: center
   - order: 4
-    title: Energy
+    title: 'Boden-Åke'
     subtitle: ''
-    alt: Band in the booth
+    alt: 'Boden-Åke'
     src: /img/IMG_0251.jpg
     cropPosition: center
   - order: 5
-    title: Creative Stills
-    subtitle: Moments between takes
-    alt: Artist laughing in studio
+    title: 'Kim Kärnfalk'
+    subtitle: ''
+    alt: 'Kim Kärnfalk'
     src: /img/IMG_0364-2.JPG
     cropPosition: center
 galleryImages:
-  - title: Recording Nights
-    subtitle: Late sessions on Södermalm
-    alt: Mixing engineer writing notes
+  - title: 'Boden-Jocke'
+    subtitle: ''
+    alt: 'Boden-Jocke'
     src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
-  - title: Dusty
+  - title: 'Dusty Monroe'
     subtitle: ''
-    alt: Dusty playing keys
+    alt: 'Dusty Monroe'
     src: /img/Dusty.jpg
-  - title: Daniel & Amy
+  - title: 'Daniel P & Amy D'
     subtitle: ''
-    alt: Daniel and Amy sharing headphones
+    alt: 'Daniel P & Amy D'
     src: /img/IMG_0145-2.jpeg
-  - title: Energy
+  - title: 'Boden-Åke'
     subtitle: ''
-    alt: Band in the booth
+    alt: 'Boden-Åke'
     src: /img/IMG_0251.jpg
-  - title: Creative Stills
-    subtitle: Moments between takes
-    alt: Artist laughing in studio
+  - title: 'Kim Kärnfalk'
+    subtitle: ''
+    alt: 'Kim Kärnfalk'
     src: /img/IMG_0364-2.JPG
-  - title: Sunlit
+  - title: ''
     subtitle: ''
-    alt: Singer with sun flare
+    alt: ''
     src: /img/IMG_0401.jpg
-  - title: Calm
+  - title: 'Ronnie Gardiner'
     subtitle: ''
-    alt: Musicians resting
+    alt: 'Ronnie Gardiner'
     src: /img/IMG_0442.jpg
-  - title: City Light
-    subtitle: Evening vibes circulating
-    alt: Neon reflections
+  - title: 'Ronnies dubbla kaggar'
+    subtitle: ''
+    alt: 'Ronnies dubbla kaggar'
     src: /img/IMG_0444.jpg
-  - title: Impulse
+  - title: 'Per Lindvall'
     subtitle: ''
-    alt: Musician gazing outward
+    alt: 'Per Lindvall'
     src: /img/IMG_0558-NY.jpg
-  - title: Raw
+  - title: ''
     subtitle: ''
-    alt: Hand on guitar neck
+    alt: ''
     src: /img/IMG_0663.JPG
-  - title: Tones
+  - title: ''
     subtitle: ''
-    alt: Studio control room
+    alt: ''
     src: /img/IMG_0664.jpg
-  - title: Daily Practice
-    subtitle: Working beats until dawn
-    alt: Headphones and cables
+  - title: ''
+    subtitle: ''
+    alt: ''
     src: /img/IMG_0685.jpg
-  - title: Moments
+  - title: 'Frida Öhrn'
     subtitle: ''
-    alt: People laughing in hallway
+    alt: 'Frida Öhrn'
     src: /img/IMG_0725.jpg
-  - title: Microphone
+  - title: ''
     subtitle: ''
-    alt: Close-up capsule
+    alt: ''
     src: /img/IMG_0931.jpg
-  - title: Studio Air
+  - title: 'Klas Toresson'
     subtitle: ''
-    alt: Shadows over keys
+    alt: 'Klas Toresson'
     src: /img/IMG_0939-2.jpg
-  - title: Confidence
+  - title: 'Jonas Thorell'
     subtitle: ''
-    alt: Artist looking ahead
+    alt: 'Jonas Thorell'
     src: /img/IMG_0963.JPG
-  - title: Moments
+  - title: 'Kalle Annmo'
     subtitle: ''
-    alt: Lower angle portrait
+    alt: 'Kalle Annmo'
     src: /img/IMG_1094.JPG
-  - title: Golden Hour
+  - title: 'Andreas Tiliander'
     subtitle: ''
-    alt: Backlit faces
+    alt: 'Andreas Tiliander'
     src: /img/IMG_1244.jpeg
-  - title: Journey
+  - title: ''
     subtitle: ''
-    alt: Traveler with guitar
+    alt: ''
     src: /img/IMG_1471.jpg
-  - title: Focus
+  - title: ''
     subtitle: ''
-    alt: Producer monitoring sound
+    alt: ''
     src: /img/IMG_1472.jpg
-  - title: Break
+  - title: 'Nicklas Thelin'
     subtitle: ''
-    alt: Two friends sharing a laugh
+    alt: 'Nicklas Thelin'
     src: /img/IMG_1473.jpg
-  - title: Night Shift
-    subtitle: Hours melt into music
-    alt: Neurotic studio glow
+  - title: 'Gustaf Hielm'
+    subtitle: ''
+    alt: 'Gustaf Hielm'
     src: /img/IMG_1694-2.jpeg
-  - title: Contours
+  - title: 'Theddy och Marika'
     subtitle: ''
-    alt: Backlit silhouette
+    alt: 'Theddy och Marika'
     src: /img/IMG_2126.jpg
-  - title: Pulse
+  - title: 'Kleerup'
     subtitle: ''
-    alt: Artist mid-gesture
+    alt: 'Kleerup'
     src: /img/IMG_2320.jpg
-  - title: Studio Ritual
-    subtitle: Experimenting with textures
-    alt: Hands and analog gear
+  - title: 'Helena och Hanna'
+    subtitle: ''
+    alt: 'Helena och Hanna'
     src: /img/IMG_2407-2.JPG
-  - title: Momentum
+  - title: ''
     subtitle: ''
-    alt: Vibes from the control room
+    alt: ''
     src: /img/IMG_2571-2.JPG
-  - title: Horizons
+  - title: ''
     subtitle: ''
-    alt: Window light over faces
+    alt: ''
     src: /img/IMG_3033.jpeg
-  - title: Late Hours
-    subtitle: Studio family
-    alt: People around a table
+  - title: 'Rennie Mirro'
+    subtitle: ''
+    alt: 'Rennie Mirro'
     src: /img/IMG_3168.jpeg
-  - title: Intensity
+  - title: 'Tobias Fjälling'
     subtitle: ''
-    alt: Focused drummer
+    alt: 'Tobias Fjälling'
     src: /img/IMG_3189.JPG
-  - title: Lean In
+  - title: 'Sonor Phonics 75'''
     subtitle: ''
-    alt: Whispering conversation
+    alt: 'Sonor Phonics 75'''
     src: /img/IMG_3957-1.jpg
-  - title: Momentum
+  - title: 'Boden-Stefan'
     subtitle: ''
-    alt: High energy session
+    alt: 'Boden-Stefan'
     src: /img/IMG_4872-1.jpg
-  - title: Continuum
-    subtitle: Days fuse into nights
-    alt: Musicians in rehearsal
+  - title: ''
+    subtitle: ''
+    alt: ''
     src: /img/IMG_7231.JPG
-  - title: Sync
+  - title: 'Anders Löwstedt'
     subtitle: ''
-    alt: Duo playing together
+    alt: 'Anders Löwstedt'
     src: /img/IMG_7289-3.JPG
-  - title: Composition
+  - title: 'Nina Johan & Erika'
     subtitle: ''
-    alt: Hands sketching melodies
+    alt: 'Nina Johan & Erika'
     src: /img/IMG_E0664.jpg
-  - title: Stillness
-    subtitle: Focused in the calm
-    alt: Quiet studio moment
+  - title: 'Owe Thörnqvist'
+    subtitle: ''
+    alt: 'Owe Thörnqvist'
     src: /img/IMG_E0679.jpg
-  - title: Presence
+  - title: ''
     subtitle: ''
-    alt: Intense stare
+    alt: ''
     src: /img/IMG_E0680.jpg
-  - title: Gathered
+  - title: ''
     subtitle: ''
-    alt: Group huddle
+    alt: ''
     src: /img/IMG_E0685.JPG
-  - title: Portraits
+  - title: 'Bengan Jansson'
     subtitle: ''
-    alt: Close headshot
+    alt: 'Bengan Jansson'
     src: /img/IMG_E0932.jpg
-  - title: Stories
-    subtitle: Friends around sound
-    alt: Chatting on the sofa
+  - title: ''
+    subtitle: ''
+    alt: ''
     src: /img/IMG_E0963.jpg
-  - title: Familiar
+  - title: ''
     subtitle: ''
-    alt: Cozy sofa
+    alt: ''
     src: /img/lucette.jpg
-  - title: Captured
+  - title: 'Marcus Sofia och Jocke'
     subtitle: ''
-    alt: Playful expression
+    alt: 'Marcus Sofia och Jocke'
     src: /img/Soffan-mackan(1).jpg
-  - title: Essence
+  - title: 'Sture Zetterberg'
     subtitle: ''
-    alt: Focused eyes
+    alt: 'Sture Zetterberg'
     src: /img/Stu.jpg
-  - title: Kinetic
-    subtitle: Energy in motion
-    alt: Movement shot
-    src: /img/UNADJUSTEDNONRAW_thumb_4c5.jpg
-  - title: Glance
+  - title: ''
     subtitle: ''
-    alt: Thoughtful gaze
+    alt: ''
+    src: /img/UNADJUSTEDNONRAW_thumb_4c5.jpg
+  - title: ''
+    subtitle: ''
+    alt: ''
     src: /img/UNADJUSTEDNONRAW_thumb_4c9.jpg
 ---
