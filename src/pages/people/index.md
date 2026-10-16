@@ -65,10 +65,6 @@ galleryImages:
     subtitle: Moments between takes
     alt: Artist laughing in studio
     src: /img/IMG_0364-2.JPG
-  - title: Focus
-    subtitle: ''
-    alt: Producer looking at screen
-    src: /img/IMG_0364.JPG
   - title: Sunlit
     subtitle: ''
     alt: Singer with sun flare
@@ -109,10 +105,6 @@ galleryImages:
     subtitle: ''
     alt: Shadows over keys
     src: /img/IMG_0939-2.jpg
-  - title: Portrait Glow
-    subtitle: Soft focus portraits
-    alt: Smiling subject
-    src: /img/IMG_0939.jpg
   - title: Confidence
     subtitle: ''
     alt: Artist looking ahead
@@ -125,10 +117,6 @@ galleryImages:
     subtitle: ''
     alt: Backlit faces
     src: /img/IMG_1244.jpeg
-  - title: Reflections
-    subtitle: Loose rehearsals captured
-    alt: Studio reflections
-    src: /img/IMG_1244.JPG
   - title: Journey
     subtitle: ''
     alt: Traveler with guitar
@@ -145,10 +133,6 @@ galleryImages:
     subtitle: Hours melt into music
     alt: Neurotic studio glow
     src: /img/IMG_1694-2.jpeg
-  - title: Microphone
-    subtitle: ''
-    alt: Vocal performance
-    src: /img/IMG_1694.jpeg
   - title: Contours
     subtitle: ''
     alt: Backlit silhouette
@@ -161,10 +145,6 @@ galleryImages:
     subtitle: Experimenting with textures
     alt: Hands and analog gear
     src: /img/IMG_2407-2.JPG
-  - title: Steam
-    subtitle: ''
-    alt: Ambient haze
-    src: /img/IMG_2407.JPG
   - title: Momentum
     subtitle: ''
     alt: Vibes from the control room
@@ -197,10 +177,6 @@ galleryImages:
     subtitle: ''
     alt: Duo playing together
     src: /img/IMG_7289-3.JPG
-  - title: Connection
-    subtitle: ''
-    alt: Two artists smiling
-    src: /img/IMG_7289.JPG
   - title: Composition
     subtitle: ''
     alt: Hands sketching melodies

@@ -2,10 +2,6 @@
 
 ## Sajtgranskning 2026-10-16
 
-- **Sex motiv visas dubbelt i People-galleriet.** Samma bild i två varianter,
-  olika filer och därför inte fångade av mallens dedup:
-  IMG_0364, IMG_0939, IMG_1244 (färg + svartvit), IMG_1694, IMG_2407, IMG_7289.
-  51 rutor renderas, 45 unika motiv.
 - **Titlar och alt-texter stämmer inte med bilderna.** Exempel: IMG_7289.JPG är
   en ensam person men har alt "Two artists smiling"; IMG_2407.JPG är två
   leende personer men har alt "Ambient haze". Alt-texterna läses av
