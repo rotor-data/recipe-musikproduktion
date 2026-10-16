@@ -1,3 +1,13 @@
+// search.list costs 100 quota units against a 10 000/day default, so an
+// uncached response would exhaust the quota after roughly 99 page views.
+// Cache at the edge instead: one upstream call an hour, and a new video
+// still appears without republishing the site.
+const CACHE_HEADERS = {
+  "Content-Type": "application/json",
+  "Cache-Control": "public, max-age=300",
+  "Netlify-CDN-Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+}
+
 exports.handler = async function () {
   const apiKey = process.env.YOUTUBE_API_KEY
   const channelId = process.env.YOUTUBE_CHANNEL_ID
@@ -18,6 +28,7 @@ exports.handler = async function () {
     if (!Array.isArray(data.items)) {
       return {
         statusCode: 200,
+        headers: CACHE_HEADERS,
         body: JSON.stringify([]),
       }
     }
@@ -90,6 +101,7 @@ exports.handler = async function () {
 
     return {
       statusCode: 200,
+      headers: CACHE_HEADERS,
       body: JSON.stringify(enrichedVideos || []),
     }
   } catch (error) {
