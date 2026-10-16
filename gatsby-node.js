@@ -118,7 +118,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type LogoBannerItem {
-      image: String
+      image: File @fileByRelativePath
       alt: String
       href: String
     }

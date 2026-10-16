@@ -20,13 +20,17 @@ export const IndexPageTemplate = ({
   const workBlock = blocks[1] || {}
   const peopleBlock = blocks[2] || {}
   const cmsLogoItems = (logoBanner.logos || [])
-    .filter(item => item?.image)
     .map((item, index) => ({
-      id: item.alt || `cms-logo-${index}`,
-      image: item.image,
-      alt: item.alt || "Partner logo",
-      href: item.href || "",
+      id: item?.alt || `cms-logo-${index}`,
+      // the CMS preview hands us a blob URL string, the build a File node
+      image:
+        typeof item?.image === "string"
+          ? item.image
+          : item?.image?.publicURL || "",
+      alt: item?.alt || "Partner logo",
+      href: item?.href || "",
     }))
+    .filter(item => item.image)
   const logoItems = cmsLogoItems.length ? cmsLogoItems : fallbackLogos
 
   const serviceCards = [
@@ -478,7 +482,9 @@ export const query = graphql`
         logoBanner {
           label
           logos {
-            image
+            image {
+              publicURL
+            }
             alt
             href
           }

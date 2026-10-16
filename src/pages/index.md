@@ -24,7 +24,34 @@ hero:
 
 logoBanner:
   label: "Industry partners"
-  logos: []
+  logos:
+    - image: /img/logo-gallery/BBC_Logo_2021.png
+      alt: BBC
+      href: ""
+    - image: /img/logo-gallery/Eurobank_logo_2021.svg.png
+      alt: Eurobank
+      href: ""
+    - image: /img/logo-gallery/FOX_wordmark.svg.png
+      alt: FOX
+      href: ""
+    - image: "/img/logo-gallery/Microsoft_logo_(2012).svg.png"
+      alt: Microsoft
+      href: ""
+    - image: /img/logo-gallery/SVT_Logotyp_RGB_neg.png
+      alt: SVT
+      href: ""
+    - image: /img/logo-gallery/TLC_Logo.svg.png
+      alt: TLC
+      href: ""
+    - image: /img/logo-gallery/TV4sweden_logo.svg.png
+      alt: TV4
+      href: ""
+    - image: /img/logo-gallery/VPLAY-B.ST.png
+      alt: Viaplay
+      href: ""
+    - image: /img/logo-gallery/espn-png-logo-4142.png
+      alt: ESPN
+      href: ""
 
 pageCopy:
   flowBlocks:
