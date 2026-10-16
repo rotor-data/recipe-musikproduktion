@@ -4,22 +4,16 @@ import { graphql } from "gatsby"
 import SeoHead from "../components/SeoHead"
 import { cropPositionToObjectPosition } from "../lib/imageCrop"
 import VideoModal from "../components/VideoModal"
-import { fetchYoutubeVideos, normalizeCmsFeaturedVideos } from "../lib/youtube"
+import { fetchYoutubeVideos } from "../lib/youtube"
 
 export const WorkPageTemplate = ({ content = {} }) => {
   const hero = content?.hero || {}
-  const curated = useMemo(
-    () => normalizeCmsFeaturedVideos(content?.featuredVideos || []).slice(0, 5),
-    [content?.featuredVideos]
-  )
-
-  // Same rule as the start page: the channel feed unless the CMS pins a list.
+  // This page is the archive: always the whole channel. Curation happens on
+  // the start page instead, so pinning a video there cannot freeze this list.
   const [channelVideos, setChannelVideos] = useState([])
   const [activeVideo, setActiveVideo] = useState(null)
 
   useEffect(() => {
-    if (curated.length) return undefined
-
     let cancelled = false
     fetchYoutubeVideos()
       .then(items => {
@@ -32,11 +26,9 @@ export const WorkPageTemplate = ({ content = {} }) => {
     return () => {
       cancelled = true
     }
-  }, [curated.length])
+  }, [])
 
   const videos = useMemo(() => {
-    if (curated.length) return curated
-
     return channelVideos.map(video => ({
       videoId: video.id,
       youtubeUrl: `https://youtu.be/${video.id}`,
@@ -52,7 +44,7 @@ export const WorkPageTemplate = ({ content = {} }) => {
       publishedAt: video.publishedAt,
       order: 0,
     }))
-  }, [curated, channelVideos])
+  }, [channelVideos])
   const [activeFilterLabel, setActiveFilterLabel] = useState("All tracks")
 
   const filters = useMemo(() => {

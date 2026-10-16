@@ -380,15 +380,14 @@ collections:
               ]
             }
           - {
-              label: "Featured videos (optional)",
+              label: "Featured videos on the start page (optional)",
               name: "featuredVideos",
               widget: "list",
               required: false,
               max: 5,
-              summary: "#{{fields.order}} - {{fields.title}}",
-              hint: "Leave empty to show the latest videos from the YouTube channel automatically. Add entries here only to pin specific videos.",
+              summary: "{{fields.title}}",
+              hint: "Videos picked out for the start page. Drag to reorder - the list order is the order on the page. Leave empty and the start page shows the latest from the YouTube channel instead. The Work page always shows the whole channel.",
               fields: [
-                { label: "Order", name: "order", widget: "select", options: [1, 2, 3, 4, 5], default: 1 },
                 { label: "Title", name: "title", widget: "string" },
                 { label: "Subtitle", name: "subtitle", widget: "string", required: false },
                 { label: "Category label", name: "category", widget: "string", required: false },

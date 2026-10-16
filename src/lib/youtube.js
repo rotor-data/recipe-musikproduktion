@@ -93,11 +93,6 @@ export const normalizeCmsFeaturedVideos = input => {
       }
     })
     .filter(item => item.youtubeUrl && item.title)
-    .sort((a, b) => {
-      const left = a.order || Number.MAX_SAFE_INTEGER
-      const right = b.order || Number.MAX_SAFE_INTEGER
-      return left - right
-    })
 }
 
 export const fetchYoutubeVideos = async () => {
