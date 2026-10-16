@@ -7,9 +7,8 @@ meta:
   description: A gallery from sessions at Recipe Music Production in Stockholm.
 hero:
   kicker: The collective / 2026 archive
-  pageTitle: Peoples
-  lead: Efficient sessions, clear communication, and consistent delivery. We value
-    the chemistry of creative collaboration.
+  pageTitle: People
+  lead: Folks in the studio..
 cta:
   title: Session inquiries
   linkText: Connect with us
