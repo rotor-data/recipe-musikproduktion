@@ -37,6 +37,7 @@ CMS.registerPreviewStyle(
   "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
 )
 CMS.registerPreviewStyle("/admin/custom-cms-css.css")
+registerSiteStyles()
 
 CMS.registerPreviewTemplate('index', IndexPagePreview)
 CMS.registerPreviewTemplate('people', PeopleGalleryPreview)
@@ -68,5 +69,32 @@ function loadCustomCmsAssets() {
       `%cnetlifySiteURL: ${window.localStorage.getItem("netlifySiteURL")}`,
       "color: hotpink; font-size: 15px"
     )
+  }
+}
+
+// The preview pane is an iframe of its own, so none of the site's CSS reaches
+// it unless we say so. Gatsby inlines the stylesheet and tags it with the
+// hashed file name, so read that off a real page rather than hardcoding a
+// hash that changes on every build.
+async function registerSiteStyles() {
+  if (typeof window === "undefined") return
+
+  try {
+    const res = await fetch("/")
+    const html = await res.text()
+    const doc = new DOMParser().parseFromString(html, "text/html")
+    const tags = Array.from(doc.querySelectorAll("style[data-href]"))
+    const hrefs = tags.map(tag => tag.getAttribute("data-href")).filter(Boolean)
+
+    if (hrefs.length) {
+      hrefs.forEach(href => CMS.registerPreviewStyle(href))
+      return
+    }
+
+    tags.forEach(tag => {
+      if (tag.textContent) CMS.registerPreviewStyle(tag.textContent, { raw: true })
+    })
+  } catch (error) {
+    console.warn("Could not load the site styles into the CMS preview", error)
   }
 }

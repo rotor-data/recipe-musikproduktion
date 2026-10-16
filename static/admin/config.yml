@@ -438,7 +438,6 @@ collections:
               fields: [
                 { label: "Page title", name: "pageTitle", widget: "string", hint: "Main heading on the page." },
                 { label: "Panel tag", name: "panelTag", widget: "string", required: false },
-                { label: "Details panel title", name: "detailsTitle", widget: "string", hint: "Heading above address/contact details." },
                 { label: "Operator label", name: "operatorLabel", widget: "string", required: false },
                 { label: "Operator name", name: "operatorName", widget: "string", required: false },
                 { label: "Operator role", name: "operatorRole", widget: "string", required: false },

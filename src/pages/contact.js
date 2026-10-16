@@ -2,8 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import SeoHead from "../components/SeoHead"
 
-const ContactPage = ({ data }) => {
-  const content = data.contactMarkdown?.frontmatter?.contact || {}
+export const ContactPageTemplate = ({ content = {} }) => {
   const lines = Array.isArray(content.lines)
     ? content.lines
       .map(line => (typeof line === "string" ? line : line?.line))
@@ -23,19 +22,23 @@ const ContactPage = ({ data }) => {
             <h1 className="rec-contact__title">{content.pageTitle || "Contact"}</h1>
 
             <div className="rec-contact__modules">
-              <div className="rec-contact__module">
-                {content.operatorLabel && (
-                  <p className="rec-contact__label">{content.operatorLabel}</p>
-                )}
-                <div className="rec-contact__card">
-                  <p className="rec-contact__name">
-                    {content.operatorName || content.detailsTitle || "Recipe Musikproduktion"}
-                  </p>
-                  {content.operatorRole && (
-                    <p className="rec-contact__meta">{content.operatorRole}</p>
+              {(content.operatorLabel || content.operatorName || content.operatorRole) && (
+                <div className="rec-contact__module">
+                  {content.operatorLabel && (
+                    <p className="rec-contact__label">{content.operatorLabel}</p>
+                  )}
+                  {(content.operatorName || content.operatorRole) && (
+                    <div className="rec-contact__card">
+                      {content.operatorName && (
+                        <p className="rec-contact__name">{content.operatorName}</p>
+                      )}
+                      {content.operatorRole && (
+                        <p className="rec-contact__meta">{content.operatorRole}</p>
+                      )}
+                    </div>
                   )}
                 </div>
-              </div>
+              )}
 
               <div className="rec-contact__module">
                 {content.emailLabel && <p className="rec-contact__label">{content.emailLabel}</p>}
@@ -65,7 +68,7 @@ const ContactPage = ({ data }) => {
               <div className="rec-contact__status">
                 <span className="rec-contact__status-dot" />
                 <span>
-                  {content.statusLabel || "Studio status"}: {content.statusValue || "Online"}
+                  {[content.statusLabel, content.statusValue].filter(Boolean).join(": ")}
                 </span>
               </div>
             )}
@@ -111,6 +114,10 @@ const ContactPage = ({ data }) => {
   )
 }
 
+const ContactPage = ({ data }) => (
+  <ContactPageTemplate content={data.contactMarkdown?.frontmatter?.contact || {}} />
+)
+
 export default ContactPage
 
 export const Head = ({ data }) => {
@@ -136,7 +143,6 @@ export const pageQuery = graphql`
         contact {
           pageTitle
           panelTag
-          detailsTitle
           operatorLabel
           operatorName
           operatorRole

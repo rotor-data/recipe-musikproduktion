@@ -6,7 +6,6 @@ meta:
 contact:
   pageTitle: "Get in Sync."
   panelTag: "Input signal: Inbound"
-  detailsTitle: "Recipe Musikproduktion"
   operatorLabel: "Operator Main"
   operatorName: "Joakim Lundgren"
   operatorRole: "Lead Production Engineer"
