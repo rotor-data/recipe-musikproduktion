@@ -17,10 +17,14 @@
   hjälptexten "visual teaser cards", men startsidan visar videor i stället.
   Det ritas bara om YouTube-hämtningen misslyckas. Antingen renderas det
   någonstans, eller så tas fältet bort ur `static/admin/config.yml`.
-- **Work-sidan använder fortfarande bara CMS-listan** för videor. Startsidan
-  hämtar dynamiskt; `src/pages/work.js` gör det inte, och eftersom listan nu
-  är tom visar den inga videor alls. Sidan är dold (`visible: false`) så det
-  märks inte än.
+- **`/work/` och `/cases/` är samma sida på två adresser.** `src/pages/cases.js`
+  är bara en re-export av `work.js`. Båda ligger i sitemapen, vilket är
+  duplicerat innehåll för sökmotorer. Antingen tas `cases.js` bort, eller så
+  pekar den på `/work/` med en redirect.
+- **`detailsTitle` på kontaktsidan visas aldrig.** CMS-etiketten säger
+  "Details panel title — Heading above address/contact details", men fältet
+  används bara som reserv för `operatorName` på `src/pages/contact.js:32`.
+  Eftersom `operatorName` är ifyllt syns `detailsTitle` aldrig.
 - **5 identiska favicon-par** i både `src/img/favicons/` och
   `static/img/favicons/` — samma sha256.
 - **`work-content.md` har `visible: false`** — Work-sidan byggs inte. Avsiktligt?

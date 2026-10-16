@@ -3,14 +3,56 @@ import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import SeoHead from "../components/SeoHead"
 import { cropPositionToObjectPosition } from "../lib/imageCrop"
-import { normalizeCmsFeaturedVideos } from "../lib/youtube"
+import VideoModal from "../components/VideoModal"
+import { fetchYoutubeVideos, normalizeCmsFeaturedVideos } from "../lib/youtube"
 
 export const WorkPageTemplate = ({ content = {} }) => {
   const hero = content?.hero || {}
-  const videos = useMemo(
+  const curated = useMemo(
     () => normalizeCmsFeaturedVideos(content?.featuredVideos || []).slice(0, 5),
     [content?.featuredVideos]
   )
+
+  // Same rule as the start page: the channel feed unless the CMS pins a list.
+  const [channelVideos, setChannelVideos] = useState([])
+  const [activeVideo, setActiveVideo] = useState(null)
+
+  useEffect(() => {
+    if (curated.length) return undefined
+
+    let cancelled = false
+    fetchYoutubeVideos()
+      .then(items => {
+        if (!cancelled) setChannelVideos(items)
+      })
+      .catch(() => {
+        if (!cancelled) setChannelVideos([])
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [curated.length])
+
+  const videos = useMemo(() => {
+    if (curated.length) return curated
+
+    return channelVideos.map(video => ({
+      videoId: video.id,
+      youtubeUrl: `https://youtu.be/${video.id}`,
+      title: video.title,
+      description: video.description,
+      subtitle: video.publishedAt
+        ? new Date(video.publishedAt).toLocaleDateString("sv-SE")
+        : "",
+      category: "",
+      cropPosition: "center",
+      thumbnail: video.thumbnail,
+      channelTitle: video.channelTitle,
+      publishedAt: video.publishedAt,
+      order: 0,
+    }))
+  }, [curated, channelVideos])
   const [activeFilterLabel, setActiveFilterLabel] = useState("All tracks")
 
   const filters = useMemo(() => {
@@ -99,18 +141,17 @@ export const WorkPageTemplate = ({ content = {} }) => {
             {filteredVideos.length === 0 && (
               <article className="rec-work__empty">
                 <h2>No matching videos</h2>
-                <p>Add featured videos in CMS or choose another filter.</p>
+                <p>Loading the channel, or choose another filter.</p>
               </article>
             )}
 
             {filteredVideos.map(video => (
-              <a
+              <button
                 key={`${video.videoId || video.youtubeUrl}-${video.order}`}
-                href={video.youtubeUrl}
+                type="button"
                 className="rec-work__card"
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Open ${video.title} on YouTube`}
+                onClick={() => setActiveVideo(video)}
+                aria-label={`Play ${video.title}`}
               >
                 <div className="rec-work__card-media">
                   {video.thumbnail && (
@@ -130,11 +171,24 @@ export const WorkPageTemplate = ({ content = {} }) => {
                   {video.description && <p className="rec-work__card-desc">{video.description}</p>}
                   {video.subtitle && <p className="rec-work__card-date">{video.subtitle}</p>}
                 </div>
-              </a>
+              </button>
             ))}
           </div>
         </div>
       </section>
+
+      {activeVideo && (
+        <VideoModal
+          video={{
+            id: activeVideo.videoId,
+            title: activeVideo.title,
+            description: activeVideo.description,
+            channelTitle: activeVideo.channelTitle,
+            publishedAt: activeVideo.publishedAt,
+          }}
+          onClose={() => setActiveVideo(null)}
+        />
+      )}
     </main>
   )
 }
