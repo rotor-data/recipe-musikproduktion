@@ -1,4 +1,4 @@
-import React, { useMemo } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
@@ -6,7 +6,8 @@ import SeoHead from "../components/SeoHead"
 import MarkdownRenderer from "../components/MarkdownRenderer"
 import PreviewCompatibleImage from "../components/PreviewCompatibleImage"
 import { cropPositionToObjectPosition } from "../lib/imageCrop"
-import { normalizeCmsFeaturedVideos } from "../lib/youtube"
+import VideoModal from "../components/VideoModal"
+import { fetchYoutubeVideos, normalizeCmsFeaturedVideos } from "../lib/youtube"
 
 export const IndexPageTemplate = ({
   content,
@@ -16,9 +17,18 @@ export const IndexPageTemplate = ({
 }) => {
   const { hero, pageCopy = {}, solutions = {}, logoBanner = {} } = content
   const blocks = pageCopy.flowBlocks || []
-  const studioBlock = blocks[0] || {}
-  const workBlock = blocks[1] || {}
-  const peopleBlock = blocks[2] || {}
+  // Blocks are addressed by their pretitle so reordering them in the CMS
+  // cannot silently swap the sections around. Position is the fallback.
+  const findBlock = (name, position) =>
+    blocks.find(
+      block =>
+        String(block?.highlight?.pretitle || "").trim().toLowerCase() === name
+    ) ||
+    blocks[position] ||
+    {}
+  const studioBlock = findBlock("studio", 0)
+  const workBlock = findBlock("work", 1)
+  const peopleBlock = findBlock("people", 2)
   const cmsLogoItems = (logoBanner.logos || [])
     .map((item, index) => ({
       id: item?.alt || `cms-logo-${index}`,
@@ -33,10 +43,9 @@ export const IndexPageTemplate = ({
     .filter(item => item.image)
   const logoItems = cmsLogoItems.length ? cmsLogoItems : fallbackLogos
 
-  const serviceCards = [
-    ...(studioBlock.cards || []),
-    ...(peopleBlock.cards || []),
-  ].filter(card => card?.title || card?.description || card?.image)
+  const serviceCards = blocks
+    .flatMap(block => block?.cards || [])
+    .filter(card => card?.title || card?.description || card?.image)
   const heroPrimaryCtaText = hero?.cta?.primaryText || hero?.cta?.buttonText || "Contact"
   const heroPrimaryCtaHref = hero?.cta?.primaryHref || "/contact"
   const heroSecondaryCtaText =
@@ -60,16 +69,52 @@ export const IndexPageTemplate = ({
     [featuredVideos]
   )
 
+  // The channel feed is the default source. A curated list in the CMS wins
+  // when there is one, which lets an editor pin specific videos.
+  const [channelVideos, setChannelVideos] = useState([])
+  const [activeVideo, setActiveVideo] = useState(null)
+
+  useEffect(() => {
+    if (curatedVideos.length) return undefined
+
+    let cancelled = false
+    fetchYoutubeVideos()
+      .then(videos => {
+        if (!cancelled) setChannelVideos(videos.slice(0, 5))
+      })
+      .catch(() => {
+        if (!cancelled) setChannelVideos([])
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [curatedVideos.length])
+
   const featuredWorkItems = useMemo(() => {
     if (curatedVideos.length) {
       return curatedVideos.map(video => ({
         id: video.videoId || video.youtubeUrl,
+        videoId: video.videoId,
         title: video.title,
         subtitle: video.subtitle,
+        description: video.description,
         thumbnail: video.thumbnail,
         cropPosition: video.cropPosition || "center",
-        link: video.youtubeUrl,
-        external: true,
+      }))
+    }
+
+    if (channelVideos.length) {
+      return channelVideos.map(video => ({
+        id: video.id,
+        videoId: video.id,
+        title: video.title,
+        subtitle: video.channelTitle,
+        description: video.description,
+        publishedAt: video.publishedAt,
+        channelTitle: video.channelTitle,
+        thumbnail: video.thumbnail,
+        cropPosition: "center",
       }))
     }
 
@@ -82,7 +127,7 @@ export const IndexPageTemplate = ({
       link: item.link || "/work",
       external: false,
     }))
-  }, [curatedVideos, workItems])
+  }, [curatedVideos, channelVideos, workItems])
 
   const workHeadClass =
     workBlock.highlightPosition === "right"
@@ -203,13 +248,25 @@ export const IndexPageTemplate = ({
           </a>
         </div>
         <div className="rec-work-preview-grid">
-          {featuredWorkItems.map((item, index) => (
-            <a
-              href={item.link || "/work"}
+          {featuredWorkItems.map((item, index) => {
+            const Card = item.videoId ? "button" : "a"
+            const cardProps = item.videoId
+              ? {
+                  type: "button",
+                  onClick: () => setActiveVideo(item),
+                  "aria-label": `Play ${item.title || "video"}`,
+                }
+              : {
+                  href: item.link || "/work",
+                  target: item.external ? "_blank" : undefined,
+                  rel: item.external ? "noreferrer" : undefined,
+                }
+
+            return (
+            <Card
               key={`${item.id}-${index}`}
               className="rec-work-preview-card"
-              target={item.external ? "_blank" : undefined}
-              rel={item.external ? "noreferrer" : undefined}
+              {...cardProps}
             >
               <div className="rec-work-preview-card__media">
                 {item.thumbnail ? (
@@ -238,8 +295,9 @@ export const IndexPageTemplate = ({
                 <p>{item.title}</p>
                 {item.subtitle && <span>{item.subtitle}</span>}
               </div>
-            </a>
-          ))}
+            </Card>
+            )
+          })}
         </div>
       </section>
 
@@ -255,7 +313,7 @@ export const IndexPageTemplate = ({
           )}
         </div>
         <div className="rec-service-grid">
-          {serviceCards.slice(0, 2).map((card, index) => (
+          {serviceCards.map((card, index) => (
             <article className="rec-service-card" key={`${card.title}-${index}`}>
               {card.image && (
                 <div className="rec-service-card__image">
@@ -353,6 +411,19 @@ export const IndexPageTemplate = ({
           {bottomCta.buttonText || heroPrimaryCtaText}
         </a>
       </section>
+
+      {activeVideo && (
+        <VideoModal
+          video={{
+            id: activeVideo.videoId,
+            title: activeVideo.title,
+            description: activeVideo.description,
+            channelTitle: activeVideo.channelTitle,
+            publishedAt: activeVideo.publishedAt,
+          }}
+          onClose={() => setActiveVideo(null)}
+        />
+      )}
     </main>
   )
 }
@@ -418,13 +489,7 @@ const IndexPage = ({ data }) => {
       image: image.src,
       alt: image.alt || image.title,
       cropPosition: image.cropPosition || "center",
-      order: Number(image.order) || 0,
     }))
-    .sort((a, b) => {
-      const left = a.order || Number.MAX_SAFE_INTEGER
-      const right = b.order || Number.MAX_SAFE_INTEGER
-      return left - right
-    })
     .slice(0, 5)
 
   const featuredVideos = data.workPage?.frontmatter?.featuredVideos || []

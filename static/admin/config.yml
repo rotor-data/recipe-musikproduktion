@@ -295,10 +295,9 @@ collections:
               required: false,
               min: 5,
               max: 5,
-              summary: "#{{fields.order}} - {{fields.title}}",
-              hint: "Five fronted images used in people preview/home strip.",
+              summary: "{{fields.title}}",
+              hint: "Five fronted images used in people preview/home strip. Drag to reorder - the list order is the order on the page.",
               fields: [
-                { label: "Order", name: "order", widget: "select", options: [1, 2, 3, 4, 5], default: 1 },
                 { label: "Title", name: "title", widget: "string", required: false },
                 { label: "Subtitle", name: "subtitle", widget: "string", required: false },
                 { label: "Alt text", name: "alt", widget: "string", required: false, hint: "Describe the image for accessibility." },
@@ -381,13 +380,13 @@ collections:
               ]
             }
           - {
-              label: "Featured videos (1-5)",
+              label: "Featured videos (optional)",
               name: "featuredVideos",
               widget: "list",
-              min: 5,
+              required: false,
               max: 5,
               summary: "#{{fields.order}} - {{fields.title}}",
-              hint: "Use direct YouTube URLs (e.g. youtu.be links).",
+              hint: "Leave empty to show the latest videos from the YouTube channel automatically. Add entries here only to pin specific videos.",
               fields: [
                 { label: "Order", name: "order", widget: "select", options: [1, 2, 3, 4, 5], default: 1 },
                 { label: "Title", name: "title", widget: "string" },
