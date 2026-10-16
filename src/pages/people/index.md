@@ -14,12 +14,6 @@ cta:
   linkText: Connect with us
   linkHref: /contact
 featuredImages:
-  - order: 1
-    title: Recording Nights
-    subtitle: ""
-    alt: Mixing engineer writing notes
-    src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
-    cropPosition: center
   - order: 2
     title: Dusty
     subtitle: ""
@@ -31,6 +25,12 @@ featuredImages:
     subtitle: ""
     alt: Daniel and Amy sharing headphones
     src: /img/IMG_0145-2.jpeg
+    cropPosition: center
+  - order: 1
+    title: Recording Nights
+    subtitle: ""
+    alt: Mixing engineer writing notes
+    src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
     cropPosition: center
   - order: 4
     title: Energy
