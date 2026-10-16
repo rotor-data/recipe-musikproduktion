@@ -2,14 +2,17 @@
 
 ## Sajtgranskning 2026-10-16
 
-- **15 oanvända bilder i `static/img/`** (IMG_0364, IMG_0663, IMG_0963, IMG_1094,
-  IMG_1244, IMG_2407, IMG_2571-2, IMG_3189, IMG_7231, IMG_7289, IMG_E0685,
-  Soffan-mackan(1) m.fl.), ca 25 MB. Ligger i repot och deployas utan att synas.
+- **Sex motiv visas dubbelt i People-galleriet.** Samma bild i två varianter,
+  olika filer och därför inte fångade av mallens dedup:
+  IMG_0364, IMG_0939, IMG_1244 (färg + svartvit), IMG_1694, IMG_2407, IMG_7289.
+  51 rutor renderas, 45 unika motiv.
+- **Titlar och alt-texter stämmer inte med bilderna.** Exempel: IMG_7289.JPG är
+  en ensam person men har alt "Two artists smiling"; IMG_2407.JPG är två
+  leende personer men har alt "Ambient haze". Alt-texterna läses av
+  skärmläsare och används av sökmotorer.
 - **5 identiska favicon-par** i både `src/img/favicons/` och
   `static/img/favicons/` — samma sha256.
 - **`work-content.md` har `visible: false`** — Work-sidan byggs inte. Avsiktligt?
-- Perceptuell dubblettkoll (omskalade varianter av samma motiv) ej gjord; kräver
-  Pillow + imagehash i en egen temporär venv.
 
 ## Netlify-flytten
 
