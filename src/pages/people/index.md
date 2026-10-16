@@ -16,7 +16,7 @@ cta:
 featuredImages:
   - order: 1
     title: Recording Nights
-    subtitle: Late sessions on Södermalm
+    subtitle: ""
     alt: Mixing engineer writing notes
     src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
     cropPosition: center
