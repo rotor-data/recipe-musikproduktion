@@ -201,9 +201,9 @@ galleryImages:
     subtitle: ''
     alt: ''
     src: /img/IMG_E0963.jpg
-  - title: ''
+  - title: 'Lucette Rådström'
     subtitle: ''
-    alt: ''
+    alt: 'Lucette Rådström'
     src: /img/lucette.jpg
   - title: 'Marcus Sofia och Jocke'
     subtitle: ''
