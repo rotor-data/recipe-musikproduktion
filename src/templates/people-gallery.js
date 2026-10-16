@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import SeoHead from "../components/SeoHead"
@@ -32,18 +32,22 @@ export const PeopleGalleryTemplate = ({ content = {} }) => {
   const [activeImage, setActiveImage] = useState(null)
   const hero = content.hero || {}
   const cta = content.cta || {}
+  // The order of the list in the CMS is the order on the page: an editor who
+  // drags an image expects that to move it.
   const featured = useMemo(
-    () =>
-      normalizeItems(content.featuredImages || [])
-        .sort((a, b) => {
-          const left = a.order || Number.MAX_SAFE_INTEGER
-          const right = b.order || Number.MAX_SAFE_INTEGER
-          return left - right
-        })
-        .slice(0, 5),
+    () => normalizeItems(content.featuredImages || []).slice(0, 5),
     [content.featuredImages]
   )
   const gallery = useMemo(() => normalizeItems(content.galleryImages || []), [content.galleryImages])
+
+  useEffect(() => {
+    if (!activeImage) return undefined
+    const onKeyDown = event => {
+      if (event.key === "Escape") setActiveImage(null)
+    }
+    window.addEventListener("keydown", onKeyDown)
+    return () => window.removeEventListener("keydown", onKeyDown)
+  }, [activeImage])
 
   const featuredKeys = new Set(featured.map(item => imageSourceKey(item.image)).filter(Boolean))
   const remainingGallery = gallery.filter(item => !featuredKeys.has(imageSourceKey(item.image)))
@@ -108,8 +112,28 @@ export const PeopleGalleryTemplate = ({ content = {} }) => {
       </section>
 
       {activeImage && (
-        <div className="image-flow-grid__modal" onClick={() => setActiveImage(null)}>
-          <div className="image-flow-grid__modal-content">
+        <div
+          className="image-flow-grid__modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeImage.title || activeImage.alt || "Gallery image"}
+          onClick={() => setActiveImage(null)}
+        >
+          <button
+            type="button"
+            className="image-flow-grid__modal-close"
+            aria-label="Close image"
+            onClick={event => {
+              event.stopPropagation()
+              setActiveImage(null)
+            }}
+          >
+            &times;
+          </button>
+          <div
+            className="image-flow-grid__modal-content"
+            onClick={event => event.stopPropagation()}
+          >
             <PreviewCompatibleImage
               imageInfo={{
                 image: activeImage.image,

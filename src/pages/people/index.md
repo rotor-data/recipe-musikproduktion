@@ -14,32 +14,27 @@ cta:
   linkText: Connect with the studio
   linkHref: /contact
 featuredImages:
-  - order: 1
-    title: 'Boden-Jocke'
+  - title: 'Boden-Jocke'
     subtitle: ''
     alt: 'Boden-Jocke'
     src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
     cropPosition: center
-  - order: 2
-    title: 'Dusty Monroe'
+  - title: 'Dusty Monroe'
     subtitle: ''
     alt: 'Dusty Monroe'
     src: /img/Dusty.jpg
     cropPosition: center
-  - order: 3
-    title: 'Daniel P & Amy D'
+  - title: 'Daniel P & Amy D'
     subtitle: ''
     alt: 'Daniel P & Amy D'
     src: /img/IMG_0145-2.jpeg
     cropPosition: center
-  - order: 4
-    title: 'Boden-Åke'
+  - title: 'Boden-Åke'
     subtitle: ''
     alt: 'Boden-Åke'
     src: /img/IMG_0251.jpg
     cropPosition: center
-  - order: 5
-    title: 'Kim Kärnfalk'
+  - title: 'Kim Kärnfalk'
     subtitle: ''
     alt: 'Kim Kärnfalk'
     src: /img/IMG_0364-2.JPG
