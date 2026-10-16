@@ -30,6 +30,18 @@ collections:
               default: "index-page",
             }
           - {
+              label: "Page title",
+              name: "title",
+              widget: "string",
+              hint: "Internal page title. Also used by the site build."
+            }
+          - {
+              label: "Visible",
+              name: "visible",
+              widget: "hidden",
+              default: true
+            }
+          - {
               label: "Meta",
               name: "meta",
               widget: "object",
@@ -198,6 +210,33 @@ collections:
                 }
               ]
             }
+          - {
+              label: "Solutions",
+              name: "solutions",
+              widget: "object",
+              hint: "Who we help. Rendered as the Solutions section on the start page.",
+              fields: [
+                { label: "Image", name: "image", widget: "image" },
+                {
+                  label: "Blocks",
+                  name: "blocks",
+                  widget: "list",
+                  summary: "{{fields.category}}",
+                  fields: [
+                    { label: "Category", name: "category", widget: "string" },
+                    {
+                      label: "Items",
+                      name: "items",
+                      widget: "object",
+                      fields: [
+                        { label: "Title", name: "title", widget: "string", required: false },
+                        { label: "Description", name: "description", widget: "text" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
       - file: "src/pages/people/index.md"
         label: "People Gallery Page"
         name: "people"
@@ -207,6 +246,18 @@ collections:
               name: "templateKey",
               widget: "hidden",
               default: "people-gallery",
+            }
+          - {
+              label: "Page title",
+              name: "title",
+              widget: "string",
+              hint: "Internal page title. Also used by the site build."
+            }
+          - {
+              label: "Visible",
+              name: "visible",
+              widget: "hidden",
+              default: true
             }
           - {
               label: "Meta",
