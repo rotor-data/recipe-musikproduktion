@@ -1,6 +1,0 @@
-# Allow only these two pages, under construction variant
-/personuppgiftsbehandling/  /personuppgiftsbehandling/  200
-/                           /                            200
-
-# Redirect all others to home with 302
-/*                          /                            302
