@@ -65,12 +65,50 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type Frontmatter @infer {
+      sections: [Section]
       hero: Hero
       pageCopy: PageCopy
       logoBanner: LogoBanner
       featuredImages: [GalleryImage]
       galleryImages: [GalleryImage]
       featuredVideos: [FeaturedVideo]
+    }
+
+    type Section @infer {
+      type: String
+      title: String
+      h1title: String
+      description: String
+      kicker: String
+      label: String
+      pretitle: String
+      body: String
+      highlightPosition: String
+      ctaText: String
+      ctaLink: String
+      secondaryCtaText: String
+      secondaryCtaLink: String
+      primaryText: String
+      primaryHref: String
+      secondaryText: String
+      secondaryHref: String
+      buttonText: String
+      buttonHref: String
+      image: File @fileByRelativePath
+      logos: [LogoBannerItem]
+      cards: [FlowBlockCard]
+      featuredVideos: [FeaturedVideo]
+      blocks: [SolutionBlock]
+    }
+
+    type SolutionBlock {
+      category: String
+      items: SolutionBlockItems
+    }
+
+    type SolutionBlockItems {
+      title: String
+      description: String
     }
 
     type Hero @infer {

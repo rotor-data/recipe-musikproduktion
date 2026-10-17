@@ -23,24 +23,9 @@ collections:
         label: "Start Page"
         name: "index"
         fields:
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "index-page",
-            }
-          - {
-              label: "Page title",
-              name: "title",
-              widget: "string",
-              hint: "Internal page title. Also used by the site build."
-            }
-          - {
-              label: "Visible",
-              name: "visible",
-              widget: "hidden",
-              default: true
-            }
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page" }
+          - { label: "Page title", name: "title", widget: "string", hint: "Internal page title. Also used by the site build." }
+          - { label: "Visible", name: "visible", widget: "hidden", default: true }
           - {
               label: "Meta",
               name: "meta",
@@ -51,192 +36,133 @@ collections:
                 { label: "SEO description", name: "description", widget: "text", hint: "Short summary for search/social (about 140-160 characters)." }
               ]
             }
-          - {
-              label: "Hero",
-              name: "hero",
-              widget: "object",
-              hint: "Top section of the start page.",
-              fields: [
-                { label: "Main headline", name: "title", widget: "string", hint: "Large title shown in the hero." },
-                { label: "H1 (SEO line)", name: "h1title", widget: "string", hint: "Small top line used as H1 for SEO." },
-                { label: "Intro text (below hero)", name: "description", widget: "text", hint: "Text block shown directly below the hero." },
-                {
-                  label: "CTA",
-                  name: "cta",
-                  widget: "object",
-                  fields: [
-                    { label: "Primary button text", name: "primaryText", widget: "string", required: false },
-                    { label: "Primary button link", name: "primaryHref", widget: "string", required: false, hint: "Example: /contact" },
-                    { label: "Secondary button text", name: "secondaryText", widget: "string", required: false },
-                    { label: "Secondary button link", name: "secondaryHref", widget: "string", required: false, hint: "Example: /work" },
-                    { label: "Legacy button text (fallback)", name: "buttonText", widget: "string", required: false }
-                  ]
-                },
-                {
-                  label: "Hero image",
-                  name: "image",
-                  widget: "image",
-                  hint: "Best result: wide image, high quality.",
-                  required: false
-                }
-              ]
-            }
-          - {
-              label: "Logo banner",
-              name: "logoBanner",
-              widget: "object",
-              required: false,
-              hint: "Partner logos shown below the hero. If empty, built-in logo gallery files are used.",
-              fields: [
-                { label: "Label", name: "label", widget: "string", required: false, hint: "Small uppercase label before the logos." },
-                {
-                  label: "Logos",
-                  name: "logos",
-                  widget: "list",
-                  required: false,
-                  summary: "{{fields.alt}}",
-                  fields: [
-                    { label: "Logo image", name: "image", widget: "image" },
-                    { label: "Alt text", name: "alt", widget: "string", required: false },
-                    { label: "External link", name: "href", widget: "string", required: false, hint: "Optional URL if logo should be clickable." }
-                  ]
-                }
-              ]
-            }
-          - {
-              label: "Page Sections",
-              name: "pageCopy",
-              widget: "object",
-              fields: [
-                {
-                  label: "Content blocks",
-                  name: "flowBlocks",
-                  widget: "list",
-                  summary: "{{fields.highlight.title}} ({{fields.highlightPosition}})",
-                  hint: "Blocks are rendered in order: Services, Work, People.",
-                  fields: [
-                    {
-                      label: "Highlight position",
-                      name: "highlightPosition",
-                      widget: "select",
-                      options: ["left", "right"],
-                      default: "right"
-                    },
-                    {
-                      label: "Highlight",
-                      name: "highlight",
-                      widget: "object",
-                      hint: "Main text for this block.",
-                      fields: [
-                        { label: "Pretitle", name: "pretitle", widget: "string", required: false, hint: "Small uppercase label above the title." },
-                        { label: "Title", name: "title", widget: "string", required: false, hint: "Main heading for this block." },
-                        { label: "Body", name: "body", widget: "text", required: false, hint: "Optional short paragraph." },
-                        { label: "CTA text", name: "ctaText", widget: "string", required: false, hint: "Optional button/link text." },
-                        { label: "CTA link", name: "ctaLink", widget: "string", required: false, hint: "Use a relative path, e.g. /work." },
-                        { label: "Secondary CTA text", name: "secondaryCtaText", widget: "string", required: false, hint: "Used on sections that show a second button." },
-                        { label: "Secondary CTA link", name: "secondaryCtaLink", widget: "string", required: false, hint: "Use a relative path, e.g. /contact." },
-                        { label: "Mega headline", name: "megaHeadline", widget: "string", required: false }
-                      ]
-                    },
-                    { label: "Show gallery", name: "showGallery", widget: "boolean", default: false, hint: "Use only when this block should include gallery cards." },
-                    {
-                      label: "Gallery items",
-                      name: "galleryItems",
-                      widget: "list",
-                      summary: "{{fields.title}}",
-                      hint: "Used for visual teaser cards.",
-                      fields: [
-                        {
-                          label: "Image",
-                          name: "image",
-                          widget: "image"
-                        },
-                        {
-                          label: "Crop position",
-                          name: "cropPosition",
-                          widget: "select",
-                          required: false,
-                          options: ["top", "center", "bottom"],
-                          default: "center",
-                          hint: "Controls vertical crop focus."
-                        },
-                        { label: "Title", name: "title", widget: "string", required: false },
-                        { label: "Subtitle", name: "subtitle", widget: "string", required: false },
-                        { label: "Big text", name: "bigText", widget: "string", required: false },
-                        { label: "Link", name: "link", widget: "string", required: false }
-                      ]
-                    },
-                    {
-                      label: "Cards",
-                      name: "cards",
-                      widget: "list",
-                      summary: "{{fields.title}}",
-                      hint: "Use for supporting cards in each section.",
-                      fields: [
-                        { label: "Tagline", name: "tagline", widget: "string", required: false },
-                        { label: "Title", name: "title", widget: "string", required: false },
-                        { label: "Description", name: "description", widget: "text", required: false },
-                        { label: "Full width", name: "fullWidth", widget: "boolean", default: false },
-                        { label: "Link", name: "link", widget: "string", required: false },
-                        { label: "Link label", name: "linkLabel", widget: "string", required: false },
-                        {
-                          label: "Image",
-                          name: "image",
-                          widget: "image"
-                        },
-                        {
-                          label: "Crop position",
-                          name: "cropPosition",
-                          widget: "select",
-                          required: false,
-                          options: ["top", "center", "bottom"],
-                          default: "center",
-                          hint: "Controls vertical crop focus."
-                        },
-                      ]
-                    }
-                  ]
-                },
-                {
-                  label: "Bottom CTA",
-                  name: "bottomCta",
-                  widget: "object",
-                  required: false,
-                  fields: [
-                    { label: "Title", name: "title", widget: "string", required: false },
-                    { label: "Button text", name: "buttonText", widget: "string", required: false },
-                    { label: "Button link", name: "buttonHref", widget: "string", required: false, hint: "Example: /contact" }
-                  ]
-                }
-              ]
-            }
-          - {
-              label: "Solutions",
-              name: "solutions",
-              widget: "object",
-              hint: "Who we help. Rendered as the Solutions section on the start page.",
-              fields: [
-                { label: "Image", name: "image", widget: "image" },
-                {
-                  label: "Blocks",
-                  name: "blocks",
-                  widget: "list",
-                  summary: "{{fields.category}}",
-                  fields: [
-                    { label: "Category", name: "category", widget: "string" },
-                    {
-                      label: "Items",
-                      name: "items",
-                      widget: "object",
-                      fields: [
-                        { label: "Title", name: "title", widget: "string", required: false },
-                        { label: "Description", name: "description", widget: "text" }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            hint: "The page is built from these, top to bottom. Drag to reorder, remove what you do not need, add a section with the button below."
+            types:
+              - label: "Hero"
+                name: "hero"
+                widget: "object"
+                summary: "Hero"
+                fields:
+                  - { label: "Main headline", name: "title", widget: "text", hint: "Large title. Wrap words in *stars* to colour them." }
+                  - { label: "H1 (SEO line)", name: "h1title", widget: "string", required: false, hint: "Small top line used as H1 for SEO." }
+                  - { label: "Intro text", name: "description", widget: "text", required: false }
+                  - { label: "Background image", name: "image", widget: "image", required: false, hint: "Best result: wide image, high quality." }
+                  - { label: "Primary button text", name: "primaryText", widget: "string", required: false }
+                  - { label: "Primary button link", name: "primaryHref", widget: "string", required: false, hint: "Example: /contact" }
+                  - { label: "Secondary button text", name: "secondaryText", widget: "string", required: false }
+                  - { label: "Secondary button link", name: "secondaryHref", widget: "string", required: false, hint: "Example: /work" }
+
+              - label: "Logo banner"
+                name: "logos"
+                widget: "object"
+                summary: "Logo banner"
+                fields:
+                  - { label: "Label", name: "label", widget: "string", required: false, hint: "Small uppercase label before the logos." }
+                  - label: "Logos"
+                    name: "logos"
+                    widget: "list"
+                    required: false
+                    summary: "{{fields.alt}}"
+                    fields:
+                      - { label: "Logo image", name: "image", widget: "image" }
+                      - { label: "Alt text", name: "alt", widget: "string", required: false }
+                      - { label: "External link", name: "href", widget: "string", required: false }
+
+              - label: "Work"
+                name: "work"
+                widget: "object"
+                summary: "Work - {{fields.title}}"
+                fields:
+                  - { label: "Pretitle", name: "pretitle", widget: "string", required: false }
+                  - { label: "Title", name: "title", widget: "string", required: false }
+                  - { label: "Heading position", name: "highlightPosition", widget: "select", options: ["left", "right"], default: "left" }
+                  - { label: "Link text", name: "ctaText", widget: "string", required: false }
+                  - { label: "Link", name: "ctaLink", widget: "string", required: false, hint: "Example: /work" }
+                  - label: "Featured videos"
+                    name: "featuredVideos"
+                    widget: "list"
+                    required: false
+                    max: 5
+                    summary: "{{fields.title}}"
+                    hint: "Videos picked out for the start page. Leave empty and the latest from the YouTube channel are shown instead. The Work page always shows the whole channel."
+                    fields:
+                      - { label: "Title", name: "title", widget: "string" }
+                      - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+                      - { label: "Category label", name: "category", widget: "string", required: false }
+                      - { label: "Description", name: "description", widget: "text", required: false }
+                      - { label: "YouTube URL", name: "youtubeUrl", widget: "string", hint: "Example: https://youtu.be/S6D9-7q0-b4" }
+                      - { label: "Thumbnail image", name: "thumbnail", widget: "image", required: false, hint: "Leave empty to use the YouTube thumbnail." }
+                      - { label: "Crop position", name: "cropPosition", widget: "select", required: false, options: ["top", "center", "bottom"], default: "center" }
+
+              - label: "Services"
+                name: "services"
+                widget: "object"
+                summary: "Services - {{fields.title}}"
+                fields:
+                  - { label: "Pretitle", name: "pretitle", widget: "string", required: false }
+                  - { label: "Title", name: "title", widget: "string", required: false }
+                  - { label: "Body", name: "body", widget: "text", required: false }
+                  - { label: "Heading position", name: "highlightPosition", widget: "select", options: ["left", "right"], default: "right" }
+                  - label: "Cards"
+                    name: "cards"
+                    widget: "list"
+                    required: false
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: "Tagline", name: "tagline", widget: "string", required: false }
+                      - { label: "Title", name: "title", widget: "string", required: false }
+                      - { label: "Description", name: "description", widget: "text", required: false }
+                      - { label: "Image", name: "image", widget: "image", required: false }
+                      - { label: "Crop position", name: "cropPosition", widget: "select", required: false, options: ["top", "center", "bottom"], default: "center" }
+
+              - label: "People"
+                name: "people"
+                widget: "object"
+                summary: "People - {{fields.title}}"
+                hint: "The images come from the People Gallery page."
+                fields:
+                  - { label: "Pretitle", name: "pretitle", widget: "string", required: false }
+                  - { label: "Title", name: "title", widget: "string", required: false }
+                  - { label: "Body", name: "body", widget: "text", required: false }
+                  - { label: "Heading position", name: "highlightPosition", widget: "select", options: ["left", "right"], default: "right" }
+                  - { label: "Button text", name: "ctaText", widget: "string", required: false }
+                  - { label: "Button link", name: "ctaLink", widget: "string", required: false }
+                  - { label: "Second button text", name: "secondaryCtaText", widget: "string", required: false }
+                  - { label: "Second button link", name: "secondaryCtaLink", widget: "string", required: false }
+
+              - label: "Solutions"
+                name: "solutions"
+                widget: "object"
+                summary: "Solutions"
+                fields:
+                  - { label: "Title", name: "title", widget: "string", required: false }
+                  - { label: "Kicker", name: "kicker", widget: "string", required: false }
+                  - { label: "Image", name: "image", widget: "image", required: false }
+                  - label: "Blocks"
+                    name: "blocks"
+                    widget: "list"
+                    required: false
+                    summary: "{{fields.category}}"
+                    fields:
+                      - { label: "Category", name: "category", widget: "string" }
+                      - label: "Items"
+                        name: "items"
+                        widget: "object"
+                        fields:
+                          - { label: "Title", name: "title", widget: "string", required: false }
+                          - { label: "Description", name: "description", widget: "text" }
+
+              - label: "Bottom CTA"
+                name: "cta"
+                widget: "object"
+                summary: "Bottom CTA - {{fields.title}}"
+                fields:
+                  - { label: "Title", name: "title", widget: "string", required: false }
+                  - { label: "Button text", name: "buttonText", widget: "string", required: false }
+                  - { label: "Button link", name: "buttonHref", widget: "string", required: false }
       - file: "src/pages/people/index.md"
         label: "People Gallery Page"
         name: "people"
@@ -377,43 +303,6 @@ collections:
                 { label: "Title", name: "title", widget: "string", required: false },
                 { label: "Status label", name: "statusLabel", widget: "string", required: false },
                 { label: "Status value", name: "statusValue", widget: "string", required: false }
-              ]
-            }
-          - {
-              label: "Featured videos on the start page (optional)",
-              name: "featuredVideos",
-              widget: "list",
-              required: false,
-              max: 5,
-              summary: "{{fields.title}}",
-              hint: "Videos picked out for the start page. Drag to reorder - the list order is the order on the page. Leave empty and the start page shows the latest from the YouTube channel instead. The Work page always shows the whole channel.",
-              fields: [
-                { label: "Title", name: "title", widget: "string" },
-                { label: "Subtitle", name: "subtitle", widget: "string", required: false },
-                { label: "Category label", name: "category", widget: "string", required: false },
-                { label: "Description", name: "description", widget: "text", required: false },
-                {
-                  label: "YouTube URL",
-                  name: "youtubeUrl",
-                  widget: "string",
-                  hint: "Example: https://youtu.be/S6D9-7q0-b4"
-                },
-                {
-                  label: "Thumbnail image (optional)",
-                  name: "thumbnail",
-                  widget: "image",
-                  required: false,
-                  hint: "Leave empty to auto-use YouTube thumbnail."
-                },
-                {
-                  label: "Crop position",
-                  name: "cropPosition",
-                  widget: "select",
-                  required: false,
-                  options: ["top", "center", "bottom"],
-                  default: "center",
-                  hint: "Controls vertical crop focus."
-                }
               ]
             }
       - file: "src/pages/contact.md"

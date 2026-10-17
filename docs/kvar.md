@@ -13,10 +13,6 @@
   Tompa och Matilda, Samuel Gustafsson, Rafael Edholm & Co, Steffe
   Sundström, Jocke och Steffe, Rickard Linda och Jany, Fender Rhodes MK1,
   Pianissimo. Bilderna följde aldrig med i flytten.
-- **`galleryItems` i Work-blocket ritas aldrig.** Fältet finns i CMS:et med
-  hjälptexten "visual teaser cards", men startsidan visar videor i stället.
-  Det ritas bara om YouTube-hämtningen misslyckas. Antingen renderas det
-  någonstans, eller så tas fältet bort ur `static/admin/config.yml`.
 - **`/work/` och `/cases/` är samma sida på två adresser.** `src/pages/cases.js`
   är bara en re-export av `work.js`. Båda ligger i sitemapen, vilket är
   duplicerat innehåll för sökmotorer. Antingen tas `cases.js` bort, eller så

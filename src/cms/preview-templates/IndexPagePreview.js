@@ -11,29 +11,6 @@ import tv4Logo from "../../img/logo-gallery/TV4sweden_logo.svg.png"
 import viaplayLogo from "../../img/logo-gallery/VPLAY-B.ST.png"
 import espnLogo from "../../img/logo-gallery/espn-png-logo-4142.png"
 
-const transformImage = (image, getAsset) => {
-  if (!image) {
-    return null
-  }
-  if (typeof image === "string") {
-    if (!getAsset) return image
-    const asset = getAsset(image)
-    if (!asset) return image
-    if (typeof asset === "string") return asset
-    if (typeof asset?.toString === "function") return asset.toString()
-    return image
-  }
-  if (image.childImageSharp && getAsset) {
-    const asset = getAsset(image.childImageSharp?.gatsbyImageData?.images?.fallback?.src)
-    if (asset) {
-      if (typeof asset === "string") return asset
-      if (typeof asset?.toString === "function") return asset.toString()
-      return asset
-    }
-  }
-  return image
-}
-
 const previewFallbackLogos = [
   { id: "bbc", image: bbcLogo, alt: "BBC logo", href: "" },
   { id: "eurobank", image: eurobankLogo, alt: "Eurobank logo", href: "" },
@@ -46,67 +23,39 @@ const previewFallbackLogos = [
   { id: "espn", image: espnLogo, alt: "ESPN logo", href: "" },
 ]
 
+// In the editor an image is a path the CMS can resolve to a local blob; the
+// built site hands the template a processed File node instead.
+const toPreviewImage = (image, getAsset) => {
+  if (!image || typeof image !== "string" || !getAsset) return image
+  const asset = getAsset(image)
+  if (!asset) return image
+  return typeof asset === "string" ? asset : asset.toString()
+}
+
 const IndexPagePreview = ({ entry, getAsset }) => {
-  const entryData =
-    entry.getIn(["data"]) || entry.getIn(["data", "frontmatter"]) || null
-  const data =
-    (entryData && entryData.toJS && entryData.toJS()) ||
-    entryData ||
-    {}
+  const entryData = entry.getIn(["data"])
+  const data = (entryData && entryData.toJS && entryData.toJS()) || entryData || {}
 
-  const heroImage = transformImage(data.hero?.image, getAsset)
-
-  const flowBlocks = (data.pageCopy?.flowBlocks || []).map(block => ({
-    ...block,
-    galleryItems: (block.galleryItems || []).map(item => ({
-      ...item,
-      image: transformImage(item.image, getAsset),
+  const sections = (data.sections || []).map(section => ({
+    ...section,
+    image: toPreviewImage(section.image, getAsset),
+    logos: (section.logos || []).map(logo => ({
+      ...logo,
+      image: toPreviewImage(logo.image, getAsset),
     })),
-    cards: (block.cards || []).map(card => ({
+    cards: (section.cards || []).map(card => ({
       ...card,
-      image: transformImage(card.image, getAsset),
+      image: toPreviewImage(card.image, getAsset),
     })),
   }))
 
-  const logoBanner = {
-    label: data.logoBanner?.label,
-    logos: (data.logoBanner?.logos || []).map(item => ({
-      ...item,
-      image: transformImage(item.image, getAsset),
-    })),
-  }
-
   return (
-    <IndexPageTemplate
-      content={{
-        hero: {
-          title: data.hero?.title,
-          h1title: data.hero?.h1title,
-          description: data.hero?.description,
-          cta: {
-            buttonText: data.hero?.cta?.buttonText,
-            primaryText: data.hero?.cta?.primaryText,
-            primaryHref: data.hero?.cta?.primaryHref,
-            secondaryText: data.hero?.cta?.secondaryText,
-            secondaryHref: data.hero?.cta?.secondaryHref,
-          },
-          image: heroImage,
-        },
-        logoBanner,
-        pageCopy: {
-          bottomCta: data.pageCopy?.bottomCta,
-          flowBlocks,
-        },
-      }}
-      fallbackLogos={previewFallbackLogos}
-    />
+    <IndexPageTemplate content={{ sections }} fallbackLogos={previewFallbackLogos} />
   )
 }
 
 IndexPagePreview.propTypes = {
-  entry: PropTypes.shape({
-    getIn: PropTypes.func,
-  }),
+  entry: PropTypes.shape({ getIn: PropTypes.func }),
   getAsset: PropTypes.func,
 }
 

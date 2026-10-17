@@ -254,16 +254,6 @@ export const query = graphql`
           statusLabel
           statusValue
         }
-        featuredVideos {
-          order
-          title
-          subtitle
-          description
-          category
-          youtubeUrl
-          thumbnail
-          cropPosition
-        }
       }
     }
   }

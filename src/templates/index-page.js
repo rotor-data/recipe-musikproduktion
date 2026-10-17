@@ -1,75 +1,28 @@
 import React, { useEffect, useMemo, useState } from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import SeoHead from "../components/SeoHead"
-import MarkdownRenderer from "../components/MarkdownRenderer"
-import PreviewCompatibleImage from "../components/PreviewCompatibleImage"
-import { cropPositionToObjectPosition } from "../lib/imageCrop"
 import VideoModal from "../components/VideoModal"
+import HeroSection from "../components/sections/HeroSection"
+import LogosSection from "../components/sections/LogosSection"
+import WorkSection from "../components/sections/WorkSection"
+import ServicesSection from "../components/sections/ServicesSection"
+import PeopleSection from "../components/sections/PeopleSection"
+import SolutionsSection from "../components/sections/SolutionsSection"
+import CtaSection from "../components/sections/CtaSection"
 import { fetchYoutubeVideos, normalizeCmsFeaturedVideos } from "../lib/youtube"
 
 export const IndexPageTemplate = ({
   content,
   peopleTeasers = [],
-  featuredVideos = [],
   fallbackLogos = [],
 }) => {
-  const { hero, pageCopy = {}, solutions = {}, logoBanner = {} } = content
-  const blocks = pageCopy.flowBlocks || []
-  // Blocks are addressed by their pretitle so reordering them in the CMS
-  // cannot silently swap the sections around. Position is the fallback.
-  const findBlock = (name, position) =>
-    blocks.find(
-      block =>
-        String(block?.highlight?.pretitle || "").trim().toLowerCase() === name
-    ) ||
-    blocks[position] ||
-    {}
-  const studioBlock = findBlock("studio", 0)
-  const workBlock = findBlock("work", 1)
-  const peopleBlock = findBlock("people", 2)
-  const cmsLogoItems = (logoBanner.logos || [])
-    .map((item, index) => ({
-      id: item?.alt || `cms-logo-${index}`,
-      // the CMS preview hands us a blob URL string, the build a File node
-      image:
-        typeof item?.image === "string"
-          ? item.image
-          : item?.image?.publicURL || "",
-      alt: item?.alt || "Partner logo",
-      href: item?.href || "",
-    }))
-    .filter(item => item.image)
-  const logoItems = cmsLogoItems.length ? cmsLogoItems : fallbackLogos
-
-  // The cards live on the blocks in the CMS but render as one grid in the
-  // Studio section, so collect them in a fixed section order rather than in
-  // whatever order the blocks happen to sit in.
-  const serviceCards = [studioBlock, workBlock, peopleBlock]
-    .flatMap(block => block?.cards || [])
-    .filter(card => card?.title || card?.description || card?.image)
-  const heroPrimaryCtaText = hero?.cta?.primaryText || hero?.cta?.buttonText || "Contact"
-  const heroPrimaryCtaHref = hero?.cta?.primaryHref || "/contact"
-  const heroSecondaryCtaText =
-    hero?.cta?.secondaryText || workBlock.highlight?.ctaText || "View work"
-  const heroSecondaryCtaHref =
-    hero?.cta?.secondaryHref || workBlock.highlight?.ctaLink || "/work"
-  const peoplePrimaryCtaText = peopleBlock.highlight?.ctaText || "Open gallery"
-  const peoplePrimaryCtaHref = peopleBlock.highlight?.ctaLink || "/people"
-  const peopleSecondaryCtaText =
-    peopleBlock.highlight?.secondaryCtaText || "Start a project"
-  const peopleSecondaryCtaHref =
-    peopleBlock.highlight?.secondaryCtaLink || "/contact"
-  const bottomCta = pageCopy.bottomCta || {}
-
-  const workItems = (workBlock.galleryItems || [])
-    .filter(item => item?.image && (item?.title || item?.subtitle))
-    .slice(0, 5)
+  const sections = content?.sections || []
+  const workSection = sections.find(section => section?.type === "work") || {}
 
   const curatedVideos = useMemo(
-    () => normalizeCmsFeaturedVideos(featuredVideos || []).slice(0, 5),
-    [featuredVideos]
+    () => normalizeCmsFeaturedVideos(workSection.featuredVideos || []).slice(0, 5),
+    [workSection.featuredVideos]
   )
 
   // The channel feed is the default source. A curated list in the CMS wins
@@ -94,7 +47,7 @@ export const IndexPageTemplate = ({
     }
   }, [curatedVideos.length])
 
-  const featuredWorkItems = useMemo(() => {
+  const workItems = useMemo(() => {
     if (curatedVideos.length) {
       return curatedVideos.map(video => ({
         id: video.videoId || video.youtubeUrl,
@@ -107,313 +60,47 @@ export const IndexPageTemplate = ({
       }))
     }
 
-    if (channelVideos.length) {
-      return channelVideos.map(video => ({
-        id: video.id,
-        videoId: video.id,
-        title: video.title,
-        subtitle: video.channelTitle,
-        description: video.description,
-        publishedAt: video.publishedAt,
-        channelTitle: video.channelTitle,
-        thumbnail: video.thumbnail,
-        cropPosition: "center",
-      }))
-    }
-
-    return workItems.map((item, index) => ({
-      id: `fallback-${index}`,
-      title: item.title,
-      subtitle: item.subtitle,
-      image: item.image,
-      cropPosition: item.cropPosition || "center",
-      link: item.link || "/work",
-      external: false,
+    return channelVideos.map(video => ({
+      id: video.id,
+      videoId: video.id,
+      title: video.title,
+      subtitle: video.channelTitle,
+      description: video.description,
+      publishedAt: video.publishedAt,
+      channelTitle: video.channelTitle,
+      thumbnail: video.thumbnail,
+      cropPosition: "center",
     }))
-  }, [curatedVideos, channelVideos, workItems])
+  }, [curatedVideos, channelVideos])
 
-  const workHeadClass =
-    workBlock.highlightPosition === "right"
-      ? "rec-section__head rec-section__head--split rec-section__head--right"
-      : "rec-section__head rec-section__head--split rec-section__head--left"
-  const studioHeadClass =
-    studioBlock.highlightPosition === "left"
-      ? "rec-section__head rec-section__head--left"
-      : "rec-section__head rec-section__head--right"
-  const peopleHeadClass =
-    peopleBlock.highlightPosition === "left"
-      ? "rec-section__head rec-section__head--left"
-      : "rec-section__head rec-section__head--right"
-  const peopleActionsClass =
-    peopleBlock.highlightPosition === "left"
-      ? "rec-section__actions rec-section__actions--left"
-      : "rec-section__actions rec-section__actions--right"
+  const renderSection = (section, index) => {
+    const key = `${section?.type || "section"}-${index}`
 
-  const heroImage = getImage(hero?.image)
+    switch (section?.type) {
+      case "hero":
+        return <HeroSection key={key} section={section} />
+      case "logos":
+        return <LogosSection key={key} section={section} fallbackLogos={fallbackLogos} />
+      case "work":
+        return (
+          <WorkSection key={key} section={section} items={workItems} onPlay={setActiveVideo} />
+        )
+      case "services":
+        return <ServicesSection key={key} section={section} />
+      case "people":
+        return <PeopleSection key={key} section={section} teasers={peopleTeasers} />
+      case "solutions":
+        return <SolutionsSection key={key} section={section} />
+      case "cta":
+        return <CtaSection key={key} section={section} />
+      default:
+        return null
+    }
+  }
 
   return (
     <main className="rec-page rec-start-page">
-      <section className="rec-start-hero">
-        {heroImage && (
-          <div className="rec-start-hero__media">
-            <GatsbyImage
-              image={heroImage}
-              alt=""
-              style={{ width: "100%", height: "100%" }}
-              imgStyle={{ objectFit: "cover" }}
-            />
-          </div>
-        )}
-
-        <div className="rec-start-hero__overlay rec-shell">
-          <div className="rec-start-hero__content">
-            {hero?.title && (
-              <div className="rec-start-hero__title">
-                <MarkdownRenderer markdown={hero.title} />
-              </div>
-            )}
-            {(hero?.description || hero?.h1title) && (
-              <div className="rec-start-hero__details">
-                {hero?.description && (
-                  <div className="rec-start-hero__body">
-                    <MarkdownRenderer markdown={hero.description} />
-                  </div>
-                )}
-                {hero?.h1title && (
-                  <div className="rec-start-hero__h1-wrap">
-                    <span className="rec-start-hero__h1-line" aria-hidden="true" />
-                    <h1 className="rec-start-hero__h1-small">{hero.h1title}</h1>
-                  </div>
-                )}
-              </div>
-            )}
-            <div className="rec-start-hero__actions">
-              <a href={heroPrimaryCtaHref} className="rec-button rec-button--primary">
-                {heroPrimaryCtaText}
-              </a>
-              <a href={heroSecondaryCtaHref} className="rec-button rec-button--ghost">
-                {heroSecondaryCtaText}
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {logoItems.length > 0 && (
-        <section className="rec-logo-banner">
-          <div className="rec-shell rec-logo-banner__inner">
-            <p className="rec-logo-banner__label">{logoBanner.label || "Industry partners"}</p>
-            <div className="rec-logo-banner__row">
-              {logoItems.map((item, index) => {
-                const imageEl = (
-                  <img
-                    src={item.image}
-                    alt={item.alt || "Partner logo"}
-                    className="rec-logo-banner__image"
-                    loading="lazy"
-                  />
-                )
-
-                if (item.href) {
-                  return (
-                    <a
-                      href={item.href}
-                      className="rec-logo-banner__item"
-                      key={`${item.id || item.alt}-${index}`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {imageEl}
-                    </a>
-                  )
-                }
-
-                return (
-                  <div className="rec-logo-banner__item" key={`${item.id || item.alt}-${index}`}>
-                    {imageEl}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-      )}
-
-      <section className="rec-section rec-shell">
-        <div className={workHeadClass}>
-          <h2 className="rec-section__title">
-            {workBlock.highlight?.pretitle || "Work"}:
-            <br />
-            {workBlock.highlight?.title || "Selected projects"}
-          </h2>
-          <a href={workBlock.highlight?.ctaLink || "/work"} className="rec-link-inline">
-            {workBlock.highlight?.ctaText || "View all work"}
-          </a>
-        </div>
-        <div className="rec-work-preview-grid">
-          {featuredWorkItems.map((item, index) => {
-            const Card = item.videoId ? "button" : "a"
-            const cardProps = item.videoId
-              ? {
-                  type: "button",
-                  onClick: () => setActiveVideo(item),
-                  "aria-label": `Play ${item.title || "video"}`,
-                }
-              : {
-                  href: item.link || "/work",
-                  target: item.external ? "_blank" : undefined,
-                  rel: item.external ? "noreferrer" : undefined,
-                }
-
-            return (
-            <Card
-              key={`${item.id}-${index}`}
-              className="rec-work-preview-card"
-              {...cardProps}
-            >
-              <div className="rec-work-preview-card__media">
-                {item.thumbnail ? (
-                  <img
-                    src={item.thumbnail}
-                    alt={item.title || "Project"}
-                    style={{
-                      objectPosition: cropPositionToObjectPosition(item.cropPosition),
-                    }}
-                  />
-                ) : (
-                  <PreviewCompatibleImage
-                    imageInfo={{
-                      image: item.image,
-                      alt: item.title || "Project",
-                      imageStyle: { width: "100%", height: "100%" },
-                      imgStyle: {
-                        objectFit: "cover",
-                        objectPosition: cropPositionToObjectPosition(item.cropPosition),
-                      },
-                    }}
-                  />
-                )}
-              </div>
-              <div className="rec-work-preview-card__meta">
-                <p>{item.title}</p>
-                {item.subtitle && <span>{item.subtitle}</span>}
-              </div>
-            </Card>
-            )
-          })}
-        </div>
-      </section>
-
-      <section className="rec-section rec-shell rec-section--studio">
-        <div className={studioHeadClass}>
-          <h2 className="rec-section__title">
-            {studioBlock.highlight?.pretitle || "Studio"}:
-            <br />
-            {studioBlock.highlight?.title || "Sound with direction"}
-          </h2>
-          {studioBlock.highlight?.body && (
-            <p className="rec-section__lead">{studioBlock.highlight.body}</p>
-          )}
-        </div>
-        <div className="rec-service-grid">
-          {serviceCards.map((card, index) => (
-            <article className="rec-service-card" key={`${card.title}-${index}`}>
-              {card.image && (
-                <div className="rec-service-card__image">
-                  <PreviewCompatibleImage
-                    imageInfo={{
-                      image: card.image,
-                      alt: card.title || "Service",
-                      imageStyle: { width: "100%", height: "100%" },
-                      imgStyle: {
-                        objectFit: "cover",
-                        objectPosition: cropPositionToObjectPosition(card.cropPosition),
-                      },
-                    }}
-                  />
-                </div>
-              )}
-              {card.tagline && <p className="rec-service-card__tag">{card.tagline}</p>}
-              {card.title && <h3 className="rec-service-card__title">{card.title}</h3>}
-              {card.description && (
-                <MarkdownRenderer markdown={card.description} textClassName="rec-service-card__body" />
-              )}
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="rec-section rec-shell rec-section--people">
-        <div className={peopleHeadClass}>
-          <h2 className="rec-section__title">
-            {peopleBlock.highlight?.pretitle || "People"}:
-            <br />
-            {peopleBlock.highlight?.title || "The studio"}
-          </h2>
-          {peopleBlock.highlight?.body && (
-            <p className="rec-section__lead">{peopleBlock.highlight.body}</p>
-          )}
-          <div className={peopleActionsClass}>
-            <a href={peoplePrimaryCtaHref} className="rec-button rec-button--ghost">
-              {peoplePrimaryCtaText}
-            </a>
-            <a href={peopleSecondaryCtaHref} className="rec-button rec-button--ghost">
-              {peopleSecondaryCtaText}
-            </a>
-          </div>
-        </div>
-        {peopleTeasers.length > 0 && (
-          <div className="rec-people-strip">
-            {peopleTeasers.map((item, index) => {
-              if (!item?.image) return null
-
-              return (
-                <a
-                  href="/people"
-                  className="rec-people-strip__item"
-                  key={`${item.alt || "people"}-${index}`}
-                  aria-label={`Open people gallery: ${item.alt || "image"}`}
-                >
-                  <PreviewCompatibleImage
-                    imageInfo={{
-                      image: item.image,
-                      alt: item.alt || "People teaser",
-                      imageStyle: { width: "100%", height: "100%" },
-                      imgStyle: {
-                        objectFit: "cover",
-                        objectPosition: cropPositionToObjectPosition(item.cropPosition),
-                      },
-                    }}
-                  />
-                </a>
-              )
-            })}
-          </div>
-        )}
-      </section>
-
-      <section className="rec-section rec-shell rec-section--solutions">
-        <div className="rec-section__head rec-section__head--solutions">
-          <h2 className="rec-section__title">Solutions</h2>
-          <p className="rec-section__kicker">Specialized workflows</p>
-        </div>
-        <div className="rec-solutions-grid">
-          {(solutions.blocks || []).slice(0, 3).map((block, index) => (
-            <article className="rec-solution-card" key={`${block.category}-${index}`}>
-              <span className="rec-solution-card__index">{`0${index + 1}`}</span>
-              {block.category && <h3>{block.category}</h3>}
-              {block.items?.description && <p>{block.items.description}</p>}
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="rec-section rec-shell rec-section--cta">
-        <h2>{bottomCta.title || "Ready to define your sound?"}</h2>
-        <a href={bottomCta.buttonHref || heroPrimaryCtaHref} className="rec-button rec-button--primary">
-          {bottomCta.buttonText || heroPrimaryCtaText}
-        </a>
-      </section>
+      {sections.map(renderSection)}
 
       {activeVideo && (
         <VideoModal
@@ -432,37 +119,9 @@ export const IndexPageTemplate = ({
 }
 
 IndexPageTemplate.propTypes = {
-  content: PropTypes.shape({
-    hero: PropTypes.object,
-    solutions: PropTypes.object,
-    pageCopy: PropTypes.object,
-    logoBanner: PropTypes.shape({
-      label: PropTypes.string,
-      logos: PropTypes.arrayOf(
-        PropTypes.shape({
-          image: PropTypes.string,
-          alt: PropTypes.string,
-          href: PropTypes.string,
-        })
-      ),
-    }),
-  }),
-  peopleTeasers: PropTypes.arrayOf(
-    PropTypes.shape({
-      image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-      alt: PropTypes.string,
-      cropPosition: PropTypes.string,
-    })
-  ),
-  featuredVideos: PropTypes.arrayOf(PropTypes.object),
-  fallbackLogos: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      image: PropTypes.string,
-      alt: PropTypes.string,
-      href: PropTypes.string,
-    })
-  ),
+  content: PropTypes.shape({ sections: PropTypes.array }),
+  peopleTeasers: PropTypes.array,
+  fallbackLogos: PropTypes.array,
 }
 
 const IndexPage = ({ data }) => {
@@ -495,13 +154,10 @@ const IndexPage = ({ data }) => {
     }))
     .slice(0, 5)
 
-  const featuredVideos = data.workPage?.frontmatter?.featuredVideos || []
-
   return (
     <IndexPageTemplate
       content={content}
       peopleTeasers={peopleTeasers}
-      featuredVideos={featuredVideos}
       fallbackLogos={fallbackLogos}
     />
   )
@@ -523,32 +179,37 @@ export const query = graphql`
           title
           description
         }
-        hero {
+        sections {
+          type
           title
           h1title
           description
-          cta {
-            buttonText
-            primaryText
-            primaryHref
-            secondaryText
-            secondaryHref
-          }
+          kicker
+          label
+          pretitle
+          body
+          highlightPosition
+          ctaText
+          ctaLink
+          secondaryCtaText
+          secondaryCtaLink
+          primaryText
+          primaryHref
+          secondaryText
+          secondaryHref
+          buttonText
+          buttonHref
           image {
             childImageSharp {
               gatsbyImageData(
-                quality: 90
-                layout: CONSTRAINED
-                transformOptions: {
-                  cropFocus: CENTER
-                  duotone: { shadow: "#707070", highlight: "#C29C38", opacity: 80 }
-                }
+                width: 1920
+                quality: 82
+                placeholder: BLURRED
+                layout: FULL_WIDTH
+                transformOptions: { fit: COVER, cropFocus: CENTER }
               )
             }
           }
-        }
-        logoBanner {
-          label
           logos {
             image {
               publicURL
@@ -556,74 +217,31 @@ export const query = graphql`
             alt
             href
           }
-        }
-        pageCopy {
-          bottomCta {
+          cards {
+            tagline
             title
-            buttonText
-            buttonHref
-          }
-          flowBlocks {
-            highlightPosition
-            highlight {
-              pretitle
-              title
-              body
-              ctaText
-              secondaryCtaText
-              secondaryCtaLink
-              megaHeadline
-              ctaLink
-            }
-            showGallery
-            galleryItems {
-              cropPosition
-              image {
-                childImageSharp {
-                  gatsbyImageData(
-                    quality: 80
-                    layout: CONSTRAINED
-                    width: 800
-                  )
-                }
-              }
-              title
-              subtitle
-              bigText
-              link
-            }
-            cards {
-              tagline
-              title
-              description
-              fullWidth
-              link
-              linkLabel
-              cropPosition
-              image {
-                childImageSharp {
-                  gatsbyImageData(
-                    quality: 90
-                    layout: CONSTRAINED
-                    width: 900
-                  )
-                }
+            description
+            cropPosition
+            image {
+              childImageSharp {
+                gatsbyImageData(
+                  width: 900
+                  quality: 82
+                  placeholder: BLURRED
+                  layout: CONSTRAINED
+                  transformOptions: { fit: COVER, cropFocus: CENTER }
+                )
               }
             }
           }
-        }
-        solutions {
-          image {
-            childImageSharp {
-              gatsbyImageData(
-                width: 900
-                height: 600
-                quality: 82
-                placeholder: BLURRED
-                layout: CONSTRAINED
-                transformOptions: { fit: COVER, cropFocus: CENTER }
-              )
-            }
+          featuredVideos {
+            title
+            subtitle
+            category
+            description
+            youtubeUrl
+            thumbnail
+            cropPosition
           }
           blocks {
             category
@@ -657,18 +275,6 @@ export const query = graphql`
               gatsbyImageData(width: 520 quality: 82 placeholder: BLURRED layout: CONSTRAINED)
             }
           }
-        }
-      }
-    }
-    workPage: markdownRemark(frontmatter: { templateKey: { eq: "work-page" } }) {
-      frontmatter {
-        featuredVideos {
-          order
-          title
-          subtitle
-          youtubeUrl
-          thumbnail
-          cropPosition
         }
       }
     }
