@@ -4,8 +4,10 @@ import { initializeAndTrack } from 'gatsby-plugin-gdpr-cookies'
 import { useState } from "react";
 import CookieConsent, { Cookies } from "react-cookie-consent";
 import SimpleModal from "./SimpleModal";
+import useSiteText from "../lib/useSiteText";
 
 const CookieNotice = () => {
+    const { cookies } = useSiteText();
 
     const cookieCategories = [
         {
@@ -85,7 +87,7 @@ const CookieNotice = () => {
                                     className="button is-warning is-medium mt-3 is-family-secondary has-text-weight-bold"
                                     onClick={() => initializeCookies()}
                                 >
-                                    Save preferences
+                                    {cookies.modalSave}
                                 </button>
                             </div>
                             <div className="column">
@@ -98,7 +100,7 @@ const CookieNotice = () => {
                                         setBannerVisible("hidden");
                                     }}
                                 >
-                                    Accept all
+                                    {cookies.modalAcceptAll}
                                 </button>
                             </div>
                         </div>
@@ -112,7 +114,7 @@ const CookieNotice = () => {
                 disableStyles={true}
                 visible={bannerVisible}
                 location="bottom"
-                buttonText="Give me cookies"
+                buttonText={cookies.acceptButton}
                 cookieName="gatsby-gdpr-google-analytics"
                 expires={150}
                 onAccept={() => {
@@ -125,8 +127,8 @@ const CookieNotice = () => {
                 buttonWrapperClasses="cookie-button-wrapper"
                 contentClasses="cookie-content"
             >
-                <p className="is-family-secondary has-text-weight-bold mb-4">We use cookies to improve your experience</p>
-                <button className="cookie-customize is-size-6" onClick={() => handleClick()}>Customize cookies</button>
+                <p className="is-family-secondary has-text-weight-bold mb-4">{cookies.bannerText}</p>
+                <button className="cookie-customize is-size-6" onClick={() => handleClick()}>{cookies.customizeButton}</button>
             </CookieConsent>
         </div>
     )

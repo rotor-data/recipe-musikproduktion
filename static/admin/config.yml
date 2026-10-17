@@ -590,3 +590,93 @@ collections:
                     required: false
                     hint: Vart rutan går. Skriv till exempel /work.
                 hint: Rutorna längst ner på sidan som länkar vidare.
+      - file: src/data/navigation.md
+        label: Menyn
+        name: navigation
+        description: Länkarna högst upp på varje sida. Dra för att ändra ordning.
+        fields:
+          - label: Menyval
+            name: menu
+            widget: list
+            summary: '{{fields.label}}'
+            hint: Varje rad blir en länk i menyn.
+            fields:
+              - label: Text
+                name: label
+                widget: string
+                hint: 'Det besökaren ser, till exempel Gallery.'
+              - label: Går till
+                name: href
+                widget: select
+                options:
+                  - label: Startsidan
+                    value: /
+                  - label: Bildgalleriet
+                    value: /people
+                  - label: Work
+                    value: /work
+                  - label: Kontakt
+                    value: /contact
+                hint: Välj en av sajtens sidor. Listan är låst så ingen länk kan peka fel.
+      - file: src/pages/site-text.md
+        label: Site-wide text
+        name: sitetext
+        description: 'Text som återkommer på alla sidor, plus 404-sidan. Ändrar du här syns det överallt.'
+        fields:
+          - label: Template Key
+            name: templateKey
+            widget: hidden
+            default: site-text
+          - label: Footer
+            name: footer
+            widget: object
+            hint: Sidfoten längst ner på varje sida.
+            fields:
+              - label: Rättighetsrad
+                name: rightsText
+                widget: string
+                required: false
+                hint: 'Står efter "© 2026 Recipe Music Production.". Till exempel: All rights reserved.'
+          - label: Cookierutan
+            name: cookies
+            widget: object
+            hint: Rutan som möter besökaren första gången.
+            fields:
+              - label: Text i rutan
+                name: bannerText
+                widget: string
+                required: false
+                hint: Meningen besökaren läser.
+              - label: 'Knapp: acceptera'
+                name: acceptButton
+                widget: string
+                required: false
+                hint: Den stora gula knappen.
+              - label: 'Knapp: anpassa'
+                name: customizeButton
+                widget: string
+                required: false
+                hint: Länken som öppnar inställningarna.
+              - label: 'Inställningar: acceptera alla'
+                name: modalAcceptAll
+                widget: string
+                required: false
+                hint: Knappen inne i inställningsrutan.
+              - label: 'Inställningar: spara'
+                name: modalSave
+                widget: string
+                required: false
+                hint: Knappen som sparar valen.
+          - label: 404-sidan
+            name: notFound
+            widget: object
+            hint: Visas när någon hamnar på en adress som inte finns.
+            fields:
+              - label: Rubrik
+                name: title
+                widget: string
+                required: false
+              - label: Text
+                name: body
+                widget: text
+                required: false

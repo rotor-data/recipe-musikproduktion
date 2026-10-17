@@ -1,13 +1,18 @@
-import * as React from "react";
-import Layout from "../components/Layout";
+import * as React from "react"
+import Layout from "../components/Layout"
+import useSiteText from "../lib/useSiteText"
 
-const NotFoundPage = () => (
-  <Layout>
-    <div>
-      <h1>This page does not exist.</h1>
-      <p>Please go back to the start page and navigate from there.</p>
-    </div>
-  </Layout>
-);
+const NotFoundPage = () => {
+  const { notFound } = useSiteText()
 
-export default NotFoundPage;
+  return (
+    <Layout>
+      <div>
+        {notFound.title && <h1>{notFound.title}</h1>}
+        {notFound.body && <p>{notFound.body}</p>}
+      </div>
+    </Layout>
+  )
+}
+
+export default NotFoundPage

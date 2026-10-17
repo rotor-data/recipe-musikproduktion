@@ -65,6 +65,9 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type Frontmatter @infer {
+      footer: SiteFooterText
+      cookies: SiteCookieText
+      notFound: SiteNotFoundText
       sections: [Section]
       hero: Hero
       pageCopy: PageCopy
@@ -72,6 +75,23 @@ exports.createSchemaCustomization = ({ actions }) => {
       featuredImages: [GalleryImage]
       galleryImages: [GalleryImage]
       featuredVideos: [FeaturedVideo]
+    }
+
+    type SiteFooterText {
+      rightsText: String
+    }
+
+    type SiteCookieText {
+      bannerText: String
+      acceptButton: String
+      customizeButton: String
+      modalAcceptAll: String
+      modalSave: String
+    }
+
+    type SiteNotFoundText {
+      title: String
+      body: String
     }
 
     type Section @infer {

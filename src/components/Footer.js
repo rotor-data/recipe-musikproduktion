@@ -1,5 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import useSiteText from "../lib/useSiteText"
 
 const labelMap = {
   facebook: "Facebook",
@@ -16,6 +17,7 @@ const labelMap = {
 }
 
 const Footer = () => {
+  const { footer } = useSiteText()
   const data = useStaticQuery(graphql`
     query FooterData {
       site {
@@ -53,7 +55,7 @@ const Footer = () => {
       <div className="rec-footer__inner">
         <p className="rec-footer__brand">{company}</p>
         <p className="rec-footer__copyright">
-          © {new Date().getFullYear()} {company}. All rights reserved.
+          © {new Date().getFullYear()} {company}. {footer.rightsText}
         </p>
         {visibleSocial.length > 0 && (
           <div className="rec-footer__links">
