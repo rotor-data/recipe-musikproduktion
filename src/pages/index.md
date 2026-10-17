@@ -56,23 +56,6 @@ logoBanner:
 pageCopy:
   flowBlocks:
     - highlight:
-        pretitle: "Studio"
-        title: "Sound with direction"
-        megaHeadline: ""
-        body: |
-          We produce, record, mix, and master with one clear objective: audio with identity.
-        ctaText: "View work"
-        ctaLink: "/work"
-      showGallery: false
-      cards:
-        - tagline: "Services"
-          title: "Music production • Mix • Master"
-          description: |
-            End-to-end audio for artists, campaigns, and productions.
-          image: /img/IMG_3189.JPG
-      highlightPosition: "right"
-
-    - highlight:
         pretitle: "Work"
         title: "Selected projects"
         megaHeadline: ""
@@ -101,6 +84,23 @@ pageCopy:
             We work with teams that need sound to be both distinctive and reliable.
           image: /img/IMG_1244.jpeg
       highlightPosition: "left"
+
+    - highlight:
+        pretitle: "Studio"
+        title: "Sound with direction"
+        megaHeadline: ""
+        body: |
+          We produce, record, mix, and master with one clear objective: audio with identity.
+        ctaText: "View work"
+        ctaLink: "/work"
+      showGallery: false
+      cards:
+        - tagline: "Services"
+          title: "Music production • Mix • Master"
+          description: |
+            End-to-end audio for artists, campaigns, and productions.
+          image: /img/IMG_3189.JPG
+      highlightPosition: "right"
 
     - highlight:
         pretitle: "People"

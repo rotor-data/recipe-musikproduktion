@@ -43,7 +43,10 @@ export const IndexPageTemplate = ({
     .filter(item => item.image)
   const logoItems = cmsLogoItems.length ? cmsLogoItems : fallbackLogos
 
-  const serviceCards = blocks
+  // The cards live on the blocks in the CMS but render as one grid in the
+  // Studio section, so collect them in a fixed section order rather than in
+  // whatever order the blocks happen to sit in.
+  const serviceCards = [studioBlock, workBlock, peopleBlock]
     .flatMap(block => block?.cards || [])
     .filter(card => card?.title || card?.description || card?.image)
   const heroPrimaryCtaText = hero?.cta?.primaryText || hero?.cta?.buttonText || "Contact"
