@@ -13,7 +13,6 @@
   Tompa och Matilda, Samuel Gustafsson, Rafael Edholm & Co, Steffe
   Sundström, Jocke och Steffe, Rickard Linda och Jany, Fender Rhodes MK1,
   Pianissimo. Bilderna följde aldrig med i flytten.
-- **`work-content.md` har `visible: false`** — Work-sidan byggs inte. Avsiktligt?
 
 ## Netlify-flytten
 

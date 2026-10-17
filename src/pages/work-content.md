@@ -1,6 +1,5 @@
 ---
 templateKey: work-page
-visible: false
 meta:
   title: Work | Recipe Music Production
   description: Selected work from Recipe Music Production.

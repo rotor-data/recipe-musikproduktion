@@ -506,10 +506,7 @@ collections:
             name: templateKey
             widget: hidden
             default: work-page
-          - label: Visible
-            name: visible
-            widget: hidden
-            default: false
+            hint: Intern nyckel som kopplar den här filen till sidan /work/. Ändra inte.
           - label: Meta
             name: meta
             widget: object
