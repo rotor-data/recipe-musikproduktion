@@ -72,28 +72,6 @@ export const getYoutubeThumbnailFromId = videoId => {
   return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
 }
 
-export const normalizeCmsFeaturedVideos = input => {
-  if (!Array.isArray(input)) return []
-
-  return input
-    .map(item => {
-      const youtubeUrl = item?.youtubeUrl || item?.url || ""
-      const videoId = getYoutubeVideoId(youtubeUrl)
-
-      return {
-        order: Number(item?.order) || 0,
-        title: item?.title || "",
-        subtitle: item?.subtitle || "",
-        description: item?.description || "",
-        category: item?.category || "",
-        cropPosition: item?.cropPosition || "center",
-        youtubeUrl,
-        videoId,
-        thumbnail: item?.thumbnail || getYoutubeThumbnailFromId(videoId),
-      }
-    })
-    .filter(item => item.youtubeUrl && item.title)
-}
 
 export const fetchYoutubeVideos = async () => {
   const res = await fetch("/.netlify/functions/youtube")
@@ -105,18 +83,18 @@ export const fetchYoutubeVideos = async () => {
   return normalizeYoutubeVideos(data)
 }
 
-// Picking what the start page shows, in order of how explicit the choice is:
-// a curated list in the CMS beats everything, then videos tagged "featured"
-// on YouTube, then the newest to fill the remaining slots. Kept pure so it
-// can be tested without a browser or the API.
-export const selectStartPageVideos = (curated, channel, limit = 5) => {
-  if (Array.isArray(curated) && curated.length) {
-    return { source: "cms", videos: curated.slice(0, limit) }
-  }
-
+// Picking what the start page shows: videos tagged "featured" on YouTube
+// first, then the newest to fill the remaining slots. Curation happens where
+// the videos live, so there is no second list to keep in sync. Kept pure so
+// it can be tested without a browser or the API.
+export const selectStartPageVideos = (channel, limit = 5) => {
   const all = Array.isArray(channel) ? channel : []
   const isFeatured = video =>
-    Boolean(video && (video.highlight || (video.tags || []).some(tag => String(tag).toLowerCase() === "featured")))
+    Boolean(
+      video &&
+        (video.highlight ||
+          (video.tags || []).some(tag => String(tag).toLowerCase() === "featured"))
+    )
 
   const featured = all.filter(isFeatured)
   const rest = all.filter(video => !isFeatured(video))

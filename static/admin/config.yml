@@ -159,52 +159,7 @@ collections:
                     widget: string
                     required: false
                     hint: Vart länken går. Skriv /work för arbetssidan.
-                  - label: Featured videos
-                    name: featuredVideos
-                    widget: list
-                    required: false
-                    max: 5
-                    summary: '{{fields.title}}'
-                    hint: Videor du vill lyfta fram här. Lämnar du listan tom visas de senaste från YouTube-kanalen automatiskt. Arbetssidan visar alltid hela kanalen.
-                    fields:
-                      - label: Title
-                        name: title
-                        widget: string
-                        hint: Rubriken på videokortet.
-                      - label: Subtitle
-                        name: subtitle
-                        widget: string
-                        required: false
-                        hint: Valfri rad under rubriken.
-                      - label: Category label
-                        name: category
-                        widget: string
-                        required: false
-                        hint: Används för filterknapparna på arbetssidan.
-                      - label: Description
-                        name: description
-                        widget: text
-                        required: false
-                        hint: Text som visas när videon öppnas.
-                      - label: YouTube URL
-                        name: youtubeUrl
-                        widget: string
-                        hint: 'Klistra in länken till videon, till exempel https://youtu.be/S6D9-7q0-b4'
-                      - label: Thumbnail image
-                        name: thumbnail
-                        widget: image
-                        required: false
-                        hint: Egen bild på kortet. Lämna tom så hämtas YouTubes egen bild.
-                      - label: Crop position
-                        name: cropPosition
-                        widget: select
-                        required: false
-                        options:
-                          - top
-                          - center
-                          - bottom
-                        default: center
-                        hint: Vilken del av bilden som behålls när den beskärs.
+                hint: 'Videorna hämtas automatiskt från YouTube-kanalen. Vill du lyfta fram en video, tagga den med "featured" på YouTube - den hamnar då först.'
               - label: Services
                 name: services
                 widget: object

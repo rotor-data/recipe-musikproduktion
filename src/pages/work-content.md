@@ -4,7 +4,7 @@ meta:
   title: Work | Recipe Music Production
   description: Selected work from Recipe Music Production.
 hero:
-  eyebrow: Archive // Featured videos
+  eyebrow: ''
   title: Sonic Gallery
   statusLabel: Engine state
   statusValue: CURATED_LINKS

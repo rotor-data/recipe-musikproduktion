@@ -10,29 +10,17 @@ import ServicesSection from "../components/sections/ServicesSection"
 import PeopleSection from "../components/sections/PeopleSection"
 import SolutionsSection from "../components/sections/SolutionsSection"
 import CtaSection from "../components/sections/CtaSection"
-import {
-  fetchYoutubeVideos,
-  normalizeCmsFeaturedVideos,
-  selectStartPageVideos,
-} from "../lib/youtube"
+import { fetchYoutubeVideos, selectStartPageVideos } from "../lib/youtube"
 
 export const IndexPageTemplate = ({ content, peopleTeasers = [] }) => {
   const sections = content?.sections || []
-  const workSection = sections.find(section => section?.type === "work") || {}
 
-  const curatedVideos = useMemo(
-    () => normalizeCmsFeaturedVideos(workSection.featuredVideos || []).slice(0, 5),
-    [workSection.featuredVideos]
-  )
-
-  // The channel feed is the default source. A curated list in the CMS wins
-  // when there is one, which lets an editor pin specific videos.
+  // Videos come from the YouTube channel only. Which ones lead is decided by
+  // a "featured" tag there, so there is no list in the CMS to drift from it.
   const [channelVideos, setChannelVideos] = useState([])
   const [activeVideo, setActiveVideo] = useState(null)
 
   useEffect(() => {
-    if (curatedVideos.length) return undefined
-
     let cancelled = false
     fetchYoutubeVideos()
       .then(videos => {
@@ -45,22 +33,10 @@ export const IndexPageTemplate = ({ content, peopleTeasers = [] }) => {
     return () => {
       cancelled = true
     }
-  }, [curatedVideos.length])
+  }, [])
 
   const workItems = useMemo(() => {
-    const picked = selectStartPageVideos(curatedVideos, channelVideos, 5)
-
-    if (picked.source === "cms") {
-      return picked.videos.map(video => ({
-        id: video.videoId || video.youtubeUrl,
-        videoId: video.videoId,
-        title: video.title,
-        subtitle: video.subtitle,
-        description: video.description,
-        thumbnail: video.thumbnail,
-        cropPosition: video.cropPosition || "center",
-      }))
-    }
+    const picked = selectStartPageVideos(channelVideos, 5)
 
     return picked.videos.map(video => ({
       id: video.id,
@@ -73,7 +49,7 @@ export const IndexPageTemplate = ({ content, peopleTeasers = [] }) => {
       thumbnail: video.thumbnail,
       cropPosition: "center",
     }))
-  }, [curatedVideos, channelVideos])
+  }, [channelVideos])
 
   const renderSection = (section, index) => {
     const key = `${section?.type || "section"}-${index}`
@@ -225,15 +201,6 @@ export const query = graphql`
                 )
               }
             }
-          }
-          featuredVideos {
-            title
-            subtitle
-            category
-            description
-            youtubeUrl
-            thumbnail
-            cropPosition
           }
           blocks {
             category

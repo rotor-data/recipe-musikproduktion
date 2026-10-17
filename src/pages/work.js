@@ -37,7 +37,11 @@ export const WorkPageTemplate = ({ content = {} }) => {
       subtitle: video.publishedAt
         ? new Date(video.publishedAt).toLocaleDateString("sv-SE")
         : "",
-      category: "",
+      // The channel already carries tags; "featured" is a pick marker on the
+      // start page, not a category, so it never becomes a filter.
+      categories: (video.tags || [])
+        .map(tag => String(tag).trim())
+        .filter(tag => tag && tag.toLowerCase() !== "featured"),
       cropPosition: "center",
       thumbnail: video.thumbnail,
       channelTitle: video.channelTitle,
@@ -47,10 +51,16 @@ export const WorkPageTemplate = ({ content = {} }) => {
   }, [channelVideos])
   const [activeFilterLabel, setActiveFilterLabel] = useState("All tracks")
 
+  const categoriesOf = video => {
+    if (Array.isArray(video.categories)) return video.categories
+    const single = String(video.category || "").trim()
+    return single ? [single] : []
+  }
+
   const filters = useMemo(() => {
     const categories = Array.from(
-      new Set(videos.map(video => String(video.category || "").trim()).filter(Boolean))
-    )
+      new Set(videos.flatMap(categoriesOf).filter(Boolean))
+    ).sort((a, b) => a.localeCompare(b, "sv"))
 
     return [
       { label: "All tracks", query: "" },
@@ -76,7 +86,9 @@ export const WorkPageTemplate = ({ content = {} }) => {
       return videos
     }
 
-    return videos.filter(video => String(video.category || "").toLowerCase() === query)
+    return videos.filter(video =>
+      categoriesOf(video).some(category => category.toLowerCase() === query)
+    )
   }, [activeFilter, videos])
 
   return (
@@ -84,7 +96,7 @@ export const WorkPageTemplate = ({ content = {} }) => {
       <section className="rec-shell rec-work">
         <header className="rec-work__header">
           <div>
-            <p className="rec-work__eyebrow">{hero.eyebrow || "Archive // Featured videos"}</p>
+            {hero.eyebrow && <p className="rec-work__eyebrow">{hero.eyebrow}</p>}
             <h1 className="rec-work__title">{hero.title || "Sonic Gallery"}</h1>
           </div>
           <div className="rec-work__status">
@@ -158,7 +170,11 @@ export const WorkPageTemplate = ({ content = {} }) => {
                   </span>
                 </div>
                 <div className="rec-work__card-meta">
-                  <p className="rec-work__card-tag">{video.category || "Featured video"}</p>
+                  {categoriesOf(video).length > 0 && (
+                    <p className="rec-work__card-tag">
+                      {categoriesOf(video).join(" · ")}
+                    </p>
+                  )}
                   <p className="rec-work__card-title">{video.title}</p>
                   {video.description && <p className="rec-work__card-desc">{video.description}</p>}
                   {video.subtitle && <p className="rec-work__card-date">{video.subtitle}</p>}
