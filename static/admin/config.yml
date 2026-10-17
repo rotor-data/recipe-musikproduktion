@@ -458,45 +458,8 @@ collections:
                 hint: Vart knappen går. Skriv /contact för kontaktsidan.
           - label: Gallery images
             name: galleryImages
-            widget: list
-            summary: '{{fields.title}}'
-            hint: Alla bilder i galleriet. Dra för att ändra ordning - listans ordning är ordningen på sidan. Kryssa i Featured på upp till fem.
-            fields:
-              - label: Featured
-                name: featured
-                widget: boolean
-                default: false
-                required: false
-                hint: 'Kryssa i för att lyfta fram bilden. Den visas då överst på /people/ och i bildremsan på startsidan, och tas bort ur rutnätet nedanför så den inte syns två gånger. Max fem.'
-              - label: Name
-                name: title
-                widget: string
-                required: false
-                hint: Vem eller vad bilden föreställer. Visas under bilden och när man klickar på den.
-              - label: Subtitle
-                name: subtitle
-                widget: string
-                required: false
-                hint: 'Valfri extrarad under namnet, till exempel vad personen gjorde i studion.'
-              - label: Alt text
-                name: alt
-                widget: string
-                required: false
-                hint: 'Beskriv bilden i ord. Läses upp för den som inte kan se den, och används av Google. Skriv samma sak som i Name om du är osäker.'
-              - label: Image
-                name: src
-                widget: image
-                hint: Själva bildfilen.
-              - label: Crop position
-                name: cropPosition
-                widget: select
-                required: false
-                options:
-                  - top
-                  - center
-                  - bottom
-                default: center
-                hint: Bilderna beskärs till kvadrat. Välj vilken del som ska behållas om huvudet eller motivet hamnar utanför.
+            widget: gallerygrid
+            hint: 'Alla bilder i galleriet. Dra en bild för att flytta den, klicka på stjärnan för att lyfta fram den (max fem), klicka på bilden för att skriva namn och alt-text.'
       - file: src/pages/work-content.md
         label: Work Page
         name: work

@@ -23,3 +23,83 @@ body {
 a {
   color: #ebc15a;
 }
+
+/* ---- Gallery grid widget ---- */
+.gg-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0 0.75rem;
+}
+.gg-count { font-size: 13px; color: #5d5d5d; }
+.gg-add,
+.gg-editor button {
+  border: 1px solid #c4c6d2;
+  background: #fff;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.gg-add:hover, .gg-editor button:hover { border-color: #3a69c7; color: #3a69c7; }
+
+.gg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 10px;
+}
+.gg-cell { position: relative; display: flex; flex-direction: column; gap: 4px; }
+.gg-cell.is-dragging { opacity: 0.4; }
+.gg-thumb {
+  position: relative;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: #eceef3;
+  cursor: pointer;
+}
+.gg-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gg-missing { font-size: 11px; color: #8b8b8b; }
+.gg-cell.is-selected .gg-thumb { border-color: #3a69c7; }
+.gg-cell.is-featured .gg-thumb { border-color: #c29c38; }
+.gg-pos {
+  position: absolute; left: 4px; bottom: 4px;
+  background: rgba(0,0,0,.6); color: #fff;
+  font-size: 10px; line-height: 1; padding: 3px 5px; border-radius: 3px;
+}
+.gg-star {
+  position: absolute; top: 4px; right: 4px;
+  width: 24px; height: 24px; padding: 0;
+  border: 0; border-radius: 50%;
+  background: rgba(0,0,0,.6); color: #ffd25f;
+  font-size: 14px; line-height: 1; cursor: pointer;
+}
+.gg-star[disabled] { color: #9a9a9a; cursor: not-allowed; }
+.gg-name {
+  font-size: 11px; line-height: 1.3; color: #3a3a3a;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.gg-editor {
+  margin-top: 14px; padding: 12px;
+  border: 1px solid #c4c6d2; border-radius: 5px; background: #f8f8f9;
+}
+.gg-editor__head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px; font-size: 13px;
+}
+.gg-field { display: block; margin-bottom: 9px; }
+.gg-field span {
+  display: block; font-size: 11px; text-transform: uppercase;
+  letter-spacing: .5px; color: #7a7a7a; margin-bottom: 3px;
+}
+.gg-field input, .gg-field select {
+  width: 100%; padding: 7px 9px; font-size: 14px;
+  border: 1px solid #c4c6d2; border-radius: 4px; background: #fff;
+}
+.gg-editor__actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
+.gg-remove { color: #c23b3b; border-color: #e3bcbc !important; }
+.gg-remove:hover { border-color: #c23b3b !important; color: #c23b3b !important; }
