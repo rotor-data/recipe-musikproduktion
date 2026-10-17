@@ -6,7 +6,7 @@ import IndexPagePreview from './preview-templates/IndexPagePreview'
 import PeopleGalleryPreview from './preview-templates/PeopleGalleryPreview'
 import ContactPagePreview from "./preview-templates/ContactPagePreview"
 import WorkPagePreview from "./preview-templates/WorkPagePreview"
-import GalleryGridControl from "./widgets/GalleryGridControl"
+import GalleryGridWidget from "./widgets/GalleryGridWidget"
 
 const ensureLink = (href, options = {}) => {
   const head = document.head || document.getElementsByTagName("head")[0]
@@ -40,7 +40,7 @@ CMS.registerPreviewStyle(
 CMS.registerPreviewStyle("/admin/custom-cms-css.css")
 registerSiteStyles()
 
-CMS.registerWidget("gallerygrid", GalleryGridControl)
+CMS.registerWidget("gallerygrid", GalleryGridWidget)
 
 CMS.registerPreviewTemplate('index', IndexPagePreview)
 CMS.registerPreviewTemplate('people', PeopleGalleryPreview)

@@ -32,7 +32,8 @@ const GalleryGridControl = props => {
 
   // The media library answers asynchronously: it writes the chosen path into
   // mediaPaths under the control id we opened it with.
-  const mediaPath = mediaPaths && mediaPaths.get ? mediaPaths.get(forID) : null
+  const mediaPath =
+    mediaPaths && typeof mediaPaths.get === "function" ? mediaPaths.get(forID) : null
 
   useEffect(() => {
     if (!mediaPath || !pendingRef.current) return
@@ -50,9 +51,31 @@ const GalleryGridControl = props => {
     }
   }, [mediaPath]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  // The media library is the part of Decap most likely to move. When it is
+  // not reachable, ask for a path by hand instead of offering a dead button.
+  const hasMediaLibrary =
+    typeof onOpenMediaLibrary === "function" && mediaPaths && typeof mediaPaths.get === "function"
+
   const openLibrary = (mode, index) => {
-    pendingRef.current = { mode, index }
-    onOpenMediaLibrary({ controlID: forID, forImage: true, value: "", field })
+    if (hasMediaLibrary) {
+      pendingRef.current = { mode, index }
+      onOpenMediaLibrary({ controlID: forID, forImage: true, value: "", field })
+      return
+    }
+
+    const current = mode === "replace" && items[index] ? items[index].src || "" : ""
+    // eslint-disable-next-line no-alert
+    const path = window.prompt("Sökväg till bilden, till exempel /img/namn.jpg", current)
+    if (!path) return
+
+    if (mode === "add") {
+      write([...items, { featured: false, title: "", subtitle: "", alt: "", src: path, cropPosition: "center" }])
+      setSelected(items.length)
+    } else if (items[index]) {
+      const next = items.slice()
+      next[index] = { ...next[index], src: path }
+      write(next)
+    }
   }
 
   const toggleFeatured = index => {
@@ -108,7 +131,7 @@ const GalleryGridControl = props => {
           {items.length} bilder &middot; {featuredCount} av {MAX_FEATURED} utvalda
         </span>
         <button type="button" className="gg-add" onClick={() => openLibrary("add")}>
-          Lägg till bild
+          {hasMediaLibrary ? "Lägg till bild" : "Lägg till bild via sökväg"}
         </button>
       </div>
 

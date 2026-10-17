@@ -103,3 +103,21 @@ a {
 .gg-editor__actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
 .gg-remove { color: #c23b3b; border-color: #e3bcbc !important; }
 .gg-remove:hover { border-color: #c23b3b !important; color: #c23b3b !important; }
+
+.gg-fallback__notice {
+  padding: 10px 12px; margin: 0 0 12px;
+  border: 1px solid #e0c98a; border-radius: 5px;
+  background: #fdf6e3; color: #6b5420; font-size: 13px; line-height: 1.5;
+}
+.gg-fallback__row {
+  display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: end;
+  padding: 8px 0; border-bottom: 1px solid #e6e6ea;
+}
+.gg-fallback__row code { grid-column: 1 / -1; font-size: 11px; color: #7a7a7a; }
+.gg-fallback__row label span {
+  display: block; font-size: 11px; text-transform: uppercase; color: #7a7a7a; margin-bottom: 3px;
+}
+.gg-fallback__row input[type="text"] {
+  width: 100%; padding: 6px 8px; border: 1px solid #c4c6d2; border-radius: 4px;
+}
+.gg-fallback__check { display: flex; align-items: center; gap: 6px; }
