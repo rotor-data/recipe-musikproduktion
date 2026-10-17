@@ -2,7 +2,14 @@ const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 
 exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
+
+  // /cases/ used to be a second address for the same page as /work/.
+  // Declared here rather than in netlify.toml, which this site does not
+  // appear to read: gatsby-plugin-netlify writes these into public/_redirects.
+  createRedirect({ fromPath: "/cases", toPath: "/work/", isPermanent: true, force: true })
+  createRedirect({ fromPath: "/cases/", toPath: "/work/", isPermanent: true, force: true })
+  createRedirect({ fromPath: "/cases/*", toPath: "/work/", isPermanent: true, force: true })
   return graphql(`
     {
       allMarkdownRemark(
