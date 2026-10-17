@@ -20,6 +20,10 @@ const normalizeItems = items =>
 export const PeopleGalleryTemplate = ({ content = {} }) => {
   const [activeImage, setActiveImage] = useState(null)
   const hero = content.hero || {}
+  const labels = {
+    featured: content.featuredLabel || "Featured",
+    untitled: content.untitledLabel || "Studio",
+  }
   const cta = content.cta || {}
   // One list, one image: an image is fronted by ticking Featured on it, so
   // there is nothing to keep in sync. The order of the list is the order on
@@ -65,7 +69,9 @@ export const PeopleGalleryTemplate = ({ content = {} }) => {
         />
       </div>
       <span className="rec-people__caption">
-        <strong className="rec-people__caption-title">{item.title || "Studio"}</strong>
+        <strong className="rec-people__caption-title">
+          {item.title || labels.untitled}
+        </strong>
         {item.subtitle && <em>{item.subtitle}</em>}
       </span>
     </button>
@@ -82,7 +88,7 @@ export const PeopleGalleryTemplate = ({ content = {} }) => {
 
         {featured.length > 0 && (
           <section className="rec-people__featured">
-            <p className="rec-people__featured-label">Featured</p>
+            <p className="rec-people__featured-label">{labels.featured}</p>
             <div className="rec-people__grid rec-people__grid--featured">
               {featured.map((item, index) => renderGalleryItem(item, index, "featured"))}
             </div>
@@ -200,6 +206,8 @@ export const pageQuery = graphql`
   query PeopleGalleryPage {
     markdownRemark(frontmatter: { templateKey: { eq: "people-gallery" } }) {
       frontmatter {
+        featuredLabel
+        untitledLabel
         meta {
           title
           description

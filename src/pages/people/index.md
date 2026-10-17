@@ -2,6 +2,8 @@
 templateKey: people-gallery
 title: People Gallery
 visible: true
+featuredLabel: Featured
+untitledLabel: Studio
 meta:
   title: People | Recipe Music Production
   description: A gallery from sessions at Recipe Music Production in Stockholm.

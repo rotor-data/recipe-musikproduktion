@@ -401,6 +401,16 @@ collections:
             name: visible
             widget: hidden
             default: true
+          - label: Featured-rubrik
+            name: featuredLabel
+            widget: string
+            required: false
+            hint: 'Rubriken över de utvalda bilderna högst upp på sidan. Standard: Featured.'
+          - label: Text när namn saknas
+            name: untitledLabel
+            widget: string
+            required: false
+            hint: 'Visas under en bild som inte fått något namn. Standard: Studio.'
           - label: Meta
             name: meta
             widget: object
