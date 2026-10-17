@@ -5,17 +5,6 @@ import SeoHead from "../components/SeoHead"
 import PreviewCompatibleImage from "../components/PreviewCompatibleImage"
 import { cropPositionToObjectPosition } from "../lib/imageCrop"
 
-const imageSourceKey = source => {
-  if (!source) return ""
-  if (typeof source === "string") return source
-  return (
-    source?.childImageSharp?.gatsbyImageData?.images?.fallback?.src ||
-    source?.publicURL ||
-    source?.src ||
-    ""
-  )
-}
-
 const normalizeItems = items =>
   (items || [])
     .filter(item => item?.src)
@@ -25,20 +14,21 @@ const normalizeItems = items =>
       title: item.title || "",
       subtitle: item.subtitle || "",
       cropPosition: item.cropPosition || "center",
-      order: Number(item.order) || 0,
+      featured: Boolean(item.featured),
     }))
 
 export const PeopleGalleryTemplate = ({ content = {} }) => {
   const [activeImage, setActiveImage] = useState(null)
   const hero = content.hero || {}
   const cta = content.cta || {}
-  // The order of the list in the CMS is the order on the page: an editor who
-  // drags an image expects that to move it.
-  const featured = useMemo(
-    () => normalizeItems(content.featuredImages || []).slice(0, 5),
-    [content.featuredImages]
+  // One list, one image: an image is fronted by ticking Featured on it, so
+  // there is nothing to keep in sync. The order of the list is the order on
+  // the page -- an editor who drags an image expects that to move it.
+  const gallery = useMemo(
+    () => normalizeItems(content.galleryImages || []),
+    [content.galleryImages]
   )
-  const gallery = useMemo(() => normalizeItems(content.galleryImages || []), [content.galleryImages])
+  const featured = useMemo(() => gallery.filter(item => item.featured).slice(0, 5), [gallery])
 
   useEffect(() => {
     if (!activeImage) return undefined
@@ -49,9 +39,9 @@ export const PeopleGalleryTemplate = ({ content = {} }) => {
     return () => window.removeEventListener("keydown", onKeyDown)
   }, [activeImage])
 
-  const featuredKeys = new Set(featured.map(item => imageSourceKey(item.image)).filter(Boolean))
-  const remainingGallery = gallery.filter(item => !featuredKeys.has(imageSourceKey(item.image)))
-  const allGalleryItems = featured.length ? remainingGallery : gallery
+  const allGalleryItems = featured.length
+    ? gallery.filter(item => !item.featured)
+    : gallery
 
   const renderGalleryItem = (item, index, keyPrefix) => (
     <button
@@ -165,16 +155,6 @@ PeopleGalleryTemplate.propTypes = {
       linkText: PropTypes.string,
       linkHref: PropTypes.string,
     }),
-    featuredImages: PropTypes.arrayOf(
-      PropTypes.shape({
-        order: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        title: PropTypes.string,
-        subtitle: PropTypes.string,
-        alt: PropTypes.string,
-        cropPosition: PropTypes.string,
-        src: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-      })
-    ),
     galleryImages: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string,
@@ -234,23 +214,12 @@ export const pageQuery = graphql`
           linkText
           linkHref
         }
-        featuredImages {
-          order
-          title
-          subtitle
-          alt
-          cropPosition
-          src {
-            childImageSharp {
-              gatsbyImageData(width: 560 quality: 82 placeholder: BLURRED layout: CONSTRAINED)
-            }
-          }
-        }
         galleryImages {
           title
           subtitle
           alt
           cropPosition
+          featured
           src {
             childImageSharp {
               gatsbyImageData(width: 560 quality: 82 placeholder: BLURRED layout: CONSTRAINED)

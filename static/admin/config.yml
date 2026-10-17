@@ -1,364 +1,667 @@
 local_backend: true
-
 backend:
   name: git-gateway
   repo: rotor-data/recipe-musikproduktion
   branch: main
   commit_messages:
-    create: "Create {{collection}} “{{slug}}”"
-    update: "Update {{collection}} “{{slug}}”"
-    delete: "Delete {{collection}} “{{slug}}”"
-    uploadMedia: "[skip ci] Upload “{{path}}”"
-    deleteMedia: "[skip ci] Delete “{{path}}”"
-
+    create: 'Create {{collection}} “{{slug}}”'
+    update: 'Update {{collection}} “{{slug}}”'
+    delete: 'Delete {{collection}} “{{slug}}”'
+    uploadMedia: '[skip ci] Upload “{{path}}”'
+    deleteMedia: '[skip ci] Delete “{{path}}”'
 publish_mode: editorial_workflow
 media_folder: static/img
 public_folder: /img
-
 collections:
-  - name: "pages"
-    label: "Website Pages"
+  - name: pages
+    label: Website Pages
     files:
-      - file: "src/pages/index.md"
-        label: "Start Page"
-        name: "index"
+      - file: src/pages/index.md
+        label: Start Page
+        name: index
+        description: 'Startsidan byggs av sektionerna nedan, uppifrån och ner. Dra för att flytta en sektion, kryss för att ta bort den, och knappen längst ner för att lägga till en ny.'
         fields:
-          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page" }
-          - { label: "Page title", name: "title", widget: "string", hint: "Internal page title. Also used by the site build." }
-          - { label: "Visible", name: "visible", widget: "hidden", default: true }
-          - {
-              label: "Meta",
-              name: "meta",
-              widget: "object",
-              hint: "SEO fields used in Google and social shares.",
-              fields: [
-                { label: "SEO title", name: "title", widget: "string", hint: "Keep this clear and keyword-focused (about 50-60 characters)." },
-                { label: "SEO description", name: "description", widget: "text", hint: "Short summary for search/social (about 140-160 characters)." }
-              ]
-            }
-          - label: "Sections"
-            name: "sections"
-            widget: "list"
-            hint: "The page is built from these, top to bottom. Drag to reorder, remove what you do not need, add a section with the button below."
+          - label: Template Key
+            name: templateKey
+            widget: hidden
+            default: index-page
+          - label: Page title
+            name: title
+            widget: string
+            hint: Syns inte på sidan. Används internt och av bygget.
+          - label: Visible
+            name: visible
+            widget: hidden
+            default: true
+          - label: Meta
+            name: meta
+            widget: object
+            hint: Det som syns i Google och när sidan delas — inte på sidan själv.
+            fields:
+              - label: SEO title
+                name: title
+                widget: string
+                hint: Rubriken i Googles träfflista. Cirka 50–60 tecken.
+              - label: SEO description
+                name: description
+                widget: text
+                hint: Texten under rubriken i Google. Cirka 140–160 tecken.
+          - label: Sections
+            name: sections
+            widget: list
+            hint: 'Startsidan byggs av dessa, uppifrån och ner. Dra för att flytta, kryss för att ta bort, knappen nedanför för att lägga till.'
             types:
-              - label: "Hero"
-                name: "hero"
-                widget: "object"
-                summary: "Hero"
+              - label: Hero
+                name: hero
+                widget: object
+                summary: Hero
                 fields:
-                  - { label: "Main headline", name: "title", widget: "text", hint: "Large title. Wrap words in *stars* to colour them." }
-                  - { label: "H1 (SEO line)", name: "h1title", widget: "string", required: false, hint: "Small top line used as H1 for SEO." }
-                  - { label: "Intro text", name: "description", widget: "text", required: false }
-                  - { label: "Background image", name: "image", widget: "image", required: false, hint: "Best result: wide image, high quality." }
-                  - { label: "Primary button text", name: "primaryText", widget: "string", required: false }
-                  - { label: "Primary button link", name: "primaryHref", widget: "string", required: false, hint: "Example: /contact" }
-                  - { label: "Secondary button text", name: "secondaryText", widget: "string", required: false }
-                  - { label: "Secondary button link", name: "secondaryHref", widget: "string", required: false, hint: "Example: /work" }
-
-              - label: "Logo banner"
-                name: "logos"
-                widget: "object"
-                summary: "Logo banner"
-                fields:
-                  - { label: "Label", name: "label", widget: "string", required: false, hint: "Small uppercase label before the logos." }
-                  - label: "Logos"
-                    name: "logos"
-                    widget: "list"
+                  - label: Main headline
+                    name: title
+                    widget: text
+                    hint: Den stora rubriken högst upp. Omge ord med *stjärnor* för att färga dem gula.
+                  - label: H1 (SEO line)
+                    name: h1title
+                    widget: string
                     required: false
-                    summary: "{{fields.alt}}"
-                    fields:
-                      - { label: "Logo image", name: "image", widget: "image" }
-                      - { label: "Alt text", name: "alt", widget: "string", required: false }
-                      - { label: "External link", name: "href", widget: "string", required: false }
-
-              - label: "Work"
-                name: "work"
-                widget: "object"
-                summary: "Work - {{fields.title}}"
+                    hint: 'Liten rad längst ner i hero-rutan. Syns knappt, men Google läser den som sidans huvudrubrik.'
+                  - label: Intro text
+                    name: description
+                    widget: text
+                    required: false
+                    hint: Kort text under rubriken.
+                  - label: Background image
+                    name: image
+                    widget: image
+                    required: false
+                    hint: Bakgrundsbilden bakom texten. Använd en bred bild i hög upplösning.
+                  - label: Primary button text
+                    name: primaryText
+                    widget: string
+                    required: false
+                    hint: Texten på den gula knappen.
+                  - label: Primary button link
+                    name: primaryHref
+                    widget: string
+                    required: false
+                    hint: Vart gula knappen går. Skriv /contact för kontaktsidan.
+                  - label: Secondary button text
+                    name: secondaryText
+                    widget: string
+                    required: false
+                    hint: Texten på den andra knappen.
+                  - label: Secondary button link
+                    name: secondaryHref
+                    widget: string
+                    required: false
+                    hint: Vart andra knappen går. Skriv /work för arbetssidan.
+              - label: Logo banner
+                name: logos
+                widget: object
+                summary: Logo banner
                 fields:
-                  - { label: "Pretitle", name: "pretitle", widget: "string", required: false }
-                  - { label: "Title", name: "title", widget: "string", required: false }
-                  - { label: "Heading position", name: "highlightPosition", widget: "select", options: ["left", "right"], default: "left" }
-                  - { label: "Link text", name: "ctaText", widget: "string", required: false }
-                  - { label: "Link", name: "ctaLink", widget: "string", required: false, hint: "Example: /work" }
-                  - label: "Featured videos"
-                    name: "featuredVideos"
-                    widget: "list"
+                  - label: Label
+                    name: label
+                    widget: string
+                    required: false
+                    hint: Liten rad med versaler ovanför logotyperna.
+                  - label: Logos
+                    name: logos
+                    widget: list
+                    required: false
+                    summary: '{{fields.alt}}'
+                    fields:
+                      - label: Logo image
+                        name: image
+                        widget: image
+                        hint: Logotypfilen. Ljus logotyp fungerar bäst mot den mörka bakgrunden.
+                      - label: Alt text
+                        name: alt
+                        widget: string
+                        required: false
+                        hint: Företagets namn i text. Läses upp för den som inte kan se bilden.
+                      - label: External link
+                        name: href
+                        widget: string
+                        required: false
+                        hint: Valfri länk om logotypen ska gå att klicka på.
+                    hint: Logotyperna som visas i raden. Dra för att ändra ordning.
+              - label: Work
+                name: work
+                widget: object
+                summary: 'Work - {{fields.title}}'
+                fields:
+                  - label: Pretitle
+                    name: pretitle
+                    widget: string
+                    required: false
+                    hint: 'Ordet före kolon i rubriken, till exempel “Work”.'
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                    hint: 'Raden under, till exempel “Selected projects”.'
+                  - label: Heading position
+                    name: highlightPosition
+                    widget: select
+                    options:
+                      - left
+                      - right
+                    default: left
+                    hint: Om rubriken ska ligga till vänster eller höger.
+                  - label: Link text
+                    name: ctaText
+                    widget: string
+                    required: false
+                    hint: Texten på länken bredvid rubriken.
+                  - label: Link
+                    name: ctaLink
+                    widget: string
+                    required: false
+                    hint: Vart länken går. Skriv /work för arbetssidan.
+                  - label: Featured videos
+                    name: featuredVideos
+                    widget: list
                     required: false
                     max: 5
-                    summary: "{{fields.title}}"
-                    hint: "Videos picked out for the start page. Leave empty and the latest from the YouTube channel are shown instead. The Work page always shows the whole channel."
+                    summary: '{{fields.title}}'
+                    hint: Videor du vill lyfta fram här. Lämnar du listan tom visas de senaste från YouTube-kanalen automatiskt. Arbetssidan visar alltid hela kanalen.
                     fields:
-                      - { label: "Title", name: "title", widget: "string" }
-                      - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-                      - { label: "Category label", name: "category", widget: "string", required: false }
-                      - { label: "Description", name: "description", widget: "text", required: false }
-                      - { label: "YouTube URL", name: "youtubeUrl", widget: "string", hint: "Example: https://youtu.be/S6D9-7q0-b4" }
-                      - { label: "Thumbnail image", name: "thumbnail", widget: "image", required: false, hint: "Leave empty to use the YouTube thumbnail." }
-                      - { label: "Crop position", name: "cropPosition", widget: "select", required: false, options: ["top", "center", "bottom"], default: "center" }
-
-              - label: "Services"
-                name: "services"
-                widget: "object"
-                summary: "Services - {{fields.title}}"
+                      - label: Title
+                        name: title
+                        widget: string
+                        hint: Rubriken på videokortet.
+                      - label: Subtitle
+                        name: subtitle
+                        widget: string
+                        required: false
+                        hint: Valfri rad under rubriken.
+                      - label: Category label
+                        name: category
+                        widget: string
+                        required: false
+                        hint: Används för filterknapparna på arbetssidan.
+                      - label: Description
+                        name: description
+                        widget: text
+                        required: false
+                        hint: Text som visas när videon öppnas.
+                      - label: YouTube URL
+                        name: youtubeUrl
+                        widget: string
+                        hint: 'Klistra in länken till videon, till exempel https://youtu.be/S6D9-7q0-b4'
+                      - label: Thumbnail image
+                        name: thumbnail
+                        widget: image
+                        required: false
+                        hint: Egen bild på kortet. Lämna tom så hämtas YouTubes egen bild.
+                      - label: Crop position
+                        name: cropPosition
+                        widget: select
+                        required: false
+                        options:
+                          - top
+                          - center
+                          - bottom
+                        default: center
+                        hint: Vilken del av bilden som behålls när den beskärs.
+              - label: Services
+                name: services
+                widget: object
+                summary: 'Services - {{fields.title}}'
                 fields:
-                  - { label: "Pretitle", name: "pretitle", widget: "string", required: false }
-                  - { label: "Title", name: "title", widget: "string", required: false }
-                  - { label: "Body", name: "body", widget: "text", required: false }
-                  - { label: "Heading position", name: "highlightPosition", widget: "select", options: ["left", "right"], default: "right" }
-                  - label: "Cards"
-                    name: "cards"
-                    widget: "list"
+                  - label: Pretitle
+                    name: pretitle
+                    widget: string
                     required: false
-                    summary: "{{fields.title}}"
-                    fields:
-                      - { label: "Tagline", name: "tagline", widget: "string", required: false }
-                      - { label: "Title", name: "title", widget: "string", required: false }
-                      - { label: "Description", name: "description", widget: "text", required: false }
-                      - { label: "Image", name: "image", widget: "image", required: false }
-                      - { label: "Crop position", name: "cropPosition", widget: "select", required: false, options: ["top", "center", "bottom"], default: "center" }
-
-              - label: "People"
-                name: "people"
-                widget: "object"
-                summary: "People - {{fields.title}}"
-                hint: "The images come from the People Gallery page."
-                fields:
-                  - { label: "Pretitle", name: "pretitle", widget: "string", required: false }
-                  - { label: "Title", name: "title", widget: "string", required: false }
-                  - { label: "Body", name: "body", widget: "text", required: false }
-                  - { label: "Heading position", name: "highlightPosition", widget: "select", options: ["left", "right"], default: "right" }
-                  - { label: "Button text", name: "ctaText", widget: "string", required: false }
-                  - { label: "Button link", name: "ctaLink", widget: "string", required: false }
-                  - { label: "Second button text", name: "secondaryCtaText", widget: "string", required: false }
-                  - { label: "Second button link", name: "secondaryCtaLink", widget: "string", required: false }
-
-              - label: "Solutions"
-                name: "solutions"
-                widget: "object"
-                summary: "Solutions"
-                fields:
-                  - { label: "Title", name: "title", widget: "string", required: false }
-                  - { label: "Kicker", name: "kicker", widget: "string", required: false }
-                  - { label: "Image", name: "image", widget: "image", required: false }
-                  - label: "Blocks"
-                    name: "blocks"
-                    widget: "list"
+                    hint: 'Ordet före kolon i rubriken, till exempel “Studio”.'
+                  - label: Title
+                    name: title
+                    widget: string
                     required: false
-                    summary: "{{fields.category}}"
+                    hint: Raden under.
+                  - label: Body
+                    name: body
+                    widget: text
+                    required: false
+                    hint: Kort text under rubriken.
+                  - label: Heading position
+                    name: highlightPosition
+                    widget: select
+                    options:
+                      - left
+                      - right
+                    default: right
+                    hint: Om rubriken ska ligga till vänster eller höger.
+                  - label: Cards
+                    name: cards
+                    widget: list
+                    required: false
+                    summary: '{{fields.title}}'
                     fields:
-                      - { label: "Category", name: "category", widget: "string" }
-                      - label: "Items"
-                        name: "items"
-                        widget: "object"
+                      - label: Tagline
+                        name: tagline
+                        widget: string
+                        required: false
+                        hint: Liten guldfärgad etikett överst i kortet.
+                      - label: Title
+                        name: title
+                        widget: string
+                        required: false
+                        hint: Kortets rubrik.
+                      - label: Description
+                        name: description
+                        widget: text
+                        required: false
+                        hint: Texten i kortet.
+                      - label: Image
+                        name: image
+                        widget: image
+                        required: false
+                        hint: Valfri bild överst i kortet.
+                      - label: Crop position
+                        name: cropPosition
+                        widget: select
+                        required: false
+                        options:
+                          - top
+                          - center
+                          - bottom
+                        default: center
+                        hint: Vilken del av bilden som behålls när den beskärs.
+                    hint: Korten i rutnätet. Två får plats per rad.
+              - label: People
+                name: people
+                widget: object
+                summary: 'People - {{fields.title}}'
+                hint: The images come from the People Gallery page.
+                fields:
+                  - label: Pretitle
+                    name: pretitle
+                    widget: string
+                    required: false
+                    hint: 'Ordet före kolon i rubriken, till exempel “People”.'
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                    hint: Raden under.
+                  - label: Body
+                    name: body
+                    widget: text
+                    required: false
+                    hint: Kort text under rubriken.
+                  - label: Heading position
+                    name: highlightPosition
+                    widget: select
+                    options:
+                      - left
+                      - right
+                    default: right
+                    hint: Om rubriken ska ligga till vänster eller höger.
+                  - label: Button text
+                    name: ctaText
+                    widget: string
+                    required: false
+                    hint: Texten på första knappen.
+                  - label: Button link
+                    name: ctaLink
+                    widget: string
+                    required: false
+                    hint: Vart första knappen går. Skriv /people för bildgalleriet.
+                  - label: Second button text
+                    name: secondaryCtaText
+                    widget: string
+                    required: false
+                    hint: Texten på andra knappen. Lämna tom om du bara vill ha en.
+                  - label: Second button link
+                    name: secondaryCtaLink
+                    widget: string
+                    required: false
+                    hint: Vart andra knappen går. Skriv /contact för kontaktsidan.
+              - label: Solutions
+                name: solutions
+                widget: object
+                summary: Solutions
+                fields:
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                    hint: Rubriken över de tre rutorna.
+                  - label: Kicker
+                    name: kicker
+                    widget: string
+                    required: false
+                    hint: Liten text bredvid rubriken.
+                  - label: Image
+                    name: image
+                    widget: image
+                    required: false
+                    hint: Bild som hör till sektionen. Valfri.
+                  - label: Blocks
+                    name: blocks
+                    widget: list
+                    required: false
+                    summary: '{{fields.category}}'
+                    fields:
+                      - label: Category
+                        name: category
+                        widget: string
+                        hint: 'Rubriken i rutan, till exempel “Artists and producers”.'
+                      - label: Items
+                        name: items
+                        widget: object
                         fields:
-                          - { label: "Title", name: "title", widget: "string", required: false }
-                          - { label: "Description", name: "description", widget: "text" }
-
-              - label: "Bottom CTA"
-                name: "cta"
-                widget: "object"
-                summary: "Bottom CTA - {{fields.title}}"
+                          - label: Title
+                            name: title
+                            widget: string
+                            required: false
+                            hint: Används inte på sidan just nu. Lämna tom.
+                          - label: Description
+                            name: description
+                            widget: text
+                            hint: Texten i rutan. Ett par rader räcker.
+                        hint: Innehållet i rutan.
+                    hint: De tre rutorna. Fler än tre visas inte.
+              - label: Bottom CTA
+                name: cta
+                widget: object
+                summary: 'Bottom CTA - {{fields.title}}'
                 fields:
-                  - { label: "Title", name: "title", widget: "string", required: false }
-                  - { label: "Button text", name: "buttonText", widget: "string", required: false }
-                  - { label: "Button link", name: "buttonHref", widget: "string", required: false }
-      - file: "src/pages/people/index.md"
-        label: "People Gallery Page"
-        name: "people"
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                    hint: Den stora frågan eller uppmaningen längst ner på startsidan.
+                  - label: Button text
+                    name: buttonText
+                    widget: string
+                    required: false
+                    hint: Texten på knappen.
+                  - label: Button link
+                    name: buttonHref
+                    widget: string
+                    required: false
+                    hint: Vart knappen går. Skriv /contact för kontaktsidan.
+      - file: src/pages/people/index.md
+        label: People Gallery Page
+        name: people
+        description: Bildgalleriet på /people/. Alla bilder ligger i en enda lista. Kryssa i Featured på upp till fem av dem — de visas överst på sidan och i remsan på startsidan.
         fields:
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "people-gallery",
-            }
-          - {
-              label: "Page title",
-              name: "title",
-              widget: "string",
-              hint: "Internal page title. Also used by the site build."
-            }
-          - {
-              label: "Visible",
-              name: "visible",
-              widget: "hidden",
-              default: true
-            }
-          - {
-              label: "Meta",
-              name: "meta",
-              widget: "object",
-              fields: [
-                { label: "SEO title", name: "title", widget: "string", required: false },
-                { label: "SEO description", name: "description", widget: "text", required: false }
-              ]
-            }
-          - {
-              label: "Hero",
-              name: "hero",
-              widget: "object",
-              fields: [
-                { label: "Kicker", name: "kicker", widget: "string", required: false },
-                { label: "Page title", name: "pageTitle", widget: "string", required: false },
-                { label: "Lead text", name: "lead", widget: "text", required: false }
-              ]
-            }
-          - {
-              label: "CTA",
-              name: "cta",
-              widget: "object",
-              fields: [
-                { label: "Title", name: "title", widget: "string", required: false },
-                { label: "Link text", name: "linkText", widget: "string", required: false },
-                { label: "Link href", name: "linkHref", widget: "string", required: false }
-              ]
-            }
-          - {
-              label: "Featured images (1-5)",
-              name: "featuredImages",
-              widget: "list",
-              required: false,
-              min: 5,
-              max: 5,
-              summary: "{{fields.title}}",
-              hint: "Five fronted images used in people preview/home strip. Drag to reorder - the list order is the order on the page.",
-              fields: [
-                { label: "Title", name: "title", widget: "string", required: false },
-                { label: "Subtitle", name: "subtitle", widget: "string", required: false },
-                { label: "Alt text", name: "alt", widget: "string", required: false, hint: "Describe the image for accessibility." },
-                {
-                  label: "Image",
-                  name: "src",
-                  widget: "image"
-                },
-                {
-                  label: "Crop position",
-                  name: "cropPosition",
-                  widget: "select",
-                  required: false,
-                  options: ["top", "center", "bottom"],
-                  default: "center",
-                  hint: "Controls vertical crop focus."
-                }
-              ]
-            }
-          - {
-              label: "Gallery images",
-              name: "galleryImages",
-              widget: "list",
-              summary: "{{fields.title}}",
-              hint: "Single image list for the gallery. Upload all images here.",
-              fields: [
-                { label: "Title (shown in lightbox)", name: "title", widget: "string", required: false },
-                { label: "Subtitle", name: "subtitle", widget: "string", required: false },
-                { label: "Alt text", name: "alt", widget: "string", required: false, hint: "Describe the image for accessibility." },
-                {
-                  label: "Image",
-                  name: "src",
-                  widget: "image"
-                },
-                {
-                  label: "Crop position",
-                  name: "cropPosition",
-                  widget: "select",
-                  required: false,
-                  options: ["top", "center", "bottom"],
-                  default: "center",
-                  hint: "Controls vertical crop focus."
-                },
-              ]
-            }
-      - file: "src/pages/work-content.md"
-        label: "Work Page"
-        name: "work"
+          - label: Template Key
+            name: templateKey
+            widget: hidden
+            default: people-gallery
+          - label: Page title
+            name: title
+            widget: string
+            hint: Syns inte på sidan. Används internt och av bygget.
+          - label: Visible
+            name: visible
+            widget: hidden
+            default: true
+          - label: Meta
+            name: meta
+            widget: object
+            hint: Det som syns i Google och när sidan delas - inte på sidan själv.
+            fields:
+              - label: SEO title
+                name: title
+                widget: string
+                required: false
+                hint: Rubriken i Googles träfflista. Cirka 50-60 tecken.
+              - label: SEO description
+                name: description
+                widget: text
+                required: false
+                hint: Texten under rubriken i Google. Cirka 140-160 tecken.
+          - label: Hero
+            name: hero
+            widget: object
+            hint: 'Översta delen av sidan, ovanför bilderna.'
+            fields:
+              - label: Kicker
+                name: kicker
+                widget: string
+                required: false
+                hint: Liten rad med versaler ovanför rubriken.
+              - label: Page title
+                name: pageTitle
+                widget: string
+                required: false
+                hint: Den stora rubriken.
+              - label: Lead text
+                name: lead
+                widget: text
+                required: false
+                hint: Kort stycke under rubriken.
+          - label: CTA
+            name: cta
+            widget: object
+            hint: Uppmaningen längst ner på sidan.
+            fields:
+              - label: Title
+                name: title
+                widget: string
+                required: false
+                hint: Texten i uppmaningen.
+              - label: Link text
+                name: linkText
+                widget: string
+                required: false
+                hint: Texten på knappen.
+              - label: Link href
+                name: linkHref
+                widget: string
+                required: false
+                hint: Vart knappen går. Skriv /contact för kontaktsidan.
+          - label: Gallery images
+            name: galleryImages
+            widget: list
+            summary: '{{fields.title}}'
+            hint: Alla bilder i galleriet. Dra för att ändra ordning - listans ordning är ordningen på sidan. Kryssa i Featured på upp till fem.
+            fields:
+              - label: Featured
+                name: featured
+                widget: boolean
+                default: false
+                required: false
+                hint: 'Kryssa i för att lyfta fram bilden. Den visas då överst på /people/ och i bildremsan på startsidan, och tas bort ur rutnätet nedanför så den inte syns två gånger. Max fem.'
+              - label: Name
+                name: title
+                widget: string
+                required: false
+                hint: Vem eller vad bilden föreställer. Visas under bilden och när man klickar på den.
+              - label: Subtitle
+                name: subtitle
+                widget: string
+                required: false
+                hint: 'Valfri extrarad under namnet, till exempel vad personen gjorde i studion.'
+              - label: Alt text
+                name: alt
+                widget: string
+                required: false
+                hint: 'Beskriv bilden i ord. Läses upp för den som inte kan se den, och används av Google. Skriv samma sak som i Name om du är osäker.'
+              - label: Image
+                name: src
+                widget: image
+                hint: Själva bildfilen.
+              - label: Crop position
+                name: cropPosition
+                widget: select
+                required: false
+                options:
+                  - top
+                  - center
+                  - bottom
+                default: center
+                hint: Bilderna beskärs till kvadrat. Välj vilken del som ska behållas om huvudet eller motivet hamnar utanför.
+      - file: src/pages/work-content.md
+        label: Work Page
+        name: work
+        description: Sidan /work/ visar alla videor från YouTube-kanalen automatiskt. Här sätter du bara rubrikerna högst upp på sidan.
         fields:
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "work-page",
-            }
-          - {
-              label: "Visible",
-              name: "visible",
-              widget: "hidden",
-              default: false
-            }
-          - {
-              label: "Meta",
-              name: "meta",
-              widget: "object",
-              fields: [
-                { label: "SEO title", name: "title", widget: "string", required: false },
-                { label: "SEO description", name: "description", widget: "text", required: false }
-              ]
-            }
-          - {
-              label: "Hero",
-              name: "hero",
-              widget: "object",
-              fields: [
-                { label: "Eyebrow", name: "eyebrow", widget: "string", required: false },
-                { label: "Title", name: "title", widget: "string", required: false },
-                { label: "Status label", name: "statusLabel", widget: "string", required: false },
-                { label: "Status value", name: "statusValue", widget: "string", required: false }
-              ]
-            }
-      - file: "src/pages/contact.md"
-        label: "Contact Page"
-        name: "contact"
+          - label: Template Key
+            name: templateKey
+            widget: hidden
+            default: work-page
+          - label: Visible
+            name: visible
+            widget: hidden
+            default: false
+          - label: Meta
+            name: meta
+            widget: object
+            fields:
+              - label: SEO title
+                name: title
+                widget: string
+                required: false
+                hint: Rubriken i Googles träfflista. Cirka 50–60 tecken.
+              - label: SEO description
+                name: description
+                widget: text
+                required: false
+                hint: Texten under rubriken i Google. Cirka 140–160 tecken.
+            hint: Det som syns i Google och när sidan delas — inte på sidan själv.
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - label: Eyebrow
+                name: eyebrow
+                widget: string
+                required: false
+                hint: Liten rad med versaler ovanför rubriken.
+              - label: Title
+                name: title
+                widget: string
+                required: false
+                hint: Den stora rubriken.
+              - label: Status label
+                name: statusLabel
+                widget: string
+                required: false
+                hint: 'Etiketten i rutan till höger, till exempel “Engine state”.'
+              - label: Status value
+                name: statusValue
+                widget: string
+                required: false
+                hint: Värdet bredvid etiketten.
+            hint: Rubrikerna högst upp. Videorna under hämtas automatiskt från YouTube-kanalen.
+      - file: src/pages/contact.md
+        label: Contact Page
+        name: contact
+        description: 'Kontaktsidan. Vänster sida är kontaktuppgifterna, höger sida är kartan. Fält du lämnar tomma visas inte alls.'
         fields:
-          - {
-              label: "Meta",
-              name: "meta",
-              widget: "object",
-              hint: "SEO fields for the contact page.",
-              fields: [
-                { label: "SEO title", name: "title", widget: "string" },
-                { label: "SEO description", name: "description", widget: "text" }
-              ]
-            }
-          - {
-              label: "Contact content",
-              name: "contact",
-              widget: "object",
-              hint: "Main contact panel and map content.",
-              fields: [
-                { label: "Page title", name: "pageTitle", widget: "string", hint: "Main heading on the page." },
-                { label: "Panel tag", name: "panelTag", widget: "string", required: false },
-                { label: "Operator label", name: "operatorLabel", widget: "string", required: false },
-                { label: "Operator name", name: "operatorName", widget: "string", required: false },
-                { label: "Operator role", name: "operatorRole", widget: "string", required: false },
-                { label: "Address label", name: "addressLabel", widget: "string", required: false },
-                {
-                  label: "Details lines",
-                  name: "lines",
-                  widget: "list",
-                  hint: "Each line appears as one row in the details panel.",
-                  field: { label: "Line", name: "line", widget: "string" }
-                },
-                { label: "Email label", name: "emailLabel", widget: "string", hint: "Example: Frequency link" },
-                { label: "Email address", name: "email", widget: "string", hint: "Used for mailto link." },
-                { label: "Email meta text", name: "emailMeta", widget: "string", required: false },
-                { label: "Map panel title", name: "locationTitle", widget: "string", hint: "Example: Location" },
-                { label: "Map badge", name: "locationBadge", widget: "string", required: false },
-                { label: "Map coordinates", name: "mapCoordinates", widget: "string", required: false },
-                { label: "Map sector text", name: "mapSector", widget: "string", required: false },
-                { label: "Map embed URL", name: "mapEmbedUrl", widget: "string", hint: "Google Maps embed URL." },
-                { label: "Status label", name: "statusLabel", widget: "string", required: false },
-                { label: "Status value", name: "statusValue", widget: "string", required: false },
-                {
-                  label: "Action cards",
-                  name: "actions",
-                  widget: "list",
-                  summary: "{{fields.title}}",
-                  required: false,
-                  fields: [
-                    { label: "Label", name: "label", widget: "string", required: false },
-                    { label: "Title", name: "title", widget: "string", required: false },
-                    { label: "Link", name: "href", widget: "string", required: false }
-                  ]
-                }
-              ]
-            }
+          - label: Meta
+            name: meta
+            widget: object
+            hint: SEO fields for the contact page.
+            fields:
+              - label: SEO title
+                name: title
+                widget: string
+                hint: Rubriken i Googles träfflista. Cirka 50–60 tecken.
+              - label: SEO description
+                name: description
+                widget: text
+                hint: Texten under rubriken i Google. Cirka 140–160 tecken.
+          - label: Contact content
+            name: contact
+            widget: object
+            hint: Main contact panel and map content.
+            fields:
+              - label: Page title
+                name: pageTitle
+                widget: string
+                hint: Den stora rubriken på sidan.
+              - label: Panel tag
+                name: panelTag
+                widget: string
+                required: false
+                hint: Liten rad med versaler ovanför den stora rubriken.
+              - label: Operator label
+                name: operatorLabel
+                widget: string
+                required: false
+                hint: 'Liten guldfärgad etikett ovanför namnet, till exempel “Operator Main”.'
+              - label: Operator details
+                name: operatorBody
+                widget: markdown
+                required: false
+                hint: Namn och roll. Skriv namnet som vanlig text och rollen i *kursivt* på en egen rad — kursivt blir den lilla grå raden under. Lämnar du rutan tom försvinner hela blocket.
+              - label: Address label
+                name: addressLabel
+                widget: string
+                required: false
+                hint: Liten etikett ovanför adressen.
+              - label: Address
+                name: addressBody
+                widget: markdown
+                required: false
+                hint: Adressen. En rad per rad — tryck enter mellan raderna.
+              - label: Email label
+                name: emailLabel
+                widget: string
+                hint: Liten etikett ovanför e-postadressen.
+              - label: Email address
+                name: email
+                widget: string
+                hint: E-postadressen. Blir en klickbar mejllänk.
+              - label: Email meta text
+                name: emailMeta
+                widget: string
+                required: false
+                hint: Liten text under e-postadressen.
+              - label: Map panel title
+                name: locationTitle
+                widget: string
+                hint: Används som beskrivning av kartan för skärmläsare.
+              - label: Map badge
+                name: locationBadge
+                widget: string
+                required: false
+                hint: Liten text som ligger ovanpå kartan.
+              - label: Map caption
+                name: mapBody
+                widget: markdown
+                required: false
+                hint: Liten text nere till höger på kartan. Rent dekorativt — koordinater eller liknande.
+              - label: Map embed URL
+                name: mapEmbedUrl
+                widget: string
+                hint: 'Inbäddningslänken från Google Maps. Dela → Bädda in en karta, och kopiera adressen ur src=”…”.'
+              - label: Status label
+                name: statusLabel
+                widget: string
+                required: false
+                hint: 'Etiketten i statusraden, till exempel “Studio status”.'
+              - label: Status value
+                name: statusValue
+                widget: string
+                required: false
+                hint: 'Värdet bredvid, till exempel “Online”. Lämnar du båda tomma försvinner raden.'
+              - label: Action cards
+                name: actions
+                widget: list
+                summary: '{{fields.title}}'
+                required: false
+                fields:
+                  - label: Label
+                    name: label
+                    widget: string
+                    required: false
+                    hint: Liten etikett överst i rutan.
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                    hint: Texten i rutan.
+                  - label: Link
+                    name: href
+                    widget: string
+                    required: false
+                    hint: Vart rutan går. Skriv till exempel /work.
+                hint: Rutorna längst ner på sidan som länkar vidare.

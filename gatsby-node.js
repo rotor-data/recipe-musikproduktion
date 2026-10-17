@@ -162,6 +162,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type GalleryImage {
+      featured: Boolean
       order: Int
       title: String
       subtitle: String

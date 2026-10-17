@@ -7,3 +7,9 @@
   YARN_FLAGS = "--no-ignore-optional"
 [functions]
   node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/cases/*"
+  to = "/work/"
+  status = 301
+  force = true

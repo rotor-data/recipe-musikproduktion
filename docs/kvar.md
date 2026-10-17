@@ -13,16 +13,6 @@
   Tompa och Matilda, Samuel Gustafsson, Rafael Edholm & Co, Steffe
   Sundström, Jocke och Steffe, Rickard Linda och Jany, Fender Rhodes MK1,
   Pianissimo. Bilderna följde aldrig med i flytten.
-- **`/work/` och `/cases/` är samma sida på två adresser.** `src/pages/cases.js`
-  är bara en re-export av `work.js`. Båda ligger i sitemapen, vilket är
-  duplicerat innehåll för sökmotorer. Antingen tas `cases.js` bort, eller så
-  pekar den på `/work/` med en redirect.
-- **`detailsTitle` på kontaktsidan visas aldrig.** CMS-etiketten säger
-  "Details panel title — Heading above address/contact details", men fältet
-  används bara som reserv för `operatorName` på `src/pages/contact.js:32`.
-  Eftersom `operatorName` är ifyllt syns `detailsTitle` aldrig.
-- **5 identiska favicon-par** i både `src/img/favicons/` och
-  `static/img/favicons/` — samma sha256.
 - **`work-content.md` har `visible: false`** — Work-sidan byggs inte. Avsiktligt?
 
 ## Netlify-flytten

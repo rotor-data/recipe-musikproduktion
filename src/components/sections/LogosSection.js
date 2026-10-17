@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-const LogosSection = ({ section = {}, fallbackLogos = [] }) => {
+const LogosSection = ({ section = {} }) => {
   const cmsLogos = (section.logos || [])
     .map((item, index) => ({
       id: item?.alt || `cms-logo-${index}`,
@@ -13,8 +13,8 @@ const LogosSection = ({ section = {}, fallbackLogos = [] }) => {
     }))
     .filter(item => item.image)
 
-  const logoItems = cmsLogos.length ? cmsLogos : fallbackLogos
-  if (!logoItems.length) return null
+  if (!cmsLogos.length) return null
+  const logoItems = cmsLogos
 
   return (
     <section className="rec-logo-banner">
@@ -57,6 +57,6 @@ const LogosSection = ({ section = {}, fallbackLogos = [] }) => {
   )
 }
 
-LogosSection.propTypes = { section: PropTypes.object, fallbackLogos: PropTypes.array }
+LogosSection.propTypes = { section: PropTypes.object }
 
 export default LogosSection

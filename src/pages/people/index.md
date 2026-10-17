@@ -13,68 +13,47 @@ cta:
   title: Session inquiries
   linkText: Connect with us
   linkHref: /contact
-featuredImages:
-  - title: 'Boden-Jocke'
-    subtitle: ''
-    alt: 'Boden-Jocke'
-    src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
-    cropPosition: center
-  - title: 'Dusty Monroe'
-    subtitle: ''
-    alt: 'Dusty Monroe'
-    src: /img/Dusty.jpg
-    cropPosition: center
-  - title: 'Daniel P & Amy D'
-    subtitle: ''
-    alt: 'Daniel P & Amy D'
-    src: /img/IMG_0145-2.jpeg
-    cropPosition: center
-  - title: 'Boden-Åke'
-    subtitle: ''
-    alt: 'Boden-Åke'
-    src: /img/IMG_0251.jpg
-    cropPosition: center
-  - title: 'Kim Kärnfalk'
-    subtitle: ''
-    alt: 'Kim Kärnfalk'
-    src: /img/IMG_0364-2.JPG
-    cropPosition: center
 galleryImages:
-  - title: 'Boden-Jocke'
+  - title: Boden-Jocke
     subtitle: ''
-    alt: 'Boden-Jocke'
+    alt: Boden-Jocke
     src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
-  - title: 'Dusty Monroe'
+    featured: true
+  - title: Dusty Monroe
     subtitle: ''
-    alt: 'Dusty Monroe'
+    alt: Dusty Monroe
     src: /img/Dusty.jpg
-  - title: 'Daniel P & Amy D'
+    featured: true
+  - title: Daniel P & Amy D
     subtitle: ''
-    alt: 'Daniel P & Amy D'
+    alt: Daniel P & Amy D
     src: /img/IMG_0145-2.jpeg
-  - title: 'Boden-Åke'
+    featured: true
+  - title: Boden-Åke
     subtitle: ''
-    alt: 'Boden-Åke'
+    alt: Boden-Åke
     src: /img/IMG_0251.jpg
-  - title: 'Kim Kärnfalk'
+    featured: true
+  - title: Kim Kärnfalk
     subtitle: ''
-    alt: 'Kim Kärnfalk'
+    alt: Kim Kärnfalk
     src: /img/IMG_0364-2.JPG
+    featured: true
   - title: ''
     subtitle: ''
     alt: ''
     src: /img/IMG_0401.jpg
-  - title: 'Ronnie Gardiner'
+  - title: Ronnie Gardiner
     subtitle: ''
-    alt: 'Ronnie Gardiner'
+    alt: Ronnie Gardiner
     src: /img/IMG_0442.jpg
-  - title: 'Ronnies dubbla kaggar'
+  - title: Ronnies dubbla kaggar
     subtitle: ''
-    alt: 'Ronnies dubbla kaggar'
+    alt: Ronnies dubbla kaggar
     src: /img/IMG_0444.jpg
-  - title: 'Per Lindvall'
+  - title: Per Lindvall
     subtitle: ''
-    alt: 'Per Lindvall'
+    alt: Per Lindvall
     src: /img/IMG_0558-NY.jpg
   - title: ''
     subtitle: ''
@@ -88,29 +67,29 @@ galleryImages:
     subtitle: ''
     alt: ''
     src: /img/IMG_0685.jpg
-  - title: 'Frida Öhrn'
+  - title: Frida Öhrn
     subtitle: ''
-    alt: 'Frida Öhrn'
+    alt: Frida Öhrn
     src: /img/IMG_0725.jpg
   - title: ''
     subtitle: ''
     alt: ''
     src: /img/IMG_0931.jpg
-  - title: 'Klas Toresson'
+  - title: Klas Toresson
     subtitle: ''
-    alt: 'Klas Toresson'
+    alt: Klas Toresson
     src: /img/IMG_0939-2.jpg
-  - title: 'Jonas Thorell'
+  - title: Jonas Thorell
     subtitle: ''
-    alt: 'Jonas Thorell'
+    alt: Jonas Thorell
     src: /img/IMG_0963.JPG
-  - title: 'Kalle Annmo'
+  - title: Kalle Annmo
     subtitle: ''
-    alt: 'Kalle Annmo'
+    alt: Kalle Annmo
     src: /img/IMG_1094.JPG
-  - title: 'Andreas Tiliander'
+  - title: Andreas Tiliander
     subtitle: ''
-    alt: 'Andreas Tiliander'
+    alt: Andreas Tiliander
     src: /img/IMG_1244.jpeg
   - title: ''
     subtitle: ''
@@ -120,25 +99,25 @@ galleryImages:
     subtitle: ''
     alt: ''
     src: /img/IMG_1472.jpg
-  - title: 'Nicklas Thelin'
+  - title: Nicklas Thelin
     subtitle: ''
-    alt: 'Nicklas Thelin'
+    alt: Nicklas Thelin
     src: /img/IMG_1473.jpg
-  - title: 'Gustaf Hielm'
+  - title: Gustaf Hielm
     subtitle: ''
-    alt: 'Gustaf Hielm'
+    alt: Gustaf Hielm
     src: /img/IMG_1694-2.jpeg
-  - title: 'Theddy och Marika'
+  - title: Theddy och Marika
     subtitle: ''
-    alt: 'Theddy och Marika'
+    alt: Theddy och Marika
     src: /img/IMG_2126.jpg
-  - title: 'Kleerup'
+  - title: Kleerup
     subtitle: ''
-    alt: 'Kleerup'
+    alt: Kleerup
     src: /img/IMG_2320.jpg
-  - title: 'Helena och Hanna'
+  - title: Helena och Hanna
     subtitle: ''
-    alt: 'Helena och Hanna'
+    alt: Helena och Hanna
     src: /img/IMG_2407-2.JPG
   - title: ''
     subtitle: ''
@@ -148,37 +127,37 @@ galleryImages:
     subtitle: ''
     alt: ''
     src: /img/IMG_3033.jpeg
-  - title: 'Rennie Mirro'
+  - title: Rennie Mirro
     subtitle: ''
-    alt: 'Rennie Mirro'
+    alt: Rennie Mirro
     src: /img/IMG_3168.jpeg
-  - title: 'Tobias Fjälling'
+  - title: Tobias Fjälling
     subtitle: ''
-    alt: 'Tobias Fjälling'
+    alt: Tobias Fjälling
     src: /img/IMG_3189.JPG
-  - title: 'Sonor Phonics 75'''
+  - title: Sonor Phonics 75'
     subtitle: ''
-    alt: 'Sonor Phonics 75'''
+    alt: Sonor Phonics 75'
     src: /img/IMG_3957-1.jpg
-  - title: 'Boden-Stefan'
+  - title: Boden-Stefan
     subtitle: ''
-    alt: 'Boden-Stefan'
+    alt: Boden-Stefan
     src: /img/IMG_4872-1.jpg
   - title: ''
     subtitle: ''
     alt: ''
     src: /img/IMG_7231.JPG
-  - title: 'Anders Löwstedt'
+  - title: Anders Löwstedt
     subtitle: ''
-    alt: 'Anders Löwstedt'
+    alt: Anders Löwstedt
     src: /img/IMG_7289-3.JPG
-  - title: 'Nina Johan & Erika'
+  - title: Nina Johan & Erika
     subtitle: ''
-    alt: 'Nina Johan & Erika'
+    alt: Nina Johan & Erika
     src: /img/IMG_E0664.jpg
-  - title: 'Owe Thörnqvist'
+  - title: Owe Thörnqvist
     subtitle: ''
-    alt: 'Owe Thörnqvist'
+    alt: Owe Thörnqvist
     src: /img/IMG_E0679.jpg
   - title: ''
     subtitle: ''
@@ -188,25 +167,25 @@ galleryImages:
     subtitle: ''
     alt: ''
     src: /img/IMG_E0685.JPG
-  - title: 'Bengan Jansson'
+  - title: Bengan Jansson
     subtitle: ''
-    alt: 'Bengan Jansson'
+    alt: Bengan Jansson
     src: /img/IMG_E0932.jpg
   - title: ''
     subtitle: ''
     alt: ''
     src: /img/IMG_E0963.jpg
-  - title: 'Lucette Rådström'
+  - title: Lucette Rådström
     subtitle: ''
-    alt: 'Lucette Rådström'
+    alt: Lucette Rådström
     src: /img/lucette.jpg
-  - title: 'Marcus Sofia och Jocke'
+  - title: Marcus Sofia och Jocke
     subtitle: ''
-    alt: 'Marcus Sofia och Jocke'
+    alt: Marcus Sofia och Jocke
     src: /img/Soffan-mackan(1).jpg
-  - title: 'Sture Zetterberg'
+  - title: Sture Zetterberg
     subtitle: ''
-    alt: 'Sture Zetterberg'
+    alt: Sture Zetterberg
     src: /img/Stu.jpg
   - title: ''
     subtitle: ''

@@ -1169,6 +1169,53 @@ body {
   line-height: 1.3;
 }
 
+// Rich-text blocks in the contact panels. A plain line reads as a heading,
+// an italic line as the small muted line underneath, so an editor only has
+// to know "normal text" and "italics" instead of six separate fields.
+.rec-contact__rich p {
+  margin: 0;
+  font-family: "Space Grotesk", "stratos", sans-serif;
+  font-size: 1.16rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.rec-contact__rich p + p {
+  margin-top: 0.35rem;
+}
+
+.rec-contact__rich em {
+  display: block;
+  font-style: normal;
+  color: var(--rec-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  font-size: 0.54rem;
+}
+
+.rec-contact__rich--lines p {
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.rec-contact__rich--lines p + p {
+  margin-top: 0;
+}
+
+.rec-contact__map-meta.rec-contact__rich p,
+.rec-contact__map-meta.rec-contact__rich em {
+  margin: 0;
+  display: block;
+  text-align: right;
+  color: rgba(229, 226, 225, 0.58);
+  text-transform: uppercase;
+  letter-spacing: 0.06rem;
+  font-size: 0.4rem;
+  font-style: normal;
+  line-height: 1.4;
+  font-family: "Space Grotesk", "stratos", sans-serif;
+}
+
 .rec-contact__map-meta {
   position: absolute;
   right: 0.9rem;

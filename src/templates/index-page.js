@@ -12,11 +12,7 @@ import SolutionsSection from "../components/sections/SolutionsSection"
 import CtaSection from "../components/sections/CtaSection"
 import { fetchYoutubeVideos, normalizeCmsFeaturedVideos } from "../lib/youtube"
 
-export const IndexPageTemplate = ({
-  content,
-  peopleTeasers = [],
-  fallbackLogos = [],
-}) => {
+export const IndexPageTemplate = ({ content, peopleTeasers = [] }) => {
   const sections = content?.sections || []
   const workSection = sections.find(section => section?.type === "work") || {}
 
@@ -80,7 +76,7 @@ export const IndexPageTemplate = ({
       case "hero":
         return <HeroSection key={key} section={section} />
       case "logos":
-        return <LogosSection key={key} section={section} fallbackLogos={fallbackLogos} />
+        return <LogosSection key={key} section={section} />
       case "work":
         return (
           <WorkSection key={key} section={section} items={workItems} onPlay={setActiveVideo} />
@@ -121,22 +117,13 @@ export const IndexPageTemplate = ({
 IndexPageTemplate.propTypes = {
   content: PropTypes.shape({ sections: PropTypes.array }),
   peopleTeasers: PropTypes.array,
-  fallbackLogos: PropTypes.array,
 }
 
 const IndexPage = ({ data }) => {
   const content = data.markdownRemark.frontmatter
   const galleryImages = data.peopleGallery?.frontmatter?.galleryImages || []
-  const featuredPeopleImages = data.peopleGallery?.frontmatter?.featuredImages || []
+  const featuredPeopleImages = galleryImages.filter(image => image?.featured)
   const teaserSource = featuredPeopleImages.length ? featuredPeopleImages : galleryImages
-  const fallbackLogos = (data.logoGallery?.edges || [])
-    .map(({ node }) => ({
-      id: node?.name || "",
-      image: node?.publicURL || "",
-      alt: node?.name || "Partner logo",
-      href: "",
-    }))
-    .filter(item => item.image)
 
   const teaserSeen = new Set()
   const peopleTeasers = teaserSource
@@ -158,7 +145,6 @@ const IndexPage = ({ data }) => {
     <IndexPageTemplate
       content={content}
       peopleTeasers={peopleTeasers}
-      fallbackLogos={fallbackLogos}
     />
   )
 }
@@ -255,40 +241,16 @@ export const query = graphql`
     }
     peopleGallery: markdownRemark(frontmatter: { templateKey: { eq: "people-gallery" } }) {
       frontmatter {
-        featuredImages {
-          order
-          title
-          alt
-          cropPosition
-          src {
-            childImageSharp {
-              gatsbyImageData(width: 520 quality: 82 placeholder: BLURRED layout: CONSTRAINED)
-            }
-          }
-        }
         galleryImages {
           title
           alt
           cropPosition
+          featured
           src {
             childImageSharp {
               gatsbyImageData(width: 520 quality: 82 placeholder: BLURRED layout: CONSTRAINED)
             }
           }
-        }
-      }
-    }
-    logoGallery: allFile(
-      filter: {
-        relativeDirectory: { eq: "logo-gallery" }
-        extension: { regex: "/(png)|(jpg)|(jpeg)|(webp)|(avif)/" }
-      }
-      sort: { name: ASC }
-    ) {
-      edges {
-        node {
-          name
-          publicURL
         }
       }
     }

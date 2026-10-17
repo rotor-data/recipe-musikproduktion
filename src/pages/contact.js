@@ -1,13 +1,9 @@
 import React from "react"
 import { graphql } from "gatsby"
 import SeoHead from "../components/SeoHead"
+import MarkdownRenderer from "../components/MarkdownRenderer"
 
 export const ContactPageTemplate = ({ content = {} }) => {
-  const lines = Array.isArray(content.lines)
-    ? content.lines
-      .map(line => (typeof line === "string" ? line : line?.line))
-      .filter(Boolean)
-    : []
   const actions = Array.isArray(content.actions) ? content.actions : []
   const mapEmbedUrl =
     content.mapEmbedUrl ||
@@ -22,19 +18,14 @@ export const ContactPageTemplate = ({ content = {} }) => {
             <h1 className="rec-contact__title">{content.pageTitle || "Contact"}</h1>
 
             <div className="rec-contact__modules">
-              {(content.operatorLabel || content.operatorName || content.operatorRole) && (
+              {(content.operatorLabel || content.operatorBody) && (
                 <div className="rec-contact__module">
                   {content.operatorLabel && (
                     <p className="rec-contact__label">{content.operatorLabel}</p>
                   )}
-                  {(content.operatorName || content.operatorRole) && (
-                    <div className="rec-contact__card">
-                      {content.operatorName && (
-                        <p className="rec-contact__name">{content.operatorName}</p>
-                      )}
-                      {content.operatorRole && (
-                        <p className="rec-contact__meta">{content.operatorRole}</p>
-                      )}
+                  {content.operatorBody && (
+                    <div className="rec-contact__card rec-contact__rich">
+                      <MarkdownRenderer markdown={content.operatorBody} />
                     </div>
                   )}
                 </div>
@@ -54,13 +45,11 @@ export const ContactPageTemplate = ({ content = {} }) => {
                 {content.addressLabel && (
                   <p className="rec-contact__label">{content.addressLabel}</p>
                 )}
-                <div className="rec-contact__card">
-                  {lines.map((line, index) => (
-                    <p className="rec-contact__line" key={`${line}-${index}`}>
-                      {line}
-                    </p>
-                  ))}
-                </div>
+                {content.addressBody && (
+                  <div className="rec-contact__card rec-contact__rich rec-contact__rich--lines">
+                    <MarkdownRenderer markdown={content.addressBody} />
+                  </div>
+                )}
               </div>
             </div>
 
@@ -85,10 +74,9 @@ export const ContactPageTemplate = ({ content = {} }) => {
               {content.locationBadge && (
                 <span className="rec-contact__map-badge">{content.locationBadge}</span>
               )}
-              {(content.mapCoordinates || content.mapSector) && (
-                <div className="rec-contact__map-meta">
-                  {content.mapCoordinates && <p>{content.mapCoordinates}</p>}
-                  {content.mapSector && <p>{content.mapSector}</p>}
+              {content.mapBody && (
+                <div className="rec-contact__map-meta rec-contact__rich">
+                  <MarkdownRenderer markdown={content.mapBody} />
                 </div>
               )}
             </div>
@@ -144,18 +132,16 @@ export const pageQuery = graphql`
           pageTitle
           panelTag
           operatorLabel
-          operatorName
-          operatorRole
+          operatorBody
           addressLabel
-          lines
+          addressBody
           emailLabel
           email
           emailMeta
           locationTitle
           mapEmbedUrl
           locationBadge
-          mapCoordinates
-          mapSector
+          mapBody
           statusLabel
           statusValue
           actions {
