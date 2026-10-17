@@ -13,3 +13,6 @@ yarn-error.log
 
 # Local Netlify folder
 .netlify
+
+# Genererad felsökningsutdata med absoluta sökvägar, skiljer sig per maskin
+gatsby-plugin-purgecss-debug-config.js
