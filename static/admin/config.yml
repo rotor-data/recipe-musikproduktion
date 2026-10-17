@@ -82,9 +82,18 @@ collections:
                     hint: Texten på den gula knappen.
                   - label: Primary button link
                     name: primaryHref
-                    widget: string
+                    widget: select
                     required: false
-                    hint: Vart gula knappen går. Skriv /contact för kontaktsidan.
+                    hint: Välj en av sajtens sidor. Listan är låst så länken inte kan peka fel.
+                    options:
+                      - label: Startsidan
+                        value: /
+                      - label: Bildgalleriet
+                        value: /people
+                      - label: Work
+                        value: /work
+                      - label: Kontakt
+                        value: /contact
                   - label: Secondary button text
                     name: secondaryText
                     widget: string
@@ -92,9 +101,18 @@ collections:
                     hint: Texten på den andra knappen.
                   - label: Secondary button link
                     name: secondaryHref
-                    widget: string
+                    widget: select
                     required: false
-                    hint: Vart andra knappen går. Skriv /work för arbetssidan.
+                    hint: Välj en av sajtens sidor. Listan är låst så länken inte kan peka fel.
+                    options:
+                      - label: Startsidan
+                        value: /
+                      - label: Bildgalleriet
+                        value: /people
+                      - label: Work
+                        value: /work
+                      - label: Kontakt
+                        value: /contact
               - label: Logo banner
                 name: logos
                 widget: object
@@ -156,9 +174,18 @@ collections:
                     hint: Texten på länken bredvid rubriken.
                   - label: Link
                     name: ctaLink
-                    widget: string
+                    widget: select
                     required: false
-                    hint: Vart länken går. Skriv /work för arbetssidan.
+                    hint: Välj en av sajtens sidor. Listan är låst så länken inte kan peka fel.
+                    options:
+                      - label: Startsidan
+                        value: /
+                      - label: Bildgalleriet
+                        value: /people
+                      - label: Work
+                        value: /work
+                      - label: Kontakt
+                        value: /contact
                 hint: 'Videorna hämtas automatiskt från YouTube-kanalen. Vill du lyfta fram en video, tagga den med "featured" på YouTube - den hamnar då först.'
               - label: Services
                 name: services
@@ -261,9 +288,18 @@ collections:
                     hint: Texten på första knappen.
                   - label: Button link
                     name: ctaLink
-                    widget: string
+                    widget: select
                     required: false
-                    hint: Vart första knappen går. Skriv /people för bildgalleriet.
+                    hint: Välj en av sajtens sidor. Listan är låst så länken inte kan peka fel.
+                    options:
+                      - label: Startsidan
+                        value: /
+                      - label: Bildgalleriet
+                        value: /people
+                      - label: Work
+                        value: /work
+                      - label: Kontakt
+                        value: /contact
                   - label: Second button text
                     name: secondaryCtaText
                     widget: string
@@ -271,9 +307,18 @@ collections:
                     hint: Texten på andra knappen. Lämna tom om du bara vill ha en.
                   - label: Second button link
                     name: secondaryCtaLink
-                    widget: string
+                    widget: select
                     required: false
-                    hint: Vart andra knappen går. Skriv /contact för kontaktsidan.
+                    hint: Välj en av sajtens sidor. Listan är låst så länken inte kan peka fel.
+                    options:
+                      - label: Startsidan
+                        value: /
+                      - label: Bildgalleriet
+                        value: /people
+                      - label: Work
+                        value: /work
+                      - label: Kontakt
+                        value: /contact
               - label: Solutions
                 name: solutions
                 widget: object
@@ -336,9 +381,18 @@ collections:
                     hint: Texten på knappen.
                   - label: Button link
                     name: buttonHref
-                    widget: string
+                    widget: select
                     required: false
-                    hint: Vart knappen går. Skriv /contact för kontaktsidan.
+                    hint: Välj en av sajtens sidor. Listan är låst så länken inte kan peka fel.
+                    options:
+                      - label: Startsidan
+                        value: /
+                      - label: Bildgalleriet
+                        value: /people
+                      - label: Work
+                        value: /work
+                      - label: Kontakt
+                        value: /contact
       - file: src/pages/people/index.md
         label: People Gallery Page
         name: people
@@ -418,9 +472,18 @@ collections:
                 hint: Texten på knappen.
               - label: Link href
                 name: linkHref
-                widget: string
+                widget: select
                 required: false
-                hint: Vart knappen går. Skriv /contact för kontaktsidan.
+                hint: Välj en av sajtens sidor. Listan är låst så länken inte kan peka fel.
+                options:
+                  - label: Startsidan
+                    value: /
+                  - label: Bildgalleriet
+                    value: /people
+                  - label: Work
+                    value: /work
+                  - label: Kontakt
+                    value: /contact
           - label: Gallery images
             name: galleryImages
             widget: gallerygrid
@@ -586,9 +649,18 @@ collections:
                     hint: Texten i rutan.
                   - label: Link
                     name: href
-                    widget: string
+                    widget: select
                     required: false
-                    hint: Vart rutan går. Skriv till exempel /work.
+                    hint: Välj en av sajtens sidor. Listan är låst så länken inte kan peka fel.
+                    options:
+                      - label: Startsidan
+                        value: /
+                      - label: Bildgalleriet
+                        value: /people
+                      - label: Work
+                        value: /work
+                      - label: Kontakt
+                        value: /contact
                 hint: Rutorna längst ner på sidan som länkar vidare.
       - file: src/data/navigation.md
         label: Menyn

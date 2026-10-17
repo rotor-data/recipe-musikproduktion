@@ -141,21 +141,55 @@ label[for^="mapEmbedUrl-"] {
 }
 input[id^="primaryHref-"],
 textarea[id^="primaryHref-"],
+,
+select[id^="primaryHref-"],
+textarea[id^="primaryHref-"],
+ 
 input[id^="secondaryHref-"],
 textarea[id^="secondaryHref-"],
+,
+select[id^="secondaryHref-"],
+textarea[id^="secondaryHref-"],
+ 
 input[id^="ctaLink-"],
 textarea[id^="ctaLink-"],
+,
+select[id^="ctaLink-"],
+textarea[id^="ctaLink-"],
+ 
 input[id^="secondaryCtaLink-"],
 textarea[id^="secondaryCtaLink-"],
+,
+select[id^="secondaryCtaLink-"],
+textarea[id^="secondaryCtaLink-"],
+ 
 input[id^="buttonHref-"],
 textarea[id^="buttonHref-"],
+,
+select[id^="buttonHref-"],
+textarea[id^="buttonHref-"],
+ 
 input[id^="linkHref-"],
 textarea[id^="linkHref-"],
+,
+select[id^="linkHref-"],
+textarea[id^="linkHref-"],
+ 
 input[id^="href-"],
 textarea[id^="href-"],
+,
+select[id^="href-"],
+textarea[id^="href-"],
+ 
 input[id^="youtubeUrl-"],
 textarea[id^="youtubeUrl-"],
+,
+select[id^="youtubeUrl-"],
+textarea[id^="youtubeUrl-"],
+ 
 input[id^="mapEmbedUrl-"],
+textarea[id^="mapEmbedUrl-"],
+select[id^="mapEmbedUrl-"],
 textarea[id^="mapEmbedUrl-"] {
   border-left: 3px solid #2f6fd0 !important;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace !important;
@@ -173,19 +207,42 @@ label[for^="linkText-"] {
 }
 input[id^="primaryText-"],
 textarea[id^="primaryText-"],
+,
+select[id^="primaryText-"],
+textarea[id^="primaryText-"],
+ 
 input[id^="secondaryText-"],
 textarea[id^="secondaryText-"],
+,
+select[id^="secondaryText-"],
+textarea[id^="secondaryText-"],
+ 
 input[id^="ctaText-"],
 textarea[id^="ctaText-"],
+,
+select[id^="ctaText-"],
+textarea[id^="ctaText-"],
+ 
 input[id^="secondaryCtaText-"],
 textarea[id^="secondaryCtaText-"],
+,
+select[id^="secondaryCtaText-"],
+textarea[id^="secondaryCtaText-"],
+ 
 input[id^="buttonText-"],
 textarea[id^="buttonText-"],
+,
+select[id^="buttonText-"],
+textarea[id^="buttonText-"],
+ 
 input[id^="linkText-"],
+textarea[id^="linkText-"],
+select[id^="linkText-"],
 textarea[id^="linkText-"] {
   border-left: 3px solid #d7b24a !important;
 }
 
 /* Alt-text - grönt, så tillgänglighetsfältet syns i mängden */
 label[for^="alt-"] { color: #3f7a4a !important; }
-input[id^="alt-"] { border-left: 3px solid #3f7a4a !important; }
+input[id^="alt-"],
+select[id^="alt-"] { border-left: 3px solid #3f7a4a !important; }
