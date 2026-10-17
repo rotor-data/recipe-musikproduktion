@@ -4,7 +4,7 @@ meta:
   description: Contact Recipe Music Production in Stockholm.
 contact:
   pageTitle: Get in Sync.
-  panelTag: 'Input signal: Inbound'
+  panelTag: ''
   operatorLabel: Operator Main
   addressLabel: Physical location
   emailLabel: Frequency link
@@ -27,8 +27,6 @@ contact:
   mapEmbedUrl: 'https://maps.google.com/maps?q=Nytorget%204%20116%2040%20Stockholm%20Sweden&z=16&output=embed'
   operatorBody: |
     Joakim Lundgren
-
-    *Lead Production Engineer*
   addressBody: |
     4 Nytorget
 
