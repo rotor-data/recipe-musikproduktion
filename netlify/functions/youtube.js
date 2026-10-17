@@ -1,11 +1,44 @@
-// search.list costs 100 quota units against a 10 000/day default, so an
-// uncached response would exhaust the quota after roughly 99 page views.
-// Cache at the edge instead: one upstream call an hour, and a new video
-// still appears without republishing the site.
+// The channel's uploads are read through playlistItems rather than search:
+// search.list costs 100 quota units per call against a 10 000/day default,
+// playlistItems.list costs 1. Together with videos.list that is 2 units a
+// call instead of 101, so the response can be cached for minutes rather
+// than an hour and a new upload shows up almost immediately.
 const CACHE_HEADERS = {
   "Content-Type": "application/json",
-  "Cache-Control": "public, max-age=300",
-  "Netlify-CDN-Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+  "Cache-Control": "public, max-age=60",
+  "Netlify-CDN-Cache-Control": "public, s-maxage=300, stale-while-revalidate=86400",
+}
+
+// Every channel's uploads live in a playlist whose id is the channel id
+// with the UC prefix swapped for UU.
+const uploadsPlaylistId = channelId =>
+  typeof channelId === "string" && channelId.startsWith("UC")
+    ? `UU${channelId.slice(2)}`
+    : channelId
+
+const shape = (id, snippet, detail) => {
+  const tags = snippet?.tags || []
+  const tidyTags = tags.map(tag => (tag || "").toLowerCase())
+
+  return {
+    id,
+    title: snippet?.title,
+    description: snippet?.description,
+    thumbnail:
+      snippet?.thumbnails?.maxres?.url ||
+      snippet?.thumbnails?.standard?.url ||
+      snippet?.thumbnails?.high?.url,
+    thumbnails: snippet?.thumbnails,
+    published: snippet?.publishedAt,
+    publishedAt: snippet?.publishedAt,
+    channelTitle: snippet?.channelTitle,
+    tags,
+    duration: detail?.contentDetails?.duration,
+    viewCount: detail?.statistics?.viewCount,
+    likeCount: detail?.statistics?.likeCount,
+    highlightLayout: tidyTags.includes("layout-one") ? "oneTop" : "twoTop",
+    highlight: tidyTags.includes("featured"),
+  }
 }
 
 exports.handler = async function () {
@@ -19,91 +52,41 @@ exports.handler = async function () {
     }
   }
 
-  const searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&type=video&maxResults=50`
+  const playlistUrl =
+    `https://www.googleapis.com/youtube/v3/playlistItems` +
+    `?key=${apiKey}&playlistId=${uploadsPlaylistId(channelId)}` +
+    `&part=contentDetails&maxResults=50`
 
   try {
-    const res = await fetch(searchUrl)
+    const res = await fetch(playlistUrl)
     const data = await res.json()
 
-    if (!Array.isArray(data.items)) {
-      return {
-        statusCode: 200,
-        headers: CACHE_HEADERS,
-        body: JSON.stringify([]),
-      }
+    const videoIds = (data.items || [])
+      .map(item => item?.contentDetails?.videoId)
+      .filter(Boolean)
+
+    if (!videoIds.length) {
+      return { statusCode: 200, headers: CACHE_HEADERS, body: JSON.stringify([]) }
     }
 
-    const videos = data.items
-      ?.filter(item => item.id.kind === "youtube#video")
-      .map(item => ({
-        id: item.id.videoId,
-        snippet: item.snippet,
-      }))
+    // One more unit, and the only place tags, duration and counts come from.
+    const videosUrl =
+      `https://www.googleapis.com/youtube/v3/videos` +
+      `?key=${apiKey}&id=${videoIds.join(",")}&part=snippet,contentDetails,statistics`
 
-    const videoIds = videos?.map(video => video.id).filter(Boolean)
+    const detailRes = await fetch(videosUrl)
+    const detailData = await detailRes.json()
+    const detailMap = new Map((detailData.items || []).map(item => [item.id, item]))
 
-    let enrichedVideos = videos
-
-    if (videoIds?.length) {
-      const videosUrl = `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds.join(
-        ","
-      )}&part=snippet,contentDetails,statistics`
-      const detailRes = await fetch(videosUrl)
-      const detailData = await detailRes.json()
-      const detailMap = new Map(
-        detailData.items?.map(item => [item.id, item]) || []
-      )
-
-      enrichedVideos = videos.map(video => {
-        const detail = detailMap.get(video.id)
-        const snippet = detail?.snippet || video.snippet
-        const tags = snippet?.tags || []
-        const tidyTags = tags.map(tag => (tag || "").toLowerCase())
-        const highlightLayout = tidyTags.includes("layout-one")
-          ? "oneTop"
-          : "twoTop"
-        const highlight = tidyTags.includes("featured")
-        return {
-          id: video.id,
-          title: snippet?.title,
-          description: snippet?.description,
-          thumbnail:
-            snippet?.thumbnails?.maxres?.url ||
-            snippet?.thumbnails?.standard?.url ||
-            snippet?.thumbnails?.high?.url,
-          thumbnails: snippet?.thumbnails,
-          published: snippet?.publishedAt,
-          publishedAt: snippet?.publishedAt,
-          channelTitle: snippet?.channelTitle,
-          tags,
-          duration: detail?.contentDetails?.duration,
-          viewCount: detail?.statistics?.viewCount,
-          likeCount: detail?.statistics?.likeCount,
-          highlightLayout,
-          highlight,
-        }
+    // Keep the playlist's order, which is newest upload first.
+    const videos = videoIds
+      .map(id => {
+        const detail = detailMap.get(id)
+        return detail ? shape(id, detail.snippet, detail) : null
       })
-    } else {
-      enrichedVideos = videos.map(video => ({
-        id: video.id,
-        title: video.snippet?.title,
-        description: video.snippet?.description,
-        thumbnail: video.snippet?.thumbnails?.high?.url,
-        published: video.snippet?.publishedAt,
-        publishedAt: video.snippet?.publishedAt,
-        channelTitle: video.snippet?.channelTitle,
-        tags: video.snippet?.tags || [],
-        thumbnails: video.snippet?.thumbnails,
-        highlightLayout: "twoTop",
-        highlight: false,
-      }))
-    }
+      .filter(Boolean)
 
-    return {
-      statusCode: 200,
-      headers: CACHE_HEADERS,
-      body: JSON.stringify(enrichedVideos || []),
-    }
+    return { statusCode: 200, headers: CACHE_HEADERS, body: JSON.stringify(videos) }
   } catch (error) {
     console.error("YouTube fetch error:", error)
     return {
