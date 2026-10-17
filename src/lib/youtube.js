@@ -104,3 +104,25 @@ export const fetchYoutubeVideos = async () => {
   const data = await res.json()
   return normalizeYoutubeVideos(data)
 }
+
+// Picking what the start page shows, in order of how explicit the choice is:
+// a curated list in the CMS beats everything, then videos tagged "featured"
+// on YouTube, then the newest to fill the remaining slots. Kept pure so it
+// can be tested without a browser or the API.
+export const selectStartPageVideos = (curated, channel, limit = 5) => {
+  if (Array.isArray(curated) && curated.length) {
+    return { source: "cms", videos: curated.slice(0, limit) }
+  }
+
+  const all = Array.isArray(channel) ? channel : []
+  const isFeatured = video =>
+    Boolean(video && (video.highlight || (video.tags || []).some(tag => String(tag).toLowerCase() === "featured")))
+
+  const featured = all.filter(isFeatured)
+  const rest = all.filter(video => !isFeatured(video))
+
+  return {
+    source: featured.length ? "tagged" : "latest",
+    videos: [...featured, ...rest].slice(0, limit),
+  }
+}

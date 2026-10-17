@@ -10,7 +10,11 @@ import ServicesSection from "../components/sections/ServicesSection"
 import PeopleSection from "../components/sections/PeopleSection"
 import SolutionsSection from "../components/sections/SolutionsSection"
 import CtaSection from "../components/sections/CtaSection"
-import { fetchYoutubeVideos, normalizeCmsFeaturedVideos } from "../lib/youtube"
+import {
+  fetchYoutubeVideos,
+  normalizeCmsFeaturedVideos,
+  selectStartPageVideos,
+} from "../lib/youtube"
 
 export const IndexPageTemplate = ({ content, peopleTeasers = [] }) => {
   const sections = content?.sections || []
@@ -32,7 +36,7 @@ export const IndexPageTemplate = ({ content, peopleTeasers = [] }) => {
     let cancelled = false
     fetchYoutubeVideos()
       .then(videos => {
-        if (!cancelled) setChannelVideos(videos.slice(0, 5))
+        if (!cancelled) setChannelVideos(videos)
       })
       .catch(() => {
         if (!cancelled) setChannelVideos([])
@@ -44,8 +48,10 @@ export const IndexPageTemplate = ({ content, peopleTeasers = [] }) => {
   }, [curatedVideos.length])
 
   const workItems = useMemo(() => {
-    if (curatedVideos.length) {
-      return curatedVideos.map(video => ({
+    const picked = selectStartPageVideos(curatedVideos, channelVideos, 5)
+
+    if (picked.source === "cms") {
+      return picked.videos.map(video => ({
         id: video.videoId || video.youtubeUrl,
         videoId: video.videoId,
         title: video.title,
@@ -56,7 +62,7 @@ export const IndexPageTemplate = ({ content, peopleTeasers = [] }) => {
       }))
     }
 
-    return channelVideos.map(video => ({
+    return picked.videos.map(video => ({
       id: video.id,
       videoId: video.id,
       title: video.title,
