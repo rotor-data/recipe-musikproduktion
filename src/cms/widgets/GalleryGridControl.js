@@ -24,6 +24,8 @@ const GalleryGridControl = props => {
 
   const items = useMemo(() => toArray(value), [value])
   const [selected, setSelected] = useState(null)
+  const [notice, setNotice] = useState(null)
+  const [moving, setMoving] = useState(null)
   const pendingRef = useRef(null)
 
   const featuredCount = items.filter(item => item && item.featured).length
@@ -80,7 +82,12 @@ const GalleryGridControl = props => {
 
   const toggleFeatured = index => {
     const item = items[index] || {}
-    if (!item.featured && featuredCount >= MAX_FEATURED) return
+    if (!item.featured && featuredCount >= MAX_FEATURED) {
+      // Silently doing nothing reads as a broken button, so say why.
+      setNotice(`Du har redan ${MAX_FEATURED} utvalda. Ta bort en stjärna först.`)
+      return
+    }
+    setNotice(null)
     const next = items.slice()
     next[index] = { ...item, featured: !item.featured }
     write(next)
@@ -108,8 +115,6 @@ const GalleryGridControl = props => {
     setSelected(to)
   }
 
-  const [dragIndex, setDragIndex] = useState(null)
-
   // A stored path like /img/foo.jpg is already a valid URL on the site, and
   // getAsset hands back an unresolved, transparent blob for those. Only ask
   // it about paths that are not site-absolute, such as a fresh upload.
@@ -129,6 +134,15 @@ const GalleryGridControl = props => {
       <div className="gg-toolbar">
         <span className="gg-count">
           {items.length} bilder &middot; {featuredCount} av {MAX_FEATURED} utvalda
+          {notice && <strong className="gg-notice">{notice}</strong>}
+          {moving != null && (
+            <strong className="gg-notice gg-notice--move">
+              Flyttar bild {moving + 1} — klicka på platsen den ska till.{" "}
+              <button type="button" className="gg-cancel" onClick={() => setMoving(null)}>
+                Avbryt
+              </button>
+            </strong>
+          )}
         </span>
         <button type="button" className="gg-add" onClick={() => openLibrary("add")}>
           {hasMediaLibrary ? "Lägg till bild" : "Lägg till bild via sökväg"}
@@ -141,22 +155,29 @@ const GalleryGridControl = props => {
             key={`${item && item.src ? item.src : "image"}-${index}`}
             className={`gg-cell${selected === index ? " is-selected" : ""}${
               item && item.featured ? " is-featured" : ""
-            }${dragIndex === index ? " is-dragging" : ""}`}
-            draggable
-            onDragStart={() => setDragIndex(index)}
-            onDragEnd={() => setDragIndex(null)}
-            onDragOver={event => event.preventDefault()}
-            onDrop={event => {
-              event.preventDefault()
-              if (dragIndex != null) move(dragIndex, index)
-              setDragIndex(null)
-            }}
+            }${moving === index ? " is-moving" : ""}${
+              moving != null && moving !== index ? " is-target" : ""
+            }`}
+
           >
             <button
               type="button"
               className="gg-thumb"
-              onClick={() => setSelected(selected === index ? null : index)}
-              title="Klicka för att redigera"
+              onClick={() => {
+                if (moving != null) {
+                  if (moving !== index) move(moving, index)
+                  setMoving(null)
+                  return
+                }
+                setSelected(selected === index ? null : index)
+              }}
+              title={
+                moving != null
+                  ? moving === index
+                    ? "Klicka på en annan bild för att flytta hit"
+                    : "Flytta den valda bilden hit"
+                  : "Klicka för att redigera"
+              }
             >
               {src(item) ? (
                 <img src={src(item)} alt="" />
@@ -177,9 +198,20 @@ const GalleryGridControl = props => {
                   : "Gör till utvald"
               }
               onClick={() => toggleFeatured(index)}
-              disabled={!(item && item.featured) && featuredCount >= MAX_FEATURED}
             >
               {item && item.featured ? "★" : "☆"}
+            </button>
+            <button
+              type="button"
+              className="gg-move"
+              title="Flytta bilden"
+              aria-label={`Flytta bild ${index + 1}`}
+              onClick={() => {
+                setMoving(moving === index ? null : index)
+                setNotice(null)
+              }}
+            >
+              ⇄
             </button>
             <span className="gg-name">{(item && item.title) || "Namn saknas"}</span>
           </div>

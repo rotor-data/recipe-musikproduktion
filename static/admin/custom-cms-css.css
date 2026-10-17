@@ -246,3 +246,35 @@ textarea[id^="linkText-"] {
 label[for^="alt-"] { color: #3f7a4a !important; }
 input[id^="alt-"],
 select[id^="alt-"] { border-left: 3px solid #3f7a4a !important; }
+
+.gg-notice {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: #fdf6e3;
+  border: 1px solid #e0c98a;
+  color: #6b5420;
+  font-weight: 600;
+}
+.gg-star[aria-pressed="false"] { color: #cfcfcf; }
+.gg-cell[draggable="true"] .gg-thumb { cursor: grab; }
+.gg-cell.is-dragging .gg-thumb { cursor: grabbing; }
+
+.gg-move {
+  position: absolute; top: 4px; left: 4px;
+  width: 24px; height: 24px; padding: 0;
+  border: 0; border-radius: 50%;
+  background: rgba(0,0,0,.6); color: #fff;
+  font-size: 13px; line-height: 1; cursor: pointer;
+}
+.gg-move:hover { background: #3a69c7; }
+.gg-cell.is-moving .gg-thumb { border-color: #3a69c7; box-shadow: 0 0 0 3px rgba(58,105,199,.25); }
+.gg-cell.is-moving .gg-move { background: #3a69c7; }
+.gg-cell.is-target .gg-thumb { cursor: copy; }
+.gg-cell.is-target:hover .gg-thumb { border-color: #3a69c7; border-style: dashed; }
+.gg-notice--move { background: #eaf0fb; border-color: #a9c0e8; color: #24467f; }
+.gg-cancel {
+  margin-left: 6px; padding: 0 6px; font-size: 12px;
+  border: 1px solid #a9c0e8; border-radius: 3px; background: #fff; cursor: pointer;
+}
