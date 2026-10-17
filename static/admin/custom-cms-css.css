@@ -121,3 +121,71 @@ a {
   width: 100%; padding: 6px 8px; border: 1px solid #c4c6d2; border-radius: 4px;
 }
 .gg-fallback__check { display: flex; align-items: center; gap: 6px; }
+
+/* ---- Färgkodning per fälttyp ----
+   Decap ger både label[for] och input[id] namnet "<fält>-field-N", så CSS
+   kan skilja fälttyper åt utan JavaScript. Bara entydiga namn används:
+   "title" och "description" förekommer överallt och lämnas i fred. */
+
+/* Adresser och länkar - blått, monospace så en sökväg ser ut som en sökväg */
+label[for^="primaryHref-"],
+label[for^="secondaryHref-"],
+label[for^="ctaLink-"],
+label[for^="secondaryCtaLink-"],
+label[for^="buttonHref-"],
+label[for^="linkHref-"],
+label[for^="href-"],
+label[for^="youtubeUrl-"],
+label[for^="mapEmbedUrl-"] {
+  color: #2f6fd0 !important;
+}
+input[id^="primaryHref-"],
+textarea[id^="primaryHref-"],
+input[id^="secondaryHref-"],
+textarea[id^="secondaryHref-"],
+input[id^="ctaLink-"],
+textarea[id^="ctaLink-"],
+input[id^="secondaryCtaLink-"],
+textarea[id^="secondaryCtaLink-"],
+input[id^="buttonHref-"],
+textarea[id^="buttonHref-"],
+input[id^="linkHref-"],
+textarea[id^="linkHref-"],
+input[id^="href-"],
+textarea[id^="href-"],
+input[id^="youtubeUrl-"],
+textarea[id^="youtubeUrl-"],
+input[id^="mapEmbedUrl-"],
+textarea[id^="mapEmbedUrl-"] {
+  border-left: 3px solid #2f6fd0 !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace !important;
+  font-size: 13px !important;
+}
+
+/* Knapptexter - guld, samma som knapparna har på sajten */
+label[for^="primaryText-"],
+label[for^="secondaryText-"],
+label[for^="ctaText-"],
+label[for^="secondaryCtaText-"],
+label[for^="buttonText-"],
+label[for^="linkText-"] {
+  color: #a07c1f !important;
+}
+input[id^="primaryText-"],
+textarea[id^="primaryText-"],
+input[id^="secondaryText-"],
+textarea[id^="secondaryText-"],
+input[id^="ctaText-"],
+textarea[id^="ctaText-"],
+input[id^="secondaryCtaText-"],
+textarea[id^="secondaryCtaText-"],
+input[id^="buttonText-"],
+textarea[id^="buttonText-"],
+input[id^="linkText-"],
+textarea[id^="linkText-"] {
+  border-left: 3px solid #d7b24a !important;
+}
+
+/* Alt-text - grönt, så tillgänglighetsfältet syns i mängden */
+label[for^="alt-"] { color: #3f7a4a !important; }
+input[id^="alt-"] { border-left: 3px solid #3f7a4a !important; }
