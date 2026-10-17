@@ -5,8 +5,8 @@ exports.createPages = ({ actions, graphql }) => {
   const { createPage, createRedirect } = actions
 
   // /cases/ used to be a second address for the same page as /work/.
-  // Declared here rather than in netlify.toml, which this site does not
-  // appear to read: gatsby-plugin-netlify writes these into public/_redirects.
+  // Kept here rather than in netlify.toml so the rule lives in one place and
+  // ships with the build; gatsby-plugin-netlify writes it to public/_redirects.
   createRedirect({ fromPath: "/cases", toPath: "/work/", isPermanent: true, force: true })
   createRedirect({ fromPath: "/cases/", toPath: "/work/", isPermanent: true, force: true })
   createRedirect({ fromPath: "/cases/*", toPath: "/work/", isPermanent: true, force: true })

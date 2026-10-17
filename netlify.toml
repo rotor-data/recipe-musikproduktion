@@ -7,16 +7,3 @@
   YARN_FLAGS = "--no-ignore-optional"
 [functions]
   node_bundler = "esbuild"
-
-# /cases/ var en andra adress till samma sida som /work/
-[[redirects]]
-  from = "/cases"
-  to = "/work/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/cases/*"
-  to = "/work/"
-  status = 301
-  force = true
