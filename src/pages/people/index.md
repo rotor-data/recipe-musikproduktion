@@ -31,6 +31,17 @@ galleryImages:
     alt: Bengan Jansson
     src: /img/IMG_E0932.jpg
     featured: true
+  - title: Daniel P & Amy D
+    subtitle: ""
+    alt: Daniel P & Amy D
+    src: /img/IMG_0145-2.jpeg
+    featured: true
+  - featured: false
+    title: Rickard Linda och Jany
+    subtitle: ""
+    alt: Rickard Linda och Jany
+    src: /img/rckard-linda-och-jany.webp
+    cropPosition: center
   - title: Boden-Jocke
     subtitle: ""
     alt: Boden-Jocke
@@ -41,11 +52,6 @@ galleryImages:
     alt: Dusty Monroe
     src: /img/Dusty.jpg
     featured: false
-  - title: Daniel P & Amy D
-    subtitle: ""
-    alt: Daniel P & Amy D
-    src: /img/IMG_0145-2.jpeg
-    featured: true
   - title: Boden-Åke
     subtitle: ""
     alt: Boden-Åke
