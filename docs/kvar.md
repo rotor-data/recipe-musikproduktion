@@ -8,6 +8,14 @@
   IMG_E0685, IMG_E0963 och de två UNADJUSTEDNONRAW. De fanns
   inte på Squarespace-sajten, så namnen måste komma från Recipe.
   Tom `alt` betyder att skärmläsare hoppar över bilden.
+- **Tre par i galleriet är samma foto två gånger.** Apples redigerade kopior,
+  där filnamnet får ett `E`: IMG_0963 / IMG_E0963 (verifierat identiska),
+  IMG_0664 / IMG_E0664 (verifierat samma foto) och IMG_0685 / IMG_E0685
+  (troligen samma tillfälle). I varje par har bara den ena ett namn, så det
+  ser ut som att namnet sitter på fel bild. Filerna är inte byte-identiska,
+  därför missade dubblettröjningen dem. Ska den onamngivna kopian bort?
+- **IMG_E0679 heter "Owe Thörnqvist" men visar en äldre man med dragspel.**
+  Bengan Jansson-bilden bredvid stämmer. Jocke får avgöra.
 - **13 personer från gamla sajten saknar bild i repot** — Chris Medina och
   Getty Domein, Jacob Skarin, Avakhan, Kriss Jonsson, Lasse och Henke,
   Tompa och Matilda, Samuel Gustafsson, Rafael Edholm & Co, Steffe
