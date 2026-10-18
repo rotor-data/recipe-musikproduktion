@@ -31,6 +31,11 @@ galleryImages:
     alt: Daniel P & Amy D
     src: /img/IMG_0145-2.jpeg
     featured: true
+  - title: Bengan Jansson
+    subtitle: ""
+    alt: Bengan Jansson
+    src: /img/IMG_E0932.jpg
+    featured: true
   - title: Boden-Åke
     subtitle: ""
     alt: Boden-Åke
@@ -73,11 +78,6 @@ galleryImages:
     subtitle: ""
     alt: Frida Öhrn
     src: /img/IMG_0725.jpg
-  - title: Bengan Jansson
-    subtitle: ""
-    alt: Bengan Jansson
-    src: /img/IMG_E0932.jpg
-    featured: true
   - title: ""
     subtitle: ""
     alt: ""
