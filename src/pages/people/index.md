@@ -73,6 +73,10 @@ galleryImages:
     subtitle: ""
     alt: Frida Öhrn
     src: /img/IMG_0725.jpg
+  - title: Bengan Jansson
+    subtitle: ""
+    alt: Bengan Jansson
+    src: /img/IMG_E0932.jpg
   - title: ""
     subtitle: ""
     alt: ""
@@ -169,10 +173,6 @@ galleryImages:
     subtitle: ""
     alt: ""
     src: /img/IMG_E0685.JPG
-  - title: Bengan Jansson
-    subtitle: ""
-    alt: Bengan Jansson
-    src: /img/IMG_E0932.jpg
   - title: ""
     subtitle: ""
     alt: ""
