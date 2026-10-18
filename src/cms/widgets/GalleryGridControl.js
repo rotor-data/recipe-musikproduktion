@@ -16,6 +16,7 @@ const GalleryGridControl = props => {
     onChange,
     getAsset,
     onOpenMediaLibrary,
+    onRemoveInsertedMedia,
     mediaPaths,
     forID,
     classNameWrapper,
@@ -51,6 +52,10 @@ const GalleryGridControl = props => {
       next[index] = { ...next[index], src: path }
       write(next)
     }
+
+    // Decap leaves the chosen path under our control id. Clear it, or picking
+    // the same image a second time reads as a dead button.
+    if (typeof onRemoveInsertedMedia === "function") onRemoveInsertedMedia(forID)
   }, [mediaPath]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // The media library is the part of Decap most likely to move. When it is
