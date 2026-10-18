@@ -129,10 +129,6 @@ galleryImages:
   - title: ""
     subtitle: ""
     alt: ""
-    src: /img/IMG_2571-2.JPG
-  - title: ""
-    subtitle: ""
-    alt: ""
     src: /img/IMG_3033.jpeg
   - title: Rennie Mirro
     subtitle: ""
