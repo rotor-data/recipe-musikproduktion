@@ -98,14 +98,6 @@ galleryImages:
     subtitle: ""
     alt: Andreas Tiliander
     src: /img/IMG_1244.jpeg
-  - title: ""
-    subtitle: ""
-    alt: ""
-    src: /img/IMG_1471.jpg
-  - title: ""
-    subtitle: ""
-    alt: ""
-    src: /img/IMG_1472.jpg
   - title: Nicklas Thelin
     subtitle: ""
     alt: Nicklas Thelin
