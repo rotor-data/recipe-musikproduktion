@@ -28,7 +28,7 @@ collections:
       - file: src/pages/index.md
         label: Start Page
         name: index
-        description: 'Startsidan byggs av sektionerna nedan, uppifrån och ner. Dra för att flytta en sektion, kryss för att ta bort den, och knappen längst ner för att lägga till en ny.'
+        description: 'Startsidan byggs av sektionerna nedan, uppifrån och ner. Dra i =-ikonen mitt på raden för att flytta en sektion, kryss för att ta bort den, och knappen längst ner för att lägga till en ny.'
         fields:
           - label: Template Key
             name: templateKey
@@ -58,7 +58,7 @@ collections:
           - label: Sections
             name: sections
             widget: list
-            hint: 'Startsidan byggs av dessa, uppifrån och ner. Dra för att flytta, kryss för att ta bort, knappen nedanför för att lägga till.'
+            hint: 'Startsidan byggs av dessa, uppifrån och ner. Dra i =-ikonen mitt på raden för att flytta, kryss för att ta bort, knappen nedanför för att lägga till.'
             types:
               - label: Hero
                 name: hero
@@ -152,7 +152,7 @@ collections:
                         widget: string
                         required: false
                         hint: Valfri länk om logotypen ska gå att klicka på.
-                    hint: Logotyperna som visas i raden. Dra för att ändra ordning.
+                    hint: 'Logotyperna som visas i raden. Dra i =-ikonen mitt på raden för att ändra ordning.'
               - label: Work
                 name: work
                 widget: object
@@ -496,7 +496,7 @@ collections:
           - label: Gallery images
             name: galleryImages
             widget: gallerygrid
-            hint: 'Alla bilder i galleriet. Dra en bild för att flytta den, klicka på stjärnan för att lyfta fram den (max fem), klicka på bilden för att skriva namn och alt-text.'
+            hint: 'Alla bilder i galleriet. Klicka på ⇄ och sedan på platsen bilden ska till för att flytta den, klicka på stjärnan för att lyfta fram den (max fem), klicka på bilden för att skriva namn och alt-text.'
       - file: src/pages/work-content.md
         label: Work Page
         name: work
@@ -674,7 +674,7 @@ collections:
       - file: src/data/navigation.md
         label: Menyn
         name: navigation
-        description: Länkarna högst upp på varje sida. Dra för att ändra ordning.
+        description: 'Länkarna högst upp på varje sida. Dra i =-ikonen mitt på raden för att ändra ordning.'
         fields:
           - label: Menyval
             name: menu
