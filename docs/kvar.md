@@ -22,12 +22,6 @@
 
 ## Filnamn att städa 2026-10-19
 
-- **`steffe-sundsström.jpeg` har ö i filnamnet**, lagrat som `o` plus ett
-  kombinerande tecken. Det fungerar — alla sökvägar i bygget löser ut — men
-  git visar filen som ospårad i en andra stavning på macOS
-  (`core.precomposeunicode`), och i URL:er blir den `%CC%88`. Döp om den till
-  `steffe-sundstrom.jpeg` och ändra den enda referensen, så försvinner hela
-  problemklassen.
 - **`img_0725.jpg` är en oanvänd dubblett** av `frida-2.jpg`, samma bild
   uppladdad två gånger. Ligger kvar i `static/img` utan att användas.
 

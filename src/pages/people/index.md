@@ -73,7 +73,7 @@ galleryImages:
     title: Steffe Sundström
     subtitle: ""
     alt: Steffe Sundström
-    src: /img/steffe-sundsström.jpeg
+    src: /img/steffe-sundstrom.jpeg
     cropPosition: center
   - title: Andreas Tiliander
     subtitle: ""

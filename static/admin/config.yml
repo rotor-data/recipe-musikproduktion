@@ -12,6 +12,15 @@ backend:
 publish_mode: editorial_workflow
 media_folder: static/img
 public_folder: /img
+# Decap döper om uppladdade filer efter de här reglerna. Standard är
+# "unicode", och då är å, ä och ö giltiga tecken som får stå kvar — vilket
+# ger filnamn som bråkar i URL:er och som git stavar olika på macOS och
+# Linux. "ascii" plus clean_accents gör om dem till a, a och o i stället.
+# Påverkar bara filnamn: sidorna är en files-samling och får inga slugar.
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: '-'
 collections:
   - name: pages
     label: Website Pages
