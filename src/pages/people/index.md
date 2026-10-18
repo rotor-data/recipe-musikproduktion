@@ -21,17 +21,11 @@ galleryImages:
     alt: Owe Thörnqvist
     src: /img/IMG_E0679.jpg
     featured: true
-  - featured: true
-    title: Frida Öhrn
-    subtitle: Frida Öhrn
-    alt: ""
-    src: /img/frida-2.jpg
-    cropPosition: center
   - title: Frida Öhrn
     subtitle: ""
     alt: Frida Öhrn
     src: /img/IMG_0725.jpg
-    featured: false
+    featured: true
   - title: Bengan Jansson
     subtitle: ""
     alt: Bengan Jansson
@@ -76,25 +70,74 @@ galleryImages:
     subtitle: ""
     alt: Theddy och Marika
     src: /img/IMG_2126.jpg
-  - title: Boden-Jocke
+  - title: Gustaf Hielm
     subtitle: ""
-    alt: Boden-Jocke
-    src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
+    alt: Gustaf Hielm
+    src: /img/IMG_1694-2.jpeg
+  - featured: false
+    title: Steffe Sundström
+    subtitle: ""
+    alt: Steffe Sundström
+    src: /img/steffe-sundsström.jpeg
+    cropPosition: center
+  - title: Andreas Tiliander
+    subtitle: ""
+    alt: Andreas Tiliander
+    src: /img/IMG_1244.jpeg
+  - title: Helena och Hanna
+    subtitle: ""
+    alt: Helena och Hanna
+    src: /img/IMG_2407-2.JPG
+  - title: Klas Toresson
+    subtitle: ""
+    alt: Klas Toresson
+    src: /img/IMG_0939-2.jpg
+  - featured: false
+    title: Nina Johan och Erika
+    subtitle: ""
+    alt: Nina Johan och Erika
+    src: /img/nina-johan-och-erika.jpg
+    cropPosition: center
+  - title: Kim Kärnfalk
+    subtitle: ""
+    alt: Kim Kärnfalk
+    src: /img/IMG_0364-2.JPG
     featured: false
+  - title: Ronnie Gardiner
+    subtitle: ""
+    alt: Ronnie Gardiner
+    src: /img/IMG_0442.jpg
+  - featured: false
+    title: Chris Medina, Getty, Jocke
+    subtitle: ""
+    alt: Chris Medina, Getty, Jocke
+    src: /img/chris-getty-1-.webp
+    cropPosition: center
+  - featured: false
+    title: Jakob Skarin
+    subtitle: ""
+    alt: Jakob Skarin
+    src: /img/jacob-skarin.jpg
+    cropPosition: center
   - title: Dusty Monroe
     subtitle: ""
     alt: Dusty Monroe
     src: /img/Dusty.jpg
     featured: false
+  - title: Jonas Thorell
+    subtitle: ""
+    alt: Jonas Thorell
+    src: /img/IMG_0963.JPG
+  - featured: false
+    title: Kalle Anmo
+    subtitle: ""
+    alt: Kalle Anmo
+    src: /img/kalle.jpg
+    cropPosition: center
   - title: Boden-Åke
     subtitle: ""
     alt: Boden-Åke
     src: /img/IMG_0251.jpg
-    featured: false
-  - title: Kim Kärnfalk
-    subtitle: ""
-    alt: Kim Kärnfalk
-    src: /img/IMG_0364-2.JPG
     featured: false
   - title: Nina, Johan och Erika
     subtitle: ""
@@ -104,10 +147,6 @@ galleryImages:
     subtitle: ""
     alt: Marcus Högquist
     src: /img/IMG_0401.jpg
-  - title: Ronnie Gardiner
-    subtitle: ""
-    alt: Ronnie Gardiner
-    src: /img/IMG_0442.jpg
   - title: Ronnies dubbla kaggar
     subtitle: ""
     alt: Ronnies dubbla kaggar
@@ -128,34 +167,14 @@ galleryImages:
     subtitle: ""
     alt: ""
     src: /img/IMG_0931.jpg
-  - title: Klas Toresson
-    subtitle: ""
-    alt: Klas Toresson
-    src: /img/IMG_0939-2.jpg
-  - title: Jonas Thorell
-    subtitle: ""
-    alt: Jonas Thorell
-    src: /img/IMG_0963.JPG
   - title: Kalle Annmo
     subtitle: ""
     alt: Kalle Annmo
     src: /img/IMG_1094.JPG
-  - title: Andreas Tiliander
-    subtitle: ""
-    alt: Andreas Tiliander
-    src: /img/IMG_1244.jpeg
   - title: Nicklas Thelin
     subtitle: ""
     alt: Nicklas Thelin
     src: /img/IMG_1473.jpg
-  - title: Gustaf Hielm
-    subtitle: ""
-    alt: Gustaf Hielm
-    src: /img/IMG_1694-2.jpeg
-  - title: Helena och Hanna
-    subtitle: ""
-    alt: Helena och Hanna
-    src: /img/IMG_2407-2.JPG
   - title: ""
     subtitle: ""
     alt: ""
@@ -204,4 +223,21 @@ galleryImages:
     subtitle: ""
     alt: Sture Zetterberg
     src: /img/Stu.jpg
+  - featured: false
+    title: Frida Öhrn
+    subtitle: Frida Öhrn
+    alt: ""
+    src: /img/frida-2.jpg
+    cropPosition: center
+  - featured: false
+    title: Ronnie Gardiner
+    subtitle: ""
+    alt: Ronnie Gardiner
+    src: /img/ronnie1.jpg
+    cropPosition: center
+  - title: Boden-Jocke
+    subtitle: ""
+    alt: Boden-Jocke
+    src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
+    featured: false
 ---
