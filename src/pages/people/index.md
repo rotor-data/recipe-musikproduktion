@@ -46,6 +46,10 @@ galleryImages:
     alt: Kim Kärnfalk
     src: /img/IMG_0364-2.JPG
     featured: true
+  - title: Nina, Johan och Erika
+    subtitle: ""
+    alt: Nina, Johan och Erika
+    src: /img/IMG_0664.jpg
   - title: Marcus Högquist
     subtitle: ""
     alt: Marcus Högquist
@@ -66,10 +70,6 @@ galleryImages:
     subtitle: ""
     alt: Nina och Erika
     src: /img/IMG_0663.JPG
-  - title: Nina, Johan och Erika
-    subtitle: ""
-    alt: Nina, Johan och Erika
-    src: /img/IMG_0664.jpg
   - title: ""
     subtitle: ""
     alt: ""
