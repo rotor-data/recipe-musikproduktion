@@ -44,9 +44,10 @@ a {
 }
 .gg-add:hover, .gg-editor button:hover { border-color: #3a69c7; color: #3a69c7; }
 
+/* Fem per rad, som galleriet på sajten, så rutnätet här speglar resultatet. */
 .gg-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 10px;
 }
 .gg-cell { position: relative; display: flex; flex-direction: column; gap: 4px; }
