@@ -21,11 +21,17 @@ galleryImages:
     alt: Owe Thörnqvist
     src: /img/IMG_E0679.jpg
     featured: true
+  - featured: true
+    title: Frida Öhrn
+    subtitle: Frida Öhrn
+    alt: ""
+    src: /img/frida-2.jpg
+    cropPosition: center
   - title: Frida Öhrn
     subtitle: ""
     alt: Frida Öhrn
     src: /img/IMG_0725.jpg
-    featured: true
+    featured: false
   - title: Bengan Jansson
     subtitle: ""
     alt: Bengan Jansson
@@ -52,6 +58,24 @@ galleryImages:
     alt: Samuel Gustefsson
     src: /img/samuel-.jpg
     cropPosition: center
+  - title: Kleerup
+    subtitle: ""
+    alt: Kleerup
+    src: /img/IMG_2320.jpg
+  - featured: false
+    title: Rafael o Co
+    subtitle: ""
+    alt: Rafael o Co
+    src: /img/raffe-o-co.webp
+    cropPosition: center
+  - title: Lucette Rådström
+    subtitle: ""
+    alt: Lucette Rådström
+    src: /img/lucette.jpg
+  - title: Theddy och Marika
+    subtitle: ""
+    alt: Theddy och Marika
+    src: /img/IMG_2126.jpg
   - title: Boden-Jocke
     subtitle: ""
     alt: Boden-Jocke
@@ -128,14 +152,6 @@ galleryImages:
     subtitle: ""
     alt: Gustaf Hielm
     src: /img/IMG_1694-2.jpeg
-  - title: Theddy och Marika
-    subtitle: ""
-    alt: Theddy och Marika
-    src: /img/IMG_2126.jpg
-  - title: Kleerup
-    subtitle: ""
-    alt: Kleerup
-    src: /img/IMG_2320.jpg
   - title: Helena och Hanna
     subtitle: ""
     alt: Helena och Hanna
@@ -180,10 +196,6 @@ galleryImages:
     subtitle: ""
     alt: ""
     src: /img/IMG_E0963.jpg
-  - title: Lucette Rådström
-    subtitle: ""
-    alt: Lucette Rådström
-    src: /img/lucette.jpg
   - title: Marcus Sofia och Jocke
     subtitle: ""
     alt: Marcus Sofia och Jocke
@@ -192,16 +204,4 @@ galleryImages:
     subtitle: ""
     alt: Sture Zetterberg
     src: /img/Stu.jpg
-  - featured: false
-    title: ""
-    subtitle: ""
-    alt: ""
-    src: /img/img_0725.jpg
-    cropPosition: center
-  - featured: false
-    title: ""
-    subtitle: ""
-    alt: ""
-    src: /img/frida-2.jpg
-    cropPosition: center
 ---
