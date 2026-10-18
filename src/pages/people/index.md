@@ -8,7 +8,7 @@ meta:
   title: People | Recipe Music Production
   description: A gallery from sessions at Recipe Music Production in Stockholm.
 hero:
-  kicker: The collective / 2026 archive
+  kicker: The collective
   pageTitle: People
   lead: Folks in the studio..
 cta:
@@ -17,184 +17,176 @@ cta:
   linkHref: /contact
 galleryImages:
   - title: Boden-Jocke
-    subtitle: ''
+    subtitle: ""
     alt: Boden-Jocke
     src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
     featured: true
   - title: Dusty Monroe
-    subtitle: ''
+    subtitle: ""
     alt: Dusty Monroe
     src: /img/Dusty.jpg
     featured: true
   - title: Daniel P & Amy D
-    subtitle: ''
+    subtitle: ""
     alt: Daniel P & Amy D
     src: /img/IMG_0145-2.jpeg
     featured: true
   - title: Boden-Åke
-    subtitle: ''
+    subtitle: ""
     alt: Boden-Åke
     src: /img/IMG_0251.jpg
     featured: true
   - title: Kim Kärnfalk
-    subtitle: ''
+    subtitle: ""
     alt: Kim Kärnfalk
     src: /img/IMG_0364-2.JPG
     featured: true
-  - title: ''
-    subtitle: ''
-    alt: ''
+  - title: Marcus Högquist
+    subtitle: ""
+    alt: Marcus Högquist
     src: /img/IMG_0401.jpg
   - title: Ronnie Gardiner
-    subtitle: ''
+    subtitle: ""
     alt: Ronnie Gardiner
     src: /img/IMG_0442.jpg
   - title: Ronnies dubbla kaggar
-    subtitle: ''
+    subtitle: ""
     alt: Ronnies dubbla kaggar
     src: /img/IMG_0444.jpg
   - title: Per Lindvall
-    subtitle: ''
+    subtitle: ""
     alt: Per Lindvall
     src: /img/IMG_0558-NY.jpg
-  - title: ''
-    subtitle: ''
-    alt: ''
+  - title: ""
+    subtitle: ""
+    alt: ""
     src: /img/IMG_0663.JPG
-  - title: ''
-    subtitle: ''
-    alt: ''
+  - title: ""
+    subtitle: ""
+    alt: ""
     src: /img/IMG_0664.jpg
-  - title: ''
-    subtitle: ''
-    alt: ''
+  - title: ""
+    subtitle: ""
+    alt: ""
     src: /img/IMG_0685.jpg
   - title: Frida Öhrn
-    subtitle: ''
+    subtitle: ""
     alt: Frida Öhrn
     src: /img/IMG_0725.jpg
-  - title: ''
-    subtitle: ''
-    alt: ''
+  - title: ""
+    subtitle: ""
+    alt: ""
     src: /img/IMG_0931.jpg
   - title: Klas Toresson
-    subtitle: ''
+    subtitle: ""
     alt: Klas Toresson
     src: /img/IMG_0939-2.jpg
   - title: Jonas Thorell
-    subtitle: ''
+    subtitle: ""
     alt: Jonas Thorell
     src: /img/IMG_0963.JPG
   - title: Kalle Annmo
-    subtitle: ''
+    subtitle: ""
     alt: Kalle Annmo
     src: /img/IMG_1094.JPG
   - title: Andreas Tiliander
-    subtitle: ''
+    subtitle: ""
     alt: Andreas Tiliander
     src: /img/IMG_1244.jpeg
-  - title: ''
-    subtitle: ''
-    alt: ''
+  - title: ""
+    subtitle: ""
+    alt: ""
     src: /img/IMG_1471.jpg
-  - title: ''
-    subtitle: ''
-    alt: ''
+  - title: ""
+    subtitle: ""
+    alt: ""
     src: /img/IMG_1472.jpg
   - title: Nicklas Thelin
-    subtitle: ''
+    subtitle: ""
     alt: Nicklas Thelin
     src: /img/IMG_1473.jpg
   - title: Gustaf Hielm
-    subtitle: ''
+    subtitle: ""
     alt: Gustaf Hielm
     src: /img/IMG_1694-2.jpeg
   - title: Theddy och Marika
-    subtitle: ''
+    subtitle: ""
     alt: Theddy och Marika
     src: /img/IMG_2126.jpg
   - title: Kleerup
-    subtitle: ''
+    subtitle: ""
     alt: Kleerup
     src: /img/IMG_2320.jpg
   - title: Helena och Hanna
-    subtitle: ''
+    subtitle: ""
     alt: Helena och Hanna
     src: /img/IMG_2407-2.JPG
-  - title: ''
-    subtitle: ''
-    alt: ''
+  - title: ""
+    subtitle: ""
+    alt: ""
     src: /img/IMG_2571-2.JPG
-  - title: ''
-    subtitle: ''
-    alt: ''
+  - title: ""
+    subtitle: ""
+    alt: ""
     src: /img/IMG_3033.jpeg
   - title: Rennie Mirro
-    subtitle: ''
+    subtitle: ""
     alt: Rennie Mirro
     src: /img/IMG_3168.jpeg
   - title: Tobias Fjälling
-    subtitle: ''
+    subtitle: ""
     alt: Tobias Fjälling
     src: /img/IMG_3189.JPG
   - title: Sonor Phonics 75'
-    subtitle: ''
+    subtitle: ""
     alt: Sonor Phonics 75'
     src: /img/IMG_3957-1.jpg
+  - title: Anders och Kim
+    subtitle: ""
+    alt: Anders och Kim
+    src: /img/IMG_7231.JPG
   - title: Boden-Stefan
-    subtitle: ''
+    subtitle: ""
     alt: Boden-Stefan
     src: /img/IMG_4872-1.jpg
-  - title: ''
-    subtitle: ''
-    alt: ''
-    src: /img/IMG_7231.JPG
   - title: Anders Löwstedt
-    subtitle: ''
+    subtitle: ""
     alt: Anders Löwstedt
     src: /img/IMG_7289-3.JPG
   - title: Nina Johan & Erika
-    subtitle: ''
+    subtitle: ""
     alt: Nina Johan & Erika
     src: /img/IMG_E0664.jpg
   - title: Owe Thörnqvist
-    subtitle: ''
+    subtitle: ""
     alt: Owe Thörnqvist
     src: /img/IMG_E0679.jpg
-  - title: ''
-    subtitle: ''
-    alt: ''
+  - title: ""
+    subtitle: ""
+    alt: ""
     src: /img/IMG_E0680.jpg
-  - title: ''
-    subtitle: ''
-    alt: ''
+  - title: ""
+    subtitle: ""
+    alt: ""
     src: /img/IMG_E0685.JPG
   - title: Bengan Jansson
-    subtitle: ''
+    subtitle: ""
     alt: Bengan Jansson
     src: /img/IMG_E0932.jpg
-  - title: ''
-    subtitle: ''
-    alt: ''
+  - title: ""
+    subtitle: ""
+    alt: ""
     src: /img/IMG_E0963.jpg
   - title: Lucette Rådström
-    subtitle: ''
+    subtitle: ""
     alt: Lucette Rådström
     src: /img/lucette.jpg
   - title: Marcus Sofia och Jocke
-    subtitle: ''
+    subtitle: ""
     alt: Marcus Sofia och Jocke
     src: /img/Soffan-mackan(1).jpg
   - title: Sture Zetterberg
-    subtitle: ''
+    subtitle: ""
     alt: Sture Zetterberg
     src: /img/Stu.jpg
-  - title: ''
-    subtitle: ''
-    alt: ''
-    src: /img/UNADJUSTEDNONRAW_thumb_4c5.jpg
-  - title: ''
-    subtitle: ''
-    alt: ''
-    src: /img/UNADJUSTEDNONRAW_thumb_4c9.jpg
 ---
