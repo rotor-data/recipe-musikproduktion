@@ -16,25 +16,35 @@ cta:
   linkText: Connect with us
   linkHref: /contact
 galleryImages:
-  - title: Boden-Jocke
+  - title: Owe Thörnqvist
     subtitle: ""
-    alt: Boden-Jocke
-    src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
+    alt: Owe Thörnqvist
+    src: /img/IMG_E0679.jpg
     featured: true
-  - title: Dusty Monroe
+  - title: Frida Öhrn
     subtitle: ""
-    alt: Dusty Monroe
-    src: /img/Dusty.jpg
-    featured: true
-  - title: Daniel P & Amy D
-    subtitle: ""
-    alt: Daniel P & Amy D
-    src: /img/IMG_0145-2.jpeg
+    alt: Frida Öhrn
+    src: /img/IMG_0725.jpg
     featured: true
   - title: Bengan Jansson
     subtitle: ""
     alt: Bengan Jansson
     src: /img/IMG_E0932.jpg
+    featured: true
+  - title: Boden-Jocke
+    subtitle: ""
+    alt: Boden-Jocke
+    src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
+    featured: false
+  - title: Dusty Monroe
+    subtitle: ""
+    alt: Dusty Monroe
+    src: /img/Dusty.jpg
+    featured: false
+  - title: Daniel P & Amy D
+    subtitle: ""
+    alt: Daniel P & Amy D
+    src: /img/IMG_0145-2.jpeg
     featured: true
   - title: Boden-Åke
     subtitle: ""
@@ -74,10 +84,6 @@ galleryImages:
     subtitle: ""
     alt: ""
     src: /img/IMG_0685.jpg
-  - title: Frida Öhrn
-    subtitle: ""
-    alt: Frida Öhrn
-    src: /img/IMG_0725.jpg
   - title: ""
     subtitle: ""
     alt: ""
@@ -150,10 +156,6 @@ galleryImages:
     subtitle: ""
     alt: Nina Johan & Erika
     src: /img/IMG_E0664.jpg
-  - title: Owe Thörnqvist
-    subtitle: ""
-    alt: Owe Thörnqvist
-    src: /img/IMG_E0679.jpg
   - title: ""
     subtitle: ""
     alt: ""
@@ -178,4 +180,10 @@ galleryImages:
     subtitle: ""
     alt: Sture Zetterberg
     src: /img/Stu.jpg
+  - featured: false
+    title: ""
+    subtitle: ""
+    alt: ""
+    src: /img/img_0725.jpg
+    cropPosition: center
 ---
