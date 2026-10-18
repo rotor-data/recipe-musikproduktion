@@ -120,16 +120,24 @@ const GalleryGridControl = props => {
     setSelected(to)
   }
 
-  // A stored path like /img/foo.jpg is already a valid URL on the site, and
-  // getAsset hands back an unresolved, transparent blob for those. Only ask
-  // it about paths that are not site-absolute, such as a fresh upload.
+  // A path like /img/foo.jpg is a real URL once the entry is published, and
+  // letting the browser fetch it keeps 48 full-size photos out of memory.
   const src = item => {
     const path = item && item.src
-    if (!path || typeof path !== "string") return ""
-    if (path.startsWith("/") || path.startsWith("http")) return path
-    if (!getAsset) return path
-    const asset = getAsset(path, field)
-    return asset ? String(asset) : path
+    return path && typeof path === "string" ? path : ""
+  }
+
+  // Until it is published, a freshly uploaded image exists only in the
+  // browser, so that path 404s and the cell goes blank. getAsset knows it as
+  // a blob. Reaching for that only after the path fails means a published
+  // image can never be replaced by an unresolved placeholder.
+  const useAssetOnError = event => {
+    const img = event.target
+    if (!getAsset || img.dataset.triedAsset) return
+    img.dataset.triedAsset = "1"
+    const asset = getAsset(img.getAttribute("data-path"), field)
+    const url = asset ? String(asset) : ""
+    if (url && url !== img.src) img.src = url
   }
 
   const current = selected != null ? items[selected] : null
@@ -185,7 +193,12 @@ const GalleryGridControl = props => {
               }
             >
               {src(item) ? (
-                <img src={src(item)} alt="" />
+                <img
+                  src={src(item)}
+                  data-path={src(item)}
+                  onError={useAssetOnError}
+                  alt=""
+                />
               ) : (
                 <span className="gg-missing">Ingen bild</span>
               )}
