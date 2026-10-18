@@ -35,7 +35,7 @@ galleryImages:
     subtitle: ""
     alt: Boden-Åke
     src: /img/IMG_0251.jpg
-    featured: true
+    featured: false
   - title: Kim Kärnfalk
     subtitle: ""
     alt: Kim Kärnfalk
@@ -77,6 +77,7 @@ galleryImages:
     subtitle: ""
     alt: Bengan Jansson
     src: /img/IMG_E0932.jpg
+    featured: true
   - title: ""
     subtitle: ""
     alt: ""
