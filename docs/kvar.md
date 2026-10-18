@@ -2,12 +2,10 @@
 
 ## Sajtgranskning 2026-10-16
 
-- **15 galleribilder saknar namn.** `title` och `alt` är tomma på dem i
-  `src/pages/people/index.md`: IMG_0401, IMG_0663, IMG_0664, IMG_0685,
-  IMG_0931, IMG_1471, IMG_1472, IMG_2571-2, IMG_3033, IMG_7231, IMG_E0680,
-  IMG_E0685, IMG_E0963 och de två UNADJUSTEDNONRAW. De fanns
-  inte på Squarespace-sajten, så namnen måste komma från Recipe.
-  Tom `alt` betyder att skärmläsare hoppar över bilden.
+- **6 galleribilder saknar namn.** `title` och `alt` är tomma på dem i
+  `src/pages/people/index.md`: IMG_0685, IMG_0931, IMG_3033, IMG_E0680,
+  IMG_E0685 och IMG_E0963. Jocke namngav resten 2026-10-18. Tom `alt`
+  betyder att skärmläsare hoppar över bilden.
 - **Tre par i galleriet är samma foto två gånger.** Apples redigerade kopior,
   där filnamnet får ett `E`: IMG_0963 / IMG_E0963 (verifierat identiska),
   IMG_0664 / IMG_E0664 (verifierat samma foto) och IMG_0685 / IMG_E0685
@@ -16,11 +14,22 @@
   därför missade dubblettröjningen dem. Ska den onamngivna kopian bort?
 - **IMG_E0679 heter "Owe Thörnqvist" men visar en äldre man med dragspel.**
   Bengan Jansson-bilden bredvid stämmer. Jocke får avgöra.
-- **13 personer från gamla sajten saknar bild i repot** — Chris Medina och
-  Getty Domein, Jacob Skarin, Avakhan, Kriss Jonsson, Lasse och Henke,
-  Tompa och Matilda, Samuel Gustafsson, Rafael Edholm & Co, Steffe
-  Sundström, Jocke och Steffe, Rickard Linda och Jany, Fender Rhodes MK1,
-  Pianissimo. Bilderna följde aldrig med i flytten.
+- **De flesta saknade personerna är på plats.** Jocke laddade upp Chris
+  Medina & Getty, Jacob Skarin, Samuel, Rafael o Co, Steffe Sundström,
+  Rickard Linda och Jany, Kalle, Ronnie och Nina Johan & Erika 2026-10-18.
+  Kvar från gamla sajten: Avakhan, Kriss Jonsson, Lasse och Henke, Tompa
+  och Matilda, Jocke och Steffe, Fender Rhodes MK1, Pianissimo.
+
+## Filnamn att städa 2026-10-19
+
+- **`steffe-sundsström.jpeg` har ö i filnamnet**, lagrat som `o` plus ett
+  kombinerande tecken. Det fungerar — alla sökvägar i bygget löser ut — men
+  git visar filen som ospårad i en andra stavning på macOS
+  (`core.precomposeunicode`), och i URL:er blir den `%CC%88`. Döp om den till
+  `steffe-sundstrom.jpeg` och ändra den enda referensen, så försvinner hela
+  problemklassen.
+- **`img_0725.jpg` är en oanvänd dubblett** av `frida-2.jpg`, samma bild
+  uppladdad två gånger. Ligger kvar i `static/img` utan att användas.
 
 ## Netlify-flytten
 
