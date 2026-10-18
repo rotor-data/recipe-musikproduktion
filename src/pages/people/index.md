@@ -21,11 +21,6 @@ galleryImages:
     alt: Owe Thörnqvist
     src: /img/IMG_E0679.jpg
     featured: true
-  - title: Frida Öhrn
-    subtitle: ""
-    alt: Frida Öhrn
-    src: /img/IMG_0725.jpg
-    featured: true
   - title: Bengan Jansson
     subtitle: ""
     alt: Bengan Jansson
@@ -223,7 +218,7 @@ galleryImages:
     subtitle: ""
     alt: Sture Zetterberg
     src: /img/Stu.jpg
-  - featured: false
+  - featured: true
     title: Frida Öhrn
     subtitle: Frida Öhrn
     alt: ""
