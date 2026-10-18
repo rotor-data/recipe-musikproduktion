@@ -57,13 +57,13 @@ galleryImages:
     subtitle: ""
     alt: Per Lindvall
     src: /img/IMG_0558-NY.jpg
-  - title: ""
+  - title: Nina och Erika
     subtitle: ""
-    alt: ""
+    alt: Nina och Erika
     src: /img/IMG_0663.JPG
-  - title: ""
+  - title: Nina, Johan och Erika
     subtitle: ""
-    alt: ""
+    alt: Nina, Johan och Erika
     src: /img/IMG_0664.jpg
   - title: ""
     subtitle: ""
