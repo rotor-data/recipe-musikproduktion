@@ -31,16 +31,26 @@ galleryImages:
     alt: Bengan Jansson
     src: /img/IMG_E0932.jpg
     featured: true
+  - featured: true
+    title: Rickard Linda och Jany
+    subtitle: ""
+    alt: Rickard Linda och Jany
+    src: /img/rckard-linda-och-jany.webp
+    cropPosition: center
   - title: Daniel P & Amy D
     subtitle: ""
     alt: Daniel P & Amy D
     src: /img/IMG_0145-2.jpeg
     featured: true
-  - featured: false
-    title: Rickard Linda och Jany
+  - title: Rennie Mirro
     subtitle: ""
-    alt: Rickard Linda och Jany
-    src: /img/rckard-linda-och-jany.webp
+    alt: Rennie Mirro
+    src: /img/IMG_3168.jpeg
+  - featured: false
+    title: Samuel Gustefsson
+    subtitle: ""
+    alt: Samuel Gustefsson
+    src: /img/samuel-.jpg
     cropPosition: center
   - title: Boden-Jocke
     subtitle: ""
@@ -61,7 +71,7 @@ galleryImages:
     subtitle: ""
     alt: Kim Kärnfalk
     src: /img/IMG_0364-2.JPG
-    featured: true
+    featured: false
   - title: Nina, Johan och Erika
     subtitle: ""
     alt: Nina, Johan och Erika
@@ -134,10 +144,6 @@ galleryImages:
     subtitle: ""
     alt: ""
     src: /img/IMG_3033.jpeg
-  - title: Rennie Mirro
-    subtitle: ""
-    alt: Rennie Mirro
-    src: /img/IMG_3168.jpeg
   - title: Tobias Fjälling
     subtitle: ""
     alt: Tobias Fjälling
@@ -191,5 +197,11 @@ galleryImages:
     subtitle: ""
     alt: ""
     src: /img/img_0725.jpg
+    cropPosition: center
+  - featured: false
+    title: ""
+    subtitle: ""
+    alt: ""
+    src: /img/frida-2.jpg
     cropPosition: center
 ---
