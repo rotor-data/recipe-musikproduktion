@@ -9,7 +9,7 @@ meta:
   description: A gallery from sessions at Recipe Music Production in Stockholm.
 hero:
   kicker: The collective
-  pageTitle: People
+  pageTitle: Gallery
   lead: Folks in the studio..
 cta:
   title: Session inquiries
