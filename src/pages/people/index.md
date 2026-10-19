@@ -227,10 +227,6 @@ galleryImages:
     subtitle: ""
     alt: Nina och Erika
     src: /img/IMG_0663.JPG
-  - title: Sonor Phonics 75'
-    subtitle: ""
-    alt: Sonor Phonics 75'
-    src: /img/IMG_3957-1.jpg
   - title: Anders och Kim
     subtitle: ""
     alt: Anders och Kim
@@ -243,10 +239,20 @@ galleryImages:
     subtitle: ""
     alt: Owe Thörnqvist
     src: /img/IMG_E0685.JPG
+  - title: Sonor Phonics 75'
+    subtitle: ""
+    alt: Sonor Phonics 75'
+    src: /img/IMG_3957-1.jpg
   - featured: false
     title: Binson Echorec 2 T7E
     subtitle: ""
     alt: Binson Echorec 2 T7E
     src: /img/binson-echorec-2.jpeg
+    cropPosition: center
+  - featured: false
+    title: Yamaha Recording
+    subtitle: ""
+    alt: Yamaha Recording
+    src: /img/yamaha-9000.jpg
     cropPosition: center
 ---
