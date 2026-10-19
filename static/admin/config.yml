@@ -28,7 +28,7 @@ collections:
       - file: src/pages/index.md
         label: Start Page
         name: index
-        description: 'Startsidan byggs av sektionerna nedan, uppifrån och ner. Dra i =-ikonen mitt på raden för att flytta en sektion, kryss för att ta bort den, och knappen längst ner för att lägga till en ny.'
+        description: 'Startsidan byggs av sektionerna nedan, uppifrån och ner. Dra i =-ikonen mitt på raden för att flytta en sektion, kryss för att ta bort den, och knappen längst ner för att lägga till en ny. Har du nyss tryckt Publish? Ladda om sidan innan du fortsätter redigera, annars kan sparningen fastna.'
         fields:
           - label: Template Key
             name: templateKey
@@ -405,7 +405,7 @@ collections:
       - file: src/pages/people/index.md
         label: People Gallery Page
         name: people
-        description: Bildgalleriet på /people/. Alla bilder ligger i en enda lista. Kryssa i Featured på upp till fem av dem — de visas överst på sidan och i remsan på startsidan.
+        description: 'Bildgalleriet på /people/. Alla bilder ligger i en enda lista. Kryssa i Featured på upp till fem av dem — de visas överst på sidan och i remsan på startsidan. Har du nyss tryckt Publish? Ladda om sidan innan du fortsätter redigera, annars kan sparningen fastna.'
         fields:
           - label: Template Key
             name: templateKey
