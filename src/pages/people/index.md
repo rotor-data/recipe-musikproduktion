@@ -63,10 +63,12 @@ galleryImages:
     alt: Rafael o Co
     src: /img/raffe-o-co.webp
     cropPosition: center
-  - title: Lucette Rådström
+  - featured: false
+    title: Lucette Rådström
     subtitle: ""
     alt: Lucette Rådström
-    src: /img/lucette.jpg
+    src: /img/lucette-ra-dstro-m.jpeg
+    cropPosition: center
   - title: Theddy och Marika
     subtitle: ""
     alt: Theddy och Marika
@@ -201,10 +203,12 @@ galleryImages:
     alt: Boden-Jocke
     src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
     featured: false
-  - title: Sonor Phonics 75'
+  - featured: false
+    title: Tobias Isaksson
     subtitle: ""
-    alt: Sonor Phonics 75'
-    src: /img/IMG_3957-1.jpg
+    alt: ""
+    src: /img/tobias-isaksson.jpg
+    cropPosition: center
   - title: Tobias Fjälling
     subtitle: ""
     alt: Tobias Fjälling
@@ -217,10 +221,10 @@ galleryImages:
     subtitle: ""
     alt: Nina och Erika
     src: /img/IMG_0663.JPG
-  - title: Kalle Annmo
+  - title: Sonor Phonics 75'
     subtitle: ""
-    alt: Kalle Annmo
-    src: /img/IMG_1094.JPG
+    alt: Sonor Phonics 75'
+    src: /img/IMG_3957-1.jpg
   - title: Anders och Kim
     subtitle: ""
     alt: Anders och Kim
