@@ -800,16 +800,6 @@ body {
   background: linear-gradient(180deg, rgba(235, 193, 90, 0.35), var(--rec-gold-dark));
 }
 
-.rec-work__panel--mono {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-}
-
-.rec-work__session-list p {
-  margin: 0 0 0.25rem;
-  color: rgba(229, 226, 225, 0.62);
-  font-size: 0.64rem;
-}
-
 .rec-work__videos {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

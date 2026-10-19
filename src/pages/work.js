@@ -130,15 +130,6 @@ export const WorkPageTemplate = ({ content = {} }) => {
                 })}
               </div>
             </div>
-
-            <div className="rec-work__panel rec-work__panel--mono">
-              <span className="rec-work__panel-title">Session info</span>
-              <div className="rec-work__session-list">
-                {["SOURCE: CMS_LINKS", "ITEMS: 5 FEATURED", "FORMAT: YOUTUBE_URL", "MODE: MANUAL"].map((line, index) => (
-                  <p key={`${line}-${index}`}>{line}</p>
-                ))}
-              </div>
-            </div>
           </aside>
 
           <div className="rec-work__videos">
