@@ -21,6 +21,12 @@ galleryImages:
     alt: Owe Thörnqvist
     src: /img/IMG_E0679.jpg
     featured: true
+  - featured: true
+    title: Frida Öhrn
+    subtitle: ""
+    alt: Frida Öhrn
+    src: /img/frida-2.jpg
+    cropPosition: center
   - title: Bengan Jansson
     subtitle: ""
     alt: Bengan Jansson
@@ -42,9 +48,9 @@ galleryImages:
     alt: Rennie Mirro
     src: /img/IMG_3168.jpeg
   - featured: false
-    title: Samuel Gustefsson
+    title: Samuel Gustafsson
     subtitle: ""
-    alt: Samuel Gustefsson
+    alt: Samuel Gustafsson
     src: /img/samuel-.jpg
     cropPosition: center
   - title: Kleerup
@@ -129,110 +135,102 @@ galleryImages:
     alt: Kalle Anmo
     src: /img/kalle.jpg
     cropPosition: center
+  - featured: false
+    title: Fender Rhodes mk1
+    subtitle: ""
+    alt: Fender Rhodes mk1
+    src: /img/08-november-2015studionstudion08-november-20151202.jpg
+    cropPosition: center
+  - featured: false
+    title: Boden-Stefan
+    subtitle: ""
+    alt: Boden Stefan
+    src: /img/stefan.jpg
+    cropPosition: center
+  - featured: false
+    title: Avakhan
+    subtitle: ""
+    alt: Avakhan
+    src: /img/avakhan.webp
+    cropPosition: center
+  - title: Sture Zetterberg
+    subtitle: ""
+    alt: Sture Zetterberg
+    src: /img/Stu.jpg
+  - title: Anders Löwstedt
+    subtitle: ""
+    alt: Anders Löwstedt
+    src: /img/IMG_7289-3.JPG
+  - title: Ronnies dubbla kaggar
+    subtitle: ""
+    alt: Ronnies dubbla kaggar
+    src: /img/IMG_0444.jpg
+  - title: Marcus Sofia och Jocke
+    subtitle: ""
+    alt: Marcus Sofia och Jocke
+    src: /img/Soffan-mackan(1).jpg
+  - title: Nicklas Thelin
+    subtitle: ""
+    alt: Nicklas Thelin
+    src: /img/IMG_1473.jpg
   - title: Boden-Åke
     subtitle: ""
     alt: Boden-Åke
     src: /img/IMG_0251.jpg
     featured: false
-  - title: Nina, Johan och Erika
+  - featured: false
+    title: Per Lindwall
     subtitle: ""
-    alt: Nina, Johan och Erika
-    src: /img/IMG_0664.jpg
-  - title: Marcus Högquist
-    subtitle: ""
-    alt: Marcus Högquist
-    src: /img/IMG_0401.jpg
-  - title: Ronnies dubbla kaggar
-    subtitle: ""
-    alt: Ronnies dubbla kaggar
-    src: /img/IMG_0444.jpg
-  - title: Per Lindvall
-    subtitle: ""
-    alt: Per Lindvall
-    src: /img/IMG_0558-NY.jpg
-  - title: Nina och Erika
-    subtitle: ""
-    alt: Nina och Erika
-    src: /img/IMG_0663.JPG
-  - title: ""
-    subtitle: ""
-    alt: ""
-    src: /img/IMG_0685.jpg
-  - title: ""
-    subtitle: ""
-    alt: ""
-    src: /img/IMG_0931.jpg
-  - title: Kalle Annmo
-    subtitle: ""
-    alt: Kalle Annmo
-    src: /img/IMG_1094.JPG
-  - title: Nicklas Thelin
-    subtitle: ""
-    alt: Nicklas Thelin
-    src: /img/IMG_1473.jpg
-  - title: ""
-    subtitle: ""
-    alt: ""
-    src: /img/IMG_3033.jpeg
-  - title: Tobias Fjälling
-    subtitle: ""
-    alt: Tobias Fjälling
-    src: /img/IMG_3189.JPG
-  - title: Sonor Phonics 75'
-    subtitle: ""
-    alt: Sonor Phonics 75'
-    src: /img/IMG_3957-1.jpg
-  - title: Anders och Kim
-    subtitle: ""
-    alt: Anders och Kim
-    src: /img/IMG_7231.JPG
-  - title: Boden-Stefan
-    subtitle: ""
-    alt: Boden-Stefan
-    src: /img/IMG_4872-1.jpg
-  - title: Anders Löwstedt
-    subtitle: ""
-    alt: Anders Löwstedt
-    src: /img/IMG_7289-3.JPG
-  - title: Nina Johan & Erika
-    subtitle: ""
-    alt: Nina Johan & Erika
-    src: /img/IMG_E0664.jpg
-  - title: ""
-    subtitle: ""
-    alt: ""
-    src: /img/IMG_E0680.jpg
-  - title: ""
-    subtitle: ""
-    alt: ""
-    src: /img/IMG_E0685.JPG
-  - title: ""
-    subtitle: ""
-    alt: ""
-    src: /img/IMG_E0963.jpg
-  - title: Marcus Sofia och Jocke
-    subtitle: ""
-    alt: Marcus Sofia och Jocke
-    src: /img/Soffan-mackan(1).jpg
-  - title: Sture Zetterberg
-    subtitle: ""
-    alt: Sture Zetterberg
-    src: /img/Stu.jpg
-  - featured: true
-    title: Frida Öhrn
-    subtitle: Frida Öhrn
-    alt: ""
-    src: /img/frida-2.jpg
+    alt: Per Lindwall
+    src: /img/per-lindwall.webp
     cropPosition: center
   - featured: false
-    title: Ronnie Gardiner
+    title: Krille Jonsson
     subtitle: ""
-    alt: Ronnie Gardiner
-    src: /img/ronnie1.jpg
+    alt: Krille Jonsson
+    src: /img/krille-jonnson.webp
+    cropPosition: center
+  - featured: false
+    title: Tompa och Matilda
+    subtitle: ""
+    alt: Tompa och Matilda
+    src: /img/tompa-och-matilda.webp
     cropPosition: center
   - title: Boden-Jocke
     subtitle: ""
     alt: Boden-Jocke
     src: /img/14358685_10153920507799033_2879091713172743611_n.jpg
     featured: false
+  - title: Sonor Phonics 75'
+    subtitle: ""
+    alt: Sonor Phonics 75'
+    src: /img/IMG_3957-1.jpg
+  - title: Tobias Fjälling
+    subtitle: ""
+    alt: Tobias Fjälling
+    src: /img/IMG_3189.JPG
+  - title: Marcus Högquist
+    subtitle: ""
+    alt: Marcus Högquist
+    src: /img/IMG_0401.jpg
+  - title: Nina och Erika
+    subtitle: ""
+    alt: Nina och Erika
+    src: /img/IMG_0663.JPG
+  - title: Kalle Annmo
+    subtitle: ""
+    alt: Kalle Annmo
+    src: /img/IMG_1094.JPG
+  - title: Anders och Kim
+    subtitle: ""
+    alt: Anders och Kim
+    src: /img/IMG_7231.JPG
+  - title: Owe Thörnquist
+    subtitle: ""
+    alt: Owe Thörnquist
+    src: /img/IMG_E0680.jpg
+  - title: Owe Thörnqvist
+    subtitle: ""
+    alt: Owe Thörnqvist
+    src: /img/IMG_E0685.JPG
 ---
