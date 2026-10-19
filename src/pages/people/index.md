@@ -217,6 +217,12 @@ galleryImages:
     subtitle: ""
     alt: Marcus Högquist
     src: /img/IMG_0401.jpg
+  - featured: false
+    title: Alexis
+    subtitle: ""
+    alt: Alexis
+    src: /img/alexis.jpg
+    cropPosition: center
   - title: Nina och Erika
     subtitle: ""
     alt: Nina och Erika
@@ -237,4 +243,10 @@ galleryImages:
     subtitle: ""
     alt: Owe Thörnqvist
     src: /img/IMG_E0685.JPG
+  - featured: false
+    title: Binson Echorec 2 T7E
+    subtitle: ""
+    alt: Binson Echorec 2 T7E
+    src: /img/binson-echorec-2.jpeg
+    cropPosition: center
 ---
