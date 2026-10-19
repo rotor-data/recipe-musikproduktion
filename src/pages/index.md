@@ -3,51 +3,56 @@ templateKey: index-page
 title: Recipe Music Production - Professional sound in every detail
 visible: true
 meta:
-  title: 'Music Studio Stockholm - Music Production, Podcast Studio & Mastering | Recipe'
-  description: 'Recipe Music Production is a Stockholm studio for music production, podcast recording, mixing, mastering, and sound design.'
+  title: Music Studio Stockholm - Music Production, Podcast Studio & Mastering |
+    Recipe
+  description: Recipe Music Production is a Stockholm studio for music production,
+    podcast recording, mixing, mastering, and sound design.
 sections:
-  - type: hero
-    title: Professional sound *from* idea *to* finished production
-    h1title: Music Studio Stockholm • Music Production • Podcast Studio • Mixing • Mastering • Sound Production
-    description: |
-      Recipe is a production studio by Nytorget in Stockholm.
-      We create music and sound that is clear, bold, and emotionally precise.
-      From first sketch to final master, we keep the process focused and the result sharp.
-    image: /img/mikrofon.jpg
-    primaryText: Contact us
+  - secondaryText: View work
     primaryHref: /contact
-    secondaryText: View work
+    primaryText: Contact us
+    h1title: Music Studio Stockholm • Music Production • Podcast Studio • Mixing •
+      Mastering • Sound Production
+    title: Professional sound *from* idea *to* finished production
+    type: hero
+    image: /img/mikrofon.jpg
+    description: >
+      Recipe is a production studio by Nytorget in Stockholm.
+
+      We create music and sound that is clear, bold, and emotionally precise.
+
+      From first sketch to final master, we keep the process focused and the result sharp.
     secondaryHref: /work
   - type: logos
     label: Industry partners
     logos:
       - image: /img/logo-gallery/BBC_Logo_2021.png
         alt: BBC
-        href: ''
+        href: ""
       - image: /img/logo-gallery/Eurobank_logo_2021.svg.png
         alt: Eurobank
-        href: ''
+        href: ""
       - image: /img/logo-gallery/FOX_wordmark.svg.png
         alt: FOX
-        href: ''
+        href: ""
       - image: /img/logo-gallery/Microsoft_logo_(2012).svg.png
         alt: Microsoft
-        href: ''
+        href: ""
       - image: /img/logo-gallery/SVT_Logotyp_RGB_neg.png
         alt: SVT
-        href: ''
+        href: ""
       - image: /img/logo-gallery/TLC_Logo.svg.png
         alt: TLC
-        href: ''
+        href: ""
       - image: /img/logo-gallery/TV4sweden_logo.svg.png
         alt: TV4
-        href: ''
+        href: ""
       - image: /img/logo-gallery/VPLAY-B.ST.png
         alt: Viaplay
-        href: ''
+        href: ""
       - image: /img/logo-gallery/espn-png-logo-4142.png
         alt: ESPN
-        href: ''
+        href: ""
   - type: work
     pretitle: Work
     title: Selected projects
@@ -57,8 +62,9 @@ sections:
   - type: services
     pretitle: Studio
     title: Sound with direction
-    body: |
-      We produce, record, mix, and master with one clear objective: audio with identity.
+    body: >
+      We produce, record, mix, and master with one clear objective: audio with
+      identity.
     highlightPosition: right
     cards:
       - tagline: Services
@@ -67,41 +73,43 @@ sections:
           End-to-end audio for artists, campaigns, and productions.
         image: /img/IMG_3189.JPG
       - tagline: Clients
-        title: 'Brands, agencies, artists'
-        description: |
+        title: Brands, agencies, artists
+        description: >
           We work with teams that need sound to be both distinctive and reliable.
         image: /img/IMG_1244.jpeg
       - tagline: Sessions
         title: Recording and production
-        description: |
-          A focused environment for vocal production, instrumentation, and final detail work.
+        description: >
+          A focused environment for vocal production, instrumentation, and final
+          detail work.
         image: /img/IMG_3168.jpeg
-  - type: people
-    pretitle: People
-    title: The studio
-    body: |
+  - body: |
       Efficient sessions, clear communication, and consistent delivery.
+    secondaryCtaText: Start a project
+    ctaLink: /people
+    pretitle: People
+    secondaryCtaLink: /contact
+    title: The studio
+    type: people
     highlightPosition: right
     ctaText: View gallery
-    ctaLink: /people
-    secondaryCtaText: Start a project
-    secondaryCtaLink: /contact
   - type: solutions
     image: /img/jocke.jpg
     blocks:
-      - category: Artists and producers
+      - category: Artists & producers
         items:
-          title: ''
+          title: ""
           description: |
             We help artists shape songs, sound, and final releases.
-      - category: Companies and organizations
+      - category: Companies & organizations
         items:
-          title: ''
-          description: |
-            We provide end-to-end audio for campaigns, podcasts, and branded formats.
-      - category: Creators and production companies
+          title: ""
+          description: >
+            We provide end-to-end audio for campaigns, podcasts, and branded
+            formats.
+      - category: Creators & production companies
         items:
-          title: ''
+          title: ""
           description: |
             We act as a trusted sound partner for fast-moving productions.
     title: Solutions
