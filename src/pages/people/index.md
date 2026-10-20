@@ -261,10 +261,4 @@ galleryImages:
     alt: Neumann U87
     src: /img/img_1050.jpeg
     cropPosition: center
-  - featured: false
-    title: Ante och Philip
-    subtitle: ""
-    alt: Ante och Philip
-    src: /img/ante-filip.jpg
-    cropPosition: center
 ---
