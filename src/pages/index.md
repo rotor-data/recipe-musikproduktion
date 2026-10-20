@@ -13,7 +13,7 @@ sections:
     primaryText: Contact us
     h1title: Music Studio Stockholm • Music Production • Podcast Studio • Mixing •
       Mastering • Sound Production
-    title: Recipe Musikproduktion  *studio* & *music* Collective
+    title: Recipe Musikproduktion  *studio* & music Collective
     type: hero
     image: /img/mikrofon.jpg
     description: |
