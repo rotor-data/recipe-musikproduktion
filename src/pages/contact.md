@@ -3,17 +3,23 @@ meta:
   title: Contact | Recipe Music Production
   description: Contact Recipe Music Production in Stockholm.
 contact:
-  pageTitle: Get in Sync.
-  panelTag: ''
-  operatorLabel: Operator Main
   addressLabel: Physical location
+  emailMeta: Direct patch cable
+  statusLabel: Studio status
+  locationTitle: Location
+  operatorBody: |
+    Joakim Lundgren
+  pageTitle: Contact
+  locationBadge: "Target: Recipe HQ"
+  operatorLabel: Operator Main
+  mapEmbedUrl: https://maps.google.com/maps?q=Nytorget%204%20116%2040%20Stockholm%20Sweden&z=16&output=embed
+  panelTag: ""
+  addressBody: |
+    4 Nytorget
+
+    116 40, Stockholm, Sweden
   emailLabel: Frequency link
   email: info@recipemusikproduktion.se
-  emailMeta: Direct patch cable
-  locationTitle: Location
-  locationBadge: 'Target: Recipe HQ'
-  statusLabel: Studio status
-  statusValue: Online
   actions:
     - label: Oscillator 01
       title: Start project
@@ -24,15 +30,9 @@ contact:
     - label: Oscillator 03
       title: Open gallery
       href: /people
-  mapEmbedUrl: 'https://maps.google.com/maps?q=Nytorget%204%20116%2040%20Stockholm%20Sweden&z=16&output=embed'
-  operatorBody: |
-    Joakim Lundgren
-  addressBody: |
-    4 Nytorget
-
-    116 40, Stockholm, Sweden
   mapBody: |
     *59.3129° N, 18.0838° E*
 
     *Scanning sector 116 40*
+  statusValue: Online
 ---
