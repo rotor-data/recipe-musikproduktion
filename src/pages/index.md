@@ -40,6 +40,8 @@ sections:
       - image: /img/logo-gallery/SVT_Logotyp_RGB_neg.png
         alt: SVT
         href: ""
+      - image: /img/pngfind.com-meijiao-png-3331548.png
+        alt: Universal
       - image: /img/logo-gallery/TLC_Logo.svg.png
         alt: TLC
         href: ""
@@ -52,8 +54,6 @@ sections:
       - image: /img/logo-gallery/espn-png-logo-4142.png
         alt: ESPN
         href: ""
-      - image: /img/pngfind.com-meijiao-png-3331548.png
-        alt: Universal
   - type: work
     pretitle: Work
     title: Selected projects
