@@ -13,15 +13,14 @@ sections:
     primaryText: Contact us
     h1title: Music Studio Stockholm • Music Production • Podcast Studio • Mixing •
       Mastering • Sound Production
-    title: Professional sound *from* idea *to* finished production
+    title: Recipe Musikproduktion  *studio* & *music* Collective
     type: hero
     image: /img/mikrofon.jpg
-    description: >
+    description: |
       Recipe is a production studio by Nytorget in Stockholm.
-
       We create music and sound that is clear, bold, and emotionally precise.
-
-      From first sketch to final master, we keep the process focused and the result sharp.
+      *Musicproduction and recording.
+      *Mixing and mastering music or podcasts.
     secondaryHref: /work
   - type: logos
     label: Industry partners
@@ -53,6 +52,8 @@ sections:
       - image: /img/logo-gallery/espn-png-logo-4142.png
         alt: ESPN
         href: ""
+      - image: /img/pngfind.com-meijiao-png-3331548.png
+        alt: Universal
   - type: work
     pretitle: Work
     title: Selected projects
