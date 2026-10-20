@@ -21,6 +21,9 @@ const GalleryGridControl = props => {
     forID,
     classNameWrapper,
     field,
+    broken = [],
+    onBroken,
+    onReadable,
   } = props
 
   const items = useMemo(() => toArray(value), [value])
@@ -133,11 +136,29 @@ const GalleryGridControl = props => {
   // image can never be replaced by an unresolved placeholder.
   const useAssetOnError = event => {
     const img = event.target
-    if (!getAsset || img.dataset.triedAsset) return
+    const path = img.getAttribute("data-path")
+
+    // The blob was tried already and still would not decode, so the file
+    // itself is unreadable — a half-finished upload rather than one that has
+    // not been published yet. Say so, and stop the entry from being saved.
+    if (img.dataset.triedAsset) {
+      if (typeof onBroken === "function") onBroken(path)
+      return
+    }
     img.dataset.triedAsset = "1"
-    const asset = getAsset(img.getAttribute("data-path"), field)
+
+    const asset = getAsset ? getAsset(path, field) : null
     const url = asset ? String(asset) : ""
-    if (url && url !== img.src) img.src = url
+    if (url && url !== img.src) {
+      img.src = url
+      return
+    }
+    if (typeof onBroken === "function") onBroken(path)
+  }
+
+  const clearBrokenOnLoad = event => {
+    const path = event.target.getAttribute("data-path")
+    if (typeof onReadable === "function" && broken.includes(path)) onReadable(path)
   }
 
   const current = selected != null ? items[selected] : null
@@ -170,7 +191,7 @@ const GalleryGridControl = props => {
               item && item.featured ? " is-featured" : ""
             }${moving === index ? " is-moving" : ""}${
               moving != null && moving !== index ? " is-target" : ""
-            }`}
+            }${broken.includes(src(item)) ? " is-broken" : ""}`}
 
           >
             <button
@@ -197,10 +218,14 @@ const GalleryGridControl = props => {
                   src={src(item)}
                   data-path={src(item)}
                   onError={useAssetOnError}
+                  onLoad={clearBrokenOnLoad}
                   alt=""
                 />
               ) : (
                 <span className="gg-missing">Ingen bild</span>
+              )}
+              {broken.includes(src(item)) && (
+                <span className="gg-broken">Bilden gick inte att läsa</span>
               )}
               <span className="gg-pos">{index + 1}</span>
             </button>

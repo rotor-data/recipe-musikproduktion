@@ -13,7 +13,52 @@ const mediaPathOf = props => {
 class GalleryGridWidget extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { crashed: null }
+    this.state = { crashed: null, broken: [] }
+    this.markBroken = this.markBroken.bind(this)
+    this.clearBroken = this.clearBroken.bind(this)
+    // Decap grabs isValid off the instance without binding it (Widget.js:32)
+    // and later calls it bare, so an unbound method would lose `this`.
+    this.isValid = this.isValid.bind(this)
+  }
+
+  // An upload that fails halfway still lands in the repo, as a file of zero
+  // bytes. The build then dies on it, which is how the site stood still for a
+  // day. The grid tells us when an image cannot be decoded; remember those.
+  markBroken(path) {
+    if (!path || this.state.broken.includes(path)) return
+    this.setState(state =>
+      state.broken.includes(path) ? null : { broken: [...state.broken, path] }
+    )
+    // Decap validates a field when its value changes, and an image failing to
+    // load is not a value change — so the save would go through on a
+    // validation made before we knew. Hand the same value back to ask for a
+    // fresh one.
+    if (typeof this.props.onChange === "function") {
+      this.props.onChange(this.props.value)
+    }
+  }
+
+  clearBroken(path) {
+    if (!path) return
+    this.setState(state =>
+      state.broken.includes(path) ? { broken: state.broken.filter(p => p !== path) } : null
+    )
+  }
+
+  // Decap reads this off the control instance (Widget.js:32) and refuses to
+  // save while it returns an error, so a broken image cannot reach the repo.
+  isValid() {
+    const { broken } = this.state
+    if (!broken.length) return true
+    const names = broken.map(p => p.split("/").pop()).join(", ")
+    return {
+      error: {
+        message:
+          broken.length === 1
+            ? `Bilden ${names} går inte att läsa — uppladdningen misslyckades. Ta bort den ur galleriet och ladda upp den igen.`
+            : `${broken.length} bilder går inte att läsa: ${names}. Ta bort dem ur galleriet och ladda upp dem igen.`,
+      },
+    }
   }
 
   // Decap re-renders a widget only when value, classNameWrapper or
@@ -23,6 +68,7 @@ class GalleryGridWidget extends React.Component {
   // Decap calls this with nextProps alone, so nextState may be missing.
   shouldComponentUpdate(nextProps, nextState) {
     if (nextState && this.state.crashed !== nextState.crashed) return true
+    if (nextState && this.state.broken.length !== nextState.broken.length) return true
     if (
       this.props.value !== nextProps.value ||
       this.props.classNameWrapper !== nextProps.classNameWrapper ||
@@ -54,7 +100,14 @@ class GalleryGridWidget extends React.Component {
       return <FallbackListControl value={value} onChange={onChange} reason={this.state.crashed} />
     }
 
-    return <GalleryGridControl {...this.props} />
+    return (
+      <GalleryGridControl
+        {...this.props}
+        broken={this.state.broken}
+        onBroken={this.markBroken}
+        onReadable={this.clearBroken}
+      />
+    )
   }
 }
 

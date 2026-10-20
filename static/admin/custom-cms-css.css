@@ -279,3 +279,25 @@ select[id^="alt-"] { border-left: 3px solid #3f7a4a !important; }
   margin-left: 6px; padding: 0 6px; font-size: 12px;
   border: 1px solid #a9c0e8; border-radius: 3px; background: #fff; cursor: pointer;
 }
+
+/* En bild som inte går att avkoda betyder nästan alltid en uppladdning som
+   dog halvvägs. Den ska synas direkt, inte upptäckas av bygget. */
+.gg-cell.is-broken .gg-thumb {
+  outline: 2px solid #c0392b;
+  outline-offset: -2px;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(192, 57, 43, 0.12),
+    rgba(192, 57, 43, 0.12) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+.gg-broken {
+  display: block;
+  margin-top: 2px;
+  color: #c0392b;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.2;
+}
