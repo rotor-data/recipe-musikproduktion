@@ -262,9 +262,9 @@ galleryImages:
     src: /img/img_1050.jpeg
     cropPosition: center
   - featured: false
-    title: ""
+    title: Två snubbar
     subtitle: ""
-    alt: ""
+    alt: Två snubbar
     src: /img/08-november-2015studionstudion08-november-20151166.jpg
     cropPosition: center
 ---
