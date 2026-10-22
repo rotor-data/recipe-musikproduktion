@@ -54,6 +54,8 @@ sections:
       - image: /img/logo-gallery/espn-png-logo-4142.png
         alt: ESPN
         href: ""
+      - image: /img/kvartal-logga.jpg
+        alt: Kvartal
   - type: work
     pretitle: Work
     title: Selected projects
