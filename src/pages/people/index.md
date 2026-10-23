@@ -262,9 +262,9 @@ galleryImages:
     src: /img/img_1050.jpeg
     cropPosition: center
   - featured: false
-    title: Två snubbar
+    title: Två snubbar i soffa
     subtitle: ""
-    alt: Två snubbar
+    alt: Två snubbar i soffa
     src: /img/08-november-2015studionstudion08-november-20151166.jpg
     cropPosition: center
 ---
