@@ -163,6 +163,12 @@ exports.createSchemaCustomization = ({ actions }) => {
       link: String
       linkLabel: String
       cropPosition: String
+      # Declared rather than inferred. Inference only sees fields some entry
+      # actually uses, so emptying the last card that had a tagline took the
+      # field out of the schema and broke every build from the editor.
+      tagline: String
+      title: String
+      description: String
     }
 
     type FlowBlockGalleryItem {
