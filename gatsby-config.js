@@ -25,6 +25,11 @@ module.exports = {
   },
   
   plugins: [
+    // Must come before gatsby-transformer-remark: it clears frontmatter image
+    // paths with no file behind them, so gatsby-remark-relative-images never
+    // sees one and never throws. A deleted picture then just goes missing
+    // from the page instead of stopping the build.
+    "drop-missing-images",
     "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-plugin-sass",
