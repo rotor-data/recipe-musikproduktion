@@ -138,8 +138,21 @@ exports.createSchemaCustomization = ({ actions }) => {
       description: String
     }
 
+    # @infer stays: it is what lets a new field in the markdown show up without
+    # anyone touching this file. It does not make a field optional, though —
+    # every field here is nullable anyway. What it does is derive the field
+    # list from the content, so a field no entry fills stops existing and the
+    # queries asking for it fail the build. Declaring the ones the templates
+    # depend on pins them down; inference still adds whatever else appears.
     type Hero @infer {
       image: File @fileByRelativePath
+      eyebrow: String
+      kicker: String
+      lead: String
+      pageTitle: String
+      statusLabel: String
+      statusValue: String
+      title: String
     }
 
     type PageCopy @infer {
