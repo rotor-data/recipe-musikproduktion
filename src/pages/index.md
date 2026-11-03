@@ -63,7 +63,7 @@ sections:
     ctaText: Open work
     ctaLink: /work
   - type: cta
-    title: Ready to define your sound?
+    title: for more info, please contact us!
     buttonText: Contact us
     buttonHref: /contact
 ---
