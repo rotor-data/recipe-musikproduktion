@@ -23,11 +23,8 @@ export const normalizeYoutubeVideos = (input) => {
       viewCount: video.viewCount || null,
       likeCount: video.likeCount || null,
     }))
-    .sort((a, b) => {
-      const left = a.publishedAt ? new Date(a.publishedAt).getTime() : 0
-      const right = b.publishedAt ? new Date(b.publishedAt).getTime() : 0
-      return right - left
-    })
+  // No sorting here: the order comes from the playlist the editor drags into
+  // shape, and re-sorting by date would throw that away.
 }
 
 export const getYoutubeVideoId = input => {
@@ -83,10 +80,13 @@ export const fetchYoutubeVideos = async () => {
   return normalizeYoutubeVideos(data)
 }
 
-// Picking what the start page shows: videos tagged "featured" on YouTube
-// first, then the newest to fill the remaining slots. Curation happens where
-// the videos live, so there is no second list to keep in sync. Kept pure so
-// it can be tested without a browser or the API.
+// Picking what the start page shows: the videos tagged "featured" on
+// YouTube, and only those. Tagging is the whole control — a video that is
+// not tagged must not creep onto the start page just because there is room
+// for it. With nothing tagged the page falls back to the first few, so it is
+// never empty. Curation happens where the videos live, so there is no second
+// list to keep in sync. Kept pure so it can be tested without a browser or
+// the API.
 export const selectStartPageVideos = (channel, limit = 5) => {
   const all = Array.isArray(channel) ? channel : []
   const isFeatured = video =>
@@ -97,10 +97,9 @@ export const selectStartPageVideos = (channel, limit = 5) => {
     )
 
   const featured = all.filter(isFeatured)
-  const rest = all.filter(video => !isFeatured(video))
 
   return {
     source: featured.length ? "tagged" : "latest",
-    videos: [...featured, ...rest].slice(0, limit),
+    videos: (featured.length ? featured : all).slice(0, limit),
   }
 }
