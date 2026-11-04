@@ -82,6 +82,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       featuredImages: [GalleryImage]
       galleryImages: [GalleryImage]
       featuredVideos: [FeaturedVideo]
+      spotifyPlaylists: [SpotifyPlaylist]
     }
 
     type SiteFooterText {
@@ -215,6 +216,15 @@ exports.createSchemaCustomization = ({ actions }) => {
       alt: String
       cropPosition: String
       src: File @fileByRelativePath
+    }
+
+    # Declared, never inferred: these fields exist whether or not an entry
+    # fills them, so emptying the last one cannot take the field out of the
+    # schema and break the build.
+    type SpotifyPlaylist {
+      title: String
+      description: String
+      url: String
     }
 
     type FeaturedVideo {

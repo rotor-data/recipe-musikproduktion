@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import SeoHead from "../components/SeoHead"
 import { cropPositionToObjectPosition } from "../lib/imageCrop"
 import VideoModal from "../components/VideoModal"
+import SpotifyPlaylists from "../components/SpotifyPlaylists"
 import { fetchYoutubeVideos } from "../lib/youtube"
 
 export const WorkPageTemplate = ({ content = {} }) => {
@@ -183,6 +184,8 @@ export const WorkPageTemplate = ({ content = {} }) => {
         </div>
       </section>
 
+      <SpotifyPlaylists playlists={content?.spotifyPlaylists} />
+
       {activeVideo && (
         <VideoModal
           video={{
@@ -207,6 +210,13 @@ WorkPageTemplate.propTypes = {
       statusLabel: PropTypes.string,
       statusValue: PropTypes.string,
     }),
+    spotifyPlaylists: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        url: PropTypes.string,
+      })
+    ),
     featuredVideos: PropTypes.arrayOf(
       PropTypes.shape({
         order: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -267,6 +277,11 @@ export const query = graphql`
           title
           statusLabel
           statusValue
+        }
+        spotifyPlaylists {
+          title
+          description
+          url
         }
       }
     }

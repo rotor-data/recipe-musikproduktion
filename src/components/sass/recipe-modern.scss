@@ -1566,3 +1566,37 @@ body {
     pointer-events: auto !important;
   }
 }
+
+/* Spotify players at the foot of the Work page. The player itself is
+   Spotify's own, so the styling here only gives it room and a heading that
+   belongs to the page. */
+.rec-spotify {
+  padding: 3.5rem 0 5rem;
+  display: grid;
+  gap: 2.75rem;
+}
+
+.rec-spotify__title {
+  margin: 0 0 0.45rem;
+  font-family: "Space Grotesk", "stratos", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.rec-spotify__desc {
+  margin: 0 0 1rem;
+  max-width: 48ch;
+  color: var(--rec-muted);
+}
+
+.rec-spotify__player {
+  display: block;
+  width: 100%;
+  /* Spotify's player stretches to whatever it is given, and across the full
+     shell it dwarfs everything else on the page. */
+  max-width: 720px;
+  border: 0;
+  border-radius: 12px;
+}

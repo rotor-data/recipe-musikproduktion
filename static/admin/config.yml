@@ -547,6 +547,28 @@ collections:
                 required: false
                 hint: Värdet bredvid etiketten.
             hint: Rubrikerna högst upp. Videorna under hämtas automatiskt från YouTube-kanalen.
+          - label: Spotify
+            name: spotifyPlaylists
+            widget: list
+            required: false
+            label_singular: Spellista
+            summary: '{{fields.title}}'
+            hint: 'Spellistor som visas längst ner på sidan, i den ordning de ligger här. Dra i =-ikonen mitt på raden för att flytta en. Ordningen på låtarna inne i spelaren ändrar du i Spotify.'
+            fields:
+              - label: Rubrik
+                name: title
+                widget: string
+                required: false
+                hint: Rubriken över spelaren.
+              - label: Beskrivning
+                name: description
+                widget: text
+                required: false
+                hint: Valfri rad under rubriken.
+              - label: Spotify-länk
+                name: url
+                widget: string
+                hint: 'Klistra in länken från Spotify: öppna spellistan, välj Dela och Kopiera länk. Fungerar även för album, låt och artist.'
       - file: src/pages/contact.md
         label: Contact Page
         name: contact
