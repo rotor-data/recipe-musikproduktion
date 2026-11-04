@@ -19,9 +19,12 @@
 
 ## Works-sidan
 
-- **Spotify-kategorin är inte byggd.** Jocke väntar på den: klistra in en
-  Spotify-länk i CMS:et, sajten hämtar omslag och titel via oEmbed (ingen
-  nyckel behövs) och lägger dit en spelare.
+- **Spotify-testlistan ligger kvar i `work-content.md`.** Byt
+  `37i9dQZF1DXcBWIGoYBM5M` mot Jockes egen lista när han gjort den.
+- **Spotify-spelaren laddas före cookie-samtycket.** Spelaren sätter
+  Spotifys egna cookies så fort sidan visas, medan sajtens banner frågar om
+  lov först efteråt. Behöver avgöras: ligga bakom samtycke, eller en
+  klickbar ruta som laddar spelaren först när någon vill lyssna.
 - **`YOUTUBE_PLAYLIST_ID` är inte satt i Netlify.** Spellistan
   `PLRS5cojQPHiE` ligger som standardvärde i `netlify/functions/youtube.js`.
   Sätt variabeln om listan byts ut, så slipper vi en kodändring.
