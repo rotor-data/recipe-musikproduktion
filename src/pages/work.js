@@ -157,7 +157,14 @@ export const WorkPageTemplate = ({ content = {} }) => {
                     />
                   )}
                   <span className="rec-work__card-play" aria-hidden="true">
-                    <span>Watch</span>
+                    {/* A triangle rather than the word "Watch": the button
+                        reads as play without a label, and the card's own
+                        aria-label already says what it does. */}
+                    <span>
+                      <svg viewBox="0 0 24 24" width="22" height="22" focusable="false">
+                        <path d="M8 5.5v13l11-6.5z" fill="currentColor" />
+                      </svg>
+                    </span>
                   </span>
                 </div>
                 <div className="rec-work__card-meta">
