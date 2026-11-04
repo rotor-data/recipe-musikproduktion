@@ -27,9 +27,14 @@ const WorkPagePreview = ({ entry, getAsset }) => {
     thumbnail: readImageUrl(item.thumbnail, getAsset),
   }))
 
+  // Hand over everything the entry holds, then correct the pieces that need
+  // it. Listing the fields instead is how the Spotify players came to be
+  // missing from the preview: a field added to the page but not to the list
+  // is invisible here however correctly it is filled in, and nothing says so.
   return (
     <WorkPageTemplate
       content={{
+        ...data,
         hero: data.hero || {},
         featuredVideos,
       }}
