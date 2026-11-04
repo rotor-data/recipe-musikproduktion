@@ -190,7 +190,7 @@ export const WorkPageTemplate = ({ content = {} }) => {
                         reads as play without a label, and the card's own
                         aria-label already says what it does. */}
                     <span>
-                      <svg viewBox="0 0 24 24" width="22" height="22" focusable="false">
+                      <svg viewBox="0 0 24 24" width="15" height="15" focusable="false">
                         <path d="M8 5.5v13l11-6.5z" fill="currentColor" />
                       </svg>
                     </span>

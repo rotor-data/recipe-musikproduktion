@@ -847,13 +847,35 @@ body {
 }
 
 .rec-work__card-play span {
-  width: 68px;
-  height: 68px;
+  /* Small enough to leave the picture alone, big enough to read as a
+     button. It sits back a little until the card is pointed at, so the
+     grid is pictures first and buttons second. */
+  width: 40px;
+  height: 40px;
   border-radius: 999px;
   background: linear-gradient(135deg, var(--rec-gold), var(--rec-gold-dark));
   color: #111;
   display: grid;
   place-items: center;
+  opacity: 0.82;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.rec-work__card:hover .rec-work__card-play span,
+.rec-work__card:focus-visible .rec-work__card-play span {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rec-work__card-play span {
+    transition: none;
+  }
+
+  .rec-work__card:hover .rec-work__card-play span,
+  .rec-work__card:focus-visible .rec-work__card-play span {
+    transform: none;
+  }
 }
 
 .rec-work__card-meta {
