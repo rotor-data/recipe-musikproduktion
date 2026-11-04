@@ -24,15 +24,59 @@ const uploadsPlaylistId = channelId =>
 // change.
 const ORDER_PLAYLIST_ID = process.env.YOUTUBE_PLAYLIST_ID || "PLRS5cojQPHiE"
 
-const playlistVideoIds = async (apiKey, playlistId) => {
-  const url =
-    `https://www.googleapis.com/youtube/v3/playlistItems` +
-    `?key=${apiKey}&playlistId=${playlistId}` +
-    `&part=contentDetails&maxResults=50`
+// 50 is the most either endpoint will take in one call, so both the reading
+// of a list and the looking up of details have to be done in pages. Without
+// this the 51st video does not go missing on its own: videos.list rejects
+// the whole request, and the page comes back empty.
+const PAGE = 50
 
-  const res = await fetch(url)
-  const data = await res.json()
-  return (data.items || []).map(item => item?.contentDetails?.videoId).filter(Boolean)
+const playlistVideoIds = async (apiKey, playlistId) => {
+  const ids = []
+  let pageToken = ""
+
+  // A guard rather than a while (true): a page token that never settles
+  // would otherwise spin until the function times out.
+  for (let page = 0; page < 10; page += 1) {
+    const url =
+      `https://www.googleapis.com/youtube/v3/playlistItems` +
+      `?key=${apiKey}&playlistId=${playlistId}` +
+      `&part=contentDetails&maxResults=${PAGE}` +
+      (pageToken ? `&pageToken=${pageToken}` : "")
+
+    const res = await fetch(url)
+    const data = await res.json()
+    ids.push(
+      ...(data.items || []).map(item => item?.contentDetails?.videoId).filter(Boolean)
+    )
+
+    pageToken = data.nextPageToken || ""
+    if (!pageToken) break
+  }
+
+  return ids
+}
+
+const videoDetails = async (apiKey, videoIds) => {
+  const found = new Map()
+
+  for (let at = 0; at < videoIds.length; at += PAGE) {
+    const batch = videoIds.slice(at, at + PAGE)
+    const url =
+      `https://www.googleapis.com/youtube/v3/videos` +
+      `?key=${apiKey}&id=${batch.join(",")}&part=snippet,contentDetails,statistics`
+
+    const res = await fetch(url)
+    const data = await res.json()
+    if (data.error) {
+      throw new Error(data.error.message || "videos.list failed")
+    }
+
+    for (const item of data.items || []) {
+      found.set(item.id, item)
+    }
+  }
+
+  return found
 }
 
 const shape = (id, snippet, detail) => {
@@ -82,18 +126,20 @@ exports.handler = async function () {
 
     const videoIds = [...ordered, ...uploads.filter(id => !ordered.includes(id))]
 
+    // Not cached, unlike a real answer: if YouTube is down or the key has
+    // been revoked this is indistinguishable from a channel with nothing in
+    // it, and caching it would leave the page empty for a day over a hiccup
+    // that lasted a minute.
     if (!videoIds.length) {
-      return { statusCode: 200, headers: CACHE_HEADERS, body: JSON.stringify([]) }
+      return {
+        statusCode: 503,
+        headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
+        body: JSON.stringify({ error: "No videos came back from YouTube" }),
+      }
     }
 
-    // One more unit, and the only place tags, duration and counts come from.
-    const videosUrl =
-      `https://www.googleapis.com/youtube/v3/videos` +
-      `?key=${apiKey}&id=${videoIds.join(",")}&part=snippet,contentDetails,statistics`
-
-    const detailRes = await fetch(videosUrl)
-    const detailData = await detailRes.json()
-    const detailMap = new Map((detailData.items || []).map(item => [item.id, item]))
+    // The only place tags, duration and counts come from.
+    const detailMap = await videoDetails(apiKey, videoIds)
 
     // Keep the order settled above. Private and deleted videos come back
     // from playlistItems but not from videos.list, so they drop out here.
@@ -109,6 +155,7 @@ exports.handler = async function () {
     console.error("YouTube fetch error:", error)
     return {
       statusCode: 500,
+      headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
       body: JSON.stringify({ error: "Failed to fetch YouTube videos" }),
     }
   }
