@@ -9,7 +9,7 @@ hero:
   statusLabel: Engine state
   statusValue: CURATED_LINKS
 spotifyPlaylists:
-  - title: Lyssna
+  - title: Listen
     description: ""
     url: https://open.spotify.com/playlist/4C6q42dbF6i7uoibkWHeHG
 ---
