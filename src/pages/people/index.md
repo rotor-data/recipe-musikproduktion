@@ -231,7 +231,7 @@ galleryImages:
     subtitle: ""
     alt: Anders och Kim
     src: /img/IMG_7231.JPG
-  - title: Owe Thörnquist
+  - title: Owe Thörnqvist
     subtitle: ""
     alt: Owe Thörnquist
     src: /img/IMG_E0680.jpg
