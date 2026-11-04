@@ -19,10 +19,9 @@
 
 ## Works-sidan
 
-- **Spotify-spelaren laddas före cookie-samtycket.** Spelaren sätter
-  Spotifys egna cookies så fort sidan visas, medan sajtens banner frågar om
-  lov först efteråt. Behöver avgöras: ligga bakom samtycke, eller en
-  klickbar ruta som laddar spelaren först när någon vill lyssna.
+- **Spotify-spelaren laddas före cookie-samtycket.** Avgjort 2026-11-04:
+  den får ligga kvar som den är. Noterat här för att valet ska vara synligt
+  om frågan kommer upp igen, inte för att göras om.
 - **`YOUTUBE_PLAYLIST_ID` är inte satt i Netlify.** Spellistan
   `PLRS5cojQPHiE` ligger som standardvärde i `netlify/functions/youtube.js`.
   Sätt variabeln om listan byts ut, så slipper vi en kodändring.
