@@ -19,8 +19,6 @@
 
 ## Works-sidan
 
-- **Spotify-testlistan ligger kvar i `work-content.md`.** Byt
-  `37i9dQZF1DXcBWIGoYBM5M` mot Jockes egen lista när han gjort den.
 - **Spotify-spelaren laddas före cookie-samtycket.** Spelaren sätter
   Spotifys egna cookies så fort sidan visas, medan sajtens banner frågar om
   lov först efteråt. Behöver avgöras: ligga bakom samtycke, eller en

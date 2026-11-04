@@ -10,6 +10,6 @@ hero:
   statusValue: CURATED_LINKS
 spotifyPlaylists:
   - title: Lyssna
-    description: Testlista så länge — byts mot Jockes egen.
-    url: https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M
+    description: ""
+    url: https://open.spotify.com/playlist/4C6q42dbF6i7uoibkWHeHG
 ---

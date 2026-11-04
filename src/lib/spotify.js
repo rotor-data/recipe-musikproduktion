@@ -9,11 +9,20 @@ const KINDS = ["playlist", "album", "track", "artist", "episode", "show"]
 
 const ID = /^[a-zA-Z0-9]{22}$/
 
-// Accepts a full link, a spotify:playlist:<id> URI, or a bare playlist id.
+// Accepts a full link, an /embed/ link, a spotify:playlist:<id> URI, a bare
+// playlist id, or the whole <iframe> snippet from Spotify's Embed option —
+// which is just as easy to copy as the plain link, so it should not have to
+// be explained.
 export const parseSpotifyLink = input => {
   if (!input) return null
-  const raw = String(input).trim()
+  let raw = String(input).trim()
   if (!raw) return null
+
+  if (raw.includes("<")) {
+    const embedded = raw.match(/https:\/\/[^"'\s>]*open\.spotify\.com[^"'\s>]*/i)
+    if (!embedded) return null
+    raw = embedded[0]
+  }
 
   if (ID.test(raw)) {
     return { kind: "playlist", id: raw }
