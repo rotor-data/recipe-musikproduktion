@@ -13,15 +13,23 @@ export const WorkPageTemplate = ({ content = {} }) => {
   // the start page instead, so pinning a video there cannot freeze this list.
   const [channelVideos, setChannelVideos] = useState([])
   const [activeVideo, setActiveVideo] = useState(null)
+  // Three states, not two: a page that says "loading" after the request has
+  // already failed tells the visitor to keep waiting for something that is
+  // never coming.
+  const [loadState, setLoadState] = useState("loading")
 
   useEffect(() => {
     let cancelled = false
     fetchYoutubeVideos()
       .then(items => {
-        if (!cancelled) setChannelVideos(items)
+        if (cancelled) return
+        setChannelVideos(items)
+        setLoadState("ready")
       })
       .catch(() => {
-        if (!cancelled) setChannelVideos([])
+        if (cancelled) return
+        setChannelVideos([])
+        setLoadState("error")
       })
 
     return () => {
@@ -135,9 +143,29 @@ export const WorkPageTemplate = ({ content = {} }) => {
 
           <div className="rec-work__videos">
             {filteredVideos.length === 0 && (
-              <article className="rec-work__empty">
-                <h2>No matching videos</h2>
-                <p>Loading the channel, or choose another filter.</p>
+              <article
+                className={`rec-work__empty${
+                  loadState === "error" ? " rec-work__state--error" : ""
+                }`}
+              >
+                {loadState === "loading" && (
+                  <>
+                    <h2>Loading the channel</h2>
+                    <p>One moment.</p>
+                  </>
+                )}
+                {loadState === "error" && (
+                  <>
+                    <h2>The videos could not be loaded</h2>
+                    <p>Something went wrong at our end. Please try again shortly.</p>
+                  </>
+                )}
+                {loadState === "ready" && (
+                  <>
+                    <h2>No matching videos</h2>
+                    <p>Choose another filter.</p>
+                  </>
+                )}
               </article>
             )}
 
