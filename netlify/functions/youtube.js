@@ -16,6 +16,25 @@ const uploadsPlaylistId = channelId =>
     ? `UU${channelId.slice(2)}`
     : channelId
 
+// The order the videos appear in on the site. YouTube does not let anyone
+// reorder a channel's uploads, but a playlist can be dragged into any order,
+// so the editor builds one and the site follows it. The id is an env var with
+// the current playlist as the default, so the site keeps working if the
+// variable is never set and can be pointed at another list without a code
+// change.
+const ORDER_PLAYLIST_ID = process.env.YOUTUBE_PLAYLIST_ID || "PLRS5cojQPHiE"
+
+const playlistVideoIds = async (apiKey, playlistId) => {
+  const url =
+    `https://www.googleapis.com/youtube/v3/playlistItems` +
+    `?key=${apiKey}&playlistId=${playlistId}` +
+    `&part=contentDetails&maxResults=50`
+
+  const res = await fetch(url)
+  const data = await res.json()
+  return (data.items || []).map(item => item?.contentDetails?.videoId).filter(Boolean)
+}
+
 const shape = (id, snippet, detail) => {
   const tags = snippet?.tags || []
   const tidyTags = tags.map(tag => (tag || "").toLowerCase())
@@ -52,18 +71,16 @@ exports.handler = async function () {
     }
   }
 
-  const playlistUrl =
-    `https://www.googleapis.com/youtube/v3/playlistItems` +
-    `?key=${apiKey}&playlistId=${uploadsPlaylistId(channelId)}` +
-    `&part=contentDetails&maxResults=50`
-
   try {
-    const res = await fetch(playlistUrl)
-    const data = await res.json()
+    // The playlist decides the order. The uploads are read as well and
+    // appended, so a video the editor has not put in the playlist yet still
+    // shows up rather than silently disappearing from the page.
+    const [ordered, uploads] = await Promise.all([
+      ORDER_PLAYLIST_ID ? playlistVideoIds(apiKey, ORDER_PLAYLIST_ID) : [],
+      playlistVideoIds(apiKey, uploadsPlaylistId(channelId)),
+    ])
 
-    const videoIds = (data.items || [])
-      .map(item => item?.contentDetails?.videoId)
-      .filter(Boolean)
+    const videoIds = [...ordered, ...uploads.filter(id => !ordered.includes(id))]
 
     if (!videoIds.length) {
       return { statusCode: 200, headers: CACHE_HEADERS, body: JSON.stringify([]) }
@@ -78,7 +95,8 @@ exports.handler = async function () {
     const detailData = await detailRes.json()
     const detailMap = new Map((detailData.items || []).map(item => [item.id, item]))
 
-    // Keep the playlist's order, which is newest upload first.
+    // Keep the order settled above. Private and deleted videos come back
+    // from playlistItems but not from videos.list, so they drop out here.
     const videos = videoIds
       .map(id => {
         const detail = detailMap.get(id)
