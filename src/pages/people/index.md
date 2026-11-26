@@ -150,12 +150,6 @@ galleryImages:
     src: /img/stefan.jpg
     cropPosition: center
   - featured: false
-    title: La Gaylia
-    subtitle: ""
-    alt: ""
-    src: /img/la-gayla.jpg
-    cropPosition: center
-  - featured: false
     title: Avakhan
     subtitle: ""
     alt: Avakhan
@@ -191,6 +185,12 @@ galleryImages:
     subtitle: ""
     alt: Per Lindwall
     src: /img/per-lindwall.webp
+    cropPosition: center
+  - featured: false
+    title: La Gaylia
+    subtitle: ""
+    alt: ""
+    src: /img/la-gayla.jpg
     cropPosition: center
   - featured: false
     title: Krille Jonsson
