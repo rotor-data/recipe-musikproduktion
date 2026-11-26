@@ -187,6 +187,12 @@ galleryImages:
     src: /img/per-lindwall.webp
     cropPosition: center
   - featured: false
+    title: La Gaylia
+    subtitle: ""
+    alt: ""
+    src: /img/la-gayla.jpg
+    cropPosition: center
+  - featured: false
     title: Krille Jonsson
     subtitle: ""
     alt: Krille Jonsson
@@ -197,6 +203,12 @@ galleryImages:
     subtitle: ""
     alt: Tompa och Matilda
     src: /img/tompa-och-matilda.webp
+    cropPosition: center
+  - featured: false
+    title: Björn Dan och Klas
+    subtitle: ""
+    alt: ""
+    src: /img/img_6704.jpg
     cropPosition: center
   - title: Boden-Jocke
     subtitle: ""
